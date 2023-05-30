@@ -1,0 +1,300 @@
+<style>
+.gut_lung_row {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.small_gut_row {
+    text-align: center;
+}
+.small_gut_row_two {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
+}
+.gut_col img {
+    width: 100%;
+}
+  .gut_col.desktop-data:nth-child(1) {
+    border-right: 2px solid #FF5C35;
+}
+
+.gut_col.desktop-data:nth-child(3) {
+    border-left: 2px solid #FF5C35;
+}
+  
+.gut_small_col_one{
+    text-align: right;
+/*     border-right: 2px solid #FF5C35; */
+    padding-right: 1rem;
+}
+.gut_small_col_two {
+    text-align: left;
+/*     border-left: 2px solid #FF5C35; */
+    padding-left: 1rem;
+}
+.gut_col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.gut_lung_row {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 2rem;
+}
+.small_gut_row h3 {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #FF5C35;
+    font-family: sk-modernist,sans-serif;
+}
+
+  #gut-lung-{{section.id}}{
+      padding: 70px 0;
+    background: #fff;
+  }
+  
+  .small_gut_row p, .gut_small_col_two p, .gut_small_col_one p{
+  font-size: 20px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  
+  @media(min-width:769px){
+  
+    .mobile-slider {
+    display:none;
+    }
+  
+  }
+  
+  @media(max-width:768px){
+    
+    .mobile-slider {
+        display: grid;
+    grid-template-columns: repeat(4, minmax(335px, 1fr));
+    align-items: start;
+    padding-bottom: 0;
+    justify-content: start;
+    gap: 10px;
+    overflow: auto;
+    margin-top: 40px;
+}
+    
+  	 .mobile-slider .gut_small_col_two{
+        background: #FF5C35;
+    position: relative;
+    margin-top: 50px;
+    padding: 15px;
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+       height: 70%;
+    }
+    
+    .mobile-slider::-webkit-scrollbar {
+    display: none;
+}
+    
+    .mobile-slider .small_gut_row p, .mobile-slider .gut_small_col_two p, .mobile-slider .gut_small_col_one p{
+    color : #fff;
+    }
+    
+  #gut-lung-{{section.id}}{
+      padding: 70px 13px;
+  }
+    
+    .small_gut_row_two {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 2rem;
+	}
+    
+    .gut_small_col_one {
+    text-align: left;
+      border-right:none;
+    border-left: 2px solid #FF5C35;
+    padding-left: 1rem;
+
+}
+    
+    .gut_small_col_one, .gut_small_col_two {
+          margin-bottom:10px;
+    }
+    
+    .gut_lung_row{
+    grid-template-rows: 1fr;
+    }
+    .small_gut_row p, .gut_small_col_two p, .gut_small_col_one p{
+    font-size: 16px;
+    }
+    
+    .desktop-data{
+    display:None;
+    }
+    
+  }
+  
+</style>
+
+<div id="gut-lung-{{section.id}}" class="gut_lung_section">
+  <div class="gut_lung_row">
+    <div class="small_gut_row">
+      {% if section.settings.sub_heading !=blank %}
+      <h4>{{section.settings.sub_heading}}</h4>
+      {% endif %}
+      {% if section.settings.sub_heading !=blank %}
+      <h3>{{section.settings.heading}}</h3>
+      {% endif %}
+      {% if section.settings.sub_heading !=blank %}
+      <p>{{section.settings.description}}</p>
+      {% endif %}
+    </div>
+    <div class="small_gut_row_two">
+      {% assign block = section.blocks | where: 'type', 'block-1' %}
+      <div class="gut_col desktop-data">
+        {% for block in block %}
+        <div class="gut_small_col_one">
+          <p>{{block.settings.Description}}</p>
+        </div>
+        {% endfor %}
+        <div class="gut_small_col_one">
+
+        </div>
+      </div>
+      <div class="gut_col">
+        <img src="{{section.settings.image| img_url : 'master'}}" loading="lazy" alt="{{ section.settings.image.alt }}">
+
+      </div>
+      {% assign block02 = section.blocks | where: 'type', 'block-2' %}
+      <div class="gut_col desktop-data">
+        {% for block in block02 %}
+        <div class="gut_small_col_two">
+          <p>{{block.settings.Description}}</p>
+        </div>
+        {% endfor %}
+
+        <div class="gut_small_col_two">
+
+        </div>
+      </div>
+      
+      {% assign block03 = section.blocks | where: 'type', 'block-3' %}
+      <div class="gut_col mobile-slider">
+        {% for block in block03 %}
+        <div class="gut_small_col_two">
+          <p>{{block.settings.Description}}</p>
+        </div>
+        {% endfor %}
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+   
+
+
+
+
+{% schema %}
+{
+  "name": "gut network",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub_heading",
+     "label": "Sub Heading"
+    },
+       {
+      "type": "color",
+      "id": "color_top_heading",
+      "label": "Sub Heading color",
+      "default": "#000000"
+     },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+
+       {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Heading color",
+      "default": "#000000"
+     },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+     {
+      "type": "color",
+      "id": "color_description_heading",
+      "label": "Description color",
+      "default": "#000000"
+     }
+      ,
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+     }
+  ],
+ "blocks": [
+    {
+      "type": "block-1",
+      "name": "GUT DATA",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "Description",
+	  	  "label": "Description"
+        }
+      ]
+    },
+  {
+      "type": "block-2",
+      "name": "GUT DATA 2",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "Description",
+	  	  "label": "Description"
+        }
+      ]
+    },
+	{
+      "type": "block-3",
+      "name": "GUT DATA mobile",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "Description",
+	  	  "label": "Description"
+        }
+      ]
+    }
+  ],
+ 
+"presets": [
+    {
+      "name": "Gut Network",
+      "settings": {
+}
+    }
+  ]
+  }
+
+{% endschema %}

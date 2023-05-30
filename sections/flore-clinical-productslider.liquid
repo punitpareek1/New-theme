@@ -1,0 +1,110 @@
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<style>
+.clinical-productSlider-heading, .howitworkheading{
+    text-align: center;
+    font-weight: 600;
+    color: #1F6A67;
+    font-size: 42px;
+    margin-bottom: 12px;
+    font-family: 'sk-modernist',sans-serif;
+}  
+  .clinical-productSlider-wrapper {
+    background: #f0f0f0;
+    padding: 30px 0;
+}
+  .clinical-productSlider-container{
+   text-align: center;
+ }
+ .clinical-productSlider-image{
+   height:250px;
+ }
+  .clinical-howitworks {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+  .clinical-productSlider-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 23px;
+    padding: 25px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.clinical-produt-row h2 {
+    text-align: center;
+}
+
+  
+/* Media query for mobile */
+@media(max-width:768px){
+.clinical-productSlider-row {
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+}
+</style>
+<script>
+$('.clinical-productSlider-row').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 3
+});
+  
+</script>
+<div class="clinical-productSlider-wrapper">
+<div class="clinical-productSlider-outer">
+{% if section.settings.headline!= blank  %}
+  <h2 class="clinical-productSlider-heading"> {{ section.settings.headline }}</h2>{% endif %}
+
+   <div class="clinical-productSlider-row">
+{% for block in section.blocks %}
+ <div class="clinical-productSlider-container">
+   <div class="clinical-productSlider-image"><img src="{{ block.settings.product_handle | img_url: 'master' | prepend: "https:" }}" alt="{{  block.settings.product_handle.alt }}"></div> 
+  <h2 class="clinicalproductSlider-name">{{ block.settings.product_handle }}</h2> 
+    
+  <p class="clinicalproductSliderprice">{{ block.settings.product_handle.price |money }}</p>
+ </div>
+  {% endfor %}
+  </div>
+  
+  
+</div>
+</div>  
+  
+ {% schema %}
+{
+  "name": "Clinical Product Slider",
+  "class": "dynamic-featured-product",
+  
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    }
+  ],
+   "blocks": [
+    {
+      "type": "block",
+      "name": "howitworksiproduct",
+      "settings": [
+       {
+      "type": "product",
+      "id": "product_handle",
+      "label": "Main Featured Product"
+       }
+      ] 
+    }
+  ],
+    "presets": [
+    {
+      "category": "Clinical Product Slider",
+      "name": "Clinical Product Slider"
+    }
+  ]
+}
+
+{% endschema %}

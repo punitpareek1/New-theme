@@ -1,0 +1,512 @@
+{% if cart.discount_applications.size > 0 %}
+  {% assign discount_application = cart.discount_applications[0] %}
+  {% if discount_application.value_type == 'percentage' %}
+    {% assign discount_percent_off = discount_application.value | divided_by: 100 %}
+  {% endif %}
+{% endif %} 
+
+
+
+
+{{ 'pw_cartdrawer.css' | asset_url | stylesheet_tag }}
+
+
+<div class="prpwebs-cart-drawer-app prpwebs-popup-drawer-load" id="prpwebs-cart-drawer-shopify">
+  <div class="prpwebs-cart-popup">
+    
+    <form action="{{ routes.cart_url }}" class="prpwebs-cart prpwebs-drawer-container-cart cart">
+      
+        <div class="prpwebs-close-popup-cart">
+            <div class="prpwebs-header-close-empty">
+                <span class="prpwebs-shopping-cart-icon">
+                  <i class="fa fa-shopping-cart oi header__cart__icon" aria-hidden="true" data-glyph="cart"></i>
+                </span>
+                <h3>Your Cart</h3>
+              <span class="prpwebs-close" alt="close">
+                <span class="prpwebs-close-btn"></span>
+              </span>
+            </div>
+        </div>
+     
+      <div class="not_with_other"><p>Floré Clinical Microbiome can't be added to your cart if other products are already added.</p></div>
+      <div class="kit_present_available"><p>This can't be added to your cart if Floré Clinical Microbiome is already added.</p></div>
+     
+     	      
+      <div class="prpwebs-empty-cart"><p>The cart is empty</p></div>
+      
+      {% assign emptycart = 'emptycarttrue' %}
+        {% if cart.item_count > 0%} {% assign emptycart = 'emptycartfalse' %} {% endif %}
+      	
+       
+         <div class="prpwebs-popup-cart-load prpwebs-sticky-cart {{emptycart}}">
+                 <div class="prpwebs_cartitems"> 
+                    <div style="display:flex;">
+                  <img class="cart_loader_img lazyload" data-src="https://cdn.shopify.com/s/files/1/1919/5103/files/Spin-1s-200px_e2e9ea00-1b7f-49b3-86e7-745ea05afeeb.gif?v=1630579200" style="width: 40px; height: 40px; margin: auto; display: none;">
+                   </div>
+           		
+                   {% for item in cart.items %} 
+                    <div class="prpwebs-item-cart-content" id="item-{{ forloop.index }}">
+                       <div class="prpwebs-item-content-variants">
+                          <div class="prpwebs-item-cart-image">
+                            
+                              <a href="{{item.url}}"><img class="prpwebs-cart-image" src="{{ item.image | img_url: '100x100' }}" /></a>
+                          </div> 
+                          <div class="prpwebs-item-cart-description">
+                             <div class="prpwebs-item-close">
+                                    <a href="javascript:void(0)" class="prpwebs-remove-item" alt="close" onclick="removItemCart({{item.id}},'item-{{ forloop.index }}')">
+<!--                                       <span class="prpwebs-close-btn"></span> -->
+                                      <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                             </div>  
+                             <div class="prpwebs-content-product-and-variant-title">  
+                                  <a href="{{item.url}}" class="prpwebs-product-title">{{item.product.title}}</a>
+                               		{% if item.variant.title != 'Default Title' or item.variant_title != null %}
+                                  		<span class="prpwebs-product-variant-title">{{item.variant.title}}</span>
+                               		{%endif%}
+                               
+                                  <div class="prpwebs-propertie-content"></div>  
+                             </div> 
+                             <div class="prpwebs-content-quantity-price">
+
+                                <div class="prpwebs-item-cart-content-quantity">  
+
+                                      <div class="prpwebs-item-cart-qty prpwebs-item-{{item.id}} quantity center">
+                                        <div class="js-qty__adjust_prpwebs1 prpwebs-cart-plus-minus" data-quantity="{{ item.quantity }}" data-id="{{item.id}}" data-line="1">
+                                          <div class="prpwebs-dec prpwebs-qty button js-qty__adjust_prpwebs js-qty__adjust--minus quantity__minus">
+                                            <span class="prpwebs-minus-symbol"  id="minus-{{ forloop.index }}" onclick=minusItem(event,{{ forloop.index }},{{item.id}})>-</span>
+                                          </div>
+
+                                          <input type="text" value="{{ item.quantity }}" class="text quantity js-qty__num quantity__input prpwebs-qty-inputbox" data-id="{{item.id}}" id="inputQuantity_{{ forloop.index }}" disabled>
+
+                                          <div class="prpwebs-inc prpwebs-qty button js-qty__adjust_prpwebs js-qty__adjust--plus quantity__plus">
+                                            <span class="prpwebs-plus-symbol" id="plus-{{ forloop.index }}" onclick=plusItem(event,{{ forloop.index }},{{item.id}})>+</span>
+                                          </div>
+                                        </div>  
+                                      </div>
+                               </div>
+
+                               <div class="prpwebs-cart-content-price cartitem-id-{{item.id}}">  
+                                      <span class="prpwebs-compare-at-price"></span>
+                                      <span class="prpwebs-price-total  prpwebs-desktop"> 
+                                       {% if item.product.title == "Makeup Bag"%}
+                                        {% assign itemFound = 0%}
+                                        {% for itemscheck in cart.items %}
+                                        {% if itemscheck.product.type =="Prime" or itemscheck.product.type =="Fresh Glow" or itemscheck.product.type =="Highlighting Serum" or itemscheck.product.type =="Face Palette" or itemscheck.product.type =="Finishing Powder" or itemscheck.product.type =="Concealer" or itemscheck.product.type =="Tinted Moisturizer" or itemscheck.product.title =="Easy Beauty Bundle" or itemscheck.product.title =="Just a Tint Kit"%}
+                                        	{% assign itemFound = 1%}
+                                 		 {% break %}
+                                 		{%endif%}
+                                        {% endfor %}
+                                        {% if itemFound == 1 %}
+                                        <span class="money">$0.00</span></span>
+                                 		{%else%}
+                                 
+                                		 <span class="money"> {{item.original_price | money }}</span></span>   
+                                        {%endif%}
+                                        {%else%}
+                                        <span class="money"> {{item.original_price | money }}</span></span>   
+                                        {%endif%}
+                                            
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                    </div>
+                  {% endfor %} 
+           		</div>	
+    
+         </div>
+  
+  		
+  
+  		 <!--product slider -->
+         <!-- <div class="slider_container">
+            <div class="recommend">Recommended</div>
+            <h3 class="customer_desc"> Customers who bought this item also bought</h3>
+              <div class="cart-drawer-slider"></div>
+          </div>
+                    
+      	-->
+      	     
+            <!--payment--buttons -->
+            <div class="prpwebs-drawer-checkout {{emptycart}}">
+              <div class="prpwebs-drawer-content-checkout">
+                <div class="prpwebs-content-total-cart">
+                  
+                                   
+                  <!-- discount element -->
+                   <div class="prpwebs-add-discount">
+                      <div class="prpwebs-success-code-discount"></div>
+                      <label class="prpwebs-discount-heading"></label>
+                      <!--<div class="prpwebs-content-discount-add">
+                        <input type="text" class="prpwebs-discount-code" placeholder="eg. Discount Code" value="" name="prpwebsdiscount" autocomplete="off">
+                        <button type="button" class="prpwebs-apply-discount"><span class="prpwebs-text--apply--discount">Apply</span><span class="prpwebs-cart-loading"><i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw margin-bottom"></i></span>
+                        </button>
+                      </div> -->
+                      <div class="prpwebs-error-code-discount"></div>
+                   </div>
+                  
+                  <div class="prpwebs-sub-total-cart"> 
+                    <div class="prpwebs-text-subtotal">Subtotal <span class="cart_items">({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }})</span></div>
+                      <div class="prpwebs-amount-sub-total">
+                        <span class="prpwebs_subtotal_amount">
+                          {%if cart.original_total_price > cart.total_price %}
+                            <span class="discount-tag" style="display:none;">{%comment%}{{settings.theme_automatic_discount_code}}{%endcomment%}Offer</span>
+                          	<span class="money-original" style="text-decoration: line-through;display:none;"> {{cart.original_total_price | money}}</span>
+                          {%endif%}
+                          <span class="money cart__subtotal">
+                            <span class="money-discount"> {{cart.total_price | money}} </span>
+                          </span>
+                        </span>
+                        <span class="prpwebs_subtotal_amount_discount"></span>
+                      </div>
+                      <input type="hidden" value="{{cart.total_price}}" id="prpwebs-total-price-global">
+                      <input type="hidden" value="0" id="prpwebs-discount-price-global"> 
+                  </div>
+                  
+                  <!-- Route Code Edited 07/20/2021 -->
+                  <div class="route-div" watch-changes=".money.cart__subtotal" desktop-align="center"></div>
+                  <!-- Route Code End -->
+                  
+                  <div class="prpwebs-finalize-purchase">
+<!--                        <p style="float: none; text-align: left; clear: both; margin: 0px 0 0px; padding:0px 0px 8px 10px; font-size:13px;">
+                          <input style="float:none; vertical-align: middle; margin-top: -2px;" type="checkbox" id="agree1" />
+                          <label style="display:inline; float:none" for="agree1">
+                            I agree to 
+                            <a href="#" class="popup-link1 popUp-termandConditions1" data-target="popup-termsandconditions" data-hidescreen="true" >Terms and Conditions</a>, 
+                            <a href="#" class="popup-link1 popUp-privacypolicy1" data-target="popup-privacypolicy" data-hidescreen="true" >Privacy Policy</a>, and 
+                            <a href="#" class="popup-link1 popUp-consentForm1" data-target="popup-consent" data-hidescreen="true">Consent Form</a>.
+                          </label>
+                   		</p> -->
+                    
+                      <div class="prpwebs-content-checkout-button prpwebs-button-100-w">
+                        <div class="prpwebs-min-money-cart"></div>
+                        <button type="submit" class="prpwebs-checkout-purchase prpwebs-button-100-w btn btndisabled">
+                          <span class="prpwebs-add--to--cart">Checkout</span><span class="prpwebs--loading">
+                          <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw margin-bottom"></i>
+                          </span>
+                        </button>
+                      </div>
+                    
+                                       
+                      <div class="prpwebs-additional-buttons" style="display:none;">
+                            {% comment %}                       
+                            {% if additional_checkout_buttons %}
+                            {{ content_for_additional_checkout_buttons }}
+                            {% endif %}
+                           {% endcomment %}  
+                      </div>
+                      <span class="prpwebs-continue-shopping" onClick="window.location.reload();">Continue Shopping</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+      	
+    </form>
+        
+  </div>
+</div>
+
+
+<div class="prpwebs-cart-back" style="display:none;"></div>
+
+<div id="popup-termsandconditions1" class="iframe popup cart-popup">
+  <div class="text-right padding-b-15" style="text-align: right;"><a href="#" class="popup-close" onclick="display_employee_detail_hide('popup-termsandconditions')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a></div>
+  <div style="height: 90%; width: 100%; overflow: auto;">
+    {% render "document-terms-and-conditions" %}
+  </div>
+</div>
+
+<div id="popup-privacypolicy1" class="iframe popup cart-popup" style="">
+  <div class="text-right padding-b-15" style="text-align: right;"><a href="#" class="popup-close" onclick="display_employee_detail_hide('popup-privacypolicy')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a></div>
+  <div style="height: 90%; width: 100%; overflow: auto;">
+    {% render "document-privacy-policy" %}
+  </div>
+</div>
+
+<div id="popup-consent1" class="iframe popup cart-popup" style="">
+  <div class="text-right padding-b-15" style="text-align: right;"><a href="#" class="popup-close" onclick="display_employee_detail_hide('popup-consent')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a></div>
+  <div style="height: 90%; width: 100%; overflow: auto;">
+    {% render "document-consent-form" %}
+  </div>
+</div>  
+
+
+<script>
+  $(document).ready(function() {
+   	
+   
+        
+     $('.prpwebs-cart-popup1').on('change', '.js-qty__num', function(e){
+         e.preventDefault();
+         var $this = $(this),
+         $form = $this.closest('form.cart');
+
+        $this
+          .prop('disabled', true)
+          .parents('.js-qty').addClass('qty--disabled')
+          .end()
+          .siblings().prop('disabled', true);
+
+        var $cart = $('.cart');
+        var qty = $this.val();
+        var id = $this.attr( 'id' );
+        var product_id = id.substring( parseInt( id.indexOf( '_' ) + 1 ) );
+        var moneyFormat = window.monies;
+
+        $.ajax( {
+          type: 'post',
+          url: '/cart/change.js',
+          dataType: 'json',
+          data: {
+            'quantity': qty,
+            'id': product_id
+          },
+          success: function( data ) {
+            // Set the updated line item new price
+            for ( var i = 0; i < data.items.length; i++ ) {
+              var currentItem = data.items[i];
+              var $lineItem = $cart.find( '.item[data-variant-id="' + currentItem.variant_id + '"]' );
+              $lineItem.find( '.js-qty__num' ).prop( 'value', currentItem.quantity );
+              $lineItem.find( '.prpwebs-price-total .money' ).html( Shopify.formatMoney( currentItem.line_price, moneyFormat ) );
+            }
+            
+            var pid = "32375383162969";
+            if(data.items.length>0){ pid = data.items[0].id }
+                       
+            // Set the new total price
+            $('.prpwebs-amount-sub-total .cart__subtotal' ).html( Shopify.formatMoney( data.total_price, moneyFormat ) );
+			
+            if(data.total_price < data.original_total_price)
+            {
+            	//$('.prpwebs-amount-sub-total .money-original' ).html( Shopify.formatMoney( data.original_total_price, moneyFormat ) );
+              	$('.prpwebs-amount-sub-total .money-original' ).hide();
+            }
+            
+            
+            
+            // Update cart total
+            prpUpdateCartTotal();
+
+            $this
+              .prop('disabled', false)
+              .parents('.js-qty').removeClass('qty--disabled')
+              .end()
+              .siblings().prop('disabled', false);
+          }
+          
+        });
+
+        // remove line item if the quantity is 0
+        if ( qty == 0 ) {
+          $this.closest( '.prpwebs-item-cart-content' ).fadeOut( function() {
+            $this.remove();
+             prpUpdateCartTotal();
+          } );
+        }
+
+        function prpUpdateCartTotal() {
+          $.getJSON('/cart.js', function(cart) {
+            $( '.cart-count-js' ).html( cart.item_count );
+          });
+        }
+       
+      }).on( 'click', '.prpwebs-remove-item', function(e) {
+         e.preventDefault();
+         $(this).closest( '.prpwebs-item-cart-content' ).find( '.js-qty__num' ).val(0).change();
+       	 //$(this).closest( '.prpwebs-item-cart-content' ).find( '.js-qty__num' ).prop( 'value', 0 ).change();     
+       
+      });
+    
+       
+    
+    //hide drawer popup
+    jQuery('.prpwebs-close').on('click',function(){
+     	jQuery('#prpwebs-cart-drawer-shopify').removeClass("active", 1000);
+      	$('body').removeClass('prpwebs-cart-open');
+    })
+    
+     //listen to the promo button click
+    $('.prpwebs-apply-discount').on('click', function(event){
+      //disable the button event
+      event.preventDefault();
+      //write the url format
+      var theUrl = '/checkout?discount=';
+      //grab the discount code from the input
+      var theDiscount = $('.prpwebs-discount-code').val();
+      //full url to redirect to checkout with promo code
+      var toRedirect = theUrl+theDiscount;
+      //redirect
+      window.location.href = toRedirect;
+    });
+  
+    
+    $('#CartButton').on('click', function(e){
+        
+       e.preventDefault();
+       console.log('test');
+       $('.prpwebs-popup-drawer-load').addClass('active', 1000);
+       $('body').addClass('prpwebs-cart-open');
+    })
+  
+  	jQuery('.prpwebs-cart-back').on('click', function(){
+  		jQuery('#prpwebs-cart-drawer-shopify').removeClass("active", 2000); 
+      	$('body').removeClass('prpwebs-cart-open');
+	})
+     
+    
+});    
+
+//custom code
+    
+async function changeCartItem(data,qty) {
+   console.log(data.toString());
+    const result = await fetch("/cart/change.js", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          "id": data.toString(),
+  		  "quantity": qty
+		})
+    });
+	
+   return result.json();
+ }
+  
+  function removItemCart(id,itemID){
+    var moneyFormat = window.monies;
+    changeCartItem(id,0).then((result) => {
+      	   
+  		   var elem = document.getElementById(itemID);
+  		   elem.parentNode.removeChild(elem);
+      		var priceElement = document.getElementsByClassName("cart__subtotal");
+            priceElement[0].innerHTML = Shopify.formatMoney( result.total_price, moneyFormat ); 
+       		if(result.total_price < result.original_total_price)
+            {
+            	 priceElement[0].innerHTML = Shopify.formatMoney( result.total_price, moneyFormat );
+            }
+            
+    	
+      		prpUpdateCartTotal();
+    });
+    
+  }
+  
+  function plusItem(event,id,itemID) {
+   
+    var inputValue = document.getElementById(`inputQuantity_${id}`).value;
+    var qty = parseInt(inputValue);
+
+    if((parseFloat(qty) == parseInt(qty)) && !isNaN(qty) && qty>0) {
+    } else {
+      qty = 1;
+    }
+    qty = qty + 1;
+    document.getElementById(`inputQuantity_${id}`).value = qty;
+    //console.log(id,qty);
+    var ElementID = 'item-'+id;
+    changeEvent(itemID,qty);
+  }
+  
+  function minusItem(event,id, itemID){
+    var inputValue = document.getElementById(`inputQuantity_${id}`).value;
+    var qty = parseInt(inputValue);
+	console.log(qty,'input');
+    if((parseFloat(qty) == parseInt(qty)) && !isNaN(qty) && qty>0) {
+    } else {
+      qty = 1;
+    }
+    qty = qty - 1;
+    document.getElementById(`inputQuantity_${id}`).value = qty;
+    console.log(id, qty);
+     if(inputValue == 1){
+        var ElementID = 'item-'+id;
+    	removItemCart(itemID,ElementID);
+    }
+    else{
+    	changeEvent(itemID,qty);
+    }
+  }
+  
+  function changeEvent(id,qty){
+    var moneyFormat = window.monies;
+  	changeCartItem(id,qty).then((result) => {
+      	   console.log(result);
+      		var priceElement = document.getElementsByClassName("cart__subtotal");
+      		//for free shopping above 45$
+            priceElement[0].innerHTML = Shopify.formatMoney( result.total_price, moneyFormat ); 
+       		if(result.total_price < result.original_total_price)
+            {
+            	 priceElement[0].innerHTML = Shopify.formatMoney( result.total_price, moneyFormat );
+            }
+      	prpUpdateCartTotal();
+    });
+  	
+  }
+  
+  function prpUpdateCartTotal() {
+    //console.log('update');
+    $.getJSON('/cart.js', function(cart) {
+      $( '.cart-count-js' ).html( cart.item_count );
+      var cartItemsHas = `(${cart.item_count} ${cart.item_count > 1 ? 'Items' : 'Item'})`;
+        $('.cart_items').html(cartItemsHas);
+    });
+  }
+    
+    
+  //end
+  
+  /*term condition*/
+  const imOverlay1 = document.querySelector('.popup-screen');
+  // const popupBtn1 = document.querySelector('.popUp-privacypolicy1');
+  // const privacypolicyBox1 = document.querySelector('#popup-privacypolicy1');
+  // const consentBtn1 = document.querySelector('.popUp-consentForm1');
+  // const popupConsentForm1 = document.querySelector('#popup-consent1');
+  // const tandCBtn1 = document.querySelector('.popUp-termandConditions1');
+  // const popuptandCBox1 = document.querySelector('#popup-termsandconditions1');
+  
+  
+  // popupBtn1.addEventListener('click', function(){
+  //   privacypolicyBox1.style.display = 'block';
+  //   imOverlay1.style.display = 'block';
+  // });
+  
+  // consentBtn1.addEventListener('click', function(){
+  //   popupConsentForm1.style.display = 'block';
+  //   imOverlay1.style.display = 'block';
+  // });
+  
+  // tandCBtn1.addEventListener('click', function(){
+  //   popuptandCBox1.style.display = 'block';
+  //   imOverlay1.style.display = 'block';
+  // });
+      
+ 
+  
+  // const agreeInput = document.getElementById('agree1');
+  
+  // agreeInput.addEventListener('change', function(evt){
+  //     let checkout_btn = document.querySelector('.prpwebs-checkout-purchase');
+  //     if(evt.target.checked){
+  //         checkout_btn.classList.remove('btndisabled');
+  //     }
+  //     else{
+  //         checkout_btn.classList.add('btndisabled');
+  //     }
+  // });
+  
+  
+  
+
+</script>
+
+{{ 'pw_cartdrawer.js' | asset_url | script_tag }}
+
+
+
+
+
+

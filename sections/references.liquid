@@ -1,0 +1,117 @@
+<style>
+
+  .headingtop{
+  	    margin-top: 0;
+    font-weight: 500;
+    color: #404040;
+    font-size: 2rem;
+    line-height: 1.15;
+  }
+  .headingtop p { padding:0px;}
+  
+  .Reference {
+  	background: #e0e2ea;
+    width: 100%;
+    overflow: hidden;
+    padding:50px 0px;
+  }
+  .col1 p, .col2 p, .bottmtext p{
+      font-size: .8rem;
+    line-height: 1.3;
+    padding: 0 0 10px;
+    color: rgba(0,0,0,.6);
+    
+  }
+  
+  .bottmtext p{
+      text-align:center;
+        margin-top: 20px;
+  }
+  
+  .col1, .col2{
+   width:48%;
+    
+  }
+  .reference-row{
+  display:flex;
+    column-gap:40px;
+  }
+  
+  @media(max-width:768px){
+  		
+    .reference-row{
+    	display:block;
+    }
+    
+    .col1, .col2 {
+    	width:100%;
+    }
+    .img-cols img{
+     
+      width:100px;
+      
+    }
+    .sect-3-col-2{ margin-top:30px;}
+    .img-cols { padding-bottom: 30px;}
+  	
+  }
+  
+  
+</style>
+
+
+<section class="Reference">
+  <div class="global-container-1200">
+     
+    <div class="headingtop" >{{ section.settings.topHeading }}</div>
+    
+    <div class="reference-row">
+    
+      <div class="col1">{{ section.settings.text_left }}</div>
+      <div class="col2">{{ section.settings.text_right }}</div>
+      
+    </div>
+    <div class="bottmtext" >{{ section.settings.paragraph }}</div>
+    
+  </div>
+</section>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Reference",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "topHeading",
+      "label": "Title Bar"
+    },
+	{
+      "type": "html",
+      "id": "text_left",
+      "label": "column 1"
+    },
+	{
+      "type": "html",
+      "id": "text_right",
+      "label": "Column 2"
+    },
+	{
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Text Bottom"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Reference",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

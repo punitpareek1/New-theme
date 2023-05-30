@@ -1,0 +1,245 @@
+<style>
+.accordion {
+     padding: 15px 20px;
+    border-left: #FF5C35 10px solid;
+    background: #f5f5f5;
+    text-decoration: none;
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #404040;
+}
+
+.global-container-1200 .container{
+  display: none;
+}
+
+  
+.accordion-open span {
+ display:block;
+ position:absolute;
+ right:20px;
+ top:30%;
+ padding:10px;
+}
+.accordion-open span {
+ background:url('{{ 'plus.png' | asset_url }}') center center no-repeat;
+ transform: rotateZ(45deg);
+  transition: transform 330ms ease-in-out;
+}
+.accordion-close span {
+ display:block;
+ position:absolute;
+ right:20px;
+ top:30%;
+ background:url('{{ 'plus.png' | asset_url }}') center center no-repeat;
+ padding:10px;
+ transition: transform 330ms ease-in-out;
+ }
+.faq-header {
+ margin:3rem 0 1rem 0!important;
+}
+.faqpage div.container {
+ padding:0;
+ margin:0;
+}
+.faqpage div.container {
+ max-width:100%;
+ padding:5px 0;
+}
+.faqpage div.content {
+ background:#f4f4f4;
+ margin: 0;
+ padding:10px;
+ font-size:.9em;
+ line-height:1.5em;
+}
+.faqpage div.content ul {
+ padding:0;
+ margin:0;
+ padding:3px;
+}
+.faqpage div.content p {
+ padding:0;
+ margin:3px 0 10px;
+ padding:3px;
+}
+.faqpage div.content ul li {
+ list-style-position:inside;
+ line-height:25px;
+}
+  .content{
+  padding:0 15px 15px;
+  }
+  .faq-header{
+  font-size: 2.2rem;
+    line-height: 1.25;
+    color: #404040;
+    font-weight: 500;
+    margin-bottom: 40px!important;
+  }
+  
+  .main-content .shopify-section:last-child{
+  padding-bottom:70px;
+  }
+  .heading h1{
+      padding: 0 0 40px 0;
+    font-size: 2.2rem;
+    line-height: 1.25;
+    color: #404040;
+    font-weight: 500;
+  }
+  .faqs{
+  padding:70px 0 0 0;
+  }
+  
+  ul {
+    list-style: disc;
+}
+  .fHeading{
+     margin-bottom: 30px;
+    font-size: 30px;
+    line-height: 1.25;
+    color: #404040;
+    font-weight: 500;
+  }
+  .two .fHeading{
+     margin-bottom: 30px;
+    margin-top:30px;
+  }
+
+  
+  @media(max-width:769px){
+    .accordion{
+    padding: 12px 30px 12px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #404040;
+    line-height: 18px;
+    }
+        
+    .accordion-close span, .accordion-open span{
+        right: 8px;
+    }
+    .content p{
+    font-size:14px;
+    }
+    .fHeading{
+    font-size:24px;
+    }
+  }
+</style>
+
+
+<script type="text/javascript" src="{{ 'jquery_accordion.js' | asset_url }}"></script>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.accordion').accordion({
+cookieName: 'accordion_nav'
+});
+});
+})(jQuery);
+</script>
+
+
+
+
+
+<section class="faqs">
+  <div class="iampadding" onload="hideme()">
+  <div class="global-container-1200">
+    
+    <div class="heading"><h1>{{section.settings.Main_Heading}}</h1></div>
+    
+    {% assign block01 = section.blocks | where: 'type', 'block-1' %}
+    <div class="one">
+      {% for block in block01 %}
+      {% if block.settings.heading_faqs != blank %}
+      <h2 class="fHeading">{{block.settings.heading_faqs}}</h2>
+      {% endif %}
+       <div class="accordion" >{{ block.settings.faqs_heading }}<span></span></div>
+       <div class="container">
+       <div class="content">
+       <div>{{ block.settings.paragraph }}</div>
+       </div>
+       </div>
+      {% endfor %}
+    </div>
+    {% assign block02 = section.blocks | where: 'type', 'block-2' %}
+    <div class="two">
+      {% for block in block02 %}
+      {% if block.settings.heading_faqs != blank %}
+      <div class="fHeading">{{block.settings.heading_faqs}}</div>
+      {% endif %}
+       <div class="accordion" >{{ block.settings.faqs_heading }}<span></span></div>
+       <div class="container">
+       <div class="content">
+       <div>{{ block.settings.paragraph }}</div>
+       </div>
+       </div>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+</section>
+{% schema %}
+{
+"name": "Faqs",
+"settings": [
+		{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      }
+      ],
+  	"name": "Multiple Blocks",
+    "blocks":[
+      {
+        "type": "block-1",
+        "name": "Block 1",
+        "settings": [
+        {
+          "type": "text",
+          "id": "faqs_heading",
+          "label": "Faqs Heading"
+        },
+		{
+          "type": "html",
+          "id": "paragraph",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "heading_faqs",
+          "label": "Faqs Heading"
+        }
+      ]
+      },
+      {
+        "type": "block-2",
+        "name": "Block 2",
+        "settings": [
+        {
+          "type": "text",
+          "id": "faqs_heading",
+          "label": "Faqs Heading"
+        },
+		{
+          "type": "html",
+          "id": "paragraph",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "heading_faqs",
+          "label": "Faqs Heading"
+        }
+      ]
+      }
+    ]
+}
+{% endschema %}

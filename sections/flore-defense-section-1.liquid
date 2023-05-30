@@ -1,0 +1,210 @@
+<style>
+ 
+  .flore-defense-section-1 {
+       background-color: #f8f8f8;
+    padding:75px 0px 0;
+  }
+  
+  .bar {
+  	    border: 1px solid rgba(0,0,0,.1);
+    background: rgba(0,0,0,.05);
+    color: #fd5c39;
+    line-height: 1.4;
+    text-align: center;
+    padding: 10px;
+    max-width: 800px;
+    margin:0 auto;
+  }
+  
+  h1 {
+    margin: .67em 0;
+    font-size: 2em;
+    line-height: 1.25;
+    color: #404040;
+    
+    font-weight: 500;
+}
+  strong{
+   font-weight: 700;
+  }
+  .product-row { 
+    display:flex; 
+        padding: 60px 0;
+  }
+  .image-col, .product-details-col {
+  	width:48%;
+    column-gap:40px;
+  }
+  .bar p{ padding:0px;}
+  
+  .Menu-bar {
+  	background: rgba(0,0,0,.7);
+    margin-top: 75px;
+    padding: 15px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .all-item-row {
+  	display:flex;
+    justify-content: space-between;
+    max-width: 470px;
+    margin: 0 auto;
+    
+  }
+  .all-items a {
+  color:#fff;
+  }
+  
+  @media(max-width:769px){
+  
+    .product-row { 
+    display: flex;
+    flex-flow: column-reverse; 
+	}
+    .image-col, .product-details-col {
+  	width:100%;
+    }
+    .image-col {margin-top:40px;}
+  }
+  .all-item-row {
+  flex-wrap : wrap;
+    justify-content: space-around;
+  }
+  
+</style>
+
+<section class="flore-defense-section-1">
+  <div class="global-container-1200">
+     
+    <div class="bar" >{{ section.settings.topHeading }}</div>
+    
+    <div class="product-row">
+    
+      <div class="image-col"> <img src="{{ section.settings.image | img_url : 'master' }}"></div>
+      <div class="product-details-col"> 
+      
+        <div class="product-info">
+				<h1>{{ section.settings.Product_heading }}</h1>
+				<div class="product-price">${{ section.settings.Product_price }}</div>
+				
+				<div class="text02">
+					{{ section.settings.paragraph }}
+				</div>
+         		 <div>
+         		 <a id="add-to-cart-link" data-id="31807634276413" href="{{ section.settings.button_link }}" class="btn btn-primary add-to-cart">{{ section.settings.button_text }}</a>
+          		</div>
+				
+		</div>
+        
+      </div>
+    
+    </div>
+    <div class="Menu-bar" >
+      <div class="all-item-row">
+    {% for block in section.blocks %}
+    
+      <div class="all-items"><a href="{{ block.settings.url_item}}">{{ block.settings.item_name}}</a></div>
+    
+    
+    {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Defense Section 1",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "topHeading",
+      "label": "Title Bar"
+    },
+	{
+      "type": "text",
+      "id": "Product_heading",
+      "label": "Produt Name"
+    },
+	{
+      "type": "text",
+      "id": "Product_price",
+      "label": "Produt price"
+    },
+	{
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+	  "default":"Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+	  
+    }
+  ],
+	"blocks":[
+	{
+	"type":"order",
+	"name":"Menu Items",
+	"settings": [
+        {
+          "type": "text",
+          "id": "item_name",
+          "label": "Menu Item Name"
+
+        },
+		{
+          "type": "url",
+          "id": "url_item",
+          "label": "Url for Menu"
+        }	
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Defense Section 1",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+          jQuery(document).on('click','.add-to-cart',function(){
+            	
+                var ID = jQuery(this).attr("data-id");
+            console.log(ID,"gggfgfg");
+            	jQuery.ajax({
+                type: 'POST',
+                url: '/cart/add.js',
+                data: {
+                quantity: 1,
+                id: ID
+                },
+                dataType: 'json',
+                success: function (data) {
+                  window.location.href = '/cart';
+                }
+        });
+        })
+</script>

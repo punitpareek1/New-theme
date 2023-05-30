@@ -1,0 +1,153 @@
+<style>
+
+  .inner-additions-row{
+      max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .check-heading{
+  font-size: 42px;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'sk-modernist';
+line-height: 46px;
+    text-align: center;
+  }
+  .sec3-1 {
+    grid-auto-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: auto;
+    grid-column-gap: 0px;
+    align-items: self-start;
+    margin-bottom: 10px;
+}
+  .sec3-1 img{
+  width:30px;
+    height:30px;
+  }
+  
+  .sec3-1 p {
+  font-size:20px;
+    color:#fff;
+    padding:0;
+  }
+  
+  .lp-check-row{
+      grid-auto-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 40px;
+    padding-top: 55px;
+  }
+  
+  .check-section{
+  background-image : url(https://cdn.shopify.com/s/files/1/2204/9357/files/waves_ne.png?v=1650449945);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 120px 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  
+  @media(max-width:1200px){
+  
+    .check-section{
+      background: #6fa3a3;
+    padding: 70px 12px;
+  }
+  
+  }
+  
+  @media(max-width:768px){
+  
+    .lp-check-row{
+      grid-template-columns:1fr;
+      padding-top:30px;
+    }
+  	.sec3-1 {
+    	grid-column-gap: 0px;
+		grid-template-columns: 1fr 12fr;
+	}
+    .check-heading {
+    	font-size: 30px;
+    	line-height: 1.2;
+	}  
+    .sec3-1 img {
+        width: 20px;
+        height: 20px;
+        margin-top: 6px;
+	}
+  }
+  
+  
+</style>
+
+<div class="check-section">
+  <div class="inner-additions-row">
+    {% if section.settings.heading != blank %}
+    <h3 class="check-heading">
+      {{section.settings.heading}}
+    </h3>
+    {% endif %}
+    <div class="lp-check-row">
+      
+      <div class="left-row">
+        {% for block in section.blocks %}
+      {% assign mod = forloop.index | modulo: 2 %}
+   		{% if mod != 0 %}
+      <div class="sec3-1">
+        <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/check.png?v=1649251498">
+        <p>{{block.settings.mission_points}}  </p>
+      </div>
+        {% endif %}
+      {% endfor %} 
+      </div>  
+      <div class="right-row">
+        {% for block in section.blocks %}
+        {% assign mod = forloop.index | modulo: 2 %}
+   		{% if mod == 0 %}
+      <div class="sec3-1">
+        <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/check.png?v=1649251498">
+        <p>{{block.settings.mission_points}}  </p>
+      </div>
+        {% endif %}
+      {% endfor %} 
+      </div>  
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Flore mission",
+    "settings": [
+			{
+              "type": "text",
+              "id": "heading",
+              "default": "Lorem",
+              "label": "Heading"
+            }
+	],
+	"blocks":[
+			{
+				"name":"Mission Points",
+				"type":"text",
+				"settings":[
+                    {
+                      "type": "text",
+                      "id": "mission_points",
+                      "default": "Lorem",
+                      "label": "Mission Points"
+                    }
+				]
+			}
+		],
+	"presets":[{
+	"name": "Check Section"
+}]
+  }
+{% endschema %}

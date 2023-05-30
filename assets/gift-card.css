@@ -1,0 +1,602 @@
+@font-face {
+  font-family: Roboto;
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/roboto/roboto_n3.fcf1a8ca0d134f200393562dbdc9f5836276782d.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=3020fab7b9eef98e4ecf8dd8288fd798f455f0196e8a05316c3f32079b822376") format("woff2"),
+       url("https://fonts.shopifycdn.com/roboto/roboto_n3.fa321b1ddee0338f7cf3bfb01c364bbc1b6a419a.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=2480c7deef74a381afd0603155862be21038139fd695a6cfb8051da388917dcb") format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/roboto/roboto_i3.822f1ceb4cac9d8a65193433be86f1fa41cc2dec.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=cded663140c00e91bbbc4492426defa3fb4b2f3862352f685702d388408635c1") format("woff2"),
+       url("https://fonts.shopifycdn.com/roboto/roboto_i3.f851bd42126845bf1959bbdd8e03e076fedf4a94.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=edc9ee831dbd3ffc35af2ae5524f4de91358d566988cc1ee2236b60740b5e698") format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/roboto/roboto_n4.da808834c2315f31dd3910e2ae6b1a895d7f73f5.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=ae128e7832e7735aec41a5089aaf6e3bf61c8811703371d23c2894e15d7592cf") format("woff2"),
+       url("https://fonts.shopifycdn.com/roboto/roboto_n4.a512c7b68cd7f12c72e1a5fd58e7f7315c552e93.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=10338b1842d5e9ab8a77cc0b41472db4a1e161700fc6f3f9d2d4d979ba01451d") format("woff");
+}
+
+  @font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/roboto/roboto_i4.f98951b4b9b6e1096fc799cd05debd098bd422ac.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=b1a431532bf1599a1a6709a10426cb70aa9c0bd012b271183df159e5b3c6f5ce") format("woff2"),
+       url("https://fonts.shopifycdn.com/roboto/roboto_i4.688a26691d45bc4053b6ae24a196cabdeedbc25c.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=fa8e1b9c3ba0d97e13b4e02a21458f01a9c5f1f302c69ea7d870d35d5e8856cb") format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/roboto/roboto_n1.c0eade3702dbcdaf6bcfe2c3bb8a2cfd92b00f0a.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=b224bd363519f76035eeedb48f6fe962b53a34d04a6929676398b049472bd51b") format("woff2"),
+       url("https://fonts.shopifycdn.com/roboto/roboto_n1.ba6a9df663e398c6d3f0837aeb2fa362341c7a09.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=190514dced12ce7cb7ffd8886b80822ae2b41b3c93c1baab414b2798515dd20c") format("woff");
+}
+
+  @font-face {
+  font-family: Roboto;
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/roboto/roboto_i1.14768b9c4382559e9f188f7918f75430d72ee651.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=03c653012232f8434ec52ba6458e2277b63327952fbba1753b21d2ef7b1f03ea") format("woff2"),
+       url("https://fonts.shopifycdn.com/roboto/roboto_i1.15073f8149268ef52c7756457a9c09b213557c20.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=60edf23c349c2eb95e2fab3359182c601b6e6f9604a29dc2e732733dcd35d908") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_n3.e625f784016f3f6ecc60fbe32f43a8968a01f630.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=7e91715c0930daf6cb1dd6c89d66539545bf7dd27d38b25c341968a58d6400f8") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_n3.802efb07b3f5051e538f43bcf2ea8622d85014ad.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=26e57db0b695e5a771cb72b9fba0932657f54503990a3d6d1f05f1a7a5f5aad4") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_i3.b96574b8fc32250fc5e056d1eec2d4eef8193064.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=b065e7cb771e16e3c05526f5faf28f4043889c06bb9e128e96e3781b9145b48e") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_i3.0824557f2fc85ad602beaa6f5f27568602f0b60b.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=1c448df8461a2cfd2d9d3a8abbbfea7fc43e6d49245265e28aeda8003bc78f94") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_n4.5460e0463a398b1075386f51084d8aa756bafb17.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=565c0c803e9fc6d77813332076f8794812d3a17333ddc9b18d61857c96adc01e") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_n4.8512334118d0e9cf94c4626d298dba1c9f12a294.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=e5e4c7cd04d4a3b0731b961503fe30c0bd17abe65baa95197dfa1780f9478136") format("woff");
+}
+
+  @font-face {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_i4.3854a246d5acf17aab4c771d3d4542818d3a46a8.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=f2881efc6907193e83f3fc8e36ee325b8e1bbe8a287684cddf956d09ee53c882") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_i4.1cb364a3d4a7a0305132a25a76ac8fa7d381d3c6.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=eee8ba1c71bdb8f90c5e64c8015a64194c7d4d697b84b6d0c17d9b02c740787e") format("woff");
+}
+
+
+  
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_n7.8bfd11295a1edbb769a778900a2afc48b16848e7.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=c0ea0b4514c7bdaaa2f14677adf2a81c2b1fb703b34967dde086dde67cc3b330") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_n7.4e2eb03bfa5cdc209fbd1b7b5ee863b8032f4b36.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=132e721bbae09a9f4f9662836b6227603e6a10e8411f4fd04ba98b9b8476ce91") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_i7.f2dd6989e403681b1042ba33de0a0ae8062b7ecb.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=26976b18bea42b51c83e046eb9d97fb10542f1706c23b5ac64dc11c1241268c7") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_i7.2b1150c87b2f7e0338af40875cb176d5ab2ddad7.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=849199b8ded3caa3e47547e46fdedf2c3b1a95036f701ecf3737e1ccce74d194") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_n8.1a6578d1602b9445554d723b8c42e0908f4d82f0.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=f8e4b11c18b7f14fd17223aaae1aa195d4a5dd84947f9bba5593d5566b987908") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_n8.5bba25de3685e6a02f32b4a9e97462d3380a62e3.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=6b0a5ace844e5b188d770dc3ca4097f757e3ea67d9f6685f2a6deef52d9c21fd") format("woff");
+}
+
+  @font-face {
+  font-family: "Open Sans";
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_i8.8b08aad33296d7a8054c4b5e66e8dcf089f97539.woff2?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=6258fa657f4351da2e19a1303a68488d9150bb7c3d4fbb1def1e5bcb59dfb01b") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_i8.766c70b14859f6f2957cc52f60de314524ef9940.woff?h1=c3VuZ2Vub21pY3MuY29t&h2=ZmxvcmUuY29t&h3=YWNjb3VudC5mbG9yZS5jb20&h4=ZmxvcmVsYWJzLmNvbQ&hmac=667e83606f20265d620afca1605c9c310c04c54339dc4d249532d68aadd49276") format("woff");
+}
+
+.template-gift_card {
+  font-family: Roboto,sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  margin: 0;
+}
+.template-gift_card a {
+  color: #edeff2;
+  text-decoration: none;
+}
+.template-gift_card a:hover {
+  color: #edeff2;
+}
+.template-gift_card .btn {
+  font-family: "Open Sans",sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  display: inline-block;
+  padding: 1.5em;
+  font-size: 0.875em;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-transform: uppercase;
+  vertical-align: baseline;
+  background-color: #edeff2;
+  border-radius: 4px;
+  zoom: 1;
+}
+.template-gift_card .btn:hover {
+  color: #fff;
+  background-color: #edeff2;
+}
+.template-gift_card .wrap {
+  width: 95%;
+  max-width: 540px;
+  margin: 0 auto;
+}
+.template-gift_card .wrap:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@keyframes slideup {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(2000px) rotate(10deg);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80% {
+    -webkit-transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+  }
+}
+@keyframes popup {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(-10px);
+  }
+  80% {
+    -webkit-transform: translateY(2px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes container-slide {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+.template-gift_card header {
+  text-align: center;
+  padding: 3em 0;
+  animation: fadein 0.5s ease-in-out both 0.4s;
+}
+.template-gift_card .shop-title {
+  font-family: "Open Sans",sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
+  font-size: 2.25em;
+  color: #edeff2;
+}
+.template-gift_card .shop-title:hover {
+  color: #edeff2;
+}
+.template-gift_card .shop-title img {
+  max-height: 100%;
+  margin: 0 auto;
+}
+.template-gift_card main {
+  padding-bottom: 3em;
+  animation: slideup 0.8s ease-in-out;
+}
+.template-gift_card .gift-card-outer-container {
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #0282a2;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  animation: container-slide 0.8s ease-in-out;
+}
+.template-gift_card .gift-card-inner-container {
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  animation: cardslide 0.8s ease-in-out;
+}
+.template-gift_card .gift-card-inner-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.template-gift_card .gift-card-header {
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0.5rem;
+  position: relative;
+}
+.template-gift_card .gift-card-header h2 {
+  font-family: "Open Sans",sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
+.template-gift_card .tag {
+  background-color: #edeff2;
+  padding: 0.5em 0.5em 0.35em 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: inline-flex;
+}
+.template-gift_card .gift-card-holder {
+  margin: 0.75em;
+  margin-bottom: 1.25em;
+  margin-top: 1.25em;
+  position: relative;
+}
+.template-gift_card .gift-card-holder .corner {
+  display: block;
+  width: 47px;
+  height: 47px;
+  position: absolute;
+  z-index: 2;
+}
+.template-gift_card .gift-card-holder .corner.top-left {
+  background: url("//cdn.shopify.com/s/assets/gift-card/corner-top-left-1585103bdd46bf1297b88f31bdfce999.png") 0 0 no-repeat;
+  top: -1px;
+  left: -1px;
+}
+.template-gift_card .gift-card-holder .corner.bottom-right {
+  background: url("//cdn.shopify.com/s/assets/gift-card/corner-bottom-right-ba899b18631cb91859e186c2cc1c6970.png") 0 0 no-repeat;
+  bottom: -1px;
+  right: -1px;
+}
+.template-gift_card .gift-card {
+  position: relative;
+  box-sizing: border-box;
+  position: relative;
+}
+.template-gift_card .gift-card:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  display: block;
+}
+.template-gift_card .gift-card img {
+  border-radius: 10px;
+  max-width: 100%;
+}
+.template-gift_card .gift-card-code-outer {
+  position: absolute;
+  bottom: 1em;
+  text-align: center;
+  width: 100%;
+}
+.template-gift_card .gift-card-code-outer.medium {
+  font-size: 0.875em;
+}
+.template-gift_card .gift-card-code-outer.small {
+  font-size: 0.75em;
+}
+.template-gift_card .gift-card-code-inner {
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  background-color: #fff;
+  padding: 0.5em;
+  border-radius: 4px;
+  max-width: 450px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.template-gift_card .gift-card-code-inner strong {
+  font-stylet: normal;
+  font-weight: 300;
+  font-size: 1.875em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px dashed #e5e5e5;
+  padding: 0.4em 0.5em;
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  color: #777;
+  line-height: 1;
+}
+.template-gift_card .small .gift-card-code-inner {
+  overflow: auto;
+}
+.template-gift_card .disabled .gift-card-code-inner strong {
+  color: #999;
+  text-decoration: line-through;
+}
+.template-gift_card .gift-card-code-inner span + span {
+  margin-left: 0.25em;
+}
+.template-gift_card .gift-card-amount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  font-size: 2.75em;
+  padding: 0.4em 0.5em;
+}
+.template-gift_card .gift-card-amount.medium {
+  font-size: 2.25em;
+}
+.template-gift_card .gift-card-amount strong {
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  display: block;
+}
+.template-gift_card .tooltip {
+  position: relative;
+}
+.template-gift_card .tooltip:hover .tooltip-container {
+  display: block;
+}
+.template-gift_card .tooltip-container {
+  display: block;
+  position: absolute;
+  top: -100%;
+  right: 50%;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  animation: popup 0.5s ease-in-out both 0.7s;
+  top: -50%;
+  margin-top: 0.25em;
+}
+.template-gift_card .tooltip-triangle {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 5px solid #333;
+  border-top: 5px solid rgba(51, 51, 51, 0.9);
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  margin-left: -5px;
+  margin-bottom: -5px;
+}
+.template-gift_card .tooltip-label {
+  display: block;
+  position: relative;
+  right: -50%;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  background: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  min-height: 14px;
+  font-stylet: normal;
+  font-weight: 300;
+  font-size: 0.4em;
+  text-decoration: none;
+  line-height: 16px;
+  text-shadow: none;
+  padding: 0.5em 0.75em;
+  margin-left: 0.25em;
+}
+.template-gift_card .gift-card-instructions {
+  font-size: 0.875em;
+  text-align: center;
+  color: #999;
+  margin: 0 0.75em 1.5em;
+}
+.template-gift_card .gift-card-qr-code {
+  display: block;
+  text-align: center;
+}
+.template-gift_card .gift-card-qr-code img {
+  padding: 1.25em;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  margin: 0 auto 1.25em;
+}
+.template-gift_card .gift-card-actions {
+  border-top: 1px solid #f2f2f2;
+  padding: 1.25em 0.75em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.template-gift_card .action-link {
+  font-size: 0.875em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 1.5em;
+  margin-top: 0.5rem;
+  color: #bfbfbf;
+}
+.template-gift_card .action-link:hover {
+  color: #999;
+}
+.template-gift_card .action-link:hover .ico-16 {
+  opacity: 0.4;
+}
+.template-gift_card .ico-16 {
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  width: 17px;
+  height: 17px;
+  vertical-align: bottom;
+  margin-bottom: -1px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  margin-right: 0.5em;
+  opacity: 0.25;
+  transition: opacity 0.3s ease-in-out;
+}
+.template-gift_card .ico-16.print {
+  background-image: url("//cdn.shopify.com/s/assets/gift-card/icon-print-164daa1ae32d10d1f9b83ac21b6f2c70.png");
+}
+.template-gift_card footer[role=contentinfo] {
+  padding-bottom: 3em;
+  text-align: center;
+  animation: fadein 0.5s ease-in-out both 0.4s;
+}
+.template-gift_card .gift-card-apple-wallet-badge {
+  display: inline-block;
+}
+.template-gift_card .gift-card-apple-wallet-badge-image {
+  display: block;
+}
+@media screen and (max-width: 580px) {
+  .template-gift_card body {
+    font-size: 12px;
+  }
+  .template-gift_card h2 {
+    font-size: 1.5em;
+  }
+  .template-gift_card .gift-card-outer-container {
+    padding: 0.5em;
+  }
+  .template-gift_card .tooltip-container {
+    top: -65%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .template-gift_card h2 {
+    font-size: 1.25em;
+  }
+  .template-gift_card .gift-card {
+    font-size: 10px;
+  }
+  .template-gift_card .gift-card-holder .corner {
+    display: none;
+  }
+  .template-gift_card .gift-card-holder .corner.bottom-right {
+    background-position: bottom right !important;
+  }
+  .template-gift_card .gift-card-amount strong {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  }
+  .template-gift_card .tooltip-container {
+    top: -75%;
+  }
+}
+@media screen and (max-height: 800px) {
+  .template-gift_card .shop-title {
+    max-height: 100px;
+  }
+}
+@media screen and (max-height: 750px) {
+  .template-gift_card .shop-title {
+    max-height: 80px;
+  }
+  .template-gift_card header {
+    padding: 2em 0;
+  }
+  .template-gift_card footer[role=contentinfo],
+.template-gift_card main {
+    padding-bottom: 2em;
+  }
+}
+@media print {
+  @page {
+    .template-gift_card {
+      margin: 0.5cm;
+    }
+  }
+  .template-gift_card p,
+.template-gift_card h2,
+.template-gift_card h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  .template-gift_card h2,
+.template-gift_card h3 {
+    page-break-after: avoid;
+  }
+  .template-gift_card body {
+    background-color: #fff;
+  }
+  .template-gift_card .gift-card-code-inner strong {
+    color: #555;
+  }
+  .template-gift_card .gift-card-amount .tooltip {
+    color: #fff !important;
+  }
+  .template-gift_card .shop-title {
+    color: #58686f;
+  }
+  .template-gift_card .gift-card-outer-container,
+.template-gift_card .gift-card-inner-container,
+.template-gift_card .gift-card-code-inner,
+.template-gift_card .gift-card:before {
+    box-shadow: none;
+  }
+}

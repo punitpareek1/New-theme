@@ -1,0 +1,175 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  
+ h3{
+        line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+} h2{
+        line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+}
+  .home-about{
+  background-color:#f8f8f8;
+  }
+  
+  .about-contain-1200{
+  	padding-top:50px;
+    padding-bottom:50px;
+  }
+  .about-col .preheading{
+        font-weight: 500;
+        padding-bottom: 8px;
+        font-size: .9rem;
+        line-height: 1.4;
+        color: #FF5C35;
+}
+  .column-main strong{
+  font-weight:700;
+  }
+  .column-fixed-left {
+        display: table;
+        width: 100%;
+    	padding-top:20px;
+}
+  .column-fixed-left .column-left-100 {
+        width: 100px;
+        box-sizing: border-box;
+        display: table-cell;
+        vertical-align: top;
+    	padding-right: 20px;
+}
+.column-fixed-left .column-main {
+      box-sizing: border-box;
+      display: table-cell;
+      vertical-align: top;
+  padding-top: 5px;
+}
+  .padding-b-50 {
+        padding-bottom: 50px;
+}
+  .about-txt-heading{
+    font-size: 2em;
+    line-height: 1.25;
+    color: #404040;
+    font-weight: 500;
+  }
+  .col-about{padding-top:50px;display:flex;column-gap: 75px;}
+  .about-col-inner{
+  	width: 33.32%;
+    box-sizing: border-box;
+    padding-bottom:30px;
+  }
+  .about-col-inner .text-body{padding-top:10px;}
+  .footer-image-mobile{display:none;}
+  @media(max-width:768px){
+  	.col-about{display:inline-block;}
+    .about-col-inner{width:100%}
+    .footer-image-mobile{display:block;}
+    .show-only-desktop{display:none;}
+    .padding-b-50 {
+        padding-bottom: 5px;}
+  }
+
+</style>
+
+<div class="home-about" style="position: relative;z-index: 1;">
+  <div class="about-contain-1200 global-container-1200">
+     
+		 <div class="about-col" style="position: relative;">
+           	<div class="preheading">{{section.settings.preheading}}</div>
+           	   <h1 class="about-txt-heading">
+                      {{section.settings.heading}}
+               </h1>
+           		<div class="text02">{{section.settings.paragraph}}</div>
+            
+          </div>
+    	
+    	<div class="column-fixed-left">
+			<div class="column-left-100 padding-r-20"><img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/team-sunny-square.jpg?6376183668843013844" alt="Sunny Jain" style="border-radius: 50%; overflow: hidden; border: 5px solid rgba(0,0,0,.1);" loading="lazy"></div>
+			<div class="column-main padding-t-5">
+				<p style="line-height: 1.1;"><strong>Sunny Jain</strong><br><span style="font-size: 13px;">CEO and Founder</span></p>
+			</div>
+		</div>
+    
+    	<div class="col-about">
+            {% for block in section.blocks %}
+
+                     <div class="about-col-inner">
+                       <h3 class="h3-small">{{block.settings.text}}</h3>
+                       <div class="text-body">
+                         <div class="text02"> {{block.settings.paragraph}} </div>
+                       </div>
+                    </div>
+
+
+            {% endfor %}
+         </div>
+    
+    	<div class="padding-b-50">
+          <div class="show-only-desktop">
+			<br><br>
+			<a href="/pages/contact" class="btn btn-primary">Contact Us</a>
+          </div>
+          
+		</div>
+    
+  </div>
+  <div class="footer-image-mobile"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/SunGenomics_Updated.jpg?v=1622544002" alt="SunGenomics_Updated"></div>
+</div>
+{% schema %}
+{
+  "name": "About Us Section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "preheading",
+      "label": "Preheading"
+    },
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Body Text"
+    }
+  ],
+	"blocks":[
+	{
+	"type":"mission",
+	"name":"Our Mission",
+	"settings": [
+		{
+          "type": "text",
+          "id": "text",
+          "label": "Heading"
+
+        },
+		{
+          "type": "text",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }	
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "About Us Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

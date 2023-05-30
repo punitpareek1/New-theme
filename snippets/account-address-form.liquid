@@ -1,0 +1,183 @@
+<style>
+
+  .button.secondary, .submit.secondary, button.secondary {
+    background: 0 0;
+    border-color: #d2d0d0;
+    color: #d2d0d0;
+}
+  
+  .button.secondary:hover, .submit.secondary:hover, button.secondary:hover {
+    background: #d2d0d0;
+    border-color: #d2d0d0;
+    color: #fff;
+}
+  a, body, label, li, p, select, span, td, th {
+    font-family: SunGenomics,sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+}
+  .button, .submit, button {
+    -webkit-border-radius: 27.5px;
+    -khtml-border-radius: 27.5px;
+    -moz-border-radius: 27.5px;
+    -ms-border-radius: 27.5px;
+    -o-border-radius: 27.5px;
+    border-radius: 27.5px;
+    -webkit-box-sizing: border-box;
+    -khtml-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .2s cubic-bezier(.25, .46, .45, .94);
+    -ms-transition: all .2s cubic-bezier(.25, .46, .45, .94);
+    -o-transition: all .2s cubic-bezier(.25, .46, .45, .94);
+    transition: all .2s cubic-bezier(.25, .46, .45, .94);
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px 30px;
+    font-family: "Source Sans Pro",sans-serif;
+    font-weight: 700;
+    color: #aeaeae;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid #aeaeae;
+    cursor: pointer;
+}
+  .button:hover, .submit:hover, button:hover {
+    background: #aeaeae;
+    border-color: #aeaeae;
+    color: #fff;
+}
+
+  
+</style>
+
+{% assign formID = "" %}
+{% if formInfo.id %}
+  {% assign formID = formInfo.id | prepend: "_"%}
+{% endif %}
+
+{% assign is_new = is_new | default: false %}
+
+{% form 'customer_address', formInfo %}
+  <div class="input-wrapper hhh">
+    <label for="customer_addresses_first_name{{ formID }}">{{ 'customer.addresses.first_name' | t }}</label>
+    <input type="text" name="address[first_name]" value="{{form.first_name}}" id="customer_addresses_first_name{{ formID }}" />
+  </div>
+  <div class="input-wrapper">
+    <label for="customer_addresses_last_name{{ formID }}">{{ 'customer.addresses.last_name' | t }}</label>
+    <input type="text" name="address[last_name]" value="{{form.last_name}}" id="customer_addresses_last_name{{ formID }}" />
+  </div>
+  <div class="input-wrapper">
+    <label for="customer_addresses_company{{ formID }}">{{ 'customer.addresses.company' | t }}</label>
+    <input type="text" name="address[company]" value="{{form.company}}" id="customer_addresses_company{{ formID }}" />
+  </div>
+  <div class="input-wrapper">
+    <label for="customer_addresses_address1{{ formID }}">{{ 'customer.addresses.address1' | t }}</label>
+    <input type="text" name="address[address1]" value="{{form.address1}}" id="customer_addresses_address1{{ formID }}" />
+  </div>
+  <div class="input-wrapper">
+    <label for="customer_addresses_address2{{ formID }}">{{ 'customer.addresses.address2' | t }}</label>
+    <input type="text" name="address[address2]" value="{{form.address2}}" id="customer_addresses_address2{{ formID }}" />
+  </div>
+  <div class="input-wrapper">
+    <label for="customer_addresses_city{{ formID }}">{{ 'customer.addresses.city' | t }}</label>
+    <input type="text" name="address[city]" value="{{form.city}}" id="customer_addresses_city{{ formID }}" />
+  </div>
+  {% if is_new %}
+    <div class="input-wrapper">
+      <label for="address-country">{{ 'customer.addresses.country' | t }}</label>
+      <div class="select-wrapper">
+        <div class="selected-text"></div>
+        <select id="address-country" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+      </div>
+    </div>
+    <div class="input-wrapper" id="address-province-container" style="display:none">
+      <label for="address-province">{{ 'customer.addresses.province' | t }}</label>
+      <div class="select-wrapper">
+        <div class="selected-text"></div>
+        <select id="address-province" class="new-address-province" name="address[province]" data-default="{{form.province}}"></select>
+      </div>
+    </div>
+  {% else %}
+    <div class="input-wrapper">
+      <label for="address-country-{{form.id}}">{{ 'customer.addresses.country' | t }}</label>
+      <div class="select-wrapper">
+        <div class="selected-text"></div>
+        <select id="address-country-{{form.id}}" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+      </div>
+    </div>
+    <div class="input-wrapper" id="address-province-container-{{ address.id }}" style="display:none">
+      <label for="address-province-{{ address.id }}">{{ 'customer.addresses.province' | t }}</label>
+      <div class="select-wrapper">
+        <div class="selected-text"></div>
+        <select id="address-province-{{ address.id }}" name="address[province]" data-default="{{form.province}}"></select>
+      </div>
+    </div>
+  {% endif %}
+  <div class="input-wrapper">
+    <label for="customer_addresses_zip{{ formID }}">{{ 'customer.addresses.zip' | t }}</label>
+    <input type="text" name="address[zip]" value="{{form.zip}}" id="customer_addresses_zip{{ formID }}" />
+  </div>
+  <div class="input-wrapper">
+    <label for="customer_addresses_phone{{ formID }}">{{ 'customer.addresses.phone' | t }}</label>
+    <input type="text" name="address[phone]" value="{{form.phone}}" id="customer_addresses_phone{{ formID }}" />
+  </div>
+  <div class="inline-input-wrapper">
+    {% capture defaultAddressID %}
+      {% if is_new %}
+        address_default_address_new
+      {% else %}
+        address_default_address{{ formID }}
+      {% endif %}
+    {% endcapture %}
+    <label for="{{ defaultAddressID | strip_newlines | strip}}">
+      {{ form.set_as_default_checkbox }}
+      <span class="inline-label">
+        {{ 'customer.addresses.set_as_default' | t }}
+      </span>
+    </label>
+  </div>
+  <div class="input-wrapper cta-container">
+    <input class="button" type="submit" id="submit{{ formID }}" value="{{ 'general.general.submit' | t }}">
+    {% unless is_new %}
+      <button class="cancel-edit button secondary">{{ 'customer.general.cancel' | t }}</button>
+    {% endunless %}
+    {% if customer.addresses.size > 0 and is_new %}
+      <button class="toggle-new-address button secondary">{{ 'customer.general.cancel' | t }}</button>
+    {% endif %}
+  </div>
+{% endform %}
+
+
+<script>
+  
+$(document).ready(function(){
+  $(".add-new-address-wrapper .toggle-new-address").click(function(){
+    $(".customer-new-address").show();
+    $(".add-new-address-wrapper .add-new-address").hide();
+      });
+ 
+   $("#address_form_new .secondary").click(function(){
+    $(".customer-new-address").hide();
+     $(".add-new-address-wrapper .add-new-address").show();
+    
+  });
+
+  
+});
+  
+  
+
+  
+</script>

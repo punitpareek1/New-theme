@@ -1,0 +1,119 @@
+<style>
+  .Disclaimer_trust{
+    text-align: center;
+    font-size: 18px;
+  }
+  .Disclaimer_trust strong{
+ font-weight: 700;
+  }
+
+  .trustpilot-outer {
+    padding: 70px 10px;
+    margin: auto;
+    max-width: 1200px;
+}
+  
+  .trystpilot-section{
+  background-color:#fff;
+  }
+
+div#shopify-section-home-new-trustpilot-review {
+      background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Color_Fill_17.png?v=1646645923);
+    background-size: cover;
+    padding: 30px 20px 0px 20px;
+}
+
+.trustpilot-outer .headline_1 {
+    text-align: center;
+    font-weight: 600;
+    color: #000;
+    font-size: 42px;
+    margin-bottom: 12px;
+    font-family: 'sk-modernist',sans-serif;
+}
+
+.powered_by {
+    text-align: center;
+    color: #000;
+    font-size: 28px;
+    font-weight: 500;
+    font-family: 'sk-modernist',sans-serif;
+  	margin-bottom:30px;
+}
+
+.powered_by img {
+    max-width: 160px;
+    margin-left: 5px;
+  	width: 100%;
+    height: auto;
+}
+  
+  
+.svg-slider-arrow svg path {fill: black !important;stroke: black !important;}
+
+.svg-slider-arrow svg > circle {stroke: #000 !important;}  
+  
+  @media(max-width:600px){
+  	.trustpilot-outer {
+    padding: 0px 0px 20px 0px;
+    }
+
+    .trustpilot-outer .headline_1 {
+        font-size: 24px;
+        margin-bottom: 0px;
+    }
+
+    .powered_by {
+        font-size: 18px;
+    }
+
+    .powered_by img {
+        max-width: 102px;
+    }
+  	
+  }
+  
+  
+</style>
+<div class="trystpilot-section" {% if product.id == 8972019845 or product.id == 6937165398077%}style="display:none;"{% endif %}>
+<div class="trustpilot-outer">
+  <h3 class="headline_1">{{ section.settings.heading }}</h3>
+  <h4 class="powered_by">{{ section.settings.poweredby }}</h4>
+  
+  <!-- TrustBox widget - Slider -->
+<div class="trustpilot-widget" data-locale="en-US" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="611d485afbb33b001d3d993f" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="5" data-review-languages="en">
+  <a href="https://www.trustpilot.com/review/flore.com" target="_blank" rel="noopener">Trustpilot</a>
+</div>
+<!-- End TrustBox widget -->
+  <p class="Disclaimer_trust"> <strong>Disclaimer: </strong> These are real authentic customer reviews, Floré did not author or edit these reviews.</p>
+  
+</div>  
+</div>
+
+<!-- TrustBox script -->
+<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<!-- End TrustBox script -->
+
+{% schema %}
+  {
+    "name": "Trustpilot",
+    "settings": [
+					{
+                      "type": "text",
+                      "id": "heading",
+                      "default": "Lorem",
+                      "label": "Heading"
+                     },
+					{
+                      "type": "html",
+                      "id": "poweredby",
+                      "label": "Powered by"
+                    }	
+				],
+    "presets": [
+      {
+        "name": "Home trustpilot review"
+      }
+    ]
+  }
+{% endschema %}

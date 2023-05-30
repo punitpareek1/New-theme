@@ -1,0 +1,54 @@
+<style>
+  .review_box h3{
+    font-size: 45px;
+    color: #FF5C35;
+    text-align: center;
+    padding-bottom: 20px;
+    
+  }
+
+  @media(max-width: 768px){
+    .review_box h3 {
+    font-size: 24px;
+    color: #FF5C35;
+    padding-top: 25px;
+    padding-bottom: 0px;
+  }
+</style>
+
+<section class="product-app--container" {% if product.handle != "flore-precision-probiotics" or product.id != 6937165398077 %}style="display:none;"{% endif %}>
+  <div class="module-wrapper">
+    <div class="module app-wrapper">
+      {% if section.settings.section_heading != blank %}
+        <div class="review_box"><h3>{{ section.settings.section_heading }}</h3></div>
+      {% endif %}
+      {% for block in section.blocks %}
+        {% render block %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "App wrapper",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Heading",
+        "id": "section_heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      }
+      
+    ],
+    "presets": [
+      {
+        "name": "App wrapper"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,147 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .flore-story-txt-heading{
+    padding-bottom: 20px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 45px;
+    line-height: 1.15;
+  }
+  .home-flore-story{
+  	padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .flore-story-contain-1200 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+  .flore-story-col-2{
+     width: 40%;
+     box-sizing: border-box;
+    float: left;
+  }
+  .flore-story-col-02{width:10%;}
+  
+  .flore-story-col-1{
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    
+}
+  .flore-story-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+.parageaph{
+  color: #000;
+  font-size: 18px;
+}
+  
+  @media(max-width:768px)
+  {
+  	 .flore-story-txt-heading{
+    font-size: 32px;
+  }
+    .flore-story-contain-1200 {
+    	display:block!important;
+    }
+    .flore-story-col-1 {
+    	width:100%!important;
+          
+    }
+    .flore-story-col-2 {
+    width:100%!important;
+      float:none!important;
+          padding-top: 30px;
+    }
+    	
+  }
+ 
+  
+</style>
+
+<div class="home-flore-story">
+  <div class="flore-story-contain-1200 global-container-1200">
+     
+		 <div class="flore-story-col-1">
+           
+           	<h3 class="flore-story-txt-heading">
+                      {{section.settings.heading}}
+            </h3>
+           
+           <div class="parageaph">{{section.settings.paragraph}}</div>
+           
+          </div>
+
+    	 <div class="flore-story-col-02"></div>
+          <div class="flore-story-col-2">
+            	{% if section.settings.video != blank %}
+  					<div>
+                      
+  						{% if section.settings.video == blank %}
+                            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                          {% else %}
+                            {% if section.settings.video.type == "youtube" %}
+                              <iframe src="//www.youtube.com/embed/{{ section.settings.video.id }}?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                            {% if section.settings.video.type == "vimeo" %}
+                              <iframe src="//player.vimeo.com/video/{{ section.settings.video.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                          {% endif %}
+                      
+  					</div>
+  				{% endif %}  
+            
+          </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flore Story Section",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "video_url",
+      "id": "video",
+      "label": "YouTube or Vimeo link",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    }
+    
+   
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Flore Story Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %} 

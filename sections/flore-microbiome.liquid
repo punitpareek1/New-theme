@@ -1,0 +1,168 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-flore-microbiome{
+  	padding: 60px 0;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .flore-microbiome-contain-1200{
+   display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 50px;
+grid-row-gap: 0px;
+  } 
+ 
+  .flore-microbiome-col-02{width:10%;}
+  
+ 
+  .flore-microbiome-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  .text02 a{color: #5e5e5e;
+        font-size: 12.8px;}
+
+.parageaph{
+  color: #000;
+}
+  .home-flore-microbiome-inner h2{
+    font-size: 32px;
+    font-weight: 600;
+    color: #000; 
+    line-height: 1.4;
+  }
+  .home-flore-microbiome-inner{
+  padding-bottom: 30px;
+  }
+
+.parageaph p:first-child{
+padding-top: 0;
+}
+  
+  @media(max-width:768px){
+    .home-flore-microbiome-inner h2{
+        font-size: 24px;
+    font-weight: 600;
+    color: #000;
+  }
+  
+  	
+    .flore-microbiome-contain-1200 {
+   grid-template-columns:  1fr;
+    }
+    .flore-microbiome-col-1 {
+    	width:100%!important;
+          
+    }
+    .flore-microbiome-col-2 {
+    width:100%!important;
+      float:none!important;
+          padding-top: 30px;
+    }
+    	
+  }
+ 
+  
+</style>
+
+<div class="home-flore-microbiome">
+    <div class="global-container-1200 home-flore-microbiome-inner flore-microbiome-contain-1200">
+ <h2 class="flore-microbiome-txt-heading"> {{section.settings.heading}} </h2>         
+    </div>
+  <div class="flore-microbiome-contain-1200 global-container-1200">
+     
+		 <div class="flore-microbiome-col-1">
+           <div class="parageaph">{{section.settings.paragraph}}</div>
+           
+          </div>
+
+          <div class="flore-microbiome-col-2">
+            	{% if section.settings.video1 != blank %}
+  					<div>
+                      
+  						{% if section.settings.video1 == blank %}
+                            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                          {% else %}
+                            {% if section.settings.video1.type == "youtube" %}
+                              <iframe src="//www.youtube.com/embed/{{ section.settings.video1.id }}?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                            {% if section.settings.video1.type == "vimeo" %}
+                              <iframe src="//player.vimeo.com/video/{{ section.settings.video1.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                          {% endif %}
+                      
+  					</div>
+  				{% endif %}  
+            	
+            	{% if section.settings.video2 != blank %}
+  					<div style="margin-top: 40px;">
+                      
+  						{% if section.settings.video2 == blank %}
+                            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                          {% else %}
+                            {% if section.settings.video2.type == "youtube" %}
+                              <iframe src="//www.youtube.com/embed/{{ section.settings.video2.id }}?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                            {% if section.settings.video2.type == "vimeo" %}
+                              <iframe src="//player.vimeo.com/video/{{ section.settings.video2.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                          {% endif %}
+                      
+  					</div>
+  				{% endif %} 
+            
+          </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flore Microbiome Section",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "video_url",
+      "id": "video1",
+      "label": "Video One",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    },
+    {
+      "type": "video_url",
+      "id": "video2",
+      "label": "Video One",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    }
+    
+   
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Flore Microbiome Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

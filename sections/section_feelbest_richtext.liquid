@@ -1,0 +1,164 @@
+<style>
+  .feelbestrichtext-wrapper{
+  padding: 70px 0;
+    background: #fff;
+     background-size: 100% 100%;
+     background-image : url({{section.settings.background_image | img_url: 'master'}});
+  }
+  
+  .feelbestrichtextOuter{
+ 
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+  .headlineAreafeelbestrichtext{
+  text-align: center;
+  
+  }
+.headlineAreafeelbestrichtext h2{
+ font-family: sk-modernist,sans-serif;
+  color: #FF5C35;
+  font-size: 45px;
+    font-weight: 700;
+  }
+  .headlineAreafeelbestrichtext p{
+   font-size: 20px;
+    font-family: "sk-modernist";
+    color: #ffffff;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .rowfeelbestrichtext{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+  .img-wrapper {
+    height: 115px;
+}
+  .feelbestrichtextsection img {
+    width: 30%;
+    height: 100%;
+    object-fit: contain;
+}
+  
+  .feelbestrichtextsection{
+    text-align: center;
+    max-width: 260px;
+  }
+ .feelbestrichtextsection img{
+      width: 30%;
+      
+}
+
+  .headlineAreafeelbestrichtext h2 {
+    font-family: sk-modernist,sans-serif;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 700;
+} 
+  
+ .feelbestrichtextsection p {
+    font-family: "sk-modernist";
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 22px;
+}
+  
+ 
+@media only screen and (max-width: 768px){
+  
+  .rowfeelbestrichtext{
+    grid-template-columns: unset;
+    justify-content: center;
+  padding: 20px 0;
+  }
+
+  .feelbestrichtext-wrapper{
+     padding: 70px 0;
+     background: #fff;
+     background-size: 100% 100%;
+     background-image : url({{section.settings.background_image_mobile | img_url: 'master'}});
+  }
+  
+ .rowfeelbestrichtext{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+
+  
+  .headlineAreafeelbestrichtext h2{
+  font-size: 30px;
+  }
+  .headlineAreafeelbestrichtext p{
+   font-size: 16px;
+  }
+  
+/*    .feelbestrichtext-wrapper{
+    padding: 50px 0 0 0;
+    background: #fff;
+  } */
+  
+}
+</style>
+<div class="feelbestrichtext-wrapper ttt">
+<div class="feelbestrichtextOuter">
+  <div class="headlineAreafeelbestrichtext feelbestrichtext">
+    {% if section.settings.headline!= blank  %}
+    <h2>{{ section.settings.headline}}</h2>{% endif %}
+    <p>{{ section.settings.subhead }}</p>
+  </div>	
+  <div class="rowfeelbestrichtext">
+    {% for block in section.blocks %}
+    	<div class="feelbestrichtextsection">
+          <div class="img-wrapper"><img src="{{ block.settings.detailsImage | img_url: 'master' }}" alt="{{  block.settings.detailsImage.alt }}"></div>
+          <p>{{ block.settings.detailsText }}</p>
+    	</div>  
+    {% endfor %}
+  </div>
+  
+</div>
+</div>  
+
+{% schema %}
+{
+  "name": "Clinical Rich text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subhead",
+	  "label": "subhead"
+	
+    },
+     {
+       "type": "image_picker",
+       "id": "background_image",
+       "label": "Background Image"
+       },
+		{
+       "type": "image_picker",
+       "id": "background_image_mobile",
+       "label": "Background Image Mobile"
+       }
+  ], 
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Clinical Rich text",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,105 @@
+<style>
+/*     *{
+            padding:0px;
+            margin:0px auto;
+        } */
+
+    /* Desktop CSS Start */
+
+    .section10
+    {
+        background-color:rgba(107, 132, 137, 1) ;
+        padding: 100px 0px 100px 0px;text-align: center;
+    }
+  
+    .section10 h3{
+        color: #FFFFFF;
+        font-size: 54px;
+        letter-spacing: 2px;
+        padding-bottom: 30px;
+        font-family: 'sk-modernist',sans-serif;
+        font-weight: 700;
+    }
+    .section10 a{
+               font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    background-color: #fff;
+    padding: 15px 80px 15px 80px;
+    border-radius: 40px;
+    font-family: 'sk-modernist',sans-serif;
+            
+        }
+  .section10 i.fa {
+    font-size: inherit;
+    margin-left: 5px;
+	}
+         /* Mobile CSS Start */
+
+@media(max-width:768px)
+ {
+  .section10 h3
+  {
+      font-size: 35px;
+  }
+  .section10{
+    padding: 60px 20px 60px 20px;
+  }
+ }
+
+  @media(max-width:600px){
+  	.section10 {
+        padding: 50px 20px;
+    }
+
+    .section10 h3 {
+        font-size: 24px;
+        padding-bottom: 25px;
+    }
+
+    .section10 a {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+  }
+  
+</style>
+    <div class="section10">
+    <h3>{{ section.settings.heading }}</h3>
+    <a href="{{ section.settings.button_link }}">{{ section.settings.button-text }} <span> <i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+    </a>
+    </div>
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+					{
+                      "type": "text",
+                      "id": "heading",
+                      "default": "Lorem",
+                      "label": "Heading"
+                     },
+					{
+                      "type": "text",
+                      "id": "button-text",
+                      "default": "Button",
+                      "label": "Button Text"
+                     },	
+					{
+                      "type": "url",
+                      "id": "button_link",
+                      "label": "Button link"
+                    }
+				],
+                  "presets": [
+                    {
+                      "name": "Home new get started"
+                    }
+                  ]
+  }
+{% endschema %}

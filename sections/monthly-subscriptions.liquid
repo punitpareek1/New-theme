@@ -1,0 +1,90 @@
+<style>
+ .month_bg_section {
+    padding: 37px 0 0 0;
+}
+.month_bg_row {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.month_bg_row h1 {
+    color: #000;
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+}
+.month_bg_row h3 {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 500;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #6b8389;
+    line-height: 1.1;
+}
+
+.month_bg_small {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+@media (max-width: 1399px) {
+    .month_bg_section {
+        height: 360px;
+    }
+    .month_bg_section img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: bottom;
+    }
+}
+@media (max-width: 768px) {
+    .month_bg_row h3 {
+        font-size: 18px;
+    }
+    .month_bg_section {
+        height: 100%;
+    }
+    .month_bg_small {
+        padding: 20px;
+    }
+    .month_bg_row h1 {
+        font-size: 30px;
+    }
+}
+    </style>
+    <div class="month_bg_section" >
+      <div class="month_bg_small">
+         <div class="month_bg_row">
+            <h1>{{section.settings.heading}}</h1>
+            <h3>{{section.settings.sub_heading}}</h3>
+        </div>
+         </div>
+    </div>
+{% schema %}
+  {
+    "name": "Monthly Subscriptions",
+    "settings": [
+   {
+      "type": "text",
+      "id": "heading",
+	  "label": "Heading"
+    },
+     {
+      "type": "text",
+      "id": "sub_heading",
+	  "label": "Sub Heading"
+    }
+],
+"presets": [
+    {
+      "category": "Advanced content",
+      "name": "Monthly Subscriptions",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+

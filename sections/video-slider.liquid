@@ -1,0 +1,264 @@
+<style>
+
+ .blurbs_col_row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .blurbs_row {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .blurbs_col_1 {
+        text-align: center;
+    }
+    .blurbs_col_row{
+    display: grid !important;
+}
+  .video-one{
+    width: 50%;
+    margin: auto;
+  }
+    .video-two{
+width: 90%;
+  }
+  
+  .blurbs_col_1 h3 {
+    text-align: center;
+    font-weight: 600;
+    color: #FF5C35;
+    font-size: 52px;
+    font-family: 'sk-modernist', sans-serif;
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+  .blurbs_col_1 h4 {
+    text-align: center;
+    font-weight: 600;
+    color: #000000;
+    font-size: 19px;
+    font-family: 'SunGenomics';
+    line-height: 1.2;
+    margin-bottom: 60px;
+}
+
+  .blurbs_col_small h3 {
+    color: #FF5C35;
+    font-family: 'SunGenomics';
+    font-weight: 700;
+    font-size: 22px;
+}
+ 
+  .designation p {
+    font-family: 'SunGenomics';
+    font-weight: 700;
+    font-size: 22px;
+    color: #000;
+    padding: 0px;
+}
+  .blurbs_col_small > p {
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: "SunGenomics",sans-serif;
+    color: #212121;
+}
+    .m_systems_row p {
+        font-size: 20px;
+        color: #231f20;
+        line-height: 1.4;
+        text-align: center;
+        font-family: 'sk-modernist', sans-serif;
+        font-weight: 400;
+
+    }
+
+  
+  .slick-prev:before, .slick-next:before{
+	background:transparent !important;
+}
+  .upgrade_save_atc {
+    background: #FF5C35 !important;
+    box-sizing: border-box;
+    font-family: SunGenomics,sans-serif;
+    box-shadow: none;
+    text-shadow: none;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 42px !important;
+    padding: 7px 30px !important;
+    margin: auto;
+    display: block;
+}
+  
+  @media(max-width:600px){
+    .blurbs_col_1 h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .video-one {
+      width: 90%;
+    }
+    .blurbs_col_1 h4 {
+      margin-bottom: 20px;
+    }
+    .blurbs_col_row {
+display: block !important;
+    width: 100%;
+    position: relative;    }
+    
+    .blurbs_section {
+      padding: 70px 0px 50px !important
+      background-size: 129% 100% !important;
+    }
+
+    .blurbs_col_small {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+    .row-rt {
+      max-width: 80%;
+      margin: auto;
+      width: 100%;
+    }
+    .video-two {
+      width: 100%;
+    }
+    .blurbs_col_small > p a {
+    line-break: anywhere;
+}
+  }
+  
+  
+</style>
+
+   <div class="blurbs_section" style="background-image: url({{section.settings.bg-image| img_url: 'master'}});
+	background-repeat-x: repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 121px 0px;
+    background-repeat-y: no-repeat; ">
+
+        <div class="blurbs_row">
+            <div class="blurbs_col_1">
+                <h3>{{section.settings.heading}}</h3>
+                <div class="video-one" controls>
+                <iframe  width="560"  height="315"  src="https://www.youtube.com/embed/{{ section.settings.video_url_top.id }}"  srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{text-align: center; font: 25px/1.5 sans-serif; color: white; background-color: #f00; width: 75px; display: block; left: 42%; transform-origin: center; border-radius: 11px; line-height: 2.1; height: 50px;}</style><a href=https://www.youtube.com/embed/{{ section.settings.video_url_top.id }}?autoplay=1><img src=https://img.youtube.com/vi/{{ section.settings.video_url_top.id }}/hqdefault.jpg alt='Youtube Embeded'><span>▶</span></a>"
+ 					 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Why we started Sun Genomics"></iframe>
+				</div>
+                <h4>{{section.settings.subheading}}</h4>
+            </div>
+          <div class="row-rt"> 
+             {% for block in section.blocks %}
+            <div class="blurbs_col_2">
+                <div class="blurbs_col_row">
+                    <div class="blurbs_col_small">
+                        <div class="video-two" >
+                       <iframe  width="560"  height="315"  src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}"  srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{text-align: center; font: 25px/1.5 sans-serif; color: white; background-color: #f00; width: 75px; display: block; left: 42%; transform-origin: center; border-radius: 11px; line-height: 2.1; height: 50px;}</style><a href=https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1><img src=https://img.youtube.com/vi/{{ block.settings.video_url.id }}/hqdefault.jpg alt='Youtube Embeded'><span>▶</span></a>"
+ 					 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Why we started Sun Genomics"></iframe>
+
+                        </div>
+<!-- 						<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                    </div>
+                    <div class="blurbs_col_small">
+                        <h3>{{block.settings.heading_block}}</h3>
+                      <div class="designation">{{block.settings.subheading_block}}</div>
+                        {{block.settings.description}}
+                    </div>
+                </div>
+            </div>
+              {% endfor %}
+          </div>
+        </div>
+     
+    </div>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg-image",
+	  "label": "BG-Image"
+	},
+    {
+      "type": "text",
+      "id": "heading",
+	  "label": "Heading"
+	},
+   {
+      "type": "richtext",
+      "id": "subheading",
+	  "label": "Subheading"
+    },
+	{
+      "type": "video_url",
+      "id": "video_url_top",
+      "label": "YouTube or Vimeo link",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    }
+],
+ "blocks": [
+     {
+       "name": "Video Slide",
+       "type": "slide",
+        "settings": [
+            {
+            "type": "video_url",
+            "id": "video_url",
+            "label": "YouTube or Vimeo link",
+            "accept": ["youtube", "vimeo"],
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+            },
+            {
+            "type": "text",
+            "id": "heading_block",
+            "label": "Heading"
+            },  
+            {
+            "type": "richtext",
+            "id": "subheading_block",
+            "label": "Subheading"
+            },
+            {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description"
+            }
+        ]
+     }
+   ],
+  
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "video slider",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+
+
+<script>
+$('.row-rt').slick({
+  infinite: true,
+  arrows: true,
+  slidesToShow: 1,
+  slidesToScroll: 1
+});
+
+</script>

@@ -1,0 +1,233 @@
+<style>
+  
+  .flore-defense-section-3 {
+  
+    background-color: #fafafa;
+        padding: 50px 0;
+    
+  }
+  .sect-4-upper-row {
+  
+    background-color: #fbf9f6;
+    
+  }
+  .sect-3-col-1{
+      background: #fd5c39;
+        text-align: right;
+    width: 40%;
+  }
+  .sect-4-col-2{
+   width: 1000px;
+    margin: 0 auto;
+    display:flex;
+       column-gap: 20px;
+    flex-wrap: wrap;
+    
+  }
+  .col-pink {
+   width:32%;
+    background: #fff;
+    box-shadow: 3px 3px 16px rgb(0 0 0 / 10%);
+        margin-bottom: 22px;
+  }
+  .upper-part {
+  
+    background: #ffe5df;
+    text-align: center;
+    padding: 15px;
+    height: 138px;
+  }
+  .tile-body-header-inner {
+  
+    height:73px;
+    
+  }
+  	h4 {
+    font-size: 1.6rem;
+    line-height: 1;
+      font-weight: 500;
+    margin: 0;
+      color: #404040;
+}
+  .tile-pretitle{
+      font-size: .9rem;
+    font-weight: 500;
+        line-height: 1.7;
+    color: #5e5e5e;
+  }
+  .text04 {
+  	    padding: 44px 25px 0;
+    min-height: 200px;
+    font-size: .95rem;
+    line-height: 1.5;
+    color: rgba(0,0,0,.6);
+    text-align:center;
+  }
+  .tile-body-header-label-bottom {
+  
+    padding: 2px 10px 0;
+    background: #fd5c39;
+    color: #fff;
+    font-weight: 100;
+    font-size: .8rem;
+    text-transform: uppercase;
+  }
+  .text03 {
+  	padding: 40px;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    color: #fff;
+    
+  } 
+  .tile-body-header-label-bottom-wrapper {
+  	margin-bottom: -28px;
+  }
+  .heading-tile{
+  
+    margin: 4px 0px 20px 0;
+    
+  }
+      	
+  .head04 {
+  	font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.25;
+        color: #404040;
+    text-align:center;
+  }
+  .upper-section {
+  
+    text-align:center;
+    max-width:60%;
+    padding-top:50px;
+    
+  }
+
+  @media(max-width:768px){
+    .col-pink{
+    width: 100%;
+    }
+    .sect-4-col-2 {
+    width: 100%;
+    display: block;
+}
+ 	h2 {
+    font-size: 1.6rem!important;
+    font-weight: 500!important;
+    padding-bottom: 12px;
+}
+    .upper-section{
+    max-width:100%;
+    }
+    
+  }
+</style>
+
+
+<section class="flore-defense-section-3">
+  <div class="sect-4-upper-row ">	
+  <div class="global-container-1200 upper-section">	
+        <div><h2>{{ section.settings.heading }}</h2></div>
+				<div class="text02">
+					{{ section.settings.paragraph }}
+				</div>	
+		</div> 
+	</div>
+  <div class="global-container-1200">      
+    
+      
+
+    <div class="row-pink">
+       
+      <div class="sect-4-col-2">							
+		{% for block in section.blocks %}
+       		<div class="col-pink">
+                    <div class="upper-part">      
+                          <div class="tile-header-image-wrapper " style="position: relative;"> 				
+                                  <img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/defense-ingredient-icon-1.png" class=""> 					
+                                </div>		                                            
+                                <div class="tile-body " style="">								
+                                <div class="tile-body-header">
+                                  <div class="tile-body-header-inner">
+                                  <span class="tile-pretitle">{{ block.settings.pretitle }}</span>
+                                   <h4 class="heading-tile">{{ block.settings.main_heading }}</h4>			
+                                  </div>
+                                  </div>
+                                </div>	
+                              <div class="tile-body-header-label-bottom-wrapper">
+                                  <div class="tile-body-header-label-bottom" style="display: inline-block;">{{ block.settings.tile_body_header }}</div>
+                              </div>
+                    </div>
+
+                  	<div class="tile-body-content lower-part">
+                      <p class="text04">{{ block.settings.content }}</p>		
+                  	</div>                                                    
+               </div>                                        
+               
+        {% endfor %}
+        </div>
+		</div> 
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Defense Section 4",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Red Paragraph Text"
+    }
+  ],
+	"blocks":[
+	{
+	"type":"order",
+	"name":"Columns",
+	"settings": [
+        {
+          "type": "text",
+          "id": "pretitle",
+          "label": "Pretitle"
+
+        },
+		{
+          "type": "text",
+          "id": "main_heading",
+          "label": "Heading"
+
+        },
+		{
+          "type": "text",
+          "id": "tile_body_header",
+          "label": "Tile Header"
+
+        },
+		{
+          "type": "textarea",
+          "id": "content",
+          "label": "Content"
+
+        }
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Defense Section 4",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

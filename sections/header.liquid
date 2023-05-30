@@ -1,0 +1,353 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
+<style>
+{% if page.handle ==  'instructions' %}
+ol, ul {
+    padding-left: 0px  !important;
+}
+
+address, dl, fieldset, figure, ol, p, pre, ul {
+    margin: 0 0 0px 0 !important;
+}
+{% endif %}
+
+</style>
+<header>
+
+  <div class="header-wrapper">
+    
+    <div class="header-row main-row-inner">
+    	{% if section.settings.header_logo != blank %}
+      <div class="logos">
+        <a class="branding-logo-link" href="{{ routes.root_url }}">
+          <span style="display: none;">logo</span>
+        {% comment %}<img src="{{section.settings.header_logo | img_url : 'master'}}" width="166" height="100" alt="flore_logo">{% endcomment %}
+     {% comment %}       {%- assign height = section.settings.header_logo.width | divided_by: section.settings.header_logo.aspect_ratio | round -%}
+            {{ section.settings.header_logo | image_url: width: 3840 | image_tag:
+              height: height,
+              sizes: "100vw",
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+             alt: header_logo.title,
+             title: header_logo.title
+            }}
+         {% endcomment %}
+        <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/Flore-logo-dvg-01.svg?v=1678878900" width="100%" height="100%" alt="flore_logo"/> 
+        </a>
+      </div>
+      {% endif %}
+      <div class="navigations-inline">
+        {% render 'navigation', navigation_menu: section.settings.menu, navigation_id: 'header-navigation' %}
+
+      </div>
+      <div class="extra-menus">
+          <ul>
+              {% if section.settings.Register_a_kit != blank %}
+                
+          <li class="header-navigation-list-item primary-list-item extra-li">
+            <a class="header-navigation-link primary-link " href="{{section.settings.Register_a_kit-url}}" target="_blank" rel="noreferrer">
+              {{section.settings.Register_a_kit}}
+            </a>
+
+          </li>
+               
+          {% endif %}
+              </ul>
+        <ul class="header-navigation-link header_portal_wapper ">
+        
+          {% if section.settings.account-management != blank %}
+          <li class="header-navigation-list-item primary-list-item extra-li has-dropdowns">
+            <a class="header-navigation-link primary-link header-acco" href="{{section.settings.account-management-url}}">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="12.000000pt" height="12.000000pt" viewBox="0 0 512.000000 512.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M2420 5114 c-322 -40 -591 -171 -815 -398 -199 -201 -313 -415 -372
+-696 -24 -118 -24 -382 0 -500 59 -281 174 -496 372 -696 201 -203 421 -322
+705 -381 117 -24 380 -24 502 0 270 54 494 174 694 372 202 199 322 421 381
+705 24 118 24 382 0 500 -39 185 -110 356 -212 510 -63 95 -258 291 -351 352
+-161 107 -335 180 -506 213 -81 16 -328 28 -398 19z"/>
+<path d="M2023 2104 c-560 -68 -1065 -385 -1390 -874 -191 -286 -300 -624
+-319 -985 -6 -111 -5 -124 15 -163 14 -28 34 -48 61 -62 39 -20 54 -20 2170
+-20 2116 0 2131 0 2170 20 27 14 47 34 61 62 20 39 21 52 15 163 -26 493 -214
+925 -556 1279 -324 335 -742 539 -1199 586 -151 15 -889 11 -1028 -6z"/>
+</g>
+</svg>
+              {{section.settings.account-management}}
+            </a>
+
+          </li>
+          {% endif %}
+        <span class="icon icon-angle-down header-navigation-list-arrow" data-dropdown-toggle="" tabindex="0">
+<!--     <span class="show-for-sr">
+      Toggle Dropdown
+    </span> -->
+   </span> 
+<!--  <button  class="myBtn header-navigation-link primary-link">Refer a Friend</button> -->
+       <ul  class="header-navigation-list header_portal_inner ">
+      {% for block in section.blocks %}
+      {% if block.settings.show_link %}
+
+       <li class="header-navigation-list-item secondary-list-item extra-li">
+  {% if shop.customer_accounts_enabled %}
+  {% if customer %}
+    
+    <a class="header-navigation-link primary-link " href="{{ routes.account_url }}">{{block.settings.member-portal}}
+         <p>{{ block.settings.subheading}}</p>
+    </a>
+  {% else %}
+    <a class="header-navigation-link primary-link " href="{{ routes.account_login_url }}">{{block.settings.member-portal}}
+         <p>{{ block.settings.subheading}}</p></a>
+  {% endif %}
+{% endif %}
+          </li>
+          {% else %}
+ {% if block.settings.member-portal != blank %}
+          <li class="header-navigation-list-item secondary-list-item extra-li">
+            <a class="header-navigation-link primary-link " href="{{block.settings.member-portal-url}}" rel="noopener" {% if block.settings.other_tab == true %}  target="_blank" {% endif %}>
+              {{block.settings.member-portal}}
+         <p>{{ block.settings.subheading}}</p>
+            </a>
+          </li>
+    {% endif %}
+      {% endif %}
+        
+<!--           {% if section.settings.billing != blank %}
+          <li class="header-navigation-list-item secondary-list-item extra-li">
+            <a class="header-navigation-link primary-link " href="{{section.settings.billing-url}}" rel="noopener">
+              {{section.settings.billing}}
+            </a>
+          </li>
+          {% endif %} 
+        {% if section.settings.rewards != blank %}
+          <li class="header-navigation-list-item secondary-list-item extra-li">
+            <a class="header-navigation-link primary-link " href="{{section.settings.rewards-url}}" rel="noopener">
+              {{section.settings.rewards}}
+            </a>
+          </li>
+          {% endif %} -->
+        {% endfor %}
+       </ul>
+       
+        </ul>
+
+      </div> 
+
+      <div class="cart_menu" style="width: 20px;"> 
+      <div class="cart-logos">
+        {% if section.settings.show_cart %}
+        <a class="header-actions-list-item1 icon-cart header-cart-link" href="/cart" aria-label="Cart"  tabindex="0" id="CartButton">
+          <i class="fa fa-shopping-cart" aria-label="Cart" aria-hidden="true" style="width:20px;height:20px"></i><span class="header-cart-count {% if cart.item_count > 0 %}active{% endif%}">{{ cart.item_count }}</span>
+        </a>
+        {% endif %}
+      </div>
+      <div class="mobile-menu"><a class="header-actions-list-item1 drawer-toggle" aria-label="hamburger icon" data-drawer-toggle tabindex="0" href="#">
+              <span class="icon-menu"><svg style="display: block; height: 30px; margin-top: 18px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="#000" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg></i></span>
+              <span class="icon-cross"><i class="fa fa-close"></i></span>
+            </a></div>
+    </div>
+    </div>
+    
+    
+     <div class="header-drawer" tabindex="-1" data-header-drawer id="header-drawer-popout"  >
+    {% render 'navigation', navigation_menu: section.settings.menu, navigation_id: 'drawer-navigation' %}
+    <div class="coin-container"></div>
+    {% if settings.show-currency-switcher %}
+      <div class="drawer-currency-switcher currency-switcher">
+        {% include "currency-selector" %}
+      </div>
+    {% endif %}
+<!--       <div class="refer_box">
+  <button  class="myBtn header-navigation-link primary-link">Refer a Friend</button>
+      
+    {% if shop.customer_accounts_enabled %}
+      <a href="{{ routes.account_url }}" class="drawer-account-link button" alt="">{{ 'general.general.my_account' | t }}</a>
+    {% endif %}
+    </div> -->
+
+    {% if section.settings.drawer_social_icons %}
+      <div class="drawer-social-icons">
+        {% assign social_media_accounts = "facebook|twitter|pinterest|instagram|vimeo|youtube|rss" | split: "|" %}
+        {% for account in social_media_accounts %}
+          {% capture url %}social_{{ account }}_url{% endcapture %}
+          {% if settings[url] != blank %}
+            <a
+              class="drawer-social-icon-{{ account }}"
+              href="{{ settings[url] | escape }}"
+              target="_blank" rel="noopener">
+              {{ account | capitalize }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  
+  </div>
+
+  
+</header>
+
+
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_logo",
+      "label": "Logo image",
+      "info": "400 x 200px .png recommended"
+    },
+	{
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+	{
+      "type": "header",
+      "content": "Extra Menu Links"
+    },
+	{
+      "type": "text",
+      "id": "phone",
+      "label": "Phone No."
+    },
+	{
+      "type": "text",
+      "id": "account-management",
+	  "label": "Account Management Text",
+      "placeholder": "Account Management"
+    },
+    {
+      "type": "url",
+      "id": "account-management-url",
+      "label": "Account Management Link"
+    },
+	{
+      "type": "text",
+      "id": "Register_a_kit",
+	  "label": "Register a kit Text",
+      "placeholder": "Register a kit"
+    },
+    {
+      "type": "url",
+      "id": "Register_a_kit-url",
+      "label": "Register a kit Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show cart",
+      "default": true
+    },
+   {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_predictive_search",
+      "label": "Enable predictive search",
+      "default": true
+    } 
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "menu",
+      "settings": [
+    {
+      "type": "text",
+      "id": "member-portal",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "member-portal-url",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading"
+    },
+     {
+      "type": "checkbox",
+      "id": "show_link",
+      "label": "Show Link",
+      "default": false 
+     
+    },
+     {
+      "type": "checkbox",
+      "id": "other_tab",
+      "label": "Show Other Tab",
+      "default": false 
+     }   
+      ]
+    }
+  ]
+}
+
+{% endschema %}
+
+<script>
+
+  document.querySelector('.drawer-toggle').addEventListener('click', ()=> {
+     document.body.classList.toggle('showing-drawer') ; 
+  document.body.classList.toggle('drawer-visible') ; 
+ });
+  
+  document.querySelectorAll('#drawer-navigation .has-dropdown .header-navigation-list-arrow').forEach(btn => {
+
+    btn.addEventListener('click', ()=> {
+
+    btn.closest('.has-dropdown').classList.toggle('open') ; 
+  });
+
+  })
+  
+  
+
+</script>
+                
+<script>
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector('.rc-login .rc-login--body .rc-login--header-title')) {
+            return resolve(document.querySelector('.rc-login .rc-login--body .rc-login--header-title'));
+        }
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector('.rc-login .rc-login--body .rc-login--header-title')) {
+                resolve(document.querySelector('.rc-login .rc-login--body .rc-login--header-title'));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+waitForElm('.rc-login--header-title').then((elm) => {
+
+  elm.textContent = 'Login to Your Billing Account'
+});
+
+</script>
+

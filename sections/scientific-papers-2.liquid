@@ -1,0 +1,134 @@
+<style>
+
+  .topheading {
+  padding-bottom: 20px;
+    max-width: 500px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: #404040;
+    
+  }
+  .heading-papers2 {
+  	    line-height: 1.25;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #5e5e5e;
+   
+  }
+
+  .scientific-papers-group2 {
+  	    margin: 40px 0;
+    padding-bottom:75px;
+  }
+  	a, a:hover {
+    color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+}
+  .fa {
+  margin-right:5px;
+  }
+  .text02 p {
+  padding:10px 0;
+        font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+  }
+  
+  .pdf-link-grp2 {
+    margin-top: -38px;
+}
+  
+  @media(max-width:768px){
+    .pdf-link-grp2 a {
+    overflow-wrap: break-word;
+    }
+  
+  
+  }
+  
+</style>
+
+
+<div class="scientific-papers-2">
+<div class="global-container-1200 ">
+
+  
+{% for block in section.blocks %}
+
+	<div class="scientific-papers-group2">
+      	
+      <div class="heading-papers2">{{ block.settings.scientific_papers}}</div>
+      <div class="text02"> {{ block.settings.paragraph }} </div>  
+      <div class="pdf-link-grp2"><a href="{{ block.settings.link_pdf }}" rel="noopener" target="_blank" class="link-standard">{{ block.settings.link_text }}</a></div>
+      
+      
+      
+     </div>
+
+{% endfor %}
+  </div>
+<div>
+
+
+
+
+{% schema %}
+{
+"name": "Scientific Section 2",
+"settings": [
+{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      }
+      ],
+  
+  	  "blocks":[
+	{
+	"type":"order",
+	"name":"Scientific Papers",
+	"settings": [
+        {
+          "type": "text",
+          "id": "scientific_papers",
+          "label": "Scientific Papers Heading"
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+		{
+          "type": "url",
+          "id": "link_pdf",
+          "label": "Pdf link or site url"
+        }	
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Scientific Section 2",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

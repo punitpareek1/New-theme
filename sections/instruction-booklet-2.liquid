@@ -1,0 +1,136 @@
+<style>
+
+  .column {
+    width: 49%;
+    gap: 28px;
+}
+  .parent-column{
+  display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 24px;
+  }
+  .title-header{
+      padding: 15px 20px;
+    border-left: #FF5C35 10px solid;
+    background: #f5f5f5;
+    text-decoration: none;
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #404040;
+  }
+  .title-header h4{
+    margin:0;
+  }
+  .title{
+      font-size: 36px;
+    margin-bottom: 40px;
+    color: #FF5C35;
+    font-weight: 700;
+  }
+  .card-ans-body{
+  margin:0 20px;
+  }
+  .width-column-9{
+    color:#fff;
+  background: #FF5C35;
+    border-radius: 10px;
+        padding: 20px;
+    padding: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+  .width-column-9 .title-header{
+   background: transparent;
+        padding: 0;
+        margin-left: -8px;
+        margin: 0;
+    border-left: 0;
+  }
+  .width-column-9 .title-header h4{
+   
+    color: #fff;
+}
+  .width-column-9 .card-ans-body{
+  	margin:0;
+  }
+  .Instruction-Booklet{
+    background: #f8f8f8;
+    
+  }
+  .Instruction-Booklet-2{
+  padding:70px 0;
+  }
+  .width-column-10 .title-header {
+  background: #ffff;
+    border: none;
+  }
+  .width-column-10 .title-header h4{
+      font-size: 36px;
+    color: #FF5C35;
+    font-weight: 700;
+  }
+
+
+</style>
+
+<section>
+  <div class="uk-container">
+    <h2 class="title">{{section.settings.heading}}</h2>
+    <div class="row-faqs">
+      <div class="parent-column">
+      {% for block in section.blocks %}
+      <div class="column width-column-{{forloop.index}}">
+        <div class="title-header"><h4>{{ block.settings.faqs-heading }}</h4></div>
+        <div class="card-ans-body"><div class="inner-card">{{ block.settings.faqs-description }}</div></div>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Instruction Booklet 2",
+  "class": "Instruction-Booklet-2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+	  "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faqs",
+      "name": "faqs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faqs-heading",
+		  "label": "Question"
+        },
+        {
+          "type": "html",
+          "id": "faqs-description",
+		  "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Instruction Booklet 2",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

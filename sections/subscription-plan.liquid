@@ -1,0 +1,166 @@
+<style>
+.subscription_wapper h3{
+font-size: 45px;
+background-color: #F0f0f0;
+color: #FF5C35;
+padding-bottom: 50px;
+}
+.subscription_wapper{
+  padding-top: {{section.settings.padding-top}}px;
+  padding-bottom: {{section.settings.padding-bottom}}px;
+background-color: #F0f0f0;
+}
+  
+.subscription_inner{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.subscription_inner h6{
+  font-size: 28px;
+    font-weight: 500;
+    color: #FF5C35;
+}
+.tital_box{
+    text-align: center;
+}
+.subscription_inner span{
+color: #FF5C35;
+}
+.subscription_inner h4{
+color: #211f20;
+font-size: 35px;
+}
+.subscription_inner p{
+color: #211f20;
+font-size: 24px;
+}
+
+.subscription_inner .image_box{text-align: center;}
+
+@media(max-width: 768px){
+.subscription_wapper {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+.subscription_wapper h3{
+font-size: 28px;
+}
+.subscription_inner {
+padding-left: 20px;
+padding-right: 20px;
+}
+.subscription_inner h6{
+  font-size: 22px;
+}
+
+.subscription_inner h4{
+font-size: 24px;
+}
+.subscription_inner p{
+font-size: 18px;
+}
+
+}
+</style>
+
+
+<div class="subscription_wapper">
+    <div class="subscription_inner">
+  <div class="tital_box">
+      {% if section.settings.heading != blank %}
+<h3>{{ section.settings.heading }}</h3>
+    {% endif %}
+</div>
+{% for block in section.blocks %}
+<div>
+  {% if block.settings.sub-heading != blank %}
+<h4>{{ block.settings.sub-heading }}</h4>
+    {% endif %}
+ 
+  {% if block.settings.day != blank %}
+  <h6>{{ block.settings.day }}</h6>
+    {% endif %}
+ {% if block.settings.description!= blank %}
+  <p>{{ block.settings.description }}</p>
+    {% endif %}
+<div class="image_box"> 
+      {% if block.settings.image != blank %}
+  <img src="{{ block.settings.image| img_url: 'master' | prepend: 'https:' }}" alt="{{ block.settings.image.alt}}" loading="lazy">
+{% endif %}
+  </div>
+</div>
+{% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "subscription-plan",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    
+    {
+  "type": "range",
+  "id": "padding-top",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Bottom",
+  "default": 16
+},  {
+  "type": "range",
+  "id": "padding-bottom",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Top",
+  "default": 16
+}
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "plan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "text",
+          "id": "day",
+           "label": "Day"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+        "label": "Image"
+        }
+      ]
+    }
+  ],
+ "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Subscription Plan",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+
+{% javascript %}
+{% endjavascript %}

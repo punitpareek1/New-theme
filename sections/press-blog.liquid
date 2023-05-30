@@ -1,0 +1,344 @@
+<style>
+  .press-article {
+    position:relative;
+  }
+  .press-blog-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+  }
+  .text-right {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+  .press-wrapper-inner {
+       display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    background: #fff;
+    box-shadow: 1px 3px 23px #bdb4b4;
+    border-radius: 26px;
+    cursor: pointer;
+}
+  .press-title h3 {
+        padding: 15px 0;
+       color: #206766;
+        font-size: 35px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .press-list-content {
+    padding: 20px 20px 20px 0;
+  }
+  .press-meta {
+        position: absolute;
+    bottom: 5%;
+    right: 20px;
+    z-index: 99;
+  }
+  .press-list-tags {
+      display: flex;
+    align-items: center;
+    background: #206766;
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+  .press-list-tags a p {
+      padding:4px 0;
+  }
+  .press-list-tags a {
+       padding:4px 0;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+  .press-image {
+    border-radius: 20px 0 0 20px;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+  }
+  .show-blog-post {
+    display:block;
+  }
+    .hide-blog-post {
+    display:none;
+  }
+  .press-loader {
+    display: none;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #206766;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spinner 2s linear infinite;
+    margin: 17px auto;
+}
+  @keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  .load_more_wapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+  button.load-more, .load-less {
+    font-size: 16px;
+    background: #206766;
+    border-radius: 25px;
+    padding: 12px 40px;
+    border: none;
+    color: #fff;
+    margin: 15px auto;
+    display: flex;
+}
+  .module-title h1 {
+        text-align: center;
+    padding: 60px 0;
+    font-size: 55px;
+    font-weight: 600;
+    color: #000000;
+}
+
+
+  @media screen and (max-width:768px) {
+      .press-title h3 {
+        padding: 0 15px;
+      }
+    .module-title h1 {
+    font-size: 36px;
+      padding: 0 0 60px 0;
+}
+     .press-wrapper-inner {
+       grid-template-rows :1fr;
+       grid-template-columns: 1fr;
+       gap:1rem;
+     }
+    .press-list-content {
+      padding: 0 20px 20px 20px;
+    }
+    .press-meta {
+    position: unset; 
+    }
+    .press-image {
+    border-radius: 20px 20px 0 0; 
+    }
+  }
+
+@media only screen and (min-width: 900px){
+  .search_function_head_wapper{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 60px;
+  }
+  
+}
+  .search_function .search-form{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    background-color: #fff;
+        border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+  
+
+  @media(min-width: 989px){
+.search_function{
+      display: flex;
+    justify-content: end;
+    align-items: end;
+} 
+} 
+  .search_function .search-form{
+      margin: unset;
+}
+.search_function {
+display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+    .search-submit-icon {
+    z-index: 1;
+}
+.search_input_box{
+       border-radius: 25px 0 0 25px !important;
+    padding: 12px 40px;
+    border: none !important;
+    color: #040404 !important;
+}
+
+.search-submit-icon {
+    background: #036a67;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 820px){
+  .search_function{
+    margin-bottom: 45px;
+  }
+}
+.search_function .search_input_btn{
+  z-index: 1;
+}
+
+
+
+
+
+
+
+  
+</style>
+<div class="module-wrapper" style="background-color: #F0F0F0;background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Color_Fill_17_3fade169-5ed7-480d-9f8d-c2555cbc3f4b.png?v=1661782912);">
+  <div class="module module-default-page">
+    <div class="module-header page-header">
+      <div class="module-title page-title">
+
+<div>
+  <div class="module-title blog-title search_function_head_wapper">       
+           {% if section.settings.heading != blank %}
+  <h1>{{ section.settings.heading }}</h1>
+
+  {% endif %}
+
+            <div class="search_function">
+    <form class="search-form" action="{{ routes.search_url }}" method="get">
+          <input class="search-input search_input_box" name="q" type="text" placeholder="{{ 'general.general.search_placeholder' | t }}" value="{{ search.terms }}" />
+          <div class="search-submit">
+            <span class="search-submit-icon icon icon-search"></span>
+            <input class="search_input_btn" type="submit" value="{{ 'general.search.submit' | t }}" />
+          </div>
+        </form>
+            </div>
+    
+        </div>
+  <div class="press-blog-wrapper">
+  {% for property in page.metafields.custom.press.value %}
+  
+    {% assign property = forloop.index | plus: paginate.current_offset %}
+  <article class="press-article {% if forloop.index0 < 5 %} show-blog-post top-5{% else %} hide-blog-post{% endif %}" onclick="window.open('{{ property.url }}', '_blank')">
+     <div class="press-wrapper-inner">
+    	<div class="press-image-wrapper ">
+			<img class="press-image" src="{{ property.image }}" alt="" loading="lazy">
+		</div>
+  
+  
+  
+	<div class="press-list-content">
+	  
+	  <header class="press-title">
+        <h3>{{ property.title }}</h3>
+	
+	  </header>
+        	<footer class="press-meta">
+				<div class="col-grid">
+				<div class="col-6 text-right">
+					 <div class="press-list-tags">
+						
+							 <a href="/blogs/clinical/tagged/{{ property.tags }}" class="post-tags">{{  property.tags }}</a>
+						
+					</div>			  
+				</div>
+				</div>
+			</footer>
+    
+		</div>
+  </div>	
+</article>
+  {% endfor %}
+
+
+
+    <div>
+
+      <div class="press-loader"></div>
+      <div class="load_more_wapper">
+          <button class="load-more">Load More</button>
+          </div>
+</div>
+
+     </div>
+    </div>
+  </div>
+      <div class="search_box">{{ section.settings.search }}</div>
+    </div>
+<script>
+
+  let wrapper = document.querySelector('.property-blog-wrapper');
+  let LoadMoreBtn = document.querySelector('.load-more');
+  // let LoadLessBtn = document.querySelector('.load-less');
+  let loader = document.querySelector('.press-loader');
+  let postAll = document.querySelectorAll('.press-article');
+    
+    const postGet = function(postAll, className){
+      let postAllArray = [...postAll].filter((post, i) => {
+      let show = post.classList.contains(className);
+      console.log(show, typeof(i));
+      if(show){
+        return post;
+      }
+    })
+
+      return postAllArray;
+    }
+
+  
+  
+  LoadMoreBtn.addEventListener('click', function(){
+    loader.style.display = 'block';
+   let postAllArray = postGet(postAll,`hide-blog-post`);
+
+    if(postAllArray.length > 0 ){
+     // LoadLessBtn.style.display = 'block';
+      postAllArray.forEach((post, index) => {
+      if(index < 5){
+        setTimeout(()=> {
+          loader.style.display = 'none';
+        post.classList.remove('hide-blog-post');
+        post.classList.add('show-blog-post');
+        },500)       
+      }
+    });
+    }else{
+        // LoadMoreBtn.style.display = 'none';
+      } 
+
+  })
+
+
+  
+</script>
+
+    
+
+{% schema %}
+  {
+    "name": "Press Blog",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "default":"heading",
+        "label":"Heading"
+      },
+      {
+        "type":"html",
+        "id":"search",
+        "label":"Search"
+      }
+  
+    ]
+  }
+{% endschema %}

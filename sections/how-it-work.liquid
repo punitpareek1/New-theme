@@ -1,0 +1,176 @@
+<style>
+
+  .how-it-work-{{section.id}} {
+  background-color: {{section.settings.background_color}}
+  
+  }
+ .how-it-work-{{section.id}} .how-row-wrapper{
+  	padding-top:{{section.settings.padding_top | default : '70'}}px;
+	padding-bottom:{{section.settings.padding_bottom | default : '70' }}px;
+  }
+
+  .how-it-work-{{section.id}} .heading-wrapper h2{
+  padding-bottom:2rem;
+  }
+  
+  .how-it-work-{{section.id}} .heading-wrapper{
+  text-align:center;
+  }
+  
+  .image-wrapper{
+    max-width: 60rem;
+    margin: 2rem auto;
+    text-align: center !important;
+  }
+  .how-col-wrapper{
+      margin-bottom: 5rem;
+  }
+  .heading-wrapper h2,   .heading-wrapper h3 {
+    font-family: sk-modernist,sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+}
+
+  
+  .description{
+      color: #211f20;
+    font-size: 18px;
+    line-height: 1.3;
+    font-family: sk-modernist,sans-serif;
+    font-weight: 400;
+    padding-bottom: 0;
+  }
+  
+  @media(max-width:768px){
+  
+    .how-col-wrapper {
+    margin-bottom: 0rem;
+ 
+  }
+  
+</style>
+
+
+<div class="how-it-work-{{section.id}}">
+	
+  <div class="how-row contain-1200 padding-mobile-1250">
+    <div class="how-row-wrapper">
+    {% for block in section.blocks %}
+    <div class="how-col-wrapper">
+      {% if block.settings.heading != blank %}
+      <div class="heading-wrapper">
+       <{{ block.settings.heading_type }} style="color :{{block.settings.heading_color}}">{{ block.settings.heading }}</{{ block.settings.heading_type }}>
+        {% if block.settings.description != blank %}<div class="description">{{ block.settings.description }}</div>{% endif %}
+      </div>	
+      {% endif %}
+      {% if block.settings.image != blank %}
+      <div class="image-wrapper"><img src="{{block.settings.image | img_url : 'master'}}" alt={{ block.settings.image.alt }} loading="lazy"></div>
+      {% endif %}      
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+
+{% schema %}
+{
+  "name": "How it work",
+  "settings": [
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Bottom"
+    },
+	{
+          "type": "color",
+          "id": "background_color",
+		  "label" : "Background Color"
+        }
+	],
+  "blocks": [
+    {
+      "type": "work",
+      "name": "Works",
+      "settings": [  
+         {
+          "type": "text",
+          "id": "heading",
+		  "label" : "Heading"
+        },
+      {
+      "type": "select",
+       "id": "heading_type",
+      "label" : "Heading Type",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h3"
+    },
+
+        {
+          "type": "color",
+          "id": "heading_color",
+		  "label" : "Heading Color"
+        },
+    {
+      "type": "text",
+      "id": "description",
+	  "label": "Description"
+    },
+        {
+          "type": "image_picker",
+          "id": "image",
+		  "label" : "Image"
+        }
+      ]
+    }
+  ],
+	"presets": [
+    {
+      "name": "How it Works",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

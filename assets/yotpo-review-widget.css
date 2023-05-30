@@ -1,0 +1,131 @@
+.yotpo-logo-title, .yotpo-icon-yotpo-logo   {
+ display : none !important; 
+}
+
+.promoted-products-box{
+  display: none !important;
+}
+.yotpo.yotpo-main-widget {
+    margin: 40px auto;
+    background-color: #f6f6f6 !important;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+.main-widget.yotpo-display-wrapper {
+    background: #fff !important;
+}
+
+.yotpo-bottomline-box-1.yotpo-stars-and-sum-reviews {
+    margin: auto;
+    width: 100%;
+    display: grid;
+    position: relative !important;
+    text-align: center !important;
+}
+
+span.yotpo-stars {
+    margin: auto;
+    display: block;
+}
+
+
+.yotpo-stars .yotpo-icon-star {
+    font-size: 60px !important;
+}
+
+
+.yotpo-sum-reviews span {
+    color: #000 !important;
+    font-size: 27px !important;
+    font-weight: 600;
+}
+
+.yotpo-bottomline-box-1.yotpo-stars-and-sum-reviews {
+    max-width: 100% !important;
+}
+
+.yotpo-label.yotpo-small-box {
+    background-color: #f6f6f6 !important;
+    border: none;
+    padding-top: 0px;
+}
+
+.yotpo-display-wrapper {
+    background-color: #f6f6f6 !important;
+    border: none !important;
+}
+
+.yotpo-regular-box {
+    border: none !important;
+    padding-top: 0px !important;
+    padding-bottom: 30px !important;
+}
+
+.yotpo-small-box.yotpo-nav.reviews {
+    display: none;
+}
+
+.yotpo-nav-content {
+    padding: 40px 0px !important;
+}
+
+.y-label.yotpo-user-name {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #000 !important;
+}
+.yotpo-review.yotpo-regular-box {
+    border-bottom: 1px solid #e3e3e3 !important;
+    margin-bottom: 40px;
+    margin-inline: 30px;
+}
+
+span.yotpo-icon.rating-star {
+    font-size: 33px;
+}
+
+
+.yotpo-review.yotpo-regular-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.yotpo-header {
+    width: 21%;
+  	display: flex;
+    flex-wrap: wrap;
+}
+
+.yotpo-main {
+    width: 50%;
+    margin-left: 10px !important;
+    margin-top: 0px !important;
+}
+
+span.yotpo-icon-profile.yotpo-header-element.pull-left {
+    display: inline-block !important;
+    width: 20% !important;
+}
+
+.yotpo-header-element {
+    display: inline-block !important;
+    width: 76% !important;
+}
+
+.yotpo-header-element.yotpo-header-actions {
+    width: auto !important;
+    margin-left: 61px;
+    margin-top: 3px;
+}
+.yotpo-footer {
+    width: 24%;
+    margin-left: 0px !important;
+    display: block !important;
+    position: relative !important;
+    text-align: center !important;
+}
+
+.no-border.yotpo-comments-box {
+    width: 100%;
+}

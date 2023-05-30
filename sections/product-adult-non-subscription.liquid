@@ -1,0 +1,399 @@
+<!-- All Product must -->
+<link rel="stylesheet" href="{{ 'style-v2.min.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'saphire-utilities.min.css' | asset_url }}">
+
+
+<!-- End All Products must g-->
+{{ 'main-products.css' | asset_url | stylesheet_tag }}
+
+<!-- To Fix the add to cart area  -->
+<style>
+  .product-form-nav .product-options .selector-wrapper:first-child {
+    display: none;
+  }
+  .product-options .selector-wrapper {
+      width: 100%;
+  }
+  .clearfix.product-form-nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 10px;
+      align-content: center;
+      align-items: flex-start;
+  }
+  
+  .product-options {
+      width: 100%;
+  }
+</style>
+
+
+
+{% assign selectedVariant = product.selected_or_first_available_variant | default: product.variants.first %}
+{% capture productGoalDeliveryDate %}{{ settings.product_sale_goal_estimated_delivery_date | trim | ecape }}{% endcapture %}
+
+{% assign add_to_cart_button = 'products.product.add_to_cart' | t %}
+{% if product.handle == settings.featured-product-main and settings.product-sale-goal-use %}
+  {%- capture add_to_cart_button -%}
+    {%- if settings.product_sale_goal_button != blank -%}
+      {{ settings.product_sale_goal_button | escape }}
+    {%- else -%}
+      {{ "home.goal.pre_order" | t }}
+    {%- endif -%}
+  {%- endcapture -%}
+{% endif %}
+
+{% assign form_id = product.id %}
+
+<!-- Page Product Detail -->
+
+<div class="module-wrapper page-product-detail product-{{ product.id }}">
+  <div class="module module-product">
+
+    <div itemscope itemtype="https://schema.org/Product">
+
+      <div class="product-header-wrapper">
+
+        <div class="contain-1200 padding-mobile-1250">
+          <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope=""/></div>
+          <meta itemprop="name" content="Floré" /> 
+        </div>
+        <meta itemprop="sku" content="{{ product.variants.first.sku }}" />
+        <meta itemprop="url" content="https://flore.com{{ product.url }}" />
+        <meta itemprop="mpn" content="{{ product.variants.first.sku }}" />
+        <meta itemprop="description" content="{{ page_description | escape }}" />
+        <meta itemprop="image" content=https:{{ product.featured_image.src | img_url: image_size }} />
+
+        <div itemprop="aggregateRating" itemscope="" itemtype="https://schema.org/AggregateRating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          <meta itemprop="worstRating" content="1">
+          <meta itemprop="reviewCount" content="23">
+        </div>
+        <div itemprop="review" itemtype="https://schema.org/Review" itemscope>
+          <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+            <meta itemprop="name" content="Floré" /> 
+          </div>
+          <!--     #RT to check       -->
+          <div class="product-price product-price-main" style="display:none;">
+            <span class="price">
+
+              <span class="money" style="vertical-align: middle; font-weight: 500;">{{ selectedVariant.price | money }}</span>
+            </span>
+          </div>
+        </div>
+
+
+        <div class="product-header">
+
+
+          {% assign featured_image = selectedVariant.featured_image | default: product.featured_image %} 
+
+
+          <div class="product-slideshow slideshowslick clearfix">
+            <div class="product-image-container clearfix">
+              <div class="product-big-image" data-no-image-svg="{{ 'no-image.svg' | asset_url }}" data-no-image-png="{{ 'no-image.png' | asset_url }}">
+                <span class="product-slideshow-loader"></span>
+                {% if product.images.size > 0 %}
+                <img
+                     src="{{ featured_image | product_img_url: '600x600'  | prepend: 'https:' }}"
+                     alt="{{ product.title | escape }}"
+                     data-high-res="{{ featured_image | product_img_url: '2048x2048' }}"
+                  loading="lazy">
+                {% else %}
+                <img
+                     class="product-no-images"
+                     src="{{ 'no-image.svg' | asset_url  | prepend: 'https:' }}"
+                     onerror="this.src='{{'no-image.png' | asset_url}}'; this.onerror=null;"
+                  loading="lazy"/>
+                {% endif %}
+                {% if section.settings.enable_zoom %}
+                <div class="product-image-zoom"></div>
+                {% endif %}
+              </div>
+              {% if product.images.size > 1 %}
+              <a class="product-slideshow-navigation product-slideshow-previous icon icon-arrow-left" href="#" tabindex="0"></a>
+              <a class="product-slideshow-navigation product-slideshow-next icon icon-arrow-right" href="#" tabindex="0"></a>
+              {% endif %}
+            </div>
+            {% if product.images.size > 1 %}
+            <div class="product-slideshow-pagination product-thumbnails padding-b-25">
+              {% for image in product.images %}
+              <a
+                 class="product-slideshow-pagination-item {% if image == featured_image %}active{% endif %}"
+                 style="background-image:url('{{ image | product_img_url: '50x50'  | prepend: 'https:' }}')"
+                 data-alt="{{ image.alt }}"
+                 data-default-res="{{ image | product_img_url: '600x600' }}"
+                 data-high-res="{{ image | product_img_url: '2048x2048' }}"
+                 data-image-id="{{ image.id }}"
+                 href="#"
+                 tabindex="0"></a>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+
+            {% if product.metafields.page.show_badges == "true" %}
+            <div class="order-product-badges text-centered padding-t-20">
+              <img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/product-badges-2.png?v=1594226849" alt="product-badges" loading="lazy" style="width: 100%; max-width: 300px; " />
+            </div>
+            {% endif %}
+            
+            {% if product.metafields.custom.product_badges != blank %}
+            {{product.metafields.custom.product_badges}}
+            {% endif %}
+
+          </div>
+
+
+          <div class="product-wrap">
+            <div class="product-details" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+              <meta itemprop="priceCurrency" content="USD" />
+              <meta itemprop="price" content="{{ product.price | money_without_currency  }}" />
+              <!--<meta itemprop="brand" content="Sun Genomics" /> -->
+              <meta itemprop="priceValidUntil" content={{ "today" | date: '%s' | plus: 2592000 | date: "%Y-%m-%d" | json }} />
+
+              <meta itemprop="sku" content="{{ product.variants.first.sku }}" />
+              <meta itemprop="availability" content="InStock" />
+              <meta itemprop="url" content="{{ product.url }}" />
+
+              <meta itemprop="description" content="{{ page_description | escape }}" />
+
+              {% if settings.product-display-vendor %}
+              <div class="product-vendor" itemprop="brand">
+                {{ product.vendor }}
+              </div>
+              {% endif %}
+
+            </div>
+            {% if settings.product-sale-goal-use and product.handle == settings.featured-product-main %}
+            <div class="product-goal">
+              {% include "product-goal" %}
+            </div>
+            {% endif %}
+
+            <!--   #RT New headline section       -->
+
+            <h1 itemprop="name" class="productTitle">{{ product.title }}</h1>
+            {% if product.metafields.custom.subtitle != blank %}
+            <h3 class="product-subtitle">{{product.metafields.custom.subtitle}}</h3>
+            {% endif %}
+            <div class="product-price product-price-main">
+              <span class="price">
+                <span class="money">{{ selectedVariant.price | money_without_trailing_zeros }}{% if  selectedVariant.selling_plan_allocations.size > 0 %}/month {% endif %}</span>
+                {% if product.metafields.global.montly_subscription.value == false %}	
+                {% unless product.variants.size == 1 and product.compare_at_price_min <= selectedVariant.price %}
+                <span class="product-price-compare {% if product.compare_at_price_min <= selectedVariant.price %}hidden{% endif %}" style="vertical-align: middle;">
+                  <span class="original money" style="color: #b1b1b1; margin-right: 8px;">
+                    {% if selectedVariant.compare_at_price > selectedVariant.price %}
+                    {{ selectedVariant.compare_at_price | money }} 
+                    {% endif %}
+                  </span>
+                  {% endunless %}
+                  {% endif %}
+                </span>
+              </span>
+            </div>
+            {% if product.handle == 'flore-precision-probiotics' %}
+            <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+              {% endif %}
+            <div class="product-description-short">
+              {{ product.description }}
+            </div>
+
+
+            <!-- Popups for Subscription Products -->
+            {% if product.metafields.subscriptions.is_subscription_only == 'true' %}
+            <div style="position: relative;" class="cancellations-text">
+              {% if product.title == "Floré Bloom Multivitamin" %}
+              <span style="font-size: .9rem; color: #FF5C35;"><strong>Simply take one capsule once daily!</strong></span><br />
+              {% endif %}
+              <span style="font-size: .9rem; color: #FF5C35;"><strong>Free and easy cancellation</strong></span><br />
+            </div>
+            {% endif %}
+            <!-- Popups for Subscription Products -->
+
+            <form
+                  class="product-form"
+                  id="product-form-{{ form_id }}"
+                  action="/cart/add" data-productid="{{ product.id }}"
+                  method="post"
+                  data-product-form="{{ form_id }}"
+                  data-productid="{{product.id}}"
+                  style="margin-top: 40px;">
+              <input class="product-select selectedProductId" name="id" value="40020231028797" type="hidden">
+              <input class="rc_widget__option__plans__dropdown rc-selling-plans__dropdown selectedProductSellingPlan" name="selling_plan" value="1165197373" type="hidden">
+              <div class="htusb-placeholder-deadline"></div>
+              <!-- For international Product -->
+              {% if product.id == 6567332151357 or product.id == 6909808967741 %}
+                    {% include 'product-option-tabs' %}
+                  {% endif %}
+              {% if product.available %} {% assign slider_check = 'slider' %} {% include 'subscription-product' with slider_check %} {% endif %}
+              <div class="clearfix product-form-nav">
+                {% if product.variants.size > 1 %}
+                <div class="product-options">
+                  <!-- To check if prouduct is not international product -->
+                  {% unless product.id == 6567332151357 or product.id == 6909808967741 %}
+                    {% include 'product-options-dropdown' %}
+                  {% endunless %}
+                  <div class="selector-wrapper no-js-required">
+                    <select
+                            class="product-select"
+                            name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                            id="product-select-{{ form_id }}">
+                      {% for variant in product.variants %}
+                      {%- capture option_content -%}
+                      {%- if variant.available -%}
+                      {{ variant.title }} - {{ variant.price | money }}
+                      {%- else -%}
+                      {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                      {%- endif -%}
+                      {%- endcapture -%}
+                      <option
+                              {% if variant.id == selected_variant.id %}selected="selected"{% endif %}
+                              data-variant-id="{{ variant.id }}"
+                              {% if variant.available %}
+                              data-sku="{{ variant.sku }}"
+                              value="{{ variant.id }}"
+                              {% else %}
+                              disabled="disabled"
+                              {% endif %}>
+                        {{ option_content | strip_newlines }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                {% else %}
+                <input
+                       class="product-select"
+                       name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                       value="{{ product.variants[0].id }}"
+                       type="hidden"
+                       data-variant-title="{{ product.variants[0].title }}" />
+                {% endif %}
+
+                <div id="infiniteoptions-container"></div>
+                <div id="uploadery-container"></div>
+                <div class="number-input-wrapper product-quantity clearfix">
+                  <div class="number-input-nav-item icon icon-minus"></div>
+                  <div class="number-input-field">
+                    <input type="number" name="quantity" id="quantity" value="1" aria-label="{{ "general.general.quantity" | t }}" />
+                    <label class="number-input-label" for="quantity">{{ 'general.general.quantity' | t }}</label>
+                  </div>
+                  <div class="number-input-nav-item icon icon-plus"></div>
+                </div>
+
+<!--               </div> -->
+              <div class="add-to-cart">
+                {% if product.available %}
+                <div class="product-form-submit-wrap padding-b-20 padding-r-30">
+                  <button class="button outline add-to-cart-button btn" type="submit" style="display: inline-block; z-index: 2;">{{ 'products.product.add_to_cart' | t }} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <input value="{{ product.title }}" type="hidden" name="handle">
+                  <div class="add-to-cart-loader"></div>
+                </div>
+                <div class="product-cart-message" data-product-message></div>
+                {% else %}
+                <input type="submit" class="button outline disabled" disabled="disabled" value="{{ 'products.product.sold_out' | t }}" />
+                {% endif %}
+
+              </div>
+                </div>
+
+              {% if settings.product_sale_goal_estimated_delivery_date != blank and showDeliveryEstimate %}
+              <span class="product-featured-goal-delivery-date">
+                {{ productGoalDeliveryDate }}
+              </span>
+              {% endif %}
+            </form>
+
+            {{ product.metafields.global.text_after_cta }}     
+		
+          </div>
+        </div>
+      </div>
+        <!--    #Tab Content      -->
+        <div>
+          {{ product.metafields.global.main_content_design }}
+        </div>  
+    </div>
+  </div>
+</div>
+
+<!-- Page Product Detail -->
+
+{%- capture cart_link -%}
+  <a href="/cart">{{ 'products.product.cart_link' | t }}</a>
+{%- endcapture -%}
+{%- capture continue_link -%}
+  <a href="/collections/all">{{ 'products.product.continue_link' | t }}</a>
+{%- endcapture -%}
+{%- capture checkout_link -%}
+  <a href="/checkout">{{ 'products.product.checkout_link' | t }}</a>
+{%- endcapture -%}
+
+<script type="application/json" data-product-settings-{{ form_id }}>
+  {
+    "addToCartText": {{ add_to_cart_button | strip_newlines | strip_html | strip | json }},
+    "disableAjaxAddProduct": true,
+    "enableHistory": true,
+    "linkedOptions": true,
+    "processingText": {{ 'products.product.processing' | t | json }},
+    "setQuantityText": {{ 'products.product.set_quantity' | t | json }},
+    "soldOutText": {{ 'products.product.sold_out' | t | json }},
+    "successMessage": {{ 'products.product.success_html' | t: cart_link: cart_link, continue_link: continue_link, checkout_link: checkout_link | json }},
+    "unavailableText": {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+<script type="application/json" data-product-json-{{ form_id }}>{{ product | json }}</script>
+
+<!-- Get Data From the flore adult subcription and change it with non subscription -->
+<script>
+
+  let flore_adult_data = {{ all_products['flore-adult-personalized-probiotics-gut-microbiome-test-program'].variants | json }};
+  console.log(flore_adult_data);
+
+  document.querySelectorAll(".single-option-selector").forEach(function(item){
+        item.addEventListener('change', function() {
+            let dropdown = document.querySelector(".selector-wrapper.no-js-required select");  
+            let currenSKU = dropdown.options[this.selectedIndex].getAttribute("data-sku");
+            let skuData = Object.values(flore_adult_data).find((obj) => {
+            	return obj.sku == currenSKU
+            });
+
+            let currentID = skuData.id;
+            let currentSellingPlan = skuData.selling_plan_allocations[0].selling_plan_id;
+
+            document.querySelector(".selectedProductId").setAttribute("value", currentID);
+            document.querySelector(".selectedProductSellingPlan").setAttribute("value", currentSellingPlan);
+            
+            console.log(skuData.id);
+            console.log(skuData.selling_plan_allocations[0].selling_plan_id);
+        });
+    }
+  )
+
+
+
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Product pages",
+  "class": "section-product",
+  "settings": [],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Template Product 2022",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

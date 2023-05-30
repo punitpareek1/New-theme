@@ -1,0 +1,180 @@
+<style>
+.section-giving-back {
+    background: #fff;
+}
+
+  .main-row {
+  display:flex;
+    padding: 80px 0;
+  }
+  
+  .column-main {
+  width:975px;
+  }
+  .section-giving-back .column-main {
+        padding-left: 50px;
+    padding-bottom: 20px;
+}
+  .column-left img {
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: auto;
+}
+  .atmousepopup-link {
+     color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  a .fa {
+    font-size: 14px;
+    margin-left:10px;
+}
+  .head02{
+    font-size: 44px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: #FF5C35;
+  }
+  .text02 {
+    font-family: SunGenomics,sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #000;
+    font-weight: 100;
+	}
+  .atmousepopup-link:hover {
+    color: #FF5C35;
+  }
+  .image-for-mobile {
+  display:none;
+  }
+  
+
+  @media(max-width:768px){
+  
+    .image-for-mobile {
+      display:block;
+      float:right;
+      max-width: 120px;
+      padding: 0 0 12px 20px;
+      width: 100%;
+      height: auto;
+    }
+    .section-giving-back .column-main{
+    border:None!important;
+      padding-left:0!important;
+    }
+    .column-left {
+    display:None;
+    }
+    .column-main{ width:100%!important;}
+    #popup-leavingsite{
+    	margin-left:auto;
+      	margin-right:auto;
+    	width: 360px;
+    }
+  }
+  
+  @media(max-width:600px){
+  	.head02 {
+    	font-size: 24px;
+	}
+  
+  }
+  
+</style>
+
+
+
+<section class="section-giving-back">
+	<div class="global-container-1200 ">
+	<div class="main-row">	
+      <div class="column-left" style="width: 225px;">
+			<img  class="logo-candcfoundation lazyload"  Loading="lazy" width="225" height="175" data-src="{{section.settings.image |img_url:'master'}}" alt="Crohn's & Colitis Foundation">
+		</div>
+		<div class="column-main">
+			<div class="">
+				<h3 class="head02">{{ section.settings.text }}</h3>
+              <div class="text02">{{ section.settings.text2}}</div>
+				<a href="https://www.crohnscolitisfoundation.org/" target="_blank" rel="noopener" class="atmousepopup-link" id="leavingsite-link" style="display: inline-block; margin-top: 10px;">
+                 {{ section.settings.button_text }} <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+			</div>
+		</div>
+      </div>
+	</div>
+</section>
+
+
+{% schema %}
+{
+"name": "section giving back",
+"settings": [
+{
+      "type": "text",
+      "id": "text",
+      "label": "Text 1"
+      },
+      {
+      "type": "text",
+      "id": "text2",
+      "label": "Text 2"
+      },
+
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default":"Get Started"
+      },
+      {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+
+      }
+      ],
+    "presets": [
+      {
+        "name": "Home New Giving back"
+      }
+    ]
+}
+
+{% endschema %}
+
+<script>
+// 	$(document).ready(function(){
+			
+// 		$('#leavingsite-link').click(function(e){
+// 			$('.popup-screen').show();
+//           	$('#popup-leavingsite').show();
+// 		});
+		
+// 		$('.popup-screen').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+		
+// 		$('.leavingsite-go-link').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+//       $('.popup-close').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+// 	});
+</script>

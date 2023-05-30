@@ -1,0 +1,472 @@
+<style>
+.hide-blog-post{
+  display:none;
+}
+
+@media(min-width: 989px){
+.search_function{
+      display: flex;
+    justify-content: end;
+    align-items: end;
+    position: absolute;
+    top: 40%;
+    right: 0;
+} 
+} 
+@media(max-width: 988px){
+.module-title h1 {
+    padding: 60px 0 40px 0;
+} 
+}
+.search_function .search-form{
+      margin: unset;
+}
+.search_function {
+display: flex;
+    justify-content: center;
+    align-items: center;
+  padding-bottom: 20px;
+
+}
+.module-wrapper{
+      background-color: #F0F0F0;
+     background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Color_Fill_17_3fade169-5ed7-480d-9f8d-c2555cbc3f4b.png?v=1661782912);
+      background-size: contain;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.search_function form{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+}
+
+.search_input_box{
+    padding: 0 0 0 25px !important;
+
+}
+{% if blog.url  contains '/blogs/clinical' %}
+    .search-submit-icon {
+    z-index: 1;
+}
+.search_input_box{
+       border-radius: 25px 0 0 25px !important;
+    padding: 12px 40px;
+    border: none !important;
+    color: #040404 !important;
+}
+
+.search-submit-icon {
+    background: #036a67;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+}
+{% else %}
+
+.search-submit-icon {
+    background: #ff5c35;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+}
+.search_input_box{
+     border-radius: 25px 0 0 25px !important;
+    padding: 12px 40px;
+    border: none !important;
+    color: #040404 !important;
+}
+
+{% endif %}
+
+
+  .module-header{
+padding-bottom: 0;
+  }
+.blog-title{
+      text-align: center !important;
+}
+  
+.module-title  h1 a{
+  color: #000;
+}
+.load-more_wrap{
+ margin-top: 60px; 
+ text-align: center;
+}
+.load-more_wrap img{
+ max-width: 25px;
+}
+ul.pagination{
+ display: none !important;
+}
+ .blog_home_module {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+.blog_home_post_wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+}
+
+  .post-wrapper-inner{
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    background: #fff;
+    box-shadow: 3px 3px 6px rgb(0 0 0 / 5%);
+    box-shadow: 1px 3px 23px #bdb4b4;
+    border-radius: 26px;
+    cursor: pointer;
+}
+  }
+ .blog_home_post_wrapper_inner {
+    background: #fff;
+    box-shadow: 3px 3px 6pxrgba(0,0,0,.05);
+    margin: 0 30px 30px 0;
+    padding: 12px;
+    height: 450px;
+    overflow: hidden;
+}
+.post-image {
+    width: 100%;
+}
+.module-title{
+  margin: 0;
+}
+  .module-title h1{
+   padding: 60px 0;
+    font-size: 55px;
+    font-weight: 600;
+    color: #000000;
+  }
+  .blog-tags-list-item a:active{
+    background: #ff5c35;
+    padding: 5px 20px;
+    border-radius: 25px;
+    color: #FFF;
+  }
+  .blog-tags-list-item a{
+    background: #F0F0F0;
+    padding: 5px 20px;
+    border: 1px solid #fd5b35;
+    border-radius: 25px;
+    color: black;
+  }
+.blog-tags-list-item a:hover{
+   background: #ff5c35;
+     color: #FFF;
+}
+ .load_more_wapper{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 40px 0;
+ }
+
+  .blog-tags-list{
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .upgrade_save_atc{
+    border:none;
+  }
+@media(max-width:768px){
+  .post-wrapper-inner{
+     grid-template-columns: 1fr;
+  }
+  .blog-tags-list {
+    gap: 18px;
+}
+  .blog_home_module {
+    padding: 0 20px;
+  }
+  .module-title h1 {
+    padding: 30px 0;
+}
+  .module-title h1 {
+    font-size: 35px !important;
+}
+  .post-title h3 a {
+    font-size: 24px;
+  }
+  .post-title h3 {
+    line-height: 1.4;
+  }
+}
+  
+</style>
+
+<style>
+  button.load-more , .load-less{
+    background: {{section.settings.load-more-color}};
+    border-radius: 25px;
+    padding: 12px 40px;
+    border: none;
+    color: #fff;
+    margin: 15px auto;
+    display: flex;
+}
+
+/*   .load-less{
+    display:none;
+  } */
+  
+
+
+{% if blog.url  contains '/blogs/clinical' %}
+   .loader {
+    display: none;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #206766;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: 17px auto;
+   }
+  {% else %}
+.loader {
+    display: none;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #fe6b00;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: 17px auto;
+}
+{% endif %}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+
+  <div class="module-wrapper">
+    <div class="blog_home_module blog">
+      <div class="module-header blog-header">
+        <div class="module-title blog-title search_function_head_wapper">       
+          <h1>
+            {% if current_tags %}<a href="{{ blog.url }}">{% endif %}
+            {{ "blogs.blog.title" | t: title: blog.title }}
+            {% if current_tags %}</a>{% endif %}
+          </h1>
+    
+        </div>
+        <div class="search_function">
+    <form class="search-form" action="{{ routes.search_url }}" method="get">
+          <input class="search-input search_input_box" name="q" type="text" placeholder="{{ 'general.general.search_placeholder' | t }}" value="{{ search.terms }}" />
+          <div class="search-submit">
+            <span class="search-submit-icon icon icon-search"></span>
+            <input class="search_input_btn" type="submit" value="{{ 'general.search.submit' | t }}" />
+          </div>
+        </form>
+
+  
+ {% comment %}    <form method="get" action="/search">
+    <input type="hidden" name="type" value="article" />
+    <input class="search_input_box" type="text" name="q" />
+    <input class="search_input_btn" type="submit" value="Search" />
+      </form> {% endcomment %}
+</div>
+        {% if linklists.blogs.links.size > 0 %}
+          <div class="blog-menu">
+            {% for link in linklists.blogs.links %}
+              <a class="button outline blog-subtitle-button {% if link.url == blog.url %}active{% endif %}" href="{{ link.url | prepend: 'https:'}}">
+                {{ link.title }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+  
+  {% comment %}
+       {% if blog.tags.size > 0 %}
+          <div class="blog-tags-wrapper">
+            <div class="blog-tags-list">
+
+              {% for tag in blog.tags %}
+               
+                <span class="blog-tags-list-item"  {% if link.current %} aria-current="page"{% endif %}>{{ tag | link_to_tag: tag }}</span>
+              {% endfor %}
+            </div>
+            {% if current_tags %}
+              <div class="blog-tags-current">
+                <p>{{ 'blogs.blog.posts_tagged' | t }} <em>"{{ current_tags.first }}"</em></p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+   {% endcomment %}
+
+   {% comment %}
+       {% if blog.tags.size > 0 %}
+          <div class="blog-tags-wrapper">
+            <div class="blog-tags-list">
+
+              {% for tag in blog.tags %}
+               
+                <span class="blog-tags-list-item"  {% if link.current %} aria-current="page"{% endif %}>{{ tag | link_to_tag: tag }}</span>
+              {% endfor %}
+            </div>
+            {% if current_tags %}
+              <div class="blog-tags-current">
+                <p>{{ 'blogs.blog.posts_tagged' | t }} <em>"{{ current_tags.first }}"</em></p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+     {% endcomment %}
+
+  
+      </div>
+      <div class="module-body">
+       
+        <div class="blog_home_post_wrapper  ">
+
+          {%  paginate blog.articles by 500 %}
+         {% assign sort_articles_by_created_at = blog.articles | sort: "created_at"  | reverse  %}
+          {% for article in sort_articles_by_created_at %}
+                {% assign article = forloop.index | plus: paginate.current_offset %}
+            <div class="post-wrapper-main {% if forloop.index0 < 5 %} show-blog-post top-5{% else %} hide-blog-post{% endif %}">
+            {% render 'article-list-item-2022', article: article, index : forloop.index0 %}
+            </div>
+          {% else %}
+            <div class="empty">
+              <p>{{ 'blogs.blog.empty' | t }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="loader"></div>
+        <div class="load_more_wapper">
+          <button class="load-more">Load More</button>
+<!--           <button class="load-less">Load Less</button> -->
+          </div>
+      </div>
+            {% endpaginate %}
+    </div>
+
+  </div>
+
+
+
+<script>
+
+  let wrapper = document.querySelector('.blog_home_post_wrapper');
+  let LoadMoreBtn = document.querySelector('.load-more');
+  // let LoadLessBtn = document.querySelector('.load-less');
+  let loader = document.querySelector('.loader');
+  let postAll = document.querySelectorAll('.post-wrapper-main');
+    
+    const postGet = function(postAll, className){
+      let postAllArray = [...postAll].filter((post, i) => {
+      let show = post.classList.contains(className);
+      console.log(show, typeof(i));
+      if(show){
+        return post;
+      }
+    })
+
+      return postAllArray;
+    }
+
+  
+  
+  LoadMoreBtn.addEventListener('click', function(){
+    loader.style.display = 'block';
+   let postAllArray = postGet(postAll,`hide-blog-post`);
+
+    if(postAllArray.length > 0 ){
+     // LoadLessBtn.style.display = 'block';
+      postAllArray.forEach((post, index) => {
+      if(index < 5){
+        setTimeout(()=> {
+          loader.style.display = 'none';
+        post.classList.remove('hide-blog-post');
+        post.classList.add('show-blog-post');
+        },500)       
+      }
+    });
+    }else{
+        // LoadMoreBtn.style.display = 'none';
+      } 
+
+  })
+
+
+  
+  // LoadLessBtn.addEventListener('click', function(){
+  //   loader.style.display = 'block';
+
+  //  let postTohide = postGet(postAll,`show-blog-post`);
+  //   postTohide = postTohide.reverse();
+
+  //   console.log(postTohide,'hiii');
+  //   if(postTohide.length <= 10){
+  //      LoadLessBtn.style.display = 'none';
+  //   }else{
+  //     LoadLessBtn.style.display = 'Block';
+  //   }
+    
+  //   console.log(postTohide.length);
+  //   if(postTohide.length > 0 && postTohide.length > 5){
+  //     postTohide.forEach((post, index) => {
+  //     if(index < 5){
+  //       setTimeout(()=> {
+  //         loader.style.display = 'none';
+  //       post.classList.remove('show-blog-post');
+  //       post.classList.add('hide-blog-post');
+  //       },500)       
+  //     }
+  //   });
+  //   }else{
+  //     console.log('hiii');
+  //     LoadLessBtn.style.display = 'none';
+  //   }
+    
+
+  // })
+  
+</script>
+{% schema %}
+  {
+    "name": "Blog Post Home",
+    "settings": [
+   {
+      "type": "color",
+      "id": "post-title-color",
+      "label": "Heading Color",
+      "default": "#ff5c35"
+    },
+   {
+      "type": "color",
+      "id": "load-more-color",
+      "label": "Button Color",
+      "default": "#ff5c35"
+    }
+]
+    ,
+  "presets": [
+    {
+      "category": "Blog",
+      "name": "Blog posts 2022"
+    }
+  ]
+  }
+{% endschema %}

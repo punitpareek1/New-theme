@@ -1,0 +1,354 @@
+<style>
+.customerReviewOuter {
+    background-color: #f3f3f3;
+    padding: 50px 15px;
+}
+
+.customerReviewInner {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+.reviewsArea {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-01, .col-02, .col-03 {
+    width: 30%;
+}
+
+.topArea .headline {
+    font-size: 53px;
+    color: #FF5C35;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'sk-modernist';
+    line-height: 1.4;
+    margin: 0px;
+}
+
+.topArea .subhead {
+    font-size: 23px;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'sk-modernist';
+    line-height: 1.6;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+
+.reviewCardOuter {
+    width: 100%;
+    background: #fff;
+    margin: 50px auto;
+    padding: 20px 20px;
+    border-radius: 26px;
+    filter: drop-shadow(0 0 10px rgba(42,42,42,0.1));
+}
+
+.reviewCardInner .userImg {
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    margin-bottom: 10px;
+}
+
+.reviewText {
+    font-size: 15px;
+    color: #4c4c4c;
+    line-height: 1.5;
+    font-family: 'sk-modernist';
+    font-weight: 400;
+}
+
+.userName {
+    font-size: 19px;
+    color: #FF5C35;
+    font-family: 'sk-modernist';
+    font-weight: 700;
+    padding: 0px;
+    line-height: 1;
+}
+
+.userDesignation {
+    font-size: 15px;
+    color: #4c4c4c;
+    font-family: 'sk-modernist';
+    font-weight: 400;
+    padding: 5px 0px 0px;
+    line-height: 1.4;
+    max-width: 230px;
+    margin: auto;
+}
+  
+.userName:after {
+    content: '';
+    position: absolute;
+    height: 37px !important;
+    width: 45px !important;
+    display: block;
+    left: auto;
+    z-index: 999;
+    right: -13px;
+    background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/quoteSymbol_1.png?v=1680520153) no-repeat;
+    background-size: contain;
+    bottom: 36px;
+}
+.loadMore {
+    border: none;
+    background: #FF5C35;
+    padding: 15px 40px;
+    font-family: 'sk-modernist';
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    color: #fff;
+    line-height: 1;
+    font-weight: 700;
+    border-radius: 50px;
+} 
+.loadMore i {
+    font-size: 17px;
+}  
+  
+.reviewCardOuter:nth-child(n+5) {
+    display: none;
+}  
+  
+@media(max-width:600px){
+
+  .topArea .headline {
+    font-size: 28px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .topArea .subhead {
+    font-size: 19px;
+    line-height: 1.2;
+  }
+
+  .reviewsArea {
+    display: block;
+  }
+
+  .col-01, .col-02, .col-03 {
+    width: 96%;
+    margin: auto;
+  }
+  
+}
+  
+  
+</style>
+
+
+<div class="customerReviewOuter">
+  <div class="customerReviewInner">
+    <div class="topArea">
+      <h2 class="headline">{{ section.settings.headline }}</h2>
+      <p class="subhead">{{ section.settings.subhead }}</p>
+    </div>
+    <div class="reviewsArea">
+       {% assign review-1 = section.blocks | where: 'type', 'review-1' %}
+      	<div class="col-01">
+           {% for block in review-1 %}
+            {% if block.type == "review-1" %}
+              <div class="reviewCardOuter">
+                <div class="reviewCardInner">
+                  {% if block.settings.userImage != blank %}
+                  	<img class="userImg" width="140" height="140" src="{{ block.settings.userImage | image_url: width: 100 }}" alt="{{ block.settings.userImage.alt }}"  loading="lazy">
+                  {% endif %}
+                  <p class="reviewText">{{ block.settings.reviewText }}</p>
+                  <p class="userName">{{ block.settings.name }}</p>
+                  <p class="userDesignation">{{ block.settings.designation }}</p>
+                  <div class="testimonial_Quote"></div>
+                </div>
+              </div>
+            {% endif %} 
+          {% endfor %}
+      	</div>
+       {% assign review-2 = section.blocks | where: 'type', 'review-2' %}
+      	<div class="col-02">
+           {% for block in review-2 %}
+            {% if block.type == "review-2" %}
+            <div class="reviewCardOuter">
+              <div class="reviewCardInner">
+               	{% if block.settings.userImage != blank %}
+                	<img class="userImg" width="140" height="140" src="{{ block.settings.userImage | image_url: width: 100 }}" alt="{{ block.settings.userImage.alt }}"  loading="lazy">
+                {% endif %}
+                <p class="reviewText">{{ block.settings.reviewText }}</p>
+                <p class="userName">{{ block.settings.name }}</p>
+                <p class="userDesignation">{{ block.settings.designation }}</p>
+                <div class="testimonial_Quote"></div>
+              </div>
+              </div>
+            {% endif %} 
+          {% endfor %}
+      	</div>
+       {% assign review-3 = section.blocks | where: 'type', 'review-3' %}
+      	<div class="col-03">
+           {% for block in review-3 %}
+            {% if block.type == "review-3" %}
+            <div class="reviewCardOuter">
+              <div class="reviewCardInner">
+                {% if block.settings.userImage != blank %}
+                	<img class="userImg" width="140" height="140" src="{{ block.settings.userImage | image_url: width: 100 }}" alt="{{ block.settings.userImage.alt }}"  loading="lazy">
+                {% endif %}
+                <p class="reviewText">{{ block.settings.reviewText }}</p>
+                <p class="userName">{{ block.settings.name }}</p>
+                <p class="userDesignation">{{ block.settings.designation }}</p>
+                <img class="testimonial_Quote">
+              </div>
+              </div>
+            {% endif %} 
+          {% endfor %}
+      	</div>
+    </div>
+    <button class="loadMore" data-expand="false">{{ section.settings.buttonText }} <i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<script>
+let loadmore = document.querySelector('.loadMore')
+loadmore.addEventListener('click', () => {
+let nthChild = document.querySelectorAll('.reviewCardOuter:nth-child(n+5)')
+let expand = loadmore.getAttribute('data-expand');
+    if (expand == 'false'){
+        loadmore.setAttribute('data-expand', 'true');
+        loadmore.innerHTML = 'Load Less <i class="fa fa-arrow-up" aria-hidden="true"></i>'
+        nthChild.forEach(div => {
+        div.style.display = "block";
+        })
+    }else if(expand == 'true'){
+        loadmore.setAttribute('data-expand', 'false');
+        loadmore.innerHTML = 'Load More <i class="fa fa-arrow-down" aria-hidden="true"></i>'
+        nthChild.forEach(div => {
+        div.style.display = "none";
+        })
+    }
+});
+</script>  
+
+
+{% schema %}
+{
+  "name": "customer testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "placeholder": "Headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subhead",
+      "placeholder": "Sub Headline",
+	  "label": "Sub Headline"
+    },
+    {
+      "type": "text",
+      "id": "buttonText",
+      "placeholder": "Text for the load more button",
+      "default": "Load More",
+	  "label": "Button Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review-1",
+      "name": "review-1",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "userImage",
+	  	   "label": "User Image"
+        },
+        {
+          "type": "html",
+          "id": "reviewText",
+          "default": "lorem",
+	  	   "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "placeholder": "Jhon Deo",
+	  	   "label": "User Name"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "placeholder": "CEO at XYZ company",
+	  	   "label": "Designation"
+        }
+      ]
+    },
+	{
+      "type": "review-2",
+      "name": "review-2",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "userImage",
+	  	   "label": "User Image"
+        },
+        {
+          "type": "html",
+          "id": "reviewText",
+          "default": "lorem",
+	  	   "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "placeholder": "Jhon Deo",
+	  	   "label": "User Name"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "placeholder": "CEO at XYZ company",
+	  	   "label": "Designation"
+        }
+      ]
+    },
+	{
+      "type": "review-3",
+      "name": "review-3",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "userImage",
+	  	   "label": "User Image"
+        },
+        {
+          "type": "html",
+          "id": "reviewText",
+          "default": "lorem",
+	  	   "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "placeholder": "Jhon Deo",
+	  	   "label": "User Name"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "placeholder": "CEO at XYZ company",
+	  	   "label": "Designation"
+        }
+      ]
+    }
+  ],
+	"presets": [
+                    {
+                      "name": "Testmonial Review"
+                    }
+                  ]
+}
+{% endschema %}

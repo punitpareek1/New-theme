@@ -1,0 +1,140 @@
+<style>
+  .index-home-sustainability {
+    background: #eceff2;
+}
+
+.index-home-sustainability-inner {
+    max-width: 1200px;
+    padding: 70px 0px;
+    margin: 0 auto;
+}
+
+h3.sustainability-headline {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 30px;
+}
+
+.index-home-sustainability-row {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.index-home-sustainability-column {
+    text-align: center;
+    background: #fff;
+    padding: 18px;
+  	width:32%;
+}
+
+.index-home-sustainability-column img {
+    max-width: 100%;
+    width: 100%;
+  	height:auto;
+    margin-bottom: 25px;
+}
+
+.index-home-sustainability-column h4 {
+    color: #ff5c35;
+    font-family: 'SunGenomics';
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.index-home-sustainability-column p {
+    font-family: SunGenomics,sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+}
+  @media(max-width:1200px){
+    .index-home-sustainability-inner{
+    	padding-inline:18px;
+    }
+  
+  }
+  
+  @media(max-width:768px){
+    h3.sustainability-headline{
+    	font-size:25.6px;
+    }
+  
+  }  
+  
+  @media(max-width:600px){
+  	.index-home-sustainability-row {
+    	flex-direction: column;
+	}
+  	.index-home-sustainability-column {
+    width: 100%;
+	}
+  }
+  
+
+</style>
+
+<div class="index-home-sustainability">
+  <div class="index-home-sustainability-inner">
+    <h3 class="sustainability-headline">{{section.settings.headline}}</h3>
+    
+    <div class="index-home-sustainability-row">
+      
+      {% for block in section.blocks %}
+          
+				<div class="index-home-sustainability-column">
+                	<img width="348" height="260" class="lazyload" Loading="lazy" data-src="{{block.settings.image | img_url: 'master' }}" src="{{block.settings.image | img_url: '20x' }}" alt="{{block.settings.image.alt}}" >
+                  <h4>{{block.settings.headline}}</h4>
+                  <p>{{block.settings.sub-headline}}</p>
+          		</div>
+			{% endfor %}	
+          
+      
+    </div>
+  </div>  
+</div>
+{% schema %}
+  {
+    "name": "Sustainability Section",
+    "settings": [
+		{
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+        }
+	],
+  "blocks":[
+	{
+	"type":"block",
+	"name":"Block",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+
+        },
+        {
+          "type": "text",
+          "id": "sub-headline",
+          "label": "Sub Headline"
+
+        }
+      ]
+	}
+  ],  
+"presets": [
+    {
+      "name": "Home Sustainability Section"
+    }
+  ]
+  }
+{% endschema %}

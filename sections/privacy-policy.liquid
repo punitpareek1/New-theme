@@ -1,0 +1,74 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+ h3{
+        line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+}
+  .privacy-contain-1200{
+  	padding-top:50px;
+    padding-bottom:50px;
+  }
+  strong {
+        font-weight: 700;
+}
+  .text02 ul {
+    list-style: unset;
+        margin-left: 18px;
+}
+  
+      .home-privacy{
+  background-color:#f8f8f8;
+  }
+  
+  .text-link, a, a:hover {
+        color: #FF5C35;
+        text-decoration: none;
+        cursor: pointer;
+}
+  .privacy-txt-heading{
+    font-size: 2em;
+    line-height: 1.25;
+    color: #404040;
+    font-weight: 500;
+  }
+
+</style>
+
+<div class="home-privacy" style="position: relative;z-index: 1;">
+  <div class="privacy-contain-1200 global-container-1200">
+     
+		 <div class="privacy-col" style="position: relative;">
+           	   <h1 class="privacy-txt-heading">
+                      {{section.settings.heading}}
+               </h1>
+           		<div class="text02">{{section.settings.paragraph}}</div>
+            
+          </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Privacy Policy Section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,151 @@
+<style>
+ .microflora_two_row {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .microflora_two_small_row {
+        display: grid;
+    grid-template-columns: 11fr 9fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+	padding: 0px 10px 90px;
+    }
+
+    .microflora_two_small_col img {
+      width: 100%;
+    border-radius: 30px;
+      margin-top: 65px;
+    }
+
+    .microflora_two_small_col-2 {
+        text-align: left;
+    }
+
+  	 .microflora_two_small_col-2 h3 {
+   margin-top: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    text-transform: uppercase;
+    max-width: 400px;
+  }
+    .microflora_two_small_col-2 hr {
+/*         border: 0.5px solid #FF5C35; */
+      background: #FF5C35;
+    }
+
+    .microflora_two_small_col-2 p {
+         font-size: 15px;
+    line-height: 1.6;
+    max-width: 450px;
+    margin: 0 auto 0 0;
+    color: #212121;
+    }
+.microflora_two_small_col-2 strong {
+    font-weight: 700;
+  }
+
+
+
+
+
+  @media (max-width: 768px) {
+    	.microflora_two_row {
+        padding: 0px 15px;
+        }
+/*         .microflora_two_small_row {
+            grid-template-columns: repeat(1, 1fr);
+          grid-column-gap: 10px;
+        }
+ */
+        .microflora_two_small_col-2 {
+            text-align: center;
+        }
+
+
+        .microflora_two_small_col-2 p {
+            max-width: unset;
+            margin: unset;
+        }
+    .microflora_two_small_row {
+         display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    padding: 0px 10px 0px;
+    }
+    .microflora_two_small_col img {
+    margin-top: 0px;
+}
+
+    }
+
+</style>    
+
+
+
+
+
+
+
+<div class="microflora_two_container">
+        <div class="microflora_two_row">
+            <div class="microflora_two_small_row">
+                <div class="microflora_two_small_col-2">
+
+                  <h3>{{section.settings.heading}}</h3>
+                    <hr>
+                      {{section.settings.subheading}}
+                      <h3>{{section.settings.heading_two}}</h3>
+                    <hr>
+                      {{section.settings.subheading_two}}
+                </div>
+               <div class="microflora_two_small_col">
+                    <img src="{{section.settings.image| img_url: 'master'}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+
+    {
+      "type": "text",
+      "id": "heading",
+	  "label": "Heading"
+	},
+   {
+      "type": "richtext",
+      "id": "subheading",
+	  "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "heading_two",
+	  "label": "Heading"
+	},
+   {
+      "type": "richtext",
+      "id": "subheading_two",
+	  "label": "Subheading"
+    },
+ {
+      "type": "image_picker",
+      "id": "image",
+	  "label": "Image"
+    }
+] ,
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Image-Right",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+

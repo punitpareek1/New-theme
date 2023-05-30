@@ -1,0 +1,332 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+.hero-contact-container {
+  padding: 80px 20px 160px 20px;
+  background: url(https://cdn.shopify.com/s/files/1/0605/8177/3565/files/Color_Fill_9.png?v=1649149906);
+  background-size: cover;
+  background-position: 0px calc(100%);
+}
+.hero-contact-container h1 {
+  text-align: center;
+  font-size: 60px;
+  color: #FF5C35;
+  font-weight: bold;
+  font-family: "sk-modernist";
+}
+/* .hero-contact-container p {
+  text-align: center;
+  font-size: 60px;
+  color: #FF5C35;
+  font-weight: bold;
+  font-family: "sk-modernist";
+} */
+.hero-contact-container p {
+  max-width: 1100px;
+  text-align: center;
+  margin: auto;
+  color: #292723;
+  font-size: 29px;
+  line-height: 1.4;
+  font-family: "sk-modernist";
+  font-weight: 400;
+}
+.contact-container {
+/*   display: grid;
+  grid-template-columns: 1.8fr 1fr; */
+  gap: 30px;
+  max-width: 800px;
+  width: 100%;
+  padding: 50px 20px;
+  margin: auto;
+}
+.input-wrapper input[type="text"],
+.input-wrapper input[type="tel"] {
+  border: none;
+  border-bottom: 1px solid #00000059;
+  border-radius: 0px;
+  font-size: 23px;
+  padding: 0px;
+  color: #000;
+}
+.input-wrapper input[type="text"]::placeholder,
+.input-wrapper input[type="tel"]::placeholder,
+.input-wrapper textarea::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #00000059;
+  opacity: 1; /* Firefox */
+}
+.input-wrapper textarea {
+  font-size: 23px;
+  border: 1px solid #00000059;
+  color: #000;
+}
+.input-wrapper.second {
+  width: 46%;
+  display: inline-block;
+  margin-right: 30px;
+}
+.input-wrapper.last {
+    position: relative;
+}
+.input-wrapper input.button {
+  margin-top: 10px;
+  background-color: #FF5C35;
+  color: #fff;
+  font-size: 21px;
+  font-family: "sk-modernist";
+  font-weight: 600;
+  padding: 15px 50px 15px 40px;
+}
+.contact-details p {
+  font-size: 22px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1;
+}
+.contact-details p strong {
+  font-weight: 700;
+}
+.contact-details p a {
+  color: #000;
+}
+
+.input-wrapper.third {
+    width: 47%;
+    display: inline-block;
+}
+  
+.input-wrapper.last i {
+    position: absolute;
+    top: 29px;
+    left: 140px;
+    color: #fff;
+    font-size: 16px;
+}
+  
+.contact-details {
+    padding-top: 23px;
+}  
+  
+@media (max-width: 700px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-contact-container h1 {
+    font-size: 40px;
+  }
+/*  .hero-contact-container p {
+    font-size: 40px;
+  } */
+  .hero-contact-container p {
+    font-size: 18px;
+  }
+
+  .hero-contact-container {
+    padding: 40px 20px 120px;
+    background-size: 165% 100%;
+    background-position-x: -135px;
+  }
+  .input-wrapper input.button{
+  	font-size:18px;
+  }
+  .input-wrapper input[type="text"],
+  .input-wrapper input[type="tel"],
+  .input-wrapper textarea {
+    font-size: 18px;
+  }
+
+  .input-wrapper.second {
+    width: 100%;
+    display: block;
+  }
+
+  .input-wrapper.third {
+    display: block;
+    width: 100%;
+  }
+  .contact-details p{
+  	font-size:16px;
+  }
+  .input-wrapper.last i{
+  	left:130px;
+  }
+  .contact-details {
+    padding-top: 0px;
+  }
+}
+#thanks_live{
+color: green;
+}
+
+
+  
+</style>
+
+<div class="hero-contact-container">
+  <h1>{{ section.settings.heading }}</h1>
+  <p>{{ section.settings.paragraph }}</p>
+</div>
+
+<div class="contact-container">
+             <div class="module-text side-text">
+              <div class="contact-item contact-form">
+
+<p id="thanks_live"></p>
+   
+<!-- <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    region: "na1",
+    portalId: "5058629",
+    formId: "99e6372a-cf27-4c86-8940-d8dc02b2a7ad"
+  });
+</script> -->
+
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    region: "na1",
+    portalId: "5058629",
+    formId: "99e6372a-cf27-4c86-8940-d8dc02b2a7ad"
+  });
+</script>
+
+                {% comment %}
+                {% form 'contact', id: 'contact-form' %}
+                  {% if form.errors %}
+                    <div class="contact-form-error-message">
+                      {{ 'contact.error' | t }}
+                    </div>
+                  {% endif %}
+                  <div class="input-wrapper first">
+                    <input
+                      type="text"
+                      id="contact[name]"
+                      placeholder="Name"
+                      aria-label="{{ 'general.general.name_placeholder' | t }}"
+                      value=""
+                      name="contact[name]"
+                      class="{% if form.errors contains 'author' %}error{% endif %}">
+                  </div>
+                  <div class="input-wrapper second">
+                    <input
+                      type="text"
+                      id="contact[email]"
+                      placeholder="Email"
+                      aria-label="{{ 'general.general.email_placeholder' | t }}"
+                      value=""
+                      name="contact[email]"
+                      class="{% if form.errors contains 'email' %}error{% endif %}" required >
+                  </div>
+                  <div class="input-wrapper third">
+                    <input
+					  type="tel"
+                      id="contact[phone]"
+                      placeholder="Phone (optional)"
+                      aria-label="{{ 'general.general.phone_placeholder' | t }}"
+                      value=""
+                      name="contact[phone]"
+                      class="{% if form.errors contains 'phone' %}error{% endif %}" required >
+                  </div>
+                  <div class="input-wrapper">
+                    <textarea
+                      id="contact[body]"
+                      placeholder="Message"
+                      aria-label="{{ 'general.general.message' | t }}"
+                      name="contact[body]"
+                      rows="6"
+                      class="{% if form.errors contains 'body' %}error{% endif %}"></textarea>
+                  </div>
+                  <div class="input-wrapper last">
+                    <input
+                      class="button outline contact-form-button"
+                      type="submit"
+                      value="Submit"
+                      aria-label="{{ 'general.general.submit' | t }}"
+                    >
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                  </div>
+                  {% if form.posted_successfully? %}
+                    <div class="success-message contact-form-success">
+                      <span class="icon icon-check contact-form-success-icon"></span>
+                    </div>
+                  {% endif %}
+                {% endform %}
+                       {% endcomment %}
+                       <div style="text-align: center;"><strong style="font-weight: 500;">Mailing address for kit returns</strong> <br>
+                 <h2> 5151 Shoreham Pl, Suite 100, San Diego, CA 92122, United States</h2></div>
+              </div>
+            </div>
+<!--   			<div class="contact-details" style="text-align: center;">
+              <div class="contact-data contact-data-email">{{ section.settings.email }}</div>
+              <div class="contact-data">{{ section.settings.phone }}</div>
+              <div class="contact-data">{{ section.settings.address }}</div>
+              <div class="contact-data">{{ section.settings.hours }}</div>
+  			</div>   -->
+          </div>
+
+
+<script>
+  
+
+
+var url_string =  window.location.href; 
+  console.log(url_string, 'hhhghfhtgfhg');
+var c = url_string.includes("submissionGuid");
+console.log(c,  'hfhg');
+if(c){ 
+ document.getElementById("thanks_live").innerHTML = `Thanks for reaching out! We've received your message. Expect a response within 2-3 business days.`;
+      console.log("Hey I am true")
+ }
+else{
+    console.log("Hey I am fales")
+}
+
+   
+	</script>
+
+
+{% schema %}
+{
+  "name": "Contact Section",
+  "settings": [
+    {
+      "type":"text",
+	   "id": "heading",
+	  "label":"Hero title"
+    },
+	{
+      "type":"text",
+	   "id": "paragraph",
+	  "label":"Hero Paragraph"
+    },
+	{
+      "type":"richtext",
+	   "id": "email",
+	  "label":"Email "
+    },
+	{
+      "type":"richtext",
+	   "id": "phone",
+	  "label":"Phone"
+    },
+	{
+      "type":"richtext",
+	   "id": "address",
+	  "label":"Address:"
+    },
+	{
+      "type":"richtext",
+	   "id": "hours",
+	  "label":"Hours:"
+    }
+
+
+  ]
+}
+{% endschema %}

@@ -1,0 +1,183 @@
+<style>
+  .result-wrapper{
+  padding: 70px 0;
+    background: #fff;
+  }
+  #color-hed{{ section.id }} h2{
+color: {{section.settings.color}};
+  }
+  .resultOuter{
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+  .headlineArea{
+  text-align: center;
+  
+  }
+.headlineArea h2{
+ font-family: sk-modernist,sans-serif;
+/*   color: #FF5C35; */
+  font-size: 45px;
+    font-weight: 700;
+  }
+  .headlineArea p{
+   font-size: 20px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .rowResult{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+  .img-wrapper {
+    height: 115px;
+}
+  .resultDetailBlock img {
+    width: 30%;
+    height: 100%;
+    object-fit: contain;
+}
+  
+  .resultDetailBlock{
+    text-align: center;
+    max-width: 260px;
+  }
+ .resultDetailBlock img{
+      width: 30%;
+      
+}
+  .resultDetailBlock p{
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+@media only screen and (max-width: 768px){
+  .rowResult{
+    grid-template-columns: unset;
+    justify-content: center;
+  padding: 20px 0;
+
+  }
+  
+  .headlineArea h2{
+  font-size: 30px;
+  }
+  .headlineArea p{
+   font-size: 16px;
+  }
+   .result-wrapper{
+  padding: auto 0 0 0;
+    background: #fff;
+  }
+ .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobi }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
+  }
+}
+</style>
+
+<div class="result-wrapper ttt section-{{ section.id }}-padding">
+<div class="resultOuter">
+  <div class="headlineArea adult_flore" id="color-hed{{ section.id }}">
+    {% if  product.metafields.custom.real_heading !=  blank %}
+    <h2>{{ product.metafields.custom.real_heading}}</h2>
+   {% endif %}
+     {% if  section.settings.subhead !=  blank %}
+    <p>{{ section.settings.subhead }}</p>
+      {% endif %}
+  </div>	
+  <div class="rowResult">
+    {% for block in section.blocks %}
+    	<div class="resultDetailBlock">
+          <div class="img-wrapper">
+ {% if  block.settings.detailsImage !=  blank %}
+<img src="{{ block.settings.detailsImage | img_url: 'master' | prepend: "https:" }}" loading="lazy" alt="{{  block.settings.detailsImage.alt }}">
+                {% endif %}
+     </div>
+       {% if block.settings.detailsText !=  blank %}
+          <p>{{ block.settings.detailsText }}</p>
+                         {% endif %}
+    	</div>  
+    {% endfor %}
+  </div>
+  
+</div>
+</div>  
+
+
+{% schema %}
+{
+  "name": "Result Adult",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "color",
+      "id": "color",
+	  "label": "Color",
+	  "default": "#ff5c35"
+    },
+    {
+      "type": "text",
+      "id": "subhead",
+	  "label": "subhead"
+    },
+    {
+     "type": "range",
+     "id": "padding_top_mobi",
+     "min": 0,
+     "max": 60,
+     "step": 2,
+     "unit": "px",
+     "label": "Padding top (Mobile)",
+     "default": 50
+    },
+    {
+     "type": "range",
+     "id": "padding_bottom_mobi",
+     "min": 0,
+     "max": 60,
+     "step": 2,
+     "unit": "px",
+     "label": "Padding bottom (Mobile)",
+     "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Result Details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "detailsImage",
+	  	  "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "detailsText",
+	  	  "label": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Google Result Adult",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

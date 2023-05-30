@@ -1,0 +1,211 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .index-order-now{
+  	background-color: #fff;
+    position: relative; 
+    overflow: hidden;
+    padding-bottom: 75px;
+    padding-top: 75px;
+  }
+  .index-order-container{
+  	position: relative;
+    z-index: 1;
+  }
+  .order-now-col-left{
+  	position: relative; 
+    z-index: 1;
+    width: 58.31%;
+    box-sizing: border-box;
+    float:left;
+  }
+  .order-now-col-right{
+  	position: relative; 
+    z-index: 1;
+    width: 41.65%;
+    box-sizing: border-box;
+    float:left;
+  }
+  .clear {
+        clear: both;
+}
+  .index-order-container .tile-inner {
+        margin-bottom: 50px;
+        background-color: #f7f7f9;
+        padding-bottom: 280px;
+        min-height: 575px;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100%;
+}
+  .padding-40 {
+        padding: 40px;
+}
+  .padding-r-25 {
+        padding-right: 25px;
+}
+  @media(max-width:768px){
+  
+    .order-now-col-left, .order-now-col-right {
+    	width:100%!important;
+      float:none!important;
+    }
+    .padding-r-25 {
+    padding-right:0!important;
+    }
+    .index-order-container .tile-inner{
+    	padding-bottom: 210px!important;
+    }
+    .tile-inner-flore-tots{
+    	margin-bottom:0!important
+    }
+    
+    .padding-l-25{
+    padding-left:0!important;
+    }
+        
+  }
+  
+</style>
+
+{% assign imgFilter = 'master' %}
+
+{% for block in section.blocks %}
+
+<section class="index-order-now">
+		
+		<div class="index-order-container global-container-1200">
+			
+				<div class="order-now-col-left">
+					<div class="section-horizontal-col-left-content">
+						<div class="padding-r-100" style="padding: ">
+						<div class="saphire-standard-section-text"></div>						
+                      	</div>
+                      <div class="padding-r-25 padding-remove-800">
+						<div class="tile-inner tile-inner-flore" style="background-image: url('{{ block.settings.background_image_left | img_url: 'master'}}')">
+
+                          <div class="padding-40">
+                              <div style="height: 80px;">
+                                  <img class="lazyload" data-src="{{block.settings.left_image | img_url: 'master'}}" src="{{ block.settings.left_image | img_url: '30x' }}" alt="FLORÉ" style="width: 140px; display: inline-block;">
+                              </div>
+                              <p class="text02">
+                                  {{block.settings.left_text}}
+                              </p>
+                              <br>
+                              <a href="{{block.settings.button_link_left}}" class="btn-primary">{{block.settings.left_button_text}}</a>
+                          </div>
+				
+						</div>
+						</div>
+                  	</div>
+				</div>
+          
+				<div class="order-now-col-right">
+					<div class="section-horizontal-col-right-content">
+						<div class="" ></div>		
+                      	<div class="padding-l-25 padding-remove-800" style="padding-left:25px; ">
+                          <div class="tile-inner tile-inner-flore-tots" style="background-image: url('{{ block.settings.right_background_image | img_url: 'master'}}')">
+
+                              <div class="padding-40">
+                                  <div style="height: 80px;">
+                                      <img class="lazyload" data-src="{{block.settings.right_image | img_url: 'master'}}" src="{{ block.settings.right_image | img_url: '30x' }}" alt="FLORÉ" style="width: 140px; display: inline-block;">
+                                  </div>
+                                  <p class="text02">
+                                     {{block.settings.right_text}}
+                                  </p>
+                                  <br>
+                                  <a href="{{block.settings.right_button_link}}" class="btn-primary">{{block.settings.right_button_text}}</a>
+                              </div>
+
+                          </div>
+						</div>		
+                  </div>
+				</div>
+          
+				<div class="clear"></div>
+							
+		</div>
+						
+	</section>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Order Now Section",
+  "blocks":[
+	{
+	"type":"order",
+	"name":"Order Now",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Left Image"
+        },
+		{
+          "type": "text",
+          "id": "left_text",
+          "label": "Left Text"
+
+        },
+		{
+          "type": "text",
+          "id": "left_button_text",
+          "label": "Left Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link_left",
+          "label": "Left Button Link"
+
+        },
+		{
+          "type": "image_picker",
+          "id": "background_image_left",
+          "label": "Left Background Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "right_image",
+          "label": "Right Image"
+        },
+		{
+          "type": "text",
+          "id": "right_text",
+          "label": "Right Text"
+
+        },
+		{
+          "type": "text",
+          "id": "right_button_text",
+          "label": "Right Button Text"
+        },
+        {
+          "type": "url",
+          "id": "right_button_link",
+          "label": "Right Button Link"
+
+        },
+		{
+          "type": "image_picker",
+          "id": "right_background_image",
+          "label": "Right Background Image"
+        }
+		
+      ]
+	}
+  ]
+  ,
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Order Now Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

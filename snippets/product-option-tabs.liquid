@@ -1,0 +1,292 @@
+<style>
+   {% if product.id == 6567332151357 %}
+  form.product-form {
+    display: grid;
+    grid-template-columns: 1fr 3fr !important;
+    gap: 0px
+}
+     {% else %}
+  form.product-form {
+    display: grid;
+    grid-template-columns: 1fr 3fr !important;
+}
+     {% endif %}
+
+form.product-form .option-select-outer {
+    grid-column: 1 / span 2;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.option-select-outer .select-tab {
+    font-weight: 700;
+    padding: 7px 20px;
+    border: #FF5C35 solid 2px;
+    border-radius: 10px;
+    color: #FF5C35;
+}
+
+.option-select-outer .select-tab.active {
+    color: #fff;
+    background: #FF5C35;
+}
+
+  .most_plan{
+       position: relative; 
+  }
+  [data-variant-id="40095293079613"]{
+
+  
+}
+  {% if product.id == 6567332151357 %}
+  .most_inner {
+    position: absolute;
+    top: 0%;
+    right: 5%;
+    padding: 8px 10px;
+    text-align: center;
+    background-color: #6b8389;
+    color: #fff;
+}
+.most_inner:before, .most_inner:after {
+      bottom: 33%;
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: #88b7d500;
+    transition: 90;
+    transform: rotate(271deg);
+}
+.most_inner:before {
+border-bottom-color: #6b8389 !important;
+    border-width: 9px !important;
+    margin-left: -8px;
+}
+@media(max-width:321px){
+.most_inner {
+top: -36% !important; 
+}}
+@media(max-width:768px){
+.most_inner {
+      margin-top: 5px;
+  position: absolute;
+    top: -65%;
+    right: 0%;
+    padding: 3px 11px;
+    text-align: center;
+    background-color: #6b8389;
+    color: #fff;
+}
+     .most_inner:before, .most_inner:after { bottom: -50%;
+    right: 20%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: #88b7d500;
+    transition: 90;
+    transform: rotate(180deg);
+}}
+  
+  @media(min-width: 769px) and (max-width:1024px){
+    form.product-form .option-select-outer {
+      margin:20px 0;
+    }
+       .most_inner:before, .most_inner:after { bottom: -40%;
+    left: 25%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: #88b7d500;
+    transition: 90;
+    transform: rotate(180deg);
+}
+  .most_inner{ position: absolute;
+    top:-120%;
+    right: 0%;
+    padding: 8px 20px;
+    text-align: center;
+    background-color: #6b8389;
+    color: #fff;
+  }
+  
+  }
+  {% endif %}
+   {% if product.handle == 'flore-research-edition' %}
+  .most_inner{
+     position: absolute;
+    top: -130%;
+    right: 32%; 
+    padding: 8px 10px;
+    text-align: center;
+    background-color: #6b8389;
+    color: #fff;
+  }
+.most_inner:before, .most_inner:after {
+    bottom: -42%;
+    right: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: #88b7d500;
+    transition: 90;
+    transform: rotate(36deg);
+    transform: rotate(180deg);
+}
+.most_inner:before {
+border-bottom-color: #6b8389 !important;
+    border-width: 9px !important;
+    margin-left: -8px;
+}
+
+
+@media(max-width:1024px){
+.most_inner {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    padding: 5px 11px;
+    text-align: center;
+    background-color: #6b8389;
+    color: #fff;
+}
+     .most_inner:before, .most_inner:after { bottom: -50%;
+    right: 82%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: #88b7d500;
+    transition: 90;
+    transform: rotate(180deg);
+}}
+  
+  }
+  {% endif %}
+@media(max-width:1200px){
+  form.product-form {
+    grid-template-columns: 1fr 2fr !important;
+  }
+}
+  
+@media(max-width:700px){
+  form.product-form .option-select-outer {
+    justify-content: center;
+  }
+  
+}  
+
+@media(max-width:520px){
+  form.product-form {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}  
+  
+</style>
+
+{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+  {% for option in product.options_with_values %}
+    {% assign option_index = forloop.index0 %}
+    {%- capture option_id -%}
+      single-option-{{ form_id }}-{{ option_index }}
+    {%- endcapture -%}
+
+    <div class="selector-wrapper js-required" style="display:none;">
+     <label
+          class="selected-text"
+          for="{{ option_id }}"
+          data-select-text>
+          {{ option.name }}:
+      </label> 
+       
+      <div class="select-wrapper">
+       
+        <span class="selected-option" data-selected-option aria-hidden="true">{{ option.values | first }}</span>
+        
+        <select
+          class="single-option-selector"
+          id="{{ option_id }}"
+          data-option-select="{{ form_id }}"
+          data-option-index="{{ option_index }}">
+          {% for value in option.values %}
+            {% assign varNo =  forloop.index | minus: 1 %}
+            <option
+              value="{{ value | escape }}" data-variant-id="{{ product.variants[varNo].id }}"
+              {% if option.selected_value == value %}selected="selected"{% endif %}>
+              {{ value }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="option-select-outer kkk most_plan">
+     {% for value in option.values %}
+       {% assign val =  forloop.index | minus: 1 %}
+      <div class="select-tab {% if option.selected_value == value %}active{% endif %}" data-variant-id="{{ product.variants[val].id }}" data-price="{{ product.variants[val].price | money_without_trailing_zeros }}" data-compared-price="{{ product.variants[val].compare_at_price | money }}"
+        value="{{ value | escape }}"
+        {% if option.selected_value == value %}selected="selected"{% endif %}>
+        {{ value }}
+      </div>
+    {% endfor %}
+  
+    <div class="most_inner kk">MOST POPULAR</div>
+
+    </div>
+  {% endfor %}
+{% endunless %}
+<script>
+let optionTabs = document.querySelectorAll(".select-tab");
+let priceDisplay = document.querySelector(
+  ".product-wrap .product-price .money"
+);
+optionTabs.forEach((tab) => {
+  tab.addEventListener("click", function () {
+    let varaint = this.getAttribute("data-variant-id");
+    let price = this.getAttribute("data-price");
+    priceDisplay.innerHTML = price;
+    let select = jQuery(
+      `.single-option-selector option[data-variant-id=${varaint}]`
+    );
+    select.prop("selected", true).trigger("change");
+    let selectVariant = jQuery(
+      `.product-select option[data-variant-id=${varaint}]`
+    );
+    selectVariant.prop("selected", true).trigger("change");
+
+
+    optionTabs.forEach(box => {
+      box.classList.remove('active');
+    });
+    this.classList.add("active");
+  });
+});
+
+//   let boxat = document.querySelector('.most_plan'); 
+// let method = boxat.getAttribute('data-variant-id');
+//  boxat.addEventListener("click", function (e) {
+//    let valuevar = e.target.getAttribute('data-variant-id');
+// if (valuevar == '40095293079613') { 
+//    document.querySelector(".most_inner").style.display = "block";
+// }else{
+// document.querySelector(".most_inner").style.display = "none";
+// }  
+ 
+//   console.log(method)
+
+// });
+</script>

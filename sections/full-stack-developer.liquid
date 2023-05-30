@@ -1,0 +1,116 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-full-stack{
+  	padding: 0;
+    background: #f8f8f8;
+    position: relative;
+    z-index: 1;
+    padding-bottom:45px;
+  }
+  .home-full-stack ul {
+        list-style-type: disc;
+}
+  .home-full-stack h2{
+  	font-size: 24px;
+        color: #000;
+        font-weight: normal;
+  }
+  .padding-b-50 {
+    padding-top:25px;
+}
+  .image-div{padding-top:45px;padding-bottom:45px;}
+  .home-full-stack ul li{list-style-position: inside;}
+  strong {
+        font-weight: 700;
+}
+  .full-stack-txt-heading{padding-bottom:0px;max-width:100%;font-weight:normal;color:#000;}
+  .full-stack-contain-1200{
+    display: flex;
+    width:100%;
+    padding-top:75px;
+    
+  }
+  .full-stack-col-2{
+     width: 50%;
+     box-sizing: border-box;
+    float: left;
+            justify-content: flex-end;
+        align-items: flex-end;
+        display: flex;
+  }
+  .add-to-cart{cursor:pointer;}
+  .full-stack-col-2{padding-top:60px;}
+  
+  .full-stack-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  .full-stack-col-1 .pretitle{
+  	color: #FF5C35;
+    font-weight: 500;
+    padding-bottom: 8px;
+    font-size: .9rem;
+    line-height: 1.4;
+  }
+  .home-full-stack .text02 h3{
+  	line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  @media(max-width:768px)
+  {
+  	
+    .full-stack-contain-1200 {
+    	display:block!important;
+    }
+  }
+ 
+  
+</style>
+
+<div class="home-full-stack">
+  <div class="full-stack-contain-1200 global-container-1200">
+     
+		 <div class="full-stack-col-1">
+           	<h2 class="full-stack-txt-heading headingH2">{{section.settings.heading}}</h2>
+           
+           <div class="text02">{{section.settings.detail}}</div>
+           
+         </div>
+
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Full Stack Developer",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	
+	{
+      "type": "html",
+      "id": "detail",
+      "label": "Html Here"
+    }
+	
+   
+   
+  ]
+}
+
+{% endschema %}
+
+

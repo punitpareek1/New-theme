@@ -1,0 +1,420 @@
+<style>
+  .toggle-forgetfulness{
+    padding: 0;
+  }
+p.error-message.banner {
+    color: red;
+    padding-bottom: 0;
+    padding-top: 14px;
+}
+  p.error-message{
+        color: red;
+  }
+  .header-navigation-list .myBtn:hover{
+          color: #aeaeae!important;
+        background: inherit;
+     
+  }
+  .module-breadcrumbs{display:none;}
+  .bg-wrapper{
+  background-color:##efefef;
+  }
+  h1, h1 a {
+        font-size: 2.2rem;
+        line-height: 1.25;
+        color: #404040;
+}
+  .module-title {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.error_forgot{
+      display: flex;
+    justify-content: end;
+}
+
+  a, body, label, li, p, select, span, td, th {
+        font-family: SunGenomics,sans-serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #5e5e5e;
+        font-weight: 100;
+}
+  .button:hover, .submit:hover, button:hover {
+        background: #aeaeae;
+        border-color: #aeaeae;
+        color: white;
+}
+  .button, .submit, button{
+  	        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        padding: 15px 30px;
+        font-family: "Source Sans Pro", sans-serif;
+        font-weight: 700;
+        color: #aeaeae;
+        font-size: 12px;
+        line-height: 22px;
+        letter-spacing: 2px;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: 1px solid #aeaeae;
+  }
+  .button.secondary, .submit.secondary {
+        background: transparent;
+        border-color: #d2d0d0;
+        color: #d2d0d0;
+}
+  .button.secondary:hover, .submit.secondary:hover, button.secondary:hover {
+        background: #d2d0d0;
+        border-color: #d2d0d0;
+        color: white;
+}
+  .module-body{padding-bottom:100px;}
+  .module-header{padding-bottom:20px;}
+  h2.h2-small, h3, h3 a, h3.h3-small {
+        line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+       
+}
+  a, body, label, li, p, select, span, td, th {
+        font-family: SunGenomics,sans-serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #5e5e5e;
+        font-weight: 100;
+}
+  .text-link, a, a:hover {
+        color: #FF5C35;
+        text-decoration: none;
+        cursor: pointer;
+}
+  .column-fixed-left .column-left-50 {
+        margin-right:18px;
+        box-sizing: border-box;
+}
+  strong {
+        font-weight: 700;
+}
+
+p.error-message.banner {
+    grid-column: 1 / span 2;
+}  
+
+  .heading_log{
+         text-align: center;
+  }
+
+  .module_box_new{
+   background-color: unset !important;
+   border: unset !important;
+   padding: unset !important; 
+   margin: 0 auto !important;
+   max-width: 500px !important;
+  }
+  .customer_log_form form{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+   .customer_log_form form input{
+     border-radius: 25px;
+    background: #FFF;
+  }
+  .customer_log_form form label{
+  display: none;
+  }
+.create_display_account{
+    display: none !important
+  
+}
+  .forgot_box{
+    text-align: center;
+     margin: 0;
+  }
+  .log_box_btn{
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 15px;
+  }
+  .log_box_btn .button{
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #FF5C35;
+    padding: 15px 80px;
+    border-radius: 40px;
+    border: unset;
+  }
+  .REGISTER_box{
+    text-align: center;
+    margin: 0;
+  }
+  .register_box_main{
+    margin: 0;
+  }
+  .REGISTER_box_btn{
+    border: unset;
+    color: #FF5C35 !important;
+    padding-top: 2rem;
+    letter-spacing: 1px;
+    font-size: 16px;
+
+  }
+  .REGISTER_box_btn:hover{
+   background: unset !important;
+  }
+  .password_box{
+    margin-bottom: 10px;
+  }
+  .bg_new_wrapper{
+/*     background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Vector_Smart_Object_de0875d9-e0fb-487b-afdd-59b32c83a626.png?v=1658724483); */
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .inner_log_box{
+    padding: 6rem 30px 0px 30px;
+  }
+  .error_box{
+    margin: 0;
+    padding-right: 15px;
+  }
+  .input-wrapper{
+   margin-bottom: 0 !important; 
+  }
+  .reset_btn_new .button{
+     font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #FF5C35;
+    padding: 15px 40px;
+    border-radius: 40px;
+    border: unset;
+  }
+  .reset_btn_new{
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .email_display{
+       display: none !important;
+  }
+  .email_display_box input{
+    border-radius: 25px;
+  }
+  .email_display_box{
+    margin-bottom: 30px !important;
+  }
+  ::placeholder{
+    color: black !important;
+    font-size: 16px;
+  }
+  .top_taxt_in p{
+    text-align: center;
+  }
+  .top_taxt_in{
+  margin-top: 20px;
+  }
+  
+  .column-fixed-left{display:flex;}
+  div#rc_login {
+    display: none !important;
+  }
+.recharge_subscription_wapper{
+text-align: center;
+}
+  
+ @media screen and (max-width: 720px){
+    .pxs-video-header, .pxs-rich-text, .module {
+            padding-top: 0px;     
+    }
+   .module-body {
+        padding-bottom: 50px;
+	}
+ }
+  @media(max-width:768px){
+    .error_forgot {
+    flex-direction: column;
+    text-align: center;
+}
+p.error-message.banner {
+    padding-top: 0px;
+}
+    
+    .bg_new_wrapper{
+/*     background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Rectangle_2.png?v=1658727858); */
+  }
+    .input-wrapper{
+      margin: 15px 0;
+    }
+    .forgot_box{
+     margin: 0;
+      text-align: center;
+    }
+    .inner_log_box{
+      padding-top: 50px;
+    }
+    .module_hading_new{
+          padding-bottom: 2rem !important; 
+    }
+    .module_hading_new h1{
+      font-size: 30px
+    }
+    .REGISTER_box_btn{
+    padding-top: 0;
+    }
+   .heading_log{
+    padding-top: 0px !important;
+   }
+  }
+</style>
+
+<div class="module-wrapper bg-wrapper bg_new_wrapper">
+  <div class="module module-login inner_log_box">
+    <div class="module-header module_hading_new">
+     {% comment %} <h1 class="module-title page-title heading_log {{ 'customer.reset_password.subtext' | t }}">{{ 'customer.login.header' | t }}</h1> {% endcomment %}
+      <div class="module-subtitle">
+        <div class="successful-reset">{{ 'customer.reset_password.successful_reset' | t }}</div>
+      
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="module-content module_box_new">
+        <div class="customer-login customer_log_form">
+          <div class="column-fixed-left create_display_account">
+<!--             <div class="column-left-50"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 34px;"></i></div> -->
+            <div class="column-main">
+            
+<!--              <strong style="font-size: 18px;">If this is your first visit here or do not have a password, you will need to create an account first:
+             <br /> -->
+         <a href="/account/register"><i class="fa fa-angle-right" aria-hidden="true"></i> Create your account here</a></strong>
+              <br /><br /> 
+              
+            </div>
+          </div>
+        
+          {% form 'customer_login' %}
+            <h1 class="module-title page-title heading_log {{ 'customer.reset_password.subtext' | t }}">{{ 'customer.login.header' | t }}</h1>
+<!--           
+            {% if form.errors %}
+              <div class="input-wrapper error_box">
+            
+              <p class="error-message banner">{{ 'customer.login.error' | t }}</p>
+             </div>
+            {% endif %} -->
+          <div class="input-wrapper top_taxt_in">
+              <p><strong>Note:</strong> Your Flore billing and subscription account is a separate login from the portal/mobile app. If you're having trouble logging in, please make sure you are using the password you set up after purchasing, not what you use to view your report.</p>
+            </div>
+            <div class="input-wrapper">
+              <label for="customer[email]">{{ 'general.general.email' | t }}</label>
+              <input type="text" placeholder="{{ 'general.general.email' | t }}" value="{{ form.email }}" id="customer[email]" name="customer[email]" required >
+            </div>
+            <div class="input-wrapper password_box">
+              <label for="customer[password]">{{ 'general.general.password' | t }}</label>
+              <input type="password" placeholder="{{ 'general.general.password' | t }}" id="customer[password]" name="customer[password]" required>
+            </div>
+          <div class="error_forgot">
+            {% if form.errors %}
+              <div class="input-wrapper error_box">
+            
+              <p class="error-message banner">{{ 'customer.login.error' | t }}</p>
+             </div>
+            {% endif %}
+            <div class="input-wrapper forgot_box">
+              <p class="toggle-forgetfulness"><span>{{ 'customer.login.forgot_password' | t }}</span></p>
+            </div>
+            </div>
+          <div class="input-wrapper log_box_btn ">
+             <input class="button" type="submit" value="{{ 'general.general.login' | t }}">
+            </div>
+          {% endform %}
+<!-- Begin ReCharge code -->
+{% render 'subscription-account-login' %}
+<!-- End ReCharge code -->
+
+        </div>
+        <div class="recover-password">
+          {% form 'recover_customer_password' %}
+            
+            <p>{{ 'customer.reset_password.subtext' | t }}</p>
+            {% if form.posted_successfully? %}
+              <span class="reset-check" data-successful-reset="true"></span>
+            {% endif %}
+            <div class="input-wrapper email_display_box">
+              <label class="email_display" for="email">{{ 'general.general.email' | t }}</label>
+              <input type="text" placeholder="{{ 'general.general.email' | t }}" value="{{ form.email }}" name="email" id="email" class="{% if form.errors %}error{% endif %}" required>
+              {% if form.errors %}
+                <p class="error-message">{{ form.errors.messages['form'] }}</p>
+              {% endif %}
+            </div>
+
+            <div class="input-wrapper reset-button reset_btn_new">
+              <input class="button" type="submit" value="{{ 'customer.reset_password.submit' | t }}" >
+              <p class="toggle-forgetfulness"><span>{{ 'customer.general.cancel' | t }}</span></p>
+                  </div>
+          
+          {% endform %}
+        </div>
+        {% if shop.checkout.guest_login %}
+<!--           <div class="guest-checkout">
+            <h3>{{ 'customer.guest_login.checkout_as_guest' | t }}</h3>
+            {% form 'guest_login' %}
+              <p>{{ 'customer.guest_login.no_login' | t }}</p>
+              <input class="button" type="submit" value="{{ 'customer.guest_login.checkout_as_guest' | t }}" />
+            {% endform %}
+          </div> -->
+        {% else %}
+          <div class="new-customer register_box_main">
+          {% comment %}}
+            <h3>{{ 'customer.login.new_customer' | t }}</h3>
+            <p>{{ 'customer.activate_account.benefits' | t }}</p>
+          {% endcomment %}
+            <div class="input-wrapper REGISTER_box">
+              <a class="button secondary REGISTER_box_btn" href="{{ routes.account_register_url }}">{{ 'customer.activate_account.submit' | t }}</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+<div class="recharge_subscription_wapper">
+<p> Need help accessing your subscriptions?</p>
+  <a href="https://flore.com/tools/recurring/get-subscription-access?passwordless=true">Click here</a>
+</div>
+
+
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  // Check if URL has #recover and display forget password section
+  if(window.location.hash.substring(1) == 'recover') {
+   document.querySelector('.recover-password').style.display = 'block'; 
+   document.querySelector('.customer-login').style.display = 'none';  
+  } 
+$(document).ready(function(){
+ 
+  
+  // To show login section
+  $(".customer-login .toggle-forgetfulness span").click(function(){
+    $(".recover-password").hide();
+    $(".customer-login").show();
+  });
+ // To show forger password section
+  $(".recover-password .toggle-forgetfulness span").click(function(){
+    $(".recover-password").show();
+    $(".customer-login").hide(); 
+  });
+  
+});
+
+
+
+  
+</script>

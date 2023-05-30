@@ -1,0 +1,403 @@
+<style>
+
+  .process-row{
+      display: flex;
+    column-gap: 3rem;
+    margin-bottom: 50px;
+    width: 100%;
+        position: relative;
+  }
+  
+  .horizantal-line .line{
+      height: 80%;
+    background: #fff;
+    width: 5px;
+    align-items: center;
+  }
+  .column-self-process{
+  display: grid;
+    grid-template-columns: 10fr 2fr;
+    margin-bottom: 50px;
+  }
+  
+  .step-node{
+  width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #FF5C35;
+    font-size: 24px;
+    position: absolute;
+    left: -25px;
+    font-weight: 700;
+  }
+  
+  .step-no-color{
+  width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #FF5C35;
+    background: #fff;
+    font-size: 24px;
+    position: absolute;
+    left: -25px;
+    font-weight: 700;
+  }
+  
+  
+    #process-column-{{section.id}} {
+      background-image: url({{section.settings.background_image | img_url : 'master'}});
+  background-color: {{section.settings.background_color}}
+  
+  }
+  #process-column-{{section.id}} .process-wrapper{
+  	padding-top:{{section.settings.padding_top | default : '70'}}px;
+	padding-bottom:{{section.settings.padding_bottom | default : '70' }}px;
+  }
+  .heading-self-pro{
+    font-size: 32px;
+    font-family: sk-modernist,sans-serif;
+    color: #FF5C35;
+    font-weight: 700;
+  }
+  #process-column-{{section.id}} .heading-wrapper{
+      padding-bottom: 3rem;
+    text-align: center;
+  }
+  #process-column-{{section.id}} .heading-wrapper h3{
+  padding-bottom:2rem;
+  }
+  
+  .vr1 {
+  background: #FF5C35;
+    border: 3px solid transparent;
+    border-radius: 10px 10px 0px 0px;
+    margin: 0;
+    width: 1px;
+    height: 9%;
+    margin-left: 0px;
+    border-bottom-color: #fff;
+    position: relative;
+    transition: all 0.5s ease;
+    max-height: 100%;
+  }
+  .image-col-pro {
+    width: auto;
+    max-width: 110px;
+  }
+  @media(min-width:769px){
+    .hide-on--desktop {
+    display:none;
+    }
+  }
+  
+  @media(max-width:768px){
+    #process-column-{{section.id}} .process-wrapper{
+  	padding-top:{{section.settings.padding_top_mobile | default : '70'}}px;
+	padding-bottom:{{section.settings.padding_bottom_mobile | default : '70' }}px;
+  }
+  
+    #process-column-{{section.id}} {
+      background-image: url({{section.settings.background_image_mobile | img_url : 'master'}});
+  background-color: {{section.settings.background_color}};
+      background-size:100% 100%;
+  
+  }
+    
+    .horizantal-line {
+    display:none;
+    }
+    
+    .process-inner-rows{
+        display: grid;
+    grid-template-columns: repeat(3, minmax(335px, 1fr));
+    align-items: start;
+    padding-bottom: 0;
+    justify-content: start;
+    gap: 10px;
+    overflow: auto;
+    }
+    .process-row{
+    margin-bottom:0;
+    }
+    
+    .column-self-process {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+     background: #FF5C35;
+    position: relative;
+    margin-top: 50px;
+    padding: 40px 10px 10px;
+    border-radius: 20px;
+      height:80%;
+}
+    .heading-self-pro, .heading-self-pro span {
+    font-size: 16px;
+    font-family: sk-modernist,sans-serif;
+    color: #fff;
+      text-align:center;
+    font-weight: 700;
+	}
+    .step-no-color, .step-node {
+    display:none;
+    }
+    .content-process .description, .content-process .description p, .content-process .description a {
+        font-size: 16px;
+    text-align: center;
+    color: #fff;
+    }
+    .image-col-pro{
+        max-width: 140px;
+    height: 80px;
+    margin: 0 auto;
+    position: absolute;
+    top: -46px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    }
+    .image-col-pro img{
+    height:100%;
+    }
+    
+    #process-column-{{section.id}} .heading-wrapper{
+      padding-bottom: 2rem;
+    text-align: center;
+  }
+    
+    .process-inner-rows::-webkit-scrollbar {
+    display: none;
+}
+  
+  }
+  
+</style>
+
+
+
+
+
+<div id="process-column-{{section.id}}" class="">
+  <div class="process-wrapper contain-1200 padding-mobile-1250">
+    {% if section.settings.headline != blank %}
+    <div class="heading-wrapper">
+      <h3 style="color :{{section.settings.heading_color}}">{{ section.settings.headline }}</h3>
+      {% if section.settings.subhead != blank %}<div class="description">{{ section.settings.subhead }}</div>{% endif %}
+    </div>	
+    {% endif %}
+    <div class="process-row">
+      <div class="horizantal-line">
+        <div class="line"><div class="vr1" style="height: 120px;"></div></div>
+      </div>
+      <div class="process-inner-rows">
+      {% for block in section.blocks %}
+      <div class="column-self-process">
+        <div class="content-process">
+        {% if block.settings.detailsText != blank %}
+        <span class="{% if forloop.index == 1 %}step-node step-no-{{forloop.index}}{% else %} step-no-color step-no-{{forloop.index}}{% endif %} ">0{{forloop.index}}.</span>
+          <h3 class="heading-self-pro"><span class="hide-on--desktop">{{forloop.index}}.</span> {{ block.settings.detailsText }}</h3>
+        {% endif %}
+        {% if block.settings.description != blank %}
+        <div class="description hello">{{block.settings.description}}</div>
+        {% endif %}
+        {% if block.settings.descripti1on != blank %}
+        <div class="descri1ption hello">{{block.settings.descripti1on}}</div>
+        {% endif %}
+        </div>
+        {% if block.settings.detailsImage != blank %}
+        <div class="image-col-pro"><img src="{{ block.settings.detailsImage | img_url: 'master' }}"  alt="{{ block.settings.detailsImage.alt }}" loading="lazy"></div>
+        {% endif %}
+      </div>  
+      {% endfor %}
+    </div>
+    </div>
+
+  </div>
+</div>  
+
+
+<script type="text/javascript">
+    const box = document.querySelector('.process-wrapper');
+const el1 = document.querySelector('.vr1');
+const el2 = document.querySelector('.step-no-2');
+const el3 = document.querySelector('.step-no-3');
+
+function elementsOverlap(el1, el2) {
+  const domRect1 = el1.getBoundingClientRect();
+  const domRect2 = el2.getBoundingClientRect();
+
+  return !(
+    domRect1.top > domRect2.bottom ||
+    domRect1.right < domRect2.left ||
+    domRect1.bottom < domRect2.top ||
+    domRect1.left > domRect2.right
+  );
+    
+}
+
+
+document.addEventListener('scroll', function () {
+    let setHeight = 0;
+let a = box.getBoundingClientRect();
+    let windowH = $(window).height();
+    
+    
+    if(a.top < (windowH) && a.top > 0){
+        setHeight = ((((100 * a.top) / windowH)-100)*-1)+50;
+
+        jQuery('.horizantal-line .vr1').css('height', setHeight + "px");
+    }
+
+    else if(a.top < a.height && a.top < 0){
+        setHeight = (((100 * a.top) / a.height)*-1)+15;
+        jQuery('.horizantal-line .vr1').css('height', setHeight + "%");
+    }    
+
+    if(elementsOverlap(el1, el2)){
+jQuery(el2).css('background', "#FF5C35").css("color", "#fff");
+        
+    }
+    else{
+
+      jQuery(el2).css('background', "#fff").css("color", "#FF5C35");  
+    }
+
+    if(elementsOverlap(el1, el3)){
+jQuery(el3).css('background', "#FF5C35").css("color", "#fff");
+        
+    }
+    else{
+
+      jQuery(el3).css('background', "#fff").css("color", "#FF5C35");  
+    }
+     
+})
+
+</script>
+
+
+
+{% schema %}
+{
+  "name": "The Process",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    },
+	{
+		"type" : "color",
+		"id" : "heading_color",
+		"label" : "Heading Color"
+	},
+    {
+      "type": "text",
+      "id": "subhead",
+	  "label": "Description"
+    },
+	{
+		"type" : "color",
+		"id" : "background_color",
+		"label" : "Background Color"
+	},
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Bottom"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Top Mobile"
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Bottom Mobile"
+    },
+	{
+          "type": "image_picker",
+          "id": "background_image",
+	  	  "label": "Background image"
+    },
+	{
+          "type": "image_picker",
+          "id": "background_image_mobile",
+	  	  "label": "Background image mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Steps",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "detailsImage",
+	  	  "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "detailsText",
+	  	  "label": "text"
+        },
+		{
+      "type": "richtext",
+      "id": "description",
+	  "label": "Description"
+    },
+        	{
+      "type": "textarea",
+      "id": "descripti1on",
+	  "label": "Descri1ption"
+    }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Process",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

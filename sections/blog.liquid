@@ -1,0 +1,132 @@
+<style>
+
+  .blog-tags-wrapper{
+  display:flex;
+  }
+  .has-excerpt{
+      cursor: pointer;
+  }
+  
+  @media(max-width:900px){
+    .module {
+    padding: 0;
+
+	}
+    
+    .post-content {
+    padding: 30px 15px;
+}
+  }
+  
+</style>
+
+
+<link rel="stylesheet" href="{{ 'style-v2.min.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'saphire-utilities.min.css' | asset_url }}">
+
+{% paginate blog.articles by 8 %}
+<div class="page-standard" style="background: #f7f8fa;">
+  <div class="module-wrapper">
+    <div class="module blog">
+      <div class="module-header blog-header pareek">
+        <div class="module-title blog-title">
+          <h1>
+            {% if current_tags %}<a href="{{ blog.url }}">{% endif %}
+            {{ blog.title }}
+            {% if current_tags %}</a>{% endif %}
+			    
+			{% if current_tags %}
+			<span class='h1-blogsection'>
+			{{ current_tags }}
+			</span>
+			{% endif %}
+          </h1>
+        </div>
+        {% if linklists.blogs.links.size > 0 %}
+          <div class="blog-menu">
+            {% for link in linklists.blogs.links %}
+              <a class="button outline blog-subtitle-button {% if link.url == blog.url %}active{% endif %}" href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      
+     
+       <div class="blog-intro">
+        {% if current_tags contains "Microbiome Health" %}
+          	<div class="padding-b-50">
+        		<p>What is microbiome health? Your gut microbiome is composed of trillions of microbes that can be helpful, harmful, or neutral. Pathogenic, or disease-promoting, microbes can contribute to conditions like depression, IBS, IBD, leaky gut, and chronic fatigue. Symbiotic microbes can benefit you in a multitude of ways, including boosting your immune system and improving your digestive health. Diversifying and balancing the bacteria in your gut with a tailored probiotic is a key way to take action in promoting good microbiome health.</p>
+        		<p>There is so much to learn about how your gut bacteria interacts with your body, including your brain, and how supplementing with precision probiotics can improve your health and wellness. Get started with one of our blog posts below.</p>
+          	</div>
+        {% endif %}
+      </div>
+      
+      
+      <div class="module-body">
+
+      <div class="blog-tags-wrapper">
+            <span class="blog-tags-section-title">Topics:</span>
+            <div class="blog-tags-list">
+              
+                <span class="blog-tags-list-item"><a href="/blogs/learn/tagged/in-the-news" title="Show articles tagged In the News" ><i class="fa fa-newspaper-o" aria-hidden="true"></i>In the News</a></span>
+              
+                <span class="blog-tags-list-item"><a href="/blogs/learn/tagged/microbiome-health" title="Show articles tagged Microbiome Health" ><i class="fa fa-heart-o" aria-hidden="true"></i>Microbiome Health</a></span>
+              
+                <span class="blog-tags-list-item"><a href="/blogs/learn/tagged/probiotics" title="Show articles tagged Probiotics" ><i class="fa fa-sun-o" aria-hidden="true"></i>Probiotics</a></span>
+              
+            </div>
+            
+          </div>
+		  
+        
+       
+        
+		  
+        <div class="post-wrapper">
+          {% for article in blog.articles %}
+           {% if article.metafields.global.external_link != null %}
+        	
+            <span class="metalink" data-link="{{article.metafields.global.external_link}}">{% include 'article-list-item' %}</span>
+                        
+            {% else %}
+            
+            {% include 'article-list-item' %}
+            
+            {% endif %}
+          {% endfor %}
+          
+          {%comment%}
+          {% for article in blog.articles %}
+          {% include 'article-list-item' %}
+          {% else %}
+            <div class="empty">
+              <p>{{ 'blogs.blog.empty' | t }}</p>
+            </div>
+          {% endfor %} {% endcomment%}
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if paginate.previous or paginate.next %}
+    {% include 'pagination' %}
+  {% endif %}
+</div>
+{% endpaginate %}
+
+<!-- <script>
+
+  if(jQuery('body').hasClass('template-blog')){
+    var link = jQuery('.post-wrapper .metalink').attr('data-link');
+    console.log(link);
+    
+    jQuery('body').on('click', function(){
+      
+    })
+}
+
+</script>
+ -->

@@ -1,0 +1,184 @@
+<style>
+
+.uk-timeline .uk-timeline-item {
+    display: flex;
+    position: relative;
+}
+
+.uk-timeline .uk-timeline-item::before {
+    background: #f58345;
+    content: "";
+    height: 100%;
+    left: 19px;
+    position: absolute;
+    top: 20px;
+    width: 2px;
+		z-index: 0;
+}
+  .check{
+  z-index:1;
+  }
+.uk-timeline .uk-timeline-item .uk-timeline-icon .uk-badge {
+		margin-top: 20px;
+    width: 40px;
+    height: 40px;
+}
+  .uk-badge{
+  background-color:#f58345!important;
+  }
+
+.uk-timeline .uk-timeline-item .uk-timeline-content {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0 0 0 1rem;
+}
+  .uk-card-header{
+      background: #f58345;
+  }
+  .uk-card-body{
+      display: flex;
+    background: #ffe9e4;
+  }
+  .uk-card-title{
+  color:#fff!important;
+    margin:0;
+  }
+  .description, .img-container{
+  width:50%;
+  }
+  .imflex{
+ display: flex;
+ align-items:center!important;
+  }
+  .subheading{
+      font-size: 24px;
+    color: #fff;
+  }
+  .even-2, .even-4{
+  flex-direction:row-reverse;
+  }
+  .width-column-9 .inner-card{
+  text-align:center;
+  }
+  
+  @media(max-width:768px){
+  .description, .img-container, .column {
+    width: 100%!important;
+	}
+    
+    .width-column-9{
+    padding:24px!important;
+    }
+    .uk-card-body{
+    display:block;
+    }
+    .uk-padding {
+    padding: 15px 10px !important;
+}
+    .bottom-text a {
+    color: #FF5C35!important;
+    word-break: break-all!important ;
+}
+      .inner-card{
+  text-align:left;
+  }
+.subheading {
+    font-size: 18px;
+    color: #fff;
+	}
+    .title{
+    line-height: 35px;
+    font-size: 30px!important;
+    }
+    
+  }
+
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css">
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script> -->
+
+<div class="uk-container uk-padding">
+  <h1 class="instructions-txt-heading1 headingH2">
+                      {{section.settings.heading}}
+            </h1>
+    <div class="uk-timeline">
+      {% for block in section.blocks %}
+        <div class="uk-timeline-item">
+            <div class="uk-timeline-icon">
+                <span class="uk-badge"><span uk-icon="check" class="check">{{ forloop.index}}</span></span>
+            </div>
+            <div class="uk-timeline-content">
+                <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle imflex" uk-grid>
+                            <h3 class="uk-card-title">{{ block.settings.heading }}</h3>
+                          	
+                          	{% if block.settings.sub_heading != blank %}
+                            <span class="subheading">{{ block.settings.sub_heading }}</span>
+                          {% endif %}
+                        </div>
+                    </div>
+                    <div class="uk-card-body even-{{ forloop.index}}">
+						<div class="description">{{ block.settings.description }}</div>
+                      <div class="img-container">	<img src="{{ block.settings.image_instruction | img_url: 'master' }}" alt="{{ block.settings.image_instruction.alt }}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Instruction Booklet",
+  "class": "Instruction-Booklet",
+  "settings": [{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+],
+  "blocks": [
+    {
+      "type": "Instruction-Booklet-Steps",
+      "name": "Steps",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+		  "label": "Heading"
+        },
+	   {
+          "type": "text",
+          "id": "sub_heading",
+		  "label": "Sub Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_instruction",
+		  "label": "Upload image"
+        },
+        {
+          "type": "html",
+          "id": "description",
+		  "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Instruction-Booklet-Steps",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

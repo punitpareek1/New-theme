@@ -1,0 +1,65 @@
+<div class="search-flyout" data-search-flyout>
+  <div class="search-flyout__wrapper">
+    <form
+      class="search-flyout__form"
+      id="predictive-search"
+      action="{{ routes.search_url }}"
+      method="get"
+      data-search-flyout-form
+    >
+      <input
+        class="search-flyout__input"
+        type="text"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.general.search_placeholder' | t }}"
+        aria-label="{{ 'general.general.search_placeholder' | t }}"
+        {%- if section.settings.enable_predictive_search -%}
+          autocorrect="off"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+        {%- endif -%}
+        data-search-input
+      >
+      <button
+        class="search-flyout__submit-btn"
+        type="submit"
+        aria-label="{{ 'general.search.submit' | t }}"
+      >
+        <span
+          class="
+            search-flyout__submit-icon
+            icon
+            icon-search
+          "
+        >
+        </span>
+      </button>
+
+      {%- if section.settings.enable_predictive_search -%}
+        <div
+          class="predictive-search-container"
+          data-predictive-search-container
+          data-loading="false"
+        >
+          {%
+            render 'icon-library',
+            id: 'icon-spinner',
+          %}
+          <div data-predictive-search-results-container></div>
+        </div>
+      {%- endif -%}
+    </form>
+
+    <button
+      class="search-flyout__close-button"
+      type="button"
+      aria-label="Cancel"
+      data-search-flyout-close
+    >
+      <span class="icon icon-cross"></span>
+    </button>
+
+  </div>
+</div>

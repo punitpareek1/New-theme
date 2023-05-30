@@ -1,0 +1,131 @@
+<style>
+  .microflora_row {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .microflora_small_row {
+    display: grid;
+    grid-template-columns: 9fr 11fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+	padding: 0px 10px 90px;
+  }
+
+  .microflora_small_col img {
+    width: 100%;
+    border-radius: 30px;
+  }
+
+  .microflora_small_col-2 {
+    text-align: right;
+  }
+  .microflora_small_col-2 h3 {
+   margin-top: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    text-transform: uppercase;
+    max-width: 400px;
+  }
+  .microflora_small_col-2 hr {
+    background: #FF5C35;
+  }
+
+  .microflora_small_col-2 p {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 450px;
+    margin: 0 0 0 auto;
+    color: #212121;
+  }
+  .microflora_small_col-2 strong {
+    font-weight: 700;
+  }
+  @media (max-width: 768px) {
+    .microflora_small_row {
+      grid-template-columns: repeat(1, 1fr);
+      grid-column-gap: 10px;
+      padding: 0px 10px 30px;
+    }
+
+    .microflora_small_col-2 {
+      text-align: center;
+    }
+
+
+    .microflora_small_col-2 p {
+      max-width: unset;
+      margin: unset;
+    }
+
+  }
+
+</style>    
+
+
+
+
+
+
+
+<div class="microflora_container">
+        <div class="microflora_row">
+            <div class="microflora_small_row">
+                <div class="microflora_small_col">
+                    <img src="{{section.settings.image| img_url: 'master'}}" alt="">
+                </div>
+                <div class="microflora_small_col-2">
+
+                  <h3>{{section.settings.heading}}</h3>
+                    <hr>
+                     {{section.settings.subheading}}
+                      <h3>{{section.settings.heading_two}}</h3>
+                    <hr>
+                      {{section.settings.subheading_two}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+ {
+      "type": "image_picker",
+      "id": "image",
+	  "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+	  "label": "Heading"
+	},
+   {
+      "type": "richtext",
+      "id": "subheading",
+	  "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "heading_two",
+	  "label": "Heading"
+	},
+   {
+      "type": "richtext",
+      "id": "subheading_two",
+	  "label": "Subheading"
+    }
+] ,
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Image-left",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+

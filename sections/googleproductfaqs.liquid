@@ -1,0 +1,382 @@
+<style>
+  
+    @media(min-width:1400px){
+  
+    .section-two-outer{
+    background-image: url(//cdn.shopify.com/s/files/1/2204/9357/files/Folder_1_2.jpg?v=1654773816);
+    background-repeat: no-repeat;
+    background-size: 100% 100%!important;
+    padding: 11% 20px!important;
+    background-position: center;
+    }
+    
+  }
+  
+    .section-two-outer {
+        background: #f4f4f4;
+        padding: 60px 15px;
+    }
+
+    .section-two-inner {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 0;
+/*         background: #f4f4f4; */
+    }
+
+    h2.section-two-head {
+        font-size: 42px;
+        font-weight: 700;
+        text-align: center;
+        color: #FFF;
+        padding-bottom: 4rem;
+        font-family: sk-modernist, sans-serif;
+    }
+
+    .section-second-inner-row {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .section-second-inner-column-left {
+        width: 50%;
+    }
+
+    .section-second-inner-row-right {
+        width: 50%;
+    }
+
+    span.subheadline_accordion {
+        font-weight: 500;
+        padding-bottom: 8px;
+        font-size: 16px;
+        line-height: 1.4;
+        color: #ff5c35;
+    }
+
+    .second-section-parag {
+        max-width: 700px;
+        margin: auto;
+        padding-bottom: 15px;
+    }
+
+    .second-section-parag p {
+        padding: 0px;
+        text-align: center;
+    }
+
+    span.button-label {
+        display: block;
+        font-size: 17px !important;
+        font-weight: 500;
+    }
+
+    span.button-subtext {
+        display: block;
+        font-size: 14px;
+    }
+
+    /*  Accordion Css  */
+
+    .accordion {
+        padding: 15px 20px;
+        border-left: #FF5C35 10px solid;
+        background: #fff;
+        text-decoration: none;
+        position: relative;
+        border-radius: 10px;
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #404040;
+        font-family: 'sk-modernist', sans-serif;
+    }
+
+    .accordion-open span {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 30%;
+        padding: 10px;
+    }
+
+    .accordion-open span {
+        background: url("https://cdn.shopify.com/s/files/1/2204/9357/files/plus.png?v=1646394658") center center no-repeat;
+        transform: rotateZ(45deg);
+        transition: transform 330ms ease-in-out;
+    }
+
+    .accordion-close span {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 30%;
+        background: url("https://cdn.shopify.com/s/files/1/2204/9357/files/plus.png?v=1646394658") center center no-repeat;
+        padding: 10px;
+        transition: transform 330ms ease-in-out;
+    }
+
+    .content {
+        padding: 10px 15px 15px;
+    }
+
+    .one .container {
+        background: #fff;
+        border-left: #FF5C35 10px solid;
+        margin-top: -7px;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    p.accordion_text {
+        padding-top: 0px;
+        font-family: 'sk-modernist', sans-serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #5e5e5e;
+        font-weight: 400;
+    }
+
+    p.accordion_text {
+        padding-top: 0px;
+    }
+
+    .faqs_btn {
+       font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    background-color: #fff;
+    padding: 10px 60px;
+    border-radius: 40px;
+    font-family: 'sk-modernist',sans-serif;
+
+    }
+  
+  .first h4{
+  font-size: 22px;
+    line-height: 1.4;
+    color: #211f20;
+    font-family: "sk-modernist";
+    font-weight: 600;
+  }
+
+    .faqs_btn_conatiner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          margin-top: 2rem;
+    }
+  
+/*   ***************** */
+  
+  .faq-main-box {
+  background: #fff;
+    border-left: #FF5C35 10px solid;
+    border-radius: 10px;
+    padding: 17px;
+    margin-bottom: 15px;
+  }
+  .faqs-wrapper{
+  display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+    gap: 30px;
+
+  }
+  .first{
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .first-p{
+  font-size:16px;
+  }
+  .img-3 {
+    height: 12px;
+    background: #ffffff;
+}
+  
+  .section-two-outer{
+   background-repeat: no-repeat;
+    background-size: cover;
+    padding: 9% 20px;
+    background-position: center;
+  }
+/*   *********************** */
+
+    @media(max-width:480px) {
+        .section-two-inner {
+            padding: 0px !important;
+        }
+
+        h2.section-two-head {
+            font-size: 32px;
+        }
+
+        .section-second-inner-row {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .section-second-inner-column-left,
+        .section-second-inner-row-right {
+            width: 100%;
+        }
+      
+      .section-two-outer{
+          background-size: auto;
+      }
+      .first h4{
+      font-size: 18px;
+      }
+    }
+  
+    @media(min-width:481px) {
+.img-waves{
+  display: none;
+}
+    }
+</style>
+  <div class="img-3 img-waves"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/green_wave1.png?v=1678857158"></div>
+<div class="section-two-outer" style="background-image: url({{section.settings.background_image | img_url: 'master' | prepend: 'https:' }});"  >
+    <div class="section-two-inner">
+        
+        <h2 class="section-two-head">{{section.settings.heading}}</h2>
+     
+        <div class="section-second-inner-row">
+            <div class="section-second-inner-column-left">
+                <div class="list-second-section">
+                    {% assign block = section.blocks | where: 'type', 'block-1' %}
+                    <div class="one">
+                        <!-- Accordion  -->
+                      {% for block in block %}
+                      <div class="faq-main-box">
+                        <div class="first"><h4>{{block.settings.subheadline_accordion}}</h4> <span class="faq-icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+
+                        <div class="first-p">{{block.settings.subheadline_data_accordion}}</div>
+                      </div>
+                   {% endfor %}
+                    </div>
+                </div>
+            </div>
+          
+           <div class="section-second-inner-row-right">
+             {% assign block02 = section.blocks | where: 'type', 'block-2' %}
+                <div class="one">
+               {% for block in block02 %}
+                  <div class="faq-main-box">
+                        <div class="first"><h4>{{block.settings.subheadline_accordion}}</h4> <span class="faq-icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+
+                        <div class="first-p">{{block.settings.subheadline_data_accordion}}</div>
+                      </div>
+                 {% endfor %}
+                </div>
+            </div>
+          
+        </div>
+        <div class="faqs_btn_conatiner">
+            <a href="{{section.settings.url_button}}"  class="faqs_btn">{{section.settings.button_name}}</a>
+        
+        </div>
+
+    </div>
+ 
+
+</div>
+  <div class="img-2 img-waves"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/green_wave1.png?v=1678857158" alt="green wave"></div>
+<script>
+  $( document ).ready(function() {
+      $('.first-p').hide();
+          
+     $( document ).on( 'click', '.faq-main-box', function () { 
+        $('.faq-main-box').removeClass('active-parent'); 
+        $(this).addClass('active-parent');
+    });
+    $( document ).on( 'click', 'div.first', function () { 
+        $('div.first').removeClass('faq-active'); 
+        $(this).addClass('faq-active');
+      $(this).next().slideToggle(300);
+      
+    });
+    
+});
+</script>
+
+{% schema %}
+  {
+    "name": "google product faqs",
+    "settings": [
+     {
+       "type": "text",
+       "id": "heading",
+        "label": "heading"
+       },
+       {
+       "type": "image_picker",
+       "id": "background_image",
+       "label": "background"
+       },
+
+       {
+       "type": "url",
+       "id": "url_button",
+       "label": "url"
+       },
+       {
+       "type": "text",
+       "id": "button_name",
+       "label": "text"
+       }
+      ],
+  "blocks": [
+    {
+      "type": "block-1",
+      "name": "FAQS DATA",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "subheadline"
+        },
+        {
+          "type": "text",
+          "id": "subheadline_data_accordion",
+	  	  "label": "small subheadline"
+        }
+      ]
+    },
+  {
+      "type": "block-2",
+      "name": "FAQS DATA 2",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "subheadline"
+        },
+        {
+          "type": "text",
+          "id": "subheadline_data_accordion",
+	  	  "label": "small subheadline"
+        }
+      ]
+    }
+  ],
+ 
+"presets": [
+    {
+      "category": "Advanced content",
+      "name": "Google Product faqs ",
+      "settings": {
+}
+    }
+  ]
+  }
+
+{% endschema %}
+
+

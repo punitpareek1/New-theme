@@ -1,0 +1,130 @@
+<style>
+.product_news_latter{
+    padding: {{section.settings.padding_top_bottom}}px 0;
+    background-color: {{section.settings.color_Desktop}};
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: center;
+  
+}
+  
+.product_news_row{
+  max-width:1200px;
+    margin:0 auto;
+  }
+  
+  .form_product_news .hbspt-form {
+  max-width: 1000px;
+    margin: 0 auto;
+}
+  
+  .form_product_news .hs-button{
+        width: 100%;
+    
+  }
+  .product_news_row h2{
+    padding-bottom: 70px;
+  }
+   .product_news_latter form{
+       grid-template-columns: 2fr 1fr;
+}
+    
+ .product_news_latter .hs_error_rollup  {
+   
+   display: none;
+ }
+  
+  
+ @media(max-width:767px){
+    .product_news_latter {
+    padding:   calc({{section.settings.padding_top_bottom}}% - 90% ) 30px;
+    background-color: {{section.settings.color_mobile}};
+     
+    }
+    .product_news_row h2{
+    padding-bottom: 30px;
+  }
+  .product_news_latter form{
+       grid-template-columns: 1fr 1fr;
+}
+    
+ .product_news_latter .hs_error_rollup  {
+   
+   display: none;
+ }
+  }
+   
+ 
+  
+</style>
+
+
+<div class="product_news_latter">
+  <div class="product_news_row">
+    
+    <h2>{{section.settings.heading}}</h2>
+    
+    <div class="form_product_news">
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+		<script>
+		  hbspt.forms.create({
+			portalId: "5058629",
+			formId: "5fc930a2-0fe6-43df-bd59-9fbb92406f74"
+		});
+		</script>
+    </div>
+  
+  </div>
+
+  
+
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+
+ {
+      "type": "color",
+      "id": "color_Desktop",
+      "label": "Desktop color",
+      "default": "#FFFFFF"
+     },
+   {
+      "type": "color",
+      "id": "color_mobile",
+      "label": "Mobile color",
+      "default": "#FFFFFF"
+     },
+
+    {
+      "type": "text",
+      "id": "heading",
+	  "label" : "Heading"
+    },
+{
+  "type": "range",
+  "id": "padding_top_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding",
+  "default": 5
+}
+],
+
+ "presets": [
+    {
+      "name": "product Newslatter",
+      "settings": {}
+    }
+  ]
+
+  }
+{% endschema %}

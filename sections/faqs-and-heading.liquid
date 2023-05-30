@@ -1,0 +1,259 @@
+{{ 'faqs-and-heading.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #section-faqs-{{section.id}} .section-two-head-2{
+color: {{ section.settings.color_heading }} !important;
+}
+  
+ #section-faqs-{{section.id}}  {
+    padding-top:{{section.settings.padding_top}}px;
+    padding-bottom:{{section.settings.padding_bottom}}px;
+  }
+  
+  #section-faqs-{{section.id}} .section-two-top-heading{
+color: {{ section.settings.color_top_heading }} !important;
+      font-size:24px;
+  
+}
+    #section-faqs-{{section.id}} .section-two-description{
+color: {{ section.settings.color_description }} !important;
+  
+}
+  @media(min-width:767px){
+  
+    #section-faqs-{{section.id}} {
+      {% if section.settings.background_image != blank %}
+      background-image : url({{section.settings.background_image | img_url: 'master'}});
+      {% else %}
+            background: #fff;
+      {% endif %}
+      background-size: 100% 100%;
+    background-position: center;
+    position: relative;
+      
+    }
+    
+  }
+ 
+  @media(max-width:768px){
+  
+    #section-faqs-{{section.id}} {
+      {% if section.settings.background_image_mobile != blank %}
+      background-image : url({{section.settings.background_image_mobile | img_url: 'master'}}); {% else %}
+            background: #fff;
+      {% endif %}
+      background-size: 100% 100%;
+    padding: 4rem 20px;
+    background-position: center;
+    position: relative;
+
+    }
+    
+    
+    
+  }
+  
+
+</style>
+
+<div id="section-faqs-{{section.id}}" class="section-two-outer-2"  >
+    <div class="section-two-inner-2">
+      {% if section.settings.top_heading != blank %}
+      <h3 class="section-two-top-heading">{{section.settings.top_heading}}</h3>
+      {% endif %}
+      {% if section.settings.heading !=blank %}
+        <h3 class="section-two-head-2">{{section.settings.heading}}</h3>
+      {% endif %}
+        {% if section.settings.description != blank %}
+      <p class="section-two-description">{{section.settings.description}}</p>
+      {% endif %}
+      {% if section.blocks != blank %}
+        <div class="section-second-inner-row-2">
+            <div class="section-second-inner-column-left-2">
+                <div class="list-second-section-2">
+                    {% assign block = section.blocks | where: 'type', 'block-1' %}
+                    <div class="one-2">
+                        <!-- Accordion  -->
+                      {% for block in block %}
+                      <div class="faq-main-box">
+                        <div class="first"><h4>{{block.settings.subheadline_accordion}}</h4> <span class="faq-icon-2"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+
+                        <div class="first-p">{{block.settings.subheadline_data_accordion}}</div>
+                      </div>
+                   {% endfor %}
+                    </div>
+                </div>
+            </div>
+          
+           <div class="section-second-inner-row-right-2">
+             {% assign block02 = section.blocks | where: 'type', 'block-2' %}
+                <div class="one-2">
+               {% for block in block02 %}
+                  <div class="faq-main-box">
+                        <div class="first"><h4>{{block.settings.subheadline_accordion}}</h4> <span class="faq-icon-2"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+
+                        <div class="first-p">{{block.settings.subheadline_data_accordion}}</div>
+                      </div>
+                 {% endfor %}
+                </div>
+            </div>
+          
+        </div>
+      {% endif %}
+      {% comment %}
+        <div class="faqs_btn_conatiner-2">
+            <a href="{{section.settings.url_button}}"  class="faqs_btn-2">{{section.settings.button_name}}</a>
+        
+        </div>
+{% endcomment %}
+    </div>
+ 
+
+</div>
+{% if section.blocks  != blank %}
+<script>
+$( document ).ready(function() {
+      $('.first-p').hide();
+          
+     $( document ).on( 'click', '.faq-main-box', function () { 
+        $('.faq-main-box').removeClass('active-parent'); 
+        $(this).addClass('active-parent');
+    });
+    $( document ).on( 'click', 'div.first', function () { 
+        $('div.first').removeClass('faq-active'); 
+        $(this).addClass('faq-active');
+      $(this).next().slideToggle(300);
+      
+    });
+    
+});
+  
+  
+  
+</script>
+{% endif %}
+{% schema %}
+  {
+    "name": "Product Faqs",
+    "settings": [
+     {
+       "type": "text",
+       "id": "top_heading",
+        "label": "Top Heading"
+       },
+       {
+      "type": "color",
+      "id": "color_top_heading",
+      "label": "Top Heading color",
+      "default": "#000000"
+     } ,
+         {
+       "type": "text",
+       "id": "description",
+        "label": "Description"
+       },
+      {
+      "type": "color",
+      "id": "color_description",
+      "label": "Description color",
+      "default": "#000000"
+     } ,
+     {
+       "type": "text",
+       "id": "heading",
+        "label": "Section Heading"
+       },
+       {
+       "type": "color",
+      "id": "color_heading",
+      "label": "Heading color",
+      "default": "#000000"
+     } ,
+       {
+       "type": "image_picker",
+       "id": "background_image",
+       "label": "Background Image"
+       },
+		{
+       "type": "image_picker",
+       "id": "background_image_mobile",
+       "label": "Background Image Mobile"
+       },
+       {
+       "type": "text",
+       "id": "button_name",
+       "label": "Button Name"
+       },
+       {
+       "type": "url",
+       "id": "url_button",
+       "label": "Button Url"
+       },
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Bottom"
+    }
+      ],
+  "blocks": [
+    {
+      "type": "block-1",
+      "name": "FAQS DATA",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "Questions"
+        },
+        {
+          "type": "textarea",
+          "id": "subheadline_data_accordion",
+	  	  "label": "Answer"
+        }
+      ]
+    },
+  {
+      "type": "block-2",
+      "name": "FAQS DATA 2",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "Questions"
+        },
+        {
+          "type": "textarea",
+          "id": "subheadline_data_accordion",
+	  	  "label": "Answer"
+        }
+      ]
+    }
+  ],
+ 
+"presets": [
+    {
+      "name": "faqs and heading",
+      "settings": {
+}
+    }
+  ]
+  }
+
+{% endschema %}
+
+

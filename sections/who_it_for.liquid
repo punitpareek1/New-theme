@@ -1,0 +1,152 @@
+  <style>
+    .Who_its_section{
+      background-color: {{section.settings.background_color}};
+    }
+        .Who_its_row {
+            max-width: 1200px;
+            margin: auto;
+           padding-top: {{section.settings.padding_top}}px;
+            padding-bottom: {{section.settings.padding_bottom}}px;
+        }
+
+        .Who_its_col {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .Who_its_col h3 {
+         text-align: center;
+        font-family: sk-modernist,sans-serif;
+         color: #FF5C35;
+         font-size: 45px;
+         font-weight: 700;
+        }
+      .Who_its_col p{
+      font-size: 20px;
+      font-family: "sk-modernist";
+      color: #231f20;
+      font-weight: 400;
+      line-height: 1.4;
+      }
+        .Who_its_col2 ul li a {
+        color: #FF5C35 !important;
+        font-size: 20px;
+        font-family: "sk-modernist";
+        font-weight: 400;
+        line-height: 1.4;
+  
+        }
+
+        .Who_its_col2 li {
+            list-style-type: circle;
+            color: #FF5C35;
+        }
+
+        .Who_its_col2 li::marker {
+            font-size: 26px;
+        }
+
+        .Who_its_col2 label {
+            color: #FF5C35;
+        }
+    @media(max-width: 768px){
+      .Who_its_row{
+      padding-left: 20px;
+      padding-bottom: 20px;
+      }
+      .Who_its_col2{
+        padding-left: 2rem;
+      }
+    }
+    </style>
+    <div class="Who_its_section">
+        <div class="Who_its_row">
+            <div class="Who_its_col">
+                <h3>{{ section.settings.heading }}</h3>
+                <p>{{ section.settings.sub_heading }}</p>
+            </div>
+            <diV class="Who_its_col2">
+                <div>
+                    <ul>
+                       {% for block in section.blocks %}
+                        <li>
+                            <a href="{{ block.settings.url }}">{{ block.settings.link_text}}</a>
+                        </li>
+                      {% endfor %}
+                      </ul>
+                </div>
+            </diV>
+
+        </div>
+    </div>
+
+
+
+{% schema %}
+{
+  "name": "who it for",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+     },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Text"
+    },
+    {
+  "type": "range",
+  "id": "padding_top",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Top",
+  "default": 10
+},
+    {
+  "type": "range",
+  "id": "padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Bottom",
+  "default": 10
+}
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Who it for link",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

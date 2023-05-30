@@ -1,0 +1,342 @@
+<style>
+
+ #who_sec-{{ section.id }} .contain-1200{
+	padding-top:{{section.settings.padding_top | default : '70'}}px;
+	padding-bottom:{{section.settings.padding_bottom | default : '70' }}px;
+}
+  
+  #who_sec-{{ section.id }}{
+    background-color : {{section.settings.background_color}}
+  }
+  
+  .heading-wrapper-who h2{
+  font-family: sk-modernist,sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    color: #FF5C35;
+  }
+
+  .heading-wrapper-who{
+  padding-bottom: 4rem;
+  }
+  
+  .left-section-col h3, .right-section-col h3{
+  font-size: 26px;
+    font-family: sk-modernist,sans-serif;
+    color: #000;
+    font-weight: 700;
+  }
+      .check-one, .check-one span {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+    padding-bottom: 5px;
+}
+  
+  .check-one svg {
+    height: 25px;
+    width: 25px;
+}
+  .check-wrapper{
+      padding-top: 15px;
+  }
+  .who-wrapper{
+  display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+   .accordion_drop{
+      display: none;
+    }
+  .right-section-col, .left-section-col{
+      display: block;
+    }
+  .check-one h4{
+  font-weight:400;
+  }
+
+ #section_who-{{section.id}} .faqs-wrapper-how .first{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 6px;
+  }
+  
+    .active-faqs{
+  display:block!important;
+           transition: all .5s ease-in-out;
+  transform-origin: left top;
+      transform: scaleY(1)!important;
+/*           transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1); */
+  }
+  
+  #section_who-{{section.id}} .faqs-wrapper-how .first-p {
+  background: #fff;
+    padding: 10px 15px;
+    color: #000;
+    margin-top: -10px;
+    border-radius: 6px;
+    display:none;
+/*     transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1); */
+
+  transform: scaleY(0);
+  }
+
+
+  
+.who-faqs-all .first-p {
+  background: #f1f1f18c;
+    padding: 10px 15px;
+    color: #000;
+    margin-top: -10px;
+    border-radius: 6px;
+    display:none;
+   transform: scaleY(0);
+  font-size: 15px;
+  margin-bottom: 16px;
+
+  }
+ .who-faqs-all .first h4{
+    font-size: 16px;
+  }
+ .who-faqs-all .first{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px;
+    background: #fff;
+    border-radius: 6px;
+    background: #f1f1f1;
+    margin-bottom: 1rem;
+    font-size: 15px;
+  }
+ .heading-wrapper-who p{
+    display: none;
+  }
+
+  @media(min-width:769px){
+  .col-padd {
+  padding-left: 50px;
+  }
+  }
+  
+  @media(max-width:768px){
+       #who_sec-{{ section.id }}.contain-1200{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.heading-wrapper-who h2 {
+    font-size: 40px;
+  }
+  .heading-wrapper-who p{
+    display: block;
+    text-align: center;
+    color: #211f20;
+  }
+     .heading-wrapper-who{
+  padding-bottom: 0rem;
+  }
+    .right-section-col, .left-section-col{
+      display: none;
+    }
+    .accordion_drop{
+      display: block;
+    }
+    .who-wrapper{
+    grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .heading-wrapper h3 {
+      padding-top:1rem;
+      padding-bottom:1rem;
+    font-size: 30px;
+
+	}
+  }
+  @media (max-width: 1250px)
+.padding-mobile-1250 {
+  padding: 0;
+}
+</style>
+
+<div id="who_sec-{{ section.id }}" >
+
+  <div class="contain-1200 padding-mobile-1250">
+  	{% if section.settings.heading != blank %}
+    <div class="heading-wrapper-who">
+      <h2>{{section.settings.heading}}</h2>
+      <p>{{ section.settings.sub_heading }}</p>
+    </div>
+    {% endif %}
+    <div class="who-wrapper">
+        {% assign faqs_data = section.blocks | where: 'type', 'faqs' %}
+      <div class="check-wrapper who-faqs-all accordion_drop">
+        {% for block in faqs_data %}
+        <div class="faqs-wrapper-who">
+          <div class="first"><h4>{{block.settings.question}}</h4> <span class="faq-icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+		  <div class="first-p ">{{block.settings.answer}}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      
+      <div class="left-section-col col-padd">
+        {% if section.settings.left_column_heading != blank %}<h3>{{section.settings.left_column_heading}}</h3>{% endif %}
+        {% assign left_checks_data = section.blocks | where: 'type', 'check-left' %}
+        <div class="check-wrapper">
+          {% for block in left_checks_data %}
+          <div class="check-li">
+            <div class="check-one"><span>{% render 'check' %}</span><h4>{{block.settings.item}}</h4></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="right-section-col col-padd">
+        {% if section.settings.right_column_heading != blank %}<h3>{{section.settings.right_column_heading}}</h3>{% endif %}
+        {% assign right_checks_data = section.blocks | where: 'type', 'check-right' %}
+        <div class="check-wrapper">
+          {% for block in right_checks_data %}
+          <div class="check-li">
+            <div class="check-one"><span>{% render 'check' %}</span><h4>{{block.settings.item}}</h4></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+  
+  </div>
+  
+</div>
+
+
+<script>
+
+  const faqWrapperwho = document.querySelector('.who-faqs-all');
+  
+  faqWrapperwho.addEventListener('click', function(e){
+    let clickedFaq = e.target.closest('.first');
+    
+    if(!clickedFaq) return;
+        let clickedans = clickedFaq.nextElementSibling;
+    clickedans.classList.toggle('active-faqs')
+
+  });
+
+
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Who it for",
+  "class": "who",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+	  "label" : "Heading"
+    },
+     {
+      "type": "text",
+      "id": "sub_heading",
+	  "label" : "Sub Heading"
+    },
+    {
+      "type": "text",
+      "id": "right_column_heading",
+	  "label" : "Right column heading"
+    },
+    {
+      "type": "text",
+      "id": "left_column_heading",
+      "label" : "Left column heading"
+    },	
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+		"default": 70,
+	  "label" : "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+		"default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "color",
+      "id": "background_color",
+	  "label" : "Background Color"
+    }
+	
+  ],
+  "blocks": [
+    {
+      "type": "check-right",
+      "name": "Right Check boxes",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item",
+	      "label" : "Title"
+        }
+      ]
+    },
+    {
+      "type": "check-left",
+      "name": "Left Check boxes",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item",
+	      "label" : "Title"
+        }
+      ]
+    },
+     {
+      "type": "faqs",
+      "name": "Faqs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+		  "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+			"label": "Answer"
+        }
+      ]
+    }
+  ],
+  
+  "presets" : [
+    {
+      "name": "Who it for",
+      "settings": {
+		}
+    }
+  ]
+}
+{% endschema %}

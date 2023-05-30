@@ -1,0 +1,364 @@
+<link rel="stylesheet" href="{{ 'style-v2.min.css' | asset_url }}">
+
+<style>
+.accent-text-ad{
+  line-height: 1.1;
+    padding-bottom: 0;
+    margin: 0;
+    color: #161a1c !important;
+    font-weight: 500 !important;
+}
+  .related-post .relatedArticles{
+  	display: flex;
+/*     justify-content: space-between; */
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: row;
+  }
+  .related-post .relatedArticles .well{
+    width:32%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: #edeff2;
+    flex-direction: row;
+    display: flex;
+  }
+  .module.article h3
+  {
+    font-size: 1.6rem;
+  }
+  .module.article h3
+  {
+    display: block;
+  }
+  .buttom_btn h3 a {
+    font-size: 2rem;
+    line-height: 1.15;
+    color: #404040;
+}
+  .box-padding,.well-content p{
+  padding: 0 30px;}
+  .related-post{
+  	margin-top:30px;
+  }
+  .buttom_btn{
+  	text-align: center;
+    margin-top: 40px!important;
+  }
+  .well-content p{
+  margin-top: 10px;}
+  .box-padding-bottom{
+    margin-bottom:30px!important;
+    padding: 0 30px;
+    margin:0 auto;
+  }
+  .well-content h3{margin-top:30px;}
+  .read-moreBtn:hover{
+  	background-color:#FF5C35;
+    color:white;
+  }
+  .related-post h2{
+  	margin-bottom:30px!important;
+  }
+  .related-post h3 {
+    margin-bottom: 30px!important;
+}
+  .related-post .relatedArticles .well-content{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+  }
+  .well-content p{margin-bottom:auto;}
+  @media(max-width:1100px){
+    .related-post .relatedArticles{
+    	justify-content: flex-start;
+    }
+  }
+  
+  @media(max-width:950px){
+    .related-post .relatedArticles .well{
+    	width:48%;
+    }
+    .related-post .relatedArticles{
+    	justify-content: center;
+    }
+  }
+   @media(max-width:768px){
+    .related-post .relatedArticles .well{
+    	width:48%;
+    }
+    .related-post .relatedArticles{
+    	justify-content: flex-start;
+    }
+  }
+  @media(max-width:560px){
+    .related-post .relatedArticles .well{
+    	width:100%;
+    }
+  }
+  
+</style>
+{% render 'shogun-products', content: article %}
+<div class="page-standard" style="background: #f7f8fa;">
+{% render 'shogun-products', content: article %}
+
+<!--
+{% if article.image %}
+  <div class="module-wrapper">
+    <div class="module column-1 full-width article-intro">
+      <div class="module-body clearfix">
+        <div class="image-container article-intro-image-container" style="background-image:url('{{ article.image | img_url: '2048x2048' }}');">
+          <img class="article-intro-image" src="{{ article.image | img_url: '2048x2048' }}" alt="{{ article.title | strip_html | escape }}" />
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+-->
+
+<div class="module-wrapper">
+  <div class="module article">
+    <div class="module-body clearfix">
+      <div class="post-wrapper padding-b-50">
+        <div class="col-grid collapse-900">
+          <div class="col-9 padding-r-75 padding-remove-900">
+            
+           {% if article.metafields.global.external_link != null %}
+        	
+            <span class="metalink" data-link="{{article.metafields.global.external_link}}">{% include 'article-post-item-meta-link' %}</span>
+                        
+            {% else %}
+            
+            {% include 'article-post-item' %}
+            
+            {% endif %}
+          </div>
+          <div class="col-3 padding-t-150 padding-remove-900">
+            
+            
+          
+            
+            
+            <!-- <a href="/products/flore-precision-probiotics"><img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/blog_getstarted.png?v=1587081533" alt="" /></a> -->
+           
+			<!--Begin Product Blurb -->
+   
+			<div style="background-color: #ecf1f7; background-image: url('https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/blog-product-bg.jpg'); min-height: 300px; background-size: contain; background-position: center bottom; background-repeat: no-repeat;">
+				<div class="accent-text padding-20 text-centered" style="padding-bottom: 150px;">
+					<h3 class="accent-text-ad" style="font-size: 1.6rem;">Ready to start your own gut health journey? Start here!</h3>
+                  	<div style="max-width: 220px; margin: 0 auto;">
+					<p style="line-height: 1.2;">
+						$79/Month | Cancel Anytime<br />
+					</p>
+                  	</div>
+					<br />
+					<a href="/products/flore-precision-probiotics" class="btn btn-primary">Get Started</a>
+				</div>
+			</div>
+			<!--End Product Blurb -->
+            
+            <br /><br /><br />
+            
+            <!-- Begin Newsletter Signup -->
+            <div class="email-signup-mini text-centered accent-text" style="background-color: #f5f5f3; padding-bottom: 280px; min-height: 400px; background-image: url('https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/email-signup-mini-bg.jpg'); background-position: center bottom; background-repeat: no-repeat; border: 1px solid #e5e5e5;">
+                <div class="padding-30">
+
+                    <div>
+                        <h3 style="font-size: 1.6rem;color: #161a1c;">Want More<br />Reading Material?</h3>
+                        <p style="padding-top: 12px; font-size: 1.3rem; line-height: 1.2;">
+                            Sign up for our newsletter!
+                        </p>
+                    </div>
+
+
+                        <!--[if lte IE 8]>
+                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                        <![endif]-->
+                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                        <script>
+                          hbspt.forms.create({
+                            portalId: "5058629",
+                            formId: "5fc930a2-0fe6-43df-bd59-9fbb92406f74"
+                        });
+                        </script>
+
+
+                </div>
+            </div>
+            <!-- End Newsletter Signup -->
+
+            
+          </div>
+          <div class="clear"></div>
+          {% if article.tags != null %}
+          <div class="related-post">
+            	<h3>Related Posts</h3>
+                  <div class='relatedArticles'>
+                    {% for tag in article.tags %}
+
+                    {% assign counter = 0 %}
+                    {% assign skip_articles = article.handle | split: '.....' %}
+                    {% for related_article in blog.articles %}
+                      {% if related_article.tags contains tag and counter < 3 %}
+                        {% unless skip_articles contains related_article.handle %}
+                          {% assign counter = counter | plus: 1 %}
+                          {% assign temp = related_article.handle | split: '.....' %}
+                          {% assign skip_articles = skip_articles | concat: temp %}
+                          <div class="well">
+                            <a href="{{ related_article.url }}" class="well-content">
+                               
+                                  <img class="post-image" src="{{ related_article.image | img_url: '400x' }}" alt="{{ related_article.title | strip_html | escape }}" />
+                                
+                                <h3 class="box-padding">{{ related_article.title }}</h3>
+                                {% if related_article.excerpt.size > 0 %}
+                                  <p>{{ related_article.excerpt | truncatewords: 30 }}</p>
+                                {% else %}
+                                  <p>{{ related_article.content | truncatewords: 30 }}</p>
+                                {% endif %}
+                                 <h4 class="box-padding-bottom "><span class="hs-button primary large">Read More</span></h4>
+                              </a>
+                            
+                          </div>
+                        {% endunless %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% endfor %}
+                  </div>
+				
+            	<h3 class="buttom_btn"><a href="https://flore.com/blogs/learn" class="hs-button primary large read-moreBtn">View More Blog Posts</a></h3>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% if article.comments_enabled? %}
+  <div id="comments" class="module-wrapper style-light">
+    <div class="module module-post-comments">
+      <div class="module-header">
+        <div class="module-title post-comments-title">
+          <h3>{{ article.comments_count }} {{ 'blogs.article_item.comment_count' | t: count: article.comments_count }}</h3>
+        </div>
+      </div>
+      {% if article.comments_count > 0 %}
+        <div class="module-body">
+          <div class="post-comments">
+            <div class="post-comments-list column-1">
+              {% paginate article.comments by 10 %}
+                {% for comment in article.comments %}
+                <div class="post-comment" id="comment-{{ comment.id }}">
+                  <p class="meta"><a href="{{ comment.url }}" class="post-comment-date">{{ comment.created_at | date: format: 'short_month' }}</a>
+                  &bull; {{ 'blogs.article_item.posted_by' | t }} <strong>{{ comment.author }}</strong></p>
+                  <div class="rte">{{ comment.content }}</div>
+                </div>
+                {% endfor %}
+                {% if paginate.previous or paginate.next %}
+                  {% include 'pagination' %}
+                {% endif %}
+              {% endpaginate %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div id="comment_form" class="module-wrapper style-default">
+    <div class="module module-post-comments">
+      <div class="module-header">
+        <div class="module-title post-comments-title">
+          <h3>{{ 'blogs.article_item.leave_comment' | t }}</h3>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="post-comments-form-container">
+          {% form article %}
+            {% if form.posted_successfully? %}
+              <div class="post-comment-success-message">
+                <p class="post-comment-message">
+                  {% if blog.moderated? %}
+                    {{ 'blogs.article_item.comment_pending_html' | t: link: article.url }}
+                  {% else %}
+                    {% capture article_comment_link %}{{ article.url }}#comments{% endcapture %}
+                    {{ 'blogs.article_item.comment_posted_html' | t: link: article_comment_link }}
+                  {% endif %}
+                </p>
+              </div>
+            {% endif %}
+            {% if form.errors %}
+              <div class="post-comment-error-message">
+                <p class="post-comment-message">{{ 'blogs.article_item.error_message' | t }}</p>
+              </div>
+            {% endif %}
+            <div class="input-wrapper {% if form.errors contains "author" %}error{% endif %}">
+              <input type="text" placeholder="{{ 'general.general.name_placeholder' | t }}" value="{{ form.author }}" name="comment[author]">
+            </div>
+            <div class="input-wrapper {% if form.errors contains "email" %}error{% endif %}">
+              <input type="email" placeholder="{{ 'general.general.email_placeholder' | t }}" value="{{ form.email }}" name="comment[email]">
+            </div>
+            <div class="input-wrapper {% if form.errors contains "body" %}error{% endif %}">
+              <textarea placeholder="{{ 'general.general.message' | t }}" rows="6" name="comment[body]">{{ form.body }}</textarea>
+            </div>
+            <div class="input-wrapper">
+              <input class="button outline" type="submit" value="{{ 'general.general.submit' | t }}">
+            </div>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% assign current_found = false %}
+{% assign done = false %}
+{% for a in blog.articles %}
+  {% if current_found and done == false %}
+    {% assign next_article = a %}
+    {% assign done = true %}
+  {% endif %}
+  {% unless done %}
+    {% if a.id == article.id %}
+      {% assign current_found = true %}
+    {% else %}
+      {% assign prev_article = a %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+
+
+</div>
+<script>
+  let blank = document.querySelector('.relatedArticles').textContent;
+  let hiderelated = document.querySelector('.related-post');
+  let my = blank.trim();
+  console.log(my , 'myy');
+  if(my == ''){
+    hiderelated.style.display = 'none';
+  }
+  
+</script>
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show share buttons",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Article",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+

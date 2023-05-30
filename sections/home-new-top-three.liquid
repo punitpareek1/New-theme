@@ -1,0 +1,281 @@
+<style>
+  /* Flore New Home Page Section 1 Start */
+  
+/*  For A/B Testing  */
+
+#shopify-section-{{ section.id }}{
+    display: none;
+}
+
+#shopify-section-{{ section.id }} .floresectioncol-left h1{
+    margin-bottom:10px;
+}
+
+#shopify-section-{{ section.id }} .floresectioncol-left .head_sub_text ul{
+    margin-top: -14px;
+    margin-bottom: 56px;
+    margin-left: 0px;
+    text-align: left;
+}
+
+#shopify-section-{{ section.id }} .floresectioncol-left .head_sub_text li{
+    list-style: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+    color:#fff;
+}
+#shopify-section-{{ section.id }} .floresectioncol-left .head_sub_text li:before{
+   content: '';
+   display: inline-block;
+   height: 32px;
+   width: 32px;
+   background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Vector_Smart_Object_copy_3.png?v=1665032243);
+   background-size: 24px;
+   margin-right: 8px;
+   background-repeat: no-repeat;
+   background-position: 0px 3px;
+}
+
+#shopify-section-{{ section.id }} .floresection1{
+    background-size: cover;
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Your_Microflora_is_Unique._Your_Probiotics_Should_Be_Too._1.webp?v=1667967780);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+  
+
+  
+  /* Desktop CSS Start */
+
+@media  (min-width: 1400px) and (max-width: 1700px) {
+  #shopify-section-{{ section.id }} .floresection1{
+   padding: 50px 20px 74px 20px !important;
+    background-color: #f3f3f3;
+    z-index: 1;
+  }
+}
+  #shopify-section-{{ section.id }} .floresection1{
+    padding: 150px 20px 100px 20px;
+    background-color: #f3f3f3;
+    z-index: 1;
+
+  }
+  #shopify-section-{{ section.id }} .floresection1-1{
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-left {
+    width: 55%;
+    padding-top:30px;
+    padding-bottom: 130px;
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-right{
+    width:50%; 
+    display: block;
+    position: relative;
+    margin: auto 0px 0px;
+    height: 100%;
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-right img {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-left h1{
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0px 0px 55px 0px;
+    font-family: 'sk-modernist',sans-serif;
+    color: #FFFFFF;
+  }
+
+  #shopify-section-{{ section.id }} .floresectioncol-left a {
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #FF5C35;
+    padding: 15px 50px 15px 50px;
+    border-radius: 40px;
+  }
+
+  #shopify-section-{{ section.id }} .floresectioncol-left a i{
+    margin-left:4px;
+    font-size:inherit;	
+  }
+  #shopify-section-{{ section.id }} .newsImage > img {
+      margin: auto;
+      display: block;
+  }
+
+#shopify-section-{{ section.id }}  .newsImage {
+    padding-top: 4%;
+    background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/banner-bg-2.png?v=1665578929);
+    background-size: contain;
+    background-position: 0px calc(0%);
+    margin-top: -80px;
+    background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
+}
+
+
+
+  
+  /* Desktop CSS End */
+        
+  
+  
+  /* Mobile CSS Start */
+  @media(max-width:1060px){
+    #shopify-section-{{ section.id }} .floresectioncol-left h1{
+    	font-size:34px;
+    }
+  }  
+  @media(max-width:768px){
+    #shopify-section-{{ section.id }} .floresection1 {
+      padding: 50px 20px 70px 20px;
+
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-left {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-left h1{
+      font-size:24px;
+      margin: 0px 0px 50px 0px;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-left a {
+      font-size:15px;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-right img{
+      width:100%;
+    }
+    
+    #shopify-section-{{ section.id }} .floresectioncol-left .head_sub_text li{
+    line-height: 1.4;
+    margin: 16px 0px;
+}
+#shopify-section-{{ section.id }} .floresection1 {
+    background-position: 60% 100%;
+}
+  }
+
+  @media(max-width:600px){
+    #shopify-section-{{ section.id }} .floresection1 {
+      padding: 50px 10px 80px 10px;
+    }
+
+    #shopify-section-{{ section.id }} .floresection1-1 {
+      flex-direction: column;
+    }
+     #shopify-section-{{ section.id }} .floresectioncol-left {
+      width: 60%;
+      padding-top:30px;
+      padding-bottom: 10px;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-left, .floresectioncol-right {
+      width: 100%;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-left h1 {
+      
+      margin: 0px 0px 30px 0px;
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-left, .floresectioncol-right {
+      margin-bottom: 40px;
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-right img {
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      margin-bottom: -20px;
+    }
+  }
+
+        /* Mobile CSS End */
+  
+</style>  
+<div class="floresection1" >
+        <div class="floresection1-1">
+          <div class="floresectioncol-left">
+            <h1>
+                {{ section.settings.heading }}
+            </h1>
+            {% if section.settings.paragraph != "" %}
+             <div class="head_sub_text">{{ section.settings.paragraph }}</div>   
+            {% endif %}
+            <a href="{{section.settings.button_link}}">
+                get started <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        <div class="floresectioncol-right">
+      {% if section.settings.product_image != blank %}
+            <img class="lazyload" fetchpriority="high" width="480" height="305" data-src="{{section.settings.product_image | img_url: '880x' }}"  src="{{ section.settings.product_image |  img_url: '20x' }}" alt="Floré">
+  {% endif %}
+        </div>
+    </div>
+    </div>
+<div class="newsImage">
+<img class="white" src="https://cdn.shopify.com/s/files/1/2204/9357/files/FeatureIn_white.jpg?v=1660061945" width="100%" height="100%" alt="FeatureIn" loading="lazy">
+</div>
+<!-- Below Script is for showing preview -->
+<script>
+// const urlParams = new URLSearchParams(window.location.search);
+const abtestingtwo = urlParams.get('abtestingtwo');
+  if(abtestingtwo == 'true'){
+    document.querySelector('#shopify-section-template--15063656890429__section_top_a').style.display = "none";
+    document.querySelector('#shopify-section-template--15063656890429__section_top_b').style.display = "none";
+    document.querySelector('#shopify-section-template--15063656890429__section_top_c').style.display = "block";
+  }
+
+</script>  
+<!-- #### END #### -->
+{% schema %}
+  {
+    "name": "Top section three",
+    "settings": [
+		{
+        "type": "text",
+        "id": "heading",
+        "default": "Lorem",
+        "label": "Heading"
+      },
+      {
+        "type": "html",
+        "id": "paragraph",
+        "label": "Paragraph"
+      },
+	  {
+        "type": "url",
+        "id": "button_link",
+		"label": "Button link"
+	  },
+	  {
+          "type":"image_picker",
+          "label":"Product Image",
+          "id":"product_image"
+      }
+	],
+    "presets": [
+      {
+        "name": "Home New Top 3"
+      }
+    ]
+  }
+{% endschema %}
+

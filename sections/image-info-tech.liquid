@@ -1,0 +1,205 @@
+{% stylesheet %}
+  .tech-main-box{
+    width: 100%;
+    padding: 30px 0 50px 0;
+  }
+  .tech-image-info-box{
+    max-width: 1200px;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 45px auto 0 auto;
+    gap: 20px;
+  }
+  .tech-image-box{
+    width: 40% !important;
+  }
+  .tech-image-box img{
+    width: 100% !important;
+    border-radius: 45px;
+  }
+  .tech-info-box{
+    width: 60% !important;
+    padding: 30px;
+  }
+
+  .tech-head-box{
+    text-align: center;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+  .tech-head-box h2{
+    font-size: 50px;
+    color: #f15d3c;
+    line-height: 1.2em;
+    font-weight: bold;
+  }
+  .tech-head-box p{
+    font-size: 24px;
+    color: #000;
+    font-weight: bold;
+    line-height: 1.4em;
+  }
+  .tech-info-box h4{
+    font-size: 26px;
+    font-weight: bold;
+    color: #f15d3c;
+  }
+  .tech-info-box p{
+    font-size: 18px;
+    color: #000;
+  }
+  .bolder-text{
+    font-size: 24px !important;
+    color: #000;
+    font-weight: bold;
+    line-height: 1.4em;
+  }
+
+  @media only screen and (max-width: 980px){
+    .tech-image-info-box{
+      width: 95%;
+      display: block;
+    }
+    .tech-image-box, .tech-info-box{
+      width: 100% !important;
+    }
+   .br{
+     display: none;
+   }
+    .tech-main-box{
+      padding: 40px 15px;
+    }
+    .tech-head-box{
+      padding: 20px;   
+    }
+    .tech-info-box{
+      padding: 30px 10px;
+    }
+
+    }
+  
+
+  @media  only screen and (max-width: 520px){
+  .tech-head-box h2{
+      font-size: 32px;
+      line-height: 1.2em;
+    }
+    .tech-head-box p{
+      font-size: 18px;
+    }
+    .tech-main-box{
+      padding: 0px 15px;
+    }
+  }
+  
+{% endstylesheet %}
+
+
+
+
+
+<div class="tech-main-box">
+   <div class="tech-head-box">
+{% if section.settings.heading != blank %}
+       <h2>{{ section.settings.heading }}</h2>
+{% endif %}
+
+     {% if section.settings.sub_heading != blank %}
+       <p>{{ section.settings.sub_heading }}</p>
+     {% endif %}
+   </div>
+
+  <div class="tech-image-info-box">
+     <div class="tech-image-box">
+       {% if section.settings.image != blank %}
+         <img src="{{ section.settings.image| img_url: 'master' | prepend: "https:" }}" alt="{{ section.settings.image.alt}}" loading="lazy" height="100%" width="100%">
+       {% endif %}
+     </div>
+    
+    <div class="tech-info-box">
+      {% if section.settings.first_info_heading != blank %}
+       <h4>{{ section.settings.first_info_heading }}</h4>
+      {% endif %} 
+      
+      {% if section.settings.first_info_pera != blank %}
+       <p>{{ section.settings.first_info_pera }}</p>
+      {% endif %}
+      
+      {% if section.settings.second_info_heading != blank %}
+       <h4>{{ section.settings.second_info_heading }}</h4>
+      {% endif %}
+      
+      {% if section.settings.second_info_pera != blank %}
+       <p>{{ section.settings.second_info_pera }}</p>
+       {% endif %}
+       
+      {% if section.settings.bolder_text != blank %}
+        <p class="bolder-text">{{ section.settings.bolder_text }}</p>
+      {% endif %}
+     </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "technology",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+     "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+    "label": "Sub Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+    "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "first_info_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "first_info_pera",
+    "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "second_info_heading",
+     "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "second_info_pera",
+    "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "bolder_text",
+    "label": "Bolder Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tech Image Info"
+    }
+  ]
+}
+{% endschema %}

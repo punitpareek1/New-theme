@@ -1,0 +1,67 @@
+<style>
+  h1, h1 a {
+        font-size: 2.2rem;
+        line-height: 1.25;
+        color: #404040;
+    	font-weight: 500;
+	}
+  .text-link, a, a:hover {
+        color: #FF5C35;
+        text-decoration: none;
+        cursor: pointer;
+}
+ 	li, p{
+        font-family: SunGenomics,sans-serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #5e5e5e;
+        font-weight: 100;
+	}
+  .careers-container{
+  	padding:100px 10px;
+    max-width: 1200px;
+        margin: 0 auto;
+        min-height: 900px;
+  }
+  #shopify-section-careers{
+  background-color:#f8f8f8;
+  }
+  
+  @media(max-width:768px){
+    .careers-container{
+    	padding:50px 18px;
+    }
+  }
+ 
+</style>
+<div class="careers-container global-container-1200">
+	
+	<h1>{{section.settings.heading}}</h1>
+  	<div class="careers-container-inner">{{section.settings.paragraph}}</div>
+  	<div class="careers-container-inner">{{section.settings.html}}</div>
+	
+</div>
+
+{% schema %}
+{
+  "name": "Careers Section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "HTML Code"
+    }
+  ]
+}
+
+{% endschema %}

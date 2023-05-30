@@ -1,0 +1,133 @@
+<style>
+    /* Desktop CSS Start */
+
+      .section3
+        {
+        background-color:#EBDCD0 ;
+        padding: 60px 0px 60px 0px;
+        font-size: 30px;
+        text-align: center;column-gap: 2rem;
+       }
+    
+.sec32{
+    max-width: 1050px;
+    width: 100%;
+    display: grid;
+    padding-top: 35px;
+    flex-wrap: wrap;
+    margin: auto;
+    grid-template-columns: 1.23fr 1fr 1fr;
+}
+.sec3-1
+{
+    display: flex;
+    padding-bottom: 30px;
+    margin: 0px;
+    position: relative;
+}
+
+  .section3 h3 {
+     font-size: 44px;
+    color: #000;
+    font-family: 'sk-modernist',sans-serif;
+    font-weight: 700;
+}
+  
+.sec3-1 img {
+    position: relative;
+    align-items: center;
+    margin: 0px 10px 0px 0px;
+    width: 21px !important;
+    height: 21px;
+    top: 5px;
+}
+
+.sec3-1 p {
+    position: relative;
+    padding: 0px !important;
+  	font-size: 18px;
+    color:#000;
+  	font-weight: 600;
+}  
+  
+ /* Mobile CSS Start */
+
+ @media(max-width:768px)
+ {
+   .sec32{
+       display: block;
+       padding-left: 30px;
+   }
+ }
+ 
+  @media(max-width:600px){
+  	.section3 {
+    padding: 50px 20px 50px 20px;
+    }
+
+    .section3 h3 {
+        font-size: 24px;
+    }
+
+    .sec32 {padding-left: 0px;}
+
+    .sec3-1 {
+        width: 100%;
+        padding-bottom: 10px;
+      	justify-content: flex-start;
+    }
+    .sec3-1 p{
+    	text-align:left;
+    }
+  }
+  
+  
+</style>
+<div class="section3">
+  <h3>
+    {{section.settings.heading}}
+  </h3>
+  <div class="sec32">
+ 	{% for block in section.blocks %}
+       <div class="sec3-1">
+          <img Loading="lazy" src="https://cdn.shopify.com/s/files/1/0605/8177/3565/files/correct.png?v=1646035939" alt="checkmark">
+          <p>{{block.settings.mission_points}}  </p>
+      </div>
+    {% endfor %} 
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Flore mission",
+    "settings": [
+			{
+              "type": "text",
+              "id": "heading",
+              "default": "Lorem",
+              "label": "Heading"
+            }
+	],
+	"blocks":[
+			{
+				"name":"Mission Points",
+				"type":"text",
+				"settings":[
+                    {
+                      "type": "text",
+                      "id": "mission_points",
+                      "default": "Lorem",
+                      "label": "Mission Points"
+                    }
+				]
+			}
+		],
+    "presets": [
+      {
+        "name": "Home new flore mission"
+      }
+    ]
+  }
+{% endschema %}
+

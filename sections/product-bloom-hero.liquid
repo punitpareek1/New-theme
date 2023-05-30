@@ -1,0 +1,43 @@
+<h1>Bloom hero</h1>
+
+
+{% schema %}
+  {
+    "name": "Flore Bloom hero",
+  	"class": "flore-bloom-product-hero",
+    "settings": [
+			{
+              "type": "text",
+              "id": "hero_title",
+              "label": "Hero Heading",
+              "default": "Headline"
+            },
+			{
+              "type": "textarea",
+              "id": "hero_paragraph",
+              "label": "hero message",
+              "default": "Lorem"
+            },
+			{
+              "type": "image_picker",
+              "id": "left_image",
+              "label": "Left image"
+            }
+		],
+          "blocks": [
+             {
+               "name": "Points",
+               "type": "points",
+               "settings": [
+                 {
+                    "type": "text",
+                    "id": "list_item",
+                    "label": "list Item",
+                    "default": "Item no"
+                  }
+               ]
+ 			}
+   		]
+  }
+
+{% endschema %}

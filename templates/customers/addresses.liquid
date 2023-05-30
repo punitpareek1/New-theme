@@ -1,0 +1,188 @@
+<style>
+  .header-navigation-list .myBtn:hover{
+          color: #aeaeae!important;
+        background: inherit;
+     
+  }
+#addresses-{{ section.id }} .module-title{
+    color: #404040;
+}
+#addresses-{{ section.id }}  .add-new-address{
+     font-size: 18px !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff !important;
+    background-color: #FF5C35 !important;
+    border-radius: 40px;
+    border: unset !important;
+    margin: auto;
+  }
+#addresses-{{ section.id }} .module-header{
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+      padding-bottom: unset;
+        padding-top: 60px;
+}
+   #addresses-{{ section.id }}  .module-content{
+        background-color: unset;
+     border: unset;
+     padding: 30px 0;
+  }
+  #addresses-{{ section.id }} form input{
+    border-radius: 25px;
+    
+  }
+    #addresses-{{ section.id }} form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    
+  }
+
+  #addresses-{{ section.id }}  .add-new-address-wrapper .input-wrapper:first-of-type{
+    margin-top: 30px;
+  }
+
+   #addresses-{{ section.id }} .input-wrapper:last-child {
+    margin-bottom: 0;
+    display: flex;
+    margin: 0;
+     gap: 1rem;
+   }
+
+   #addresses-{{ section.id }} form .cta-container input{
+         font-size: 16px !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff !important;
+    background-color: #FF5C35 !important;
+    border-radius: 40px;
+    border: unset !important;
+    margin: auto;
+   }
+
+     #addresses-{{ section.id }} form .cta-container button{
+         font-size: 16px !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #404040 !important;
+    background-color: unset !important;
+    border-radius: 40px;
+    border: unset !important;
+    margin: auto;
+   }
+    #addresses-{{ section.id }} form label{
+color: #404040;
+    }
+#addresses-{{ section.id }} .default-address-marker{
+      background-color: #FF5C35;
+}
+  
+
+  @media(max-width: 768px){
+     #addresses-{{ section.id }} .input-wrapper:last-child {
+    display: flex;
+     flex-direction: column;
+   }
+
+     #addresses-{{ section.id }}  .module-content{
+     padding: 30px 0;
+  }
+       #addresses-{{ section.id }} form{
+    gap: 0.5rem;
+    
+  }
+    
+   #addresses-{{ section.id }} .input-wrapper:last-child {
+     gap: 0.5rem;
+   }
+    #addresses-{{ section.id }} .module-header{
+      padding-top: unset;
+    }
+     #addresses-{{ section.id }} .add-new-address-wrapper .input-wrapper:first-of-type {
+    margin-top: 30px;
+  }
+  }
+</style>
+
+
+<div class="module-wrapper" id="addresses-{{ section.id }}">
+  <div class="module module-addresses">
+    <div class="module-header">
+      <h1 class="module-title page-title">{{ 'customer.addresses.header' | t }}</h1>
+      <div class="module-subtitle">
+        <div class="logged-in-as">
+          {% capture user_email %}
+            <a href="{{ routes.account_url }}">{{ customer.email }}</a>
+          {% endcapture %}
+          {{ 'customer.account.logged_in_as_html' | t: user_email: user_email }} (<a href="{{ routes.account_logout_url }}">{{ 'general.general.logout' | t }}</a>)
+        </div>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="module-content">
+        {% if customer.addresses.size > 0 %}
+          <div class="customer-addresses">
+            {% paginate customer.addresses by 2 %}
+              {% for address in customer.addresses %}
+                <div class="customer-address-wrap">
+                  <div class="customer-address" data-address-id="{{ address.id }}">
+                    {% if address == customer.default_address %}
+                      <p class="default-address-marker">{{ 'customer.addresses.default_address' | t }}</p>
+                    {% endif %}
+                    <p>
+                      <span><strong>{{ address.first_name }} {{ address.last_name }}</strong></span><br>
+                      {% if address.company.size > 0 %}
+                        <span>{{ address.company }}</span><br>
+                      {% endif %}
+                      {% if address.street.size > 0 %}
+                        <span>{{ address.street }}</span><br>
+                      {% endif %}
+                      {% if address.city.size > 0 or address.province_code.size > 0 %}
+                        <span>{{ address.city }}{% if address.province_code %}, {{ address.province_code }}{% endif %}</span><br>
+                      {% endif %}
+                      {% if address.country.size > 0 or address.zip.size > 0 %}
+                        <span>{{ address.country }} {{ address.zip }}</span><br>
+                      {% endif %}
+                      {% if address.phone.size > 0 %}
+                        <span>{{ address.phone }}</span><br>
+                      {% endif %}
+                    </p>
+                    <p>
+                      <a class="edit-address" href="#" tabindex="0">{{ 'customer.addresses.edit' | t }}</a>
+                      {{ 'customer.general.or' | t }}
+                      <a class="delete-address" href="#" tabindex="0">{{ 'customer.addresses.delete' | t }}</a>
+                    </p>
+                  </div>
+                  <div class="customer-address-edit-form" data-address-id="{{ address.id }}">
+                    {% render 'account-address-form', formInfo: address, form: form, address: address %}
+                  </div>
+                </div>
+              {% endfor %}
+              {% if paginate.previous or paginate.next %}
+                <div class="customer-address-wrap">
+                  {% render 'pagination', paginate: paginate %}
+                </div>
+              {% endif %}
+            {% endpaginate %}
+          </div>
+        {% endif %}
+        <div class="add-new-address-wrapper {% if customer.addresses.size == 0 %}no-border{% endif %}">
+          {% if customer.addresses.size > 0 %}
+          <div class="cta-container">
+            <button class="button toggle-new-address add-new-address">{{ 'customer.addresses.add_new' | t }}</button>
+          </div>
+          {% endif %}
+          <div class="customer-new-address {% if customer.addresses.size == 0 %}show{% endif %}">
+            {% render 'account-address-form', formInfo: customer.new_address, is_new: true, form: form, address: address %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

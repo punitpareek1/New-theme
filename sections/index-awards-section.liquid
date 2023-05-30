@@ -1,0 +1,136 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .index-home-awards{
+  	background: #303030; 
+    margin-top: -10px;
+    padding-top: 15px; 
+    padding-bottom: 15px; 
+    position: relative; 
+    z-index: 5;
+  }
+  .awards-contain-1000 {
+    max-width: 1000px;
+    text-align:center;
+    margin: 0 auto;
+  }
+  .index-home-awards-inner{padding-top:30px;padding-bottom:30px;}
+  .index-home-awards .award-tile {
+        display: inline-block;
+        margin: 6px 22px;
+	}
+  .index-home-awards-inner .hide-lessthan-800{display: flex;
+   flex-wrap: wrap;}
+  .index-home-awards .award-tile img{
+  	max-width: 100%;
+        display: inline-block;
+        vertical-align: top;
+    
+  }
+  .img-heightt-1{
+  max-height: 36px;
+    margin-top: 6px;
+    
+  }
+  .img-heightt-2{
+  max-height: 30px;
+    margin-top: 8px;
+    
+  }
+  .img-heightt-3{
+      max-height: 50px;
+    margin-top: -3px;
+    
+  }
+    .img-heightt-7{
+     max-height: 40px;
+    margin-top: 7px;
+    
+  }
+  
+  @media(max-width:768px){
+  
+    .index-home-awards-inner .hide-lessthan-800{
+    	width: 100%!important;
+    }
+    
+    .index-home-awards .award-tile {
+      margin: 0!important;   
+      width:50%;
+    }
+    .awards-contain-1000 {
+    padding:0 18px;
+    }
+  
+  }
+  
+</style>
+
+<div class="index-home-awards">
+
+	<div class="index-home-awards-inner awards-contain-1000 hh">
+	
+		<div class="hide-lessthan-800 padding-t-30 padding-b-15">
+		
+          	 {% for block in section.blocks %}
+          
+				<div class="award-tile">
+                  {% if block.settings.button_link != blank %}
+                  <a href="{{block.settings.button_link}}" target="_blank">
+                    <img class="lazyload img-heightt-{{forloop.index}}" data-src="{{block.settings.image | img_url: 'master' }}" src="{{ block.settings.image | img_url: '30x' }}" alt="{{block.settings.image-alt}}" >
+                  </a>
+                  {% else %}
+                  	<img class="lazyload img-heightt-{{forloop.index}}" data-src="{{block.settings.image | img_url: 'master' }}" src="{{ block.settings.image | img_url: '30x' }}" alt="{{block.settings.image-alt}}" >
+                  {% endif %}
+          		</div>
+			{% endfor %}	
+          
+		</div>
+		 		
+		
+	</div>
+	
+</div>
+
+{% schema %}
+{
+  "name": "Awards Section",
+  "blocks":[
+	{
+	"type":"image",
+	"name":"Images",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Image Link"
+
+        },
+        {
+          "type": "text",
+          "id": "image-alt",
+          "label": "Image alt text"
+
+        }
+      ]
+	}
+  ]
+  ,
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Awards Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

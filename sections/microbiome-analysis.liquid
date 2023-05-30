@@ -1,0 +1,251 @@
+
+{% stylesheet %}
+.microbiome-main-bg{
+  width: 100%;
+  background-image: url("https://cdn.shopify.com/s/files/1/2204/9357/files/Rectangle_2_6e15e6c1-0c52-4d11-8f95-603be2e7924c.png?v=1671510215");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 65px;
+  }
+.microbiome-main{
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 50px 20px 0px 20px;
+}
+.microbiome-main h3{
+  font-weight: bold;
+  color: #f15d3c;
+  font-size: 45px;
+  line-height: 1.2em;
+}
+.microbiome-main p{
+  color: #212121;
+  font-weight: 400;
+  font-size: 18px;
+}
+.microbiome-main h4{
+  color: #000;
+  font-weight: bold;
+  font-size: 36px;
+}
+  
+.micro-two-box-section{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  margin-top: 65px;
+  margin-bottom: 35px;
+  text-align: left;
+}
+
+.left-micro-box, .right-micro-box{
+  width: 50% !important;
+}
+.micro-blue-box{
+  width: 90%;
+  background-color: #193368;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+.micro-orange-box{
+  width: 90%;
+  background-color: #f15d3c;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+.micro-two-box-section h5{
+  font-weight: bold;
+  font-size: 21px;
+}
+.micro-two-box-section span{
+    font-weight: 400;
+    font-size: 18px;
+}
+.micro-image-box img{
+    width: 75%;
+}
+
+
+@media only screen and (max-width: 820px){
+  .microbiome-main h3 {
+    font-size: 36px;
+  }
+  .micro-two-box-section{
+    display: block;
+  }
+  .left-micro-box, .right-micro-box{
+    width: 100% !important;
+  }
+  .right-micro-box{
+    margin-top: 30px;
+  }
+  .microbiome-main h4{
+    font-size: 32px;
+  }
+}
+
+@media only screen and (max-width: 520px){
+  .microbiome-main h3 {
+     font-size: 28px;
+     line-height: 1.4em;
+  }
+  .micro-two-box-section{
+    padding-top: 45px;
+    margin-top: 0px;
+  }
+  .microbiome-main h4 {
+    font-size: 28px;
+    line-height: 1.3em
+  }
+  .micro-image-box img{
+    width: 100%;
+  }
+  
+}
+{% endstylesheet %}
+
+<div class="microbiome-main-bg">
+<div class="microbiome-main">
+  <div class="micro-head-box">
+    {% if section.settings.heading != blank %}
+    <h3>{{ section.settings.heading }}</h3>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+    <p>{{ section.settings.subheading }}</p>
+    {% endif %}
+    <br>
+
+    {% if section.settings.new_heading != blank %}
+    <h4>{{ section.settings.new_heading }}</h4>
+    {% endif %}
+  </div>
+
+  <div class="micro-two-box-section">
+    
+    <div class="left-micro-box">
+      <div class="micro-blue-box">
+      {% if section.settings.left_box_subheading != blank %}
+        <span>{{ section.settings.left_box_subheading }}</span>
+      {% endif %}
+
+      {% if section.settings.left_box_heading != blank %}
+        <h5>{{ section.settings.left_box_heading }}</h5>
+      {% endif %}
+      </div>
+
+      {% if section.settings.left_box_pera != blank %}
+      <p>{{ section.settings.left_box_pera }}</p>
+      {% endif %}
+    </div>
+
+    <div class="right-micro-box">
+       <div class="micro-orange-box">
+        {% if section.settings.right_box_subheading != blank %}
+          <span>{{ section.settings.right_box_subheading }}</span>
+        {% endif %}
+
+        {% if section.settings.right_box_heading != blank %}
+          <h5>{{ section.settings.right_box_heading }}</h5>
+        {% endif %}
+       </div>
+
+          {% if section.settings.right_box_pera != blank %}
+          <p>{{ section.settings.right_box_pera }}</p>
+          {% endif %}
+    </div>
+  </div>
+
+  <div class="micro-image-box">
+
+    {% if section.settings.image != blank %}
+    <img  src="{{ section.settings.image | img_url: 'master' | prepend: "https:" }}"  alt="{{ section.settings.image.alt }}" height="100%" width="100%" loading="lazy">
+    {% endif %}
+  </div>
+
+
+  {% if section.settings.custom_css != blank %}
+  <div class="custom_css">
+    {{ section.settings.custom_css }}
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "microbiome analysis",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading"
+    },
+    {
+      "type": "html",
+      "label": "Sub Heading",
+      "id": "subheading"
+    },
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "new_heading"
+    },
+    {
+      "type": "text",
+      "label": "Left Heading",
+      "id": "left_box_heading"
+    },
+    {
+      "type": "text",
+      "label": "Left Sub-heading",
+      "id": "left_box_subheading"
+    },
+    {
+      "type": "html",
+      "label": "Left Text",
+      "id": "left_box_pera"
+    },
+    {
+      "type": "text",
+      "label": "Right Heading",
+      "id": "right_box_heading"
+    },
+    {
+      "type": "text",
+      "label": "Right Sub-heading",
+      "id": "right_box_subheading"
+    },
+    {
+      "type": "html",
+      "label": "Right Text",
+      "id": "right_box_pera"
+    },
+    {
+      "type": "image_picker",
+      "label": "Image",
+      "id": "image"
+    },
+    {
+      "type": "html",
+      "label": "Custom CSS",
+      "id": "custom_css"
+    }
+  ],
+  "presets":[{
+  "name": "Microbiome Analysis"
+  }]
+}
+{% endschema %}
+
+
+
+
+
+

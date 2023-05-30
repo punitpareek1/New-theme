@@ -1,0 +1,228 @@
+<style>
+
+   
+  .top-wrapper{
+      padding: 50px 0 166px;
+/*     background: #1f6765; */
+        background-size: 100%;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+  
+  .lp-top-row {
+      max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .top-heading{
+  font-size: 35px;
+    color: #a1c2c2;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+  .middle-heading {
+  font-weight: 800;
+    font-size: 65px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 4px;
+  }
+
+  .description{
+  font-size: 30px;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  
+  .btn-aff{
+      background: #fff;
+    padding: 10px 35px;
+    border-radius: 40px;
+    letter-spacing: 1px;
+    color: #206766;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 18px;
+  }
+  
+  .btn-aff:hover {
+    color: #206766;
+}
+  
+  .lp-main-wrapper{
+      z-index: 9;
+    position: relative;
+  }
+  
+  .waves-top {
+  position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+        height: 32rem;
+    width: 100%;
+    
+  }
+  .waves-top img{
+  width:100%;
+    height:100%;
+  }
+  
+  .round-1{
+  background: #a9c8c8;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+        position: absolute;
+    top: 5%;
+    left: 0;
+  }
+  
+  .round-2{
+  background: #c5dada;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+  }
+  
+  .round-3{
+  background: #f0f6f6;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+        position: absolute;
+    top: -18px;
+    right: 11%;
+  }
+  
+  .round-wrapper{
+      z-index: 2;
+    position: absolute;
+    right: 6%;
+    width: 165px;
+    height: 100px;
+    top: 5%;
+  }
+  
+  @media(max-width:1200px){
+  
+    .top-wrapper {
+    padding: 60px 12px;
+    background: #1f6765;
+}
+    
+  }
+  
+  @media(max-width:768px){
+  
+    .middle-heading {
+    font-size: 36px;
+    line-height:1;  
+
+	}
+    
+    .top-heading, .description {
+    font-size: 20px;
+	}
+    
+    .btn-aff{
+    font-size:14px;
+    margin-top:20px;  
+    }
+     .round-wrapper {
+   display:none;
+}
+    .top-wrapper {
+    padding: 60px 12px;
+      background:transparent;
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Folder_1_1.png?v=1650280011);
+    background-size: 100% 100%;
+	}
+  }
+  
+</style>
+
+
+<section class="top-wrapper">
+  <div class="round-wrapper">
+  
+    <div class="round-1"></div>
+    <div class="round-2"></div>
+    <div class="round-3"></div>
+  
+  </div>
+	<div class="waves-top"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/white_bg_1.png?v=1649313217"></div>
+ <div class="lp-main-wrapper">
+  <div class="lp-top-row ">
+  
+    <div class="lp-top-inner-row">
+      {% if section.settings.top-heading != blank %}
+      <h3 class="top-heading">{{section.settings.top-heading}}</h3>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+      <h1 class="middle-heading">{{section.settings.heading}}</h1>
+      {% endif %}
+      {% if section.settings.bottom-text != blank %}
+      <h4 class="description">{{section.settings.bottom-text}}</h4>
+      {% endif %}
+      
+      {% if section.settings.button_text != blank %}
+      <a class="btn-aff open-affilate-form" href="{{section.settings.button-url}}"><span>{{section.settings.button_text}} <i class="fa fa-arrow-right" aria-hidden="true"></i></span></a>
+      {% endif %}
+      
+    </div>
+  
+  
+  </div>
+  </div>
+
+
+</section>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Heading with Button",
+  "class": "heading-with-button-lp",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top-heading",
+      "label": "Top Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "heading"
+    },
+    {
+      "type": "text",
+      "id": "bottom-text",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+	  "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Button URL"
+    }
+  ],
+	"presets":[{
+	"name": "Heading with Button"
+}]
+}
+{% endschema %}

@@ -1,0 +1,166 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-flore_inner{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .home-flore-partnership{
+    padding: 100px 0;
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/TOP-BG-2.jpg?v=1665739481);
+    position: relative;
+    z-index: 1;
+    background-position: 100% 100%;
+    background-size: cover;
+}
+  
+  .home-flore_inner h3{
+    padding-bottom: 50px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 45px;
+    line-height: 1.15;
+    max-width: 990px;
+  }
+  
+  .flore-partnership-txt-heading,.home-flore-partnership .text02 p{color:white;}
+  .home-flore-partnership .text02 p{font-size: 1.2rem;}
+  .flore-partnership-contain-1200{
+    display: flex;
+    width:100%;
+    gap: 45px;
+    padding-bottom:75px;
+  }
+  .flore-partnership-col-2{
+     width: 40%;
+     box-sizing: border-box;
+    float: left;
+  }
+  .flore-partnership-col-02{width:10%;}
+  .flore-partnership-col-1{
+    position: relative;
+    width: 50%;
+    max-width: 800px;
+    box-sizing: border-box;
+    
+}
+  .flore-partnership-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+.home-flore-partnership .parageaph{
+    font-size: 22px;
+    color: #FFF;
+}
+  .home-flore-partnership .parageaph p:first-child{
+   padding-top:0;
+}
+  @media(max-width:768px){
+    .home-flore-partnership .parageaph{
+     color: #FFF !important;
+}
+    .home-flore-partnership .parageaph{
+    font-size: 18px;
+}
+ .home-flore-partnership{
+    padding: 50px 0;
+ }
+    
+  .home-flore_inner h3 {
+    padding: 20px 20px;
+      font-size: 30px;
+  }
+  
+    .flore-partnership-contain-1200 {
+    	display:block!important;
+    }
+    .flore-partnership-col-1 {
+    	width:100%!important;
+          
+    }
+    .flore-partnership-col-2 {
+    width:100%!important;
+      float:none!important;
+          padding-top: 30px;
+    }
+    	
+  }
+ 
+  
+</style>
+
+<div class="home-flore-partnership">
+  <div class="home-flore_inner">
+    <h3 class="flore-partnership-txt-heading"> {{section.settings.heading}} </h3></div>
+  <div class="flore-partnership-contain-1200 global-container-1200">
+     
+		 <div class="flore-partnership-col-1">
+           
+           	
+           
+           <div class="parageaph">{{section.settings.paragraph}}</div>
+           
+          </div>
+          <div class="flore-partnership-col-2">
+            	{% if section.settings.video != blank %}
+  					<div>
+                      
+  						{% if section.settings.video == blank %}
+                            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                          {% else %}
+                            {% if section.settings.video.type == "youtube" %}
+                              <iframe src="//www.youtube.com/embed/{{ section.settings.video.id }}?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                            {% if section.settings.video.type == "vimeo" %}
+                              <iframe src="//player.vimeo.com/video/{{ section.settings.video.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                          {% endif %}
+                      
+  					</div>
+  				{% endif %}  
+            
+          </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flore Partnership Section",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "video_url",
+      "id": "video",
+      "label": "YouTube or Vimeo link",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    }
+    
+   
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Flore Partnership Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

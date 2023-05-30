@@ -1,0 +1,111 @@
+<style>
+.questions_your_wappper {
+    padding: 140px 0;
+    background-image: url({{section.settings.bg-image | img_url: 'master'}});
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: center;
+}
+  .questions_your_inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+}
+  .questions_your_wappper h3 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: #fff;
+}
+    .questions_your_wappper h2 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: {{section.settings.color}};
+}
+
+
+  .questions_your_inner a{
+    color: #FFF;
+    font-size: 24px;
+     font-waight: 500; 
+    text-decoration: underline !important;
+  }
+
+    @media(max-width: 768px){
+      .questions_your_wappper {
+    padding: 100px 0;
+    }
+   .questions_your_inner {
+    padding: 0 20px;
+   }
+      .questions_your_inner a {
+    font-size: 16px;
+      }
+      .questions_your_wappper h3 {
+    font-size: 40px;
+      } .questions_your_wappper h2 {
+    font-size: 40px;
+      }
+  }
+</style>
+
+<div class="questions_your_wappper">
+  <div class="questions_your_inner">
+{% if  section.settings.heading != blank %}
+  <h2>{{ section.settings.heading }}</h2>
+  {% endif %}
+  {% if  section.settings.heading != blank %}
+ <a href="{{ section.settings.url }}">{{ section.settings.btn-text }}</a>
+      {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Questions",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "BG Image"
+    },
+
+    {
+      "type": "text",
+      "id": "heading",
+       "label": "Heading"
+    },
+          {
+      "type": "color",
+      "id": "color",
+      "label": "Color",
+       "default": "#000"     
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+       "label": "Text Button"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    }
+  
+]
+    ,
+  "presets": [
+    {
+      "name": "Questions"
+    }
+  ]
+  }
+{% endschema %}

@@ -1,0 +1,158 @@
+<style>
+  
+  .flore-defense-section-5 {
+  
+    background-color: #edeef2;
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/defense-testimonial-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 58.333333333333%;
+    
+  }
+  .sec-5-head04 {
+  font-size: 1rem;
+    line-height: 1.1;
+    margin: 10px 0 40px;
+    font-weight: 100;
+    color: #404040;
+    
+  }
+  .img-cols-vertical {
+  	width:30%;
+  }
+  .sect-5-col-2{
+  	width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .row-white {
+  	display:flex;
+  }
+  .sect-5-col-1 {
+  	width: 50%;
+        display: flex;
+    align-items: center;
+  }
+  .whitebg {
+  	background: rgba(255,255,255,.9);
+    padding: 25px;
+    text-align: center;
+    max-width: 500px;
+  }
+  .whitebg p:last-child{
+      height: 25px;
+    padding:0px;
+  }
+  
+  .testimonial-dash{
+  	    border-top: 3px solid #FF5C35;
+    width: 30px;
+    display: inline-block;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+  .sect-5-col-2 {
+        padding: 38px 0;
+    }
+  @media(max-width:768px){
+
+	.row-white{
+		display:block;
+	}
+      .sect-5-col-2, .sect-5-col-1, .img-cols-vertical{
+      width:100%;
+      }
+    .flore-defense-section-5{
+    padding:50px 0;
+          background-position: bottom;
+    background-size: 158%;
+      
+    }
+    .sect-5-col-2 {
+    padding:0 50px 50px;
+    }
+    
+}
+  
+  
+</style>
+
+
+<section class="flore-defense-section-5">
+  <div class="global-container-1200">  
+    <div class="row-white">
+               
+      <div class="sect-5-col-2">							
+		{% for block in section.blocks %}
+        		
+        <div class="img-cols-vertical">
+        
+          <img src="{{block.settings.left_image | img_url: 'master'}}" alt="{{block.settings.image_alt}}">
+          <h4 class="sec-5-head04">{{block.settings.left_text}}</h4>
+          
+        </div>
+        
+        {% endfor %}
+		</div> 
+      
+      <div class="sect-5-col-1">							
+				<div class="text02 whitebg">
+					{{ section.settings.paragraph }}
+				</div>	
+		</div> 
+      	
+    
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Defense Section 5",
+  "settings": [
+    {
+      "type": "html",
+      "id": "paragraph",
+      "label": "Red Paragraph Text"
+    }
+  ],
+	"blocks":[
+	{
+	"type":"order",
+	"name":"Columns",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Image"
+        },
+		{
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Tag"
+        },
+		{
+          "type": "text",
+          "id": "left_text",
+          "label": "Heading"
+
+        }	
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Defense Section 5",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

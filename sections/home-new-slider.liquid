@@ -1,0 +1,335 @@
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+<style>
+.homeSlider-outer {
+    padding: 70px 10px;
+    margin: auto;
+}
+.homeSlider-outer .headline_1 {
+    text-align: center;
+    font-weight: 600;
+    color: #FF5C35;
+    font-size: 52px;
+    margin-bottom: 40px;
+    font-family: 'sk-modernist',sans-serif;
+}
+  
+ .carousel__button.is-prev {
+    left: 26px !important;
+} 
+#myCarousel {
+  color: #32325d;
+
+  --carousel-button-bg: #fff;
+  --carousel-button-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%),
+    0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+
+  --carousel-button-svg-width: 20px;
+  --carousel-button-svg-height: 20px;
+
+  --carousel-button-svg-stroke-width: 2.5;
+}
+
+.carousel__row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  	height:100%;
+}
+
+.carousel__row img {
+    width:100%;
+  	height: auto;
+    border-radius: 30px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel__textArea {
+    width: 38%;
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}  
+.client_name {
+    font-size: 30px;
+    color: #231f20;
+    font-weight: 700;
+	padding: 0px 0px 5px;
+    line-height: 1;
+}
+
+.client_loc_age {
+    font-size: 20px;
+    color: #231f20;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.type_headline {
+    color: #231f20;
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 30px;
+    padding-bottom: 0px;
+}  
+ 
+.carousel__textArea ul {
+    margin: 0px;
+    list-style-type: none;
+    font-size: 22px;
+    color: #231f20;
+}
+
+.carousel__slide {
+    width: var(--carousel-slide-width, 75%);
+}
+
+.carousel__textArea ul li {
+    margin: auto;
+}  
+
+.carousel__textArea ul li:before {
+    content: '+';
+    margin-right: 10px;
+}  
+/*  .carousel__button.is-prev, .carousel__button.is-next {
+        display: none;
+    } */
+  
+  .carousel_imageArea {width: 58%;position: relative;}
+
+.carousel__row .lab_logo {
+  	position: absolute;
+    width: 140px;
+    left: auto;
+    right: -30px;
+    top: -18px;
+    border-radius: 0px;
+    object-fit: contain;
+    object-position: inherit;
+}
+
+    .carousel__dots .carousel__dot{
+      width: 8px;
+      height: 8px;
+      margin-left: 5px;
+      margin-right: 5px;
+  }  
+  .carousel__dots .carousel__dot:after{
+  	background-color: #000000;
+  }  
+
+  
+  
+@media(max-width:768px){
+    .carousel__dots .carousel__dot{
+      margin-left: 7px;
+      margin-right: 7px;
+  } 
+  .homeSlider-outer .headline_1 {
+        font-size: 28px;
+        margin-bottom: 0px;
+    }
+
+    .homeSlider-outer {
+        padding: 40px 10px;
+    }
+	.carousel__slide {
+        width: 100%;
+    }
+
+
+  
+  	.carousel_imageArea {
+    	width: 100%;
+	}
+
+  	.carousel__row .lab_logo {
+    	width: 80px;
+    	right: -10px;
+	}
+  	
+    .carousel__row img {
+        width: 100%;
+    }
+
+    .carousel__textArea {
+        width: 100%;
+    }
+
+    .client_name {
+        font-size: 24px;
+    }
+
+    .client_loc_age {
+        font-size: 16px;
+    }
+
+    .type_headline {
+        padding-top: 10px;
+        font-size: 18px;
+    }
+
+    .carousel__textArea ul {
+        font-size: 16px;
+    }
+
+    .carousel__button.is-prev, .carousel__button.is-next {
+        display: none;
+    }
+  
+    .carousel__row {
+        flex-direction: column;
+    }
+}  
+
+  @media(max-width:1024px){
+  .carousel__button.is-prev, .carousel__button.is-next {
+        display: none;
+    }
+}
+</style>
+
+
+<div class="homeSlider-outer">
+  <h5 class="headline_1">{{ section.settings.heading }}</h5>
+
+<div id="myCarousel" class="carousel mb-12 max-w-4xl mx-auto">
+  <div class="carousel__viewport">
+	{% for block in section.blocks %}
+    <div class="carousel__slide">
+      <div class="carousel__row">
+          <div class="carousel_imageArea">
+          <img width="140" height="140" data-src="{{ block.settings.lab_crafted_badge | image_url: width: 180 }}" src="{{ block.settings.lab_crafted_badge | image_url: width: 30 }}" class="lab_logo lazyload" alt="Lab Badge for {{block.settings.name}}">  
+	      <img width="801" height="534" class="lazyload" data-src="{{ block.settings.user_image | image_url: width: 800 }}"  src="{{ block.settings.user_image | image_url: width: 30 }}" alt="{{block.settings.name}}" />
+        </div>
+            <div class="carousel__textArea">
+              <p class="client_name">{{block.settings.name}}</p>
+              <p class="client_loc_age">{{block.settings.age_address}}</p>
+              <p class="type_headline">{{block.settings.improvement_headline}}</p>
+              <ul class="improvement_points">
+                {{block.settings.improvement}}               
+              </ul>
+              
+              <p class="type_headline">{{block.settings.ingredients_headline}}</p>
+              <ul class="ingredient_points">
+                {{block.settings.ingredients}}
+              </ul>
+        	</div> 
+      </div>
+    </div>
+   {% endfor %}    
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+<script>
+// Initialise Carousel
+const myCarousel = new Carousel(document.querySelector("#myCarousel"), {
+  Dots: true,
+  arrows: true,
+  infinite: true,
+  center: false,
+  slidesPerPage: 1,
+  'fill' : true,
+  on: {
+    init: (carousel) => {
+      carousel.$index = carousel.$container.querySelector(".carousel_index");
+      carousel.$count = carousel.$container.querySelector(".carousel_count");
+    },
+    refresh: (carousel) => {
+      if (carousel.$count) {
+        carousel.$count.innerHTML = carousel.pages.length;
+      }
+    },
+    change: (carousel) => {
+      if (carousel.$index) {
+        carousel.$index.innerHTML = carousel.page + 1;
+      }
+    },
+  },
+  Navigation: {
+    prevTpl:
+      '<svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 5l-7 7 7 7"/><path d="M4 12h16"/></svg>',
+    nextTpl:
+      '<svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M13 5l7 7-7 7"/></svg>',
+  },
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Slider",
+    "settings": [
+			{
+              "type": "text",
+              "id": "heading",
+              "default": "Lorem",
+              "label": "Heading"
+            }
+	],
+	"blocks":[
+			{
+				"name":"User Details",
+				"type":"text",
+				"settings":[
+                    {
+                        "type":"image_picker",
+                        "label":"User image",
+                        "id":"user_image"
+                    },
+					{
+                        "type":"image_picker",
+                        "label":"Lab Crafted Badge",
+                        "id":"lab_crafted_badge"
+                    },
+					{
+                        "type":"text",
+                        "label":"name",
+                        "id":"name"
+                    },
+					{
+                        "type":"text",
+                        "label":"Age and address",
+                        "id":"age_address"
+                    },
+					{
+                        "type":"text",
+                        "label":"Improvement Headline",
+                        "id":"improvement_headline"
+                    },
+					{
+                        "type":"html",
+                        "label":"improvement",
+                        "id":"improvement"
+                    },
+					{
+                        "type":"text",
+                        "label":"Ingredients Headline",
+                        "id":"ingredients_headline"
+                    },
+					{
+                        "type":"html",
+                        "label":"ingredients",
+                        "id":"ingredients"
+                    }
+        		 
+	
+				]
+			}
+		
+		
+
+		],
+    "presets": [
+      {
+        "name": "Home New Slider"
+      }
+    ]
+  }
+{% endschema %}
+

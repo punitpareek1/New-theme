@@ -1,0 +1,131 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-hero{
+  	padding: 0;
+    background: #f7f7f7;
+  }
+  .hero-contain-1200{
+    display: flex;
+    width:100%;
+  }
+  .hero-col-2{
+     width: 49.98%;
+     box-sizing: border-box;
+    float: left;
+    padding-top: 50px;
+  }
+  .hero-col-2 img{
+  	max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    
+  }
+  .hero-col-1{
+    width: 49.98%;
+    box-sizing: border-box;
+    padding-top: 125px;
+}
+  .hero-txt-heading .font-accent{color: #FF5C35;display: block;} 
+  .hero-txt-heading span {
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1.35;
+        color: #48484a;
+	}
+  .btn-primary{
+  	background: #FF5C35;
+    padding: 11px 16px;
+        box-sizing: content-box;
+        text-transform: uppercase;
+    line-height: 1.7;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: 500;
+  }
+  .hero-txt-heading{
+      padding-bottom: 50px;
+    }
+  
+  @media(max-width:600px){
+    .hero-contain-1200{
+    	display:block;
+    }
+  
+  }
+  
+</style>
+
+<div class="home-hero" style="position: relative;z-index: 1;">
+  <div class="hero-contain-1200 global-container-1200">
+     
+		 <div class="hero-col-1" style="position: relative;">
+           	<h2 class="hero-txt-heading">
+                      <span class="font-accent" style="display: block;">{{section.settings.text}}</span>
+                      <span>{{section.settings.text2}}</span>
+               </h2>
+               <a href="{{section.settings.button_link}}" class="btn-primary">{{section.settings.button_text}}</a>
+                <br><br><br>
+          </div>
+
+      
+          <div class="hero-col-2">
+              <img src="{{section.settings.image | img_url: 'master'}}" alt="{{section.settings.image_alt}}">
+          </div>
+      
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text 1"
+    },
+	{
+      "type": "text",
+      "id": "text2",
+      "label": "Text 2"
+    },
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+	{
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image Alt Tag",
+		"default":"woman with microflora gut health report"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+	  "default":"Get Started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+	  
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Hero Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

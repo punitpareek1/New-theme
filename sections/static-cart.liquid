@@ -1,0 +1,529 @@
+{% assign page_description = "Your Sun Genomics shopping cart." %}
+{%- capture taxes_shipping_checkout -%}
+  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+    {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+  {%- elsif cart.taxes_included -%}
+    {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+  {%- elsif shop.shipping_policy.body != blank -%}
+    {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+  {%- else -%}
+    {{ 'cart.general.tax_and_shipping' | t }}
+  {%- endif -%}
+{%- endcapture -%}
+
+<script
+  type="application/json"
+  data-section-type="static-cart"
+  data-section-id="{{ section.id }}"
+>
+</script>
+<style>
+    .cart-cta{
+  	display:block;
+   
+  }
+  .cart-header {
+        margin-top: 0;
+        padding-top: 70px;
+        padding-bottom: 45px;
+}
+  .cart-items-container .cart-title a {
+        color: #000;
+        text-transform: none;
+        font-size: 16px;
+    font-weight: 700;
+}
+button, .secondary{
+  	background: #FF5C35!important;
+        box-sizing: content-box;
+        text-transform: uppercase;
+    	line-height: 1.7;
+        border-radius: 3px;
+        color: #fff!important;
+        font-weight: 500;   
+        font-family: SunGenomics,sans-serif;
+        box-shadow: none;
+        text-shadow: none;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+        border: 0;
+        margin-bottom: 8px;
+        padding: .66667rem 1rem;
+        font-size: 1rem;  
+  }
+  .btn.btn-light{
+  	background: #e7eef2;
+        border: 0;
+        height: auto;
+        line-height: 1.55;
+        box-sizing: border-box;
+        box-shadow: none;
+        padding: .4rem 1rem;
+        font-weight: 400;
+        text-shadow: none;
+        text-decoration: none;
+        overflow: hidden;
+     margin-bottom: 0px;
+    margin-top: 8px;
+  }
+  .cart-update-button{
+  padding: 14px!important;
+    margin-top: 20px!important;
+  }
+  .rte h1, h1 {
+        margin-top: 0;
+}
+  .cart-sec{
+  background: #f8f8f8;
+  }
+
+h1, h1 a {
+        font-size: 2.2rem;
+        line-height: 1.25;
+        color: #404040;
+}
+h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a {
+        font-family: SunGenomics,sans-serif;
+        margin-bottom: 0;
+}
+h1, h1 a, h2, h2 a {
+        font-weight: 500;
+        margin-top: 0;
+}
+  .text-link, a, a:hover {
+        color: #FF5C35;
+        text-decoration: none;
+        cursor: pointer;
+}
+.popup{
+  	background: rgb(255, 255, 255); 
+    width: 100%; 
+    max-width: 600px; 
+    z-index: 9999; 
+    display: none;
+    margin-left: -300px;
+    margin-top: -200px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    padding:20px;
+    box-shadow: 2px 2px 10px 1px rgb(0 0 0 / 5%);
+  
+  }
+  .popup{
+  	position: fixed;
+  }
+  .cart-items-container .cart-item{
+      background: #fff;
+    border: 1px solid #e4e9ec;
+  }
+  .cart-item-product{
+  padding-left: 15px;
+  }
+  .cart-item-total{
+  padding-right: 15px;
+  }
+  .cart-price-info .cart-message, .cart-price-info .cart-currency-note{
+  display: block;
+    font-size: 13px;
+    line-height: 23px;
+    font-style: italic;
+    color: #7f7f7f;
+    text-align: right;
+    padding: 0;
+  }  
+  .subtotal{
+  font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+    padding: 0;
+  }
+  .price-money{
+      font-size: 20px;
+    font-weight: 700;
+    line-height: 1.7;
+    color: #5e5e5e;
+    padding: 0;
+  }
+  strong{
+  font-weight:700;
+  }
+  .cart-vendor{
+  color: rgba(0,0,0,.4);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-top: 0
+  }
+  .cart-items th {
+    padding: 20px 0;
+    font-weight: 300;
+    font-family: "Source Sans Pro",sans-serif;
+    color: #161a1c;
+    text-align: left;
+    border-top: none;
+    border-bottom: 1px solid #e6e6e6;
+}
+ 
+  
+  .button.button.secondary.inverse.cart-button{
+  		margin-top:20px;
+  }
+/*   .popup-close{
+  display:none;
+  }
+   */
+  
+  @media(max-width:768px){
+  	.popup{
+        top: 5px;
+        margin: 0 auto;
+        height: 450px;
+        margin-left: 0px;
+        left: 0;
+      }
+    
+    .cart-update-button{
+  		margin-top:23px;
+  }
+  
+  .button.button.secondary.inverse.cart-button{
+  		margin-top:10px;
+  }
+    
+    
+  }
+</style>
+
+<div class="module-wrapper cart-sec">
+  <div class="module cart">
+    <div class="module-header cart-header">
+      <h1 class="module-title">{{ 'cart.general.header' | t }}</h1>
+    </div>
+    <div class="module-body">
+      <div class="module-content">
+        {% if cart.item_count > 0 %}
+          <form action="{{ routes.cart_url }}" method="post" data-cart-form>
+            <div class="cart-items-container">
+              {% render 'cart-table' %}
+            </div>
+            <div class="cart-tools">
+              <div class="cart-totals">
+                <div class="cart-price-info">
+                  <ul class="cart-discounts" data-cart-discounts>
+                    {% render 'cart-discounts' %}
+                  </ul>
+                  <p class="cart-price">
+                    <p class="subtotal">
+                      {{ 'general.general.subtotal' | t }}
+                    </p>
+                    <p class="money price-money" data-cart-subtotal>
+                      {{ cart.total_price | money }}
+                    </p>
+                  </p>
+                  <p class="cart-message meta">
+                    {{ 'cart.general.tax_and_shipping' | t }}
+                  </p>
+                  {% if settings.show-currency-switcher %}
+                    <p class="cart-currency-note meta">{{ 'cart.general.currency_note_html' | t: currency: shop.currency }}</p>
+                  {% endif %}
+                </div>
+                <div class="cart-cta">
+                  
+                   <p style="float: none; text-align: right; clear: both; margin: 10px 0 0px; padding:15px 0px 8px;">
+                      <input style="float:none; vertical-align: middle;" type="checkbox" id="agree" />
+                      <label style="display:inline; float:none" for="agree">
+                        I agree to 
+                        <a href="#" class="popup-link1 popUp-termandConditions" data-target="popup-termsandconditions" data-hidescreen="true" onclick="display_employee_detail('popup-termsandconditions')">Terms and Conditions</a>, 
+                        <a href="#" class="popup-link1 popUp-privacypolicy" data-target="popup-privacypolicy" data-hidescreen="true" >Privacy Policy</a>, and 
+                        <a href="#" class="popup-link1 popUp-consentForm" data-target="popup-consent" data-hidescreen="true" onclick="display_employee_detail('popup-consent')">Consent Form</a>.
+                      </label>
+                     
+                     
+                   </p>
+	
+                   
+                  <div id="cart-box-alert-wrapper" style="display: none;">
+                      <div class="box-alert" style="display: inline-block; margin-bottom: 10px; color: #ff0000; font-weight: 500;">
+                         <i class="fa fa-info-circle" aria-hidden="true"></i> You must agree to the Terms and Conditions, Privacy Policy, and Consent Form to check out.
+                      </div>
+                  </div>
+                  <div id="cart-box-alert-wrapper-1" style="display: none;">
+                      <div class="box-alert" style="display: inline-block; margin-bottom: 10px; color: #ff0000; font-weight: 500;">
+                         <i class="fa fa-info-circle" aria-hidden="true"></i> You must agree to receive text messages for samples processing purposes.
+                      </div>
+                  </div>
+                  <div id="cart-box-alert-wrapper-2" style="display: none;">
+                      <div class="box-alert" style="display: inline-block; margin-bottom: 10px; color: #ff0000; font-weight: 500;">
+                         <i class="fa fa-info-circle" aria-hidden="true"></i> You must agree to receive text messages for exclusive discounts and promotions.
+                      </div>
+                  </div>
+                  
+                  <input type="submit" name="update" value="Update Cart" class="btn btn-light cart-button cart-update-button" style="display: inline-block;">
+                  <button
+                    type="submit"
+                    name="checkout"
+                    value="{{ 'cart.general.submit' | t }}"
+                    class="button secondary inverse cart-button"
+                  >
+                    {% if section.settings.enable_checkout_lock_icon %}
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 11.1667C2.5 10.0622 3.39543 9.16675 4.5 9.16675H15.5C16.6046 9.16675 17.5 10.0622 17.5 11.1667V16.3334C17.5 17.438 16.6046 18.3334 15.5 18.3334H4.5C3.39543 18.3334 2.5 17.438 2.5 16.3334V11.1667Z" fill="currentColor"/>
+                        <path d="M5.83337 9.16675V5.83341C5.83337 3.53223 7.69885 1.66675 10 1.66675C12.3012 1.66675 14.1667 3.53223 14.1667 5.83341V9.16675" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    {% endif %}
+                    <span>{{ 'cart.general.submit' | t }}</span>
+                  </button>
+				  {% comment %}
+					<!-- Paypal button -->
+                  {% if additional_checkout_buttons %}
+                    <div class="additional-checkout-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  {% endif %}
+                  {% endcomment %}
+                </div>
+              </div>
+              {% if section.settings.order_notes %}
+                <div class="cart-instructions">
+                  <p><label for="cart-notes">{{ 'cart.general.instructions_title' | t }}</label></p>
+                  <textarea rows="6" name="note" id="cart-notes" placeholder="{{ 'cart.general.instructions_placeholder' | t }}">{{ cart.note }}</textarea>
+                </div>
+              {% endif %}
+            </div>
+          </form>
+
+            {% if section.settings.show_shipping_calculator and cart.requires_shipping %}
+            {% render 'shipping-calculator' %}
+          {% endif %}
+        {% else %}
+          {% assign continue_href = section.settings.continue_shopping_link | default: routes.all_products_collection_url %}
+          <p class="empty">{{ 'cart.general.empty' | t }} <a href="{{ continue_href }}">{{ 'cart.general.continue' | t }}</a></p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	<div id="popup-termsandconditions" class="iframe popup cart-popup">
+			<div class="text-right padding-b-15" style="text-align: right;"><a href="#" class="popup-close" onclick="display_employee_detail_hide('popup-termsandconditions')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a></div>
+			<div style="height: 90%; width: 100%; overflow: auto;">
+              {% include "document-terms-and-conditions" %}
+            </div>
+        </div>
+
+        <div id="popup-privacypolicy" class="iframe popup cart-popup" style="">
+            <div class="text-right padding-b-15" style="text-align: right;"><a href="#" class="popup-close" onclick="display_employee_detail_hide('popup-privacypolicy')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a></div>
+           <div style="height: 90%; width: 100%; overflow: auto;">
+              {% include "document-privacy-policy" %}
+            </div>
+        </div>
+  
+       	<div id="popup-consent" class="iframe popup cart-popup" style="">
+          <div class="text-right padding-b-15" style="text-align: right;"><a href="#" class="popup-close" onclick="display_employee_detail_hide('popup-consent')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a></div>
+            <div style="height: 90%; width: 100%; overflow: auto;">
+              {% include "document-consent-form" %}
+            </div>
+        </div>  
+          
+{%  include 'subscription-cart-footer' %} 
+<script type="application/json" data-cart-strings>
+  {
+    "cartQuantityError": {
+      "title": {{ 'cart.quantity_error.title' | t | json }},
+      "message": {{ 'cart.quantity_error.message' | t: quantity: '** quantity **', title: '** title **' | json }},
+      "button": {{ 'cart.quantity_error.button' | t | json }}
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_checkout_lock_icon",
+      "label": "Show lock icon on checkout button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "order_notes",
+      "label": "Enable order notes",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Shipping calculator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_calculator",
+      "label": "Enable",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "shipping_calculator_default_country",
+      "label": "Default country",
+      "default": "United States"
+    },
+  {
+      "type": "header",
+      "content": "Continue shopping button"
+    },
+    {
+      "type": "url",
+      "id": "continue_shopping_link",
+      "label": "Link"
+    }
+  ]
+}
+
+{% endschema %}
+          
+<!-- Google Code for Add to Cart Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 828223508;
+var google_conversion_label = "yREFCI6Xz4MBEJTg9ooD";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/828223508/?label=yREFCI6Xz4MBEJTg9ooD&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>          
+
+<script>
+  
+  
+//   function display_employee_detail(popId){
+//   	document.getElementById(popId).style.display = "block";
+//   }
+//   function display_employee_detail_hide(popId){
+//   	document.getElementById(popId).style.display = "none";
+//   }
+  const imOverlay = document.querySelector('.popup-screen');
+  const popupBtn = document.querySelector('.popUp-privacypolicy');
+  const privacypolicyBox = document.querySelector('#popup-privacypolicy');
+  const consentBtn = document.querySelector('.popUp-consentForm');
+  const popupConsentForm = document.querySelector('#popup-consent');
+  const tandCBtn = document.querySelector('.popUp-termandConditions');
+  const popuptandCBox = document.querySelector('#popup-termsandconditions');
+  
+  
+  popupBtn.addEventListener('click', function(){
+    privacypolicyBox.style.display = 'block';
+    imOverlay.style.display = 'block';
+  });
+  
+  consentBtn.addEventListener('click', function(){
+    popupConsentForm.style.display = 'block';
+    imOverlay.style.display = 'block';
+  });
+  
+  tandCBtn.addEventListener('click', function(){
+    popuptandCBox.style.display = 'block';
+    imOverlay.style.display = 'block';
+  });
+   localStorage.setItem("aggree-1", "no");
+  localStorage.setItem("aggree-2", "no");
+  jQuery('#agree-1').on("click", function(){
+ var isChecked = $("#agree-1").is(":checked");
+            if (isChecked) {
+                localStorage.setItem("aggree-1", "yes");
+            } else {
+            localStorage.setItem("aggree-1", "no");
+            }
+})
+
+jQuery('#agree-2').on("click", function(){
+ var isChecked = $("#agree-2").is(":checked");
+            if (isChecked) {
+                localStorage.setItem("aggree-2", "yes");
+            } else {
+            localStorage.setItem("aggree-2", "no");
+            }
+})
+    
+
+const cartMenu = document.querySelector('.header-actions-list-item.drawer-toggle');
+  
+  cartMenu.addEventListener('click',function(){
+  		document.querySelector('.template-cart').classList.toggle('showing-drawer');
+        document.querySelector('.template-cart').classList.toggle('drawer-visible');
+    
+  });
+
+  const submenu = document.querySelectorAll('#drawer-navigation .icon-angle-down');
+  
+  for( const item of submenu){
+    item.addEventListener('click',function(){
+      item.parentNode.classList.toggle("open");
+    	
+    });
+  }
+
+//   ajax for udpating cart data
+
+
+jQuery('.cart-item-increase').on("click", function(){
+  	
+  	let quantity = parseInt($(this).parent().parent().find('.cart-item-quantity-display').val());
+  	quantity += 1;
+  	let item_variant_id = parseInt($(this).parent().parent().find('.cart-item-quantity-display').attr('item-variant-id'));
+  
+  	//console.log(quantity, "qq");
+  	updateCartItem(quantity,item_variant_id);
+  	
+});
+  
+jQuery('.cart-item-decrease').on("click", function(){
+  	
+  	let quantity = parseInt($(this).parent().parent().find('.cart-item-quantity-display').val());
+  	quantity -= 1;
+  	let item_variant_id = parseInt($(this).parent().parent().find('.cart-item-quantity-display').attr('item-variant-id'));
+  
+  	//console.log(quantity, "qq");
+  
+  	updateCartItem(quantity,item_variant_id);
+  	
+});
+  
+  function updateCartItem(q,id){
+    let item_row = `variant-${id}`;
+    //nsole.log(item_row,"click id.......");
+    //nsole.log( typeof id);
+      jQuery.ajax({
+              type: 'POST',
+              url: '/cart/change.js',
+                  data: { 
+                    id: id,
+                    quantity: q
+
+                  },
+                dataType: 'json',
+                success: function(sf) {
+                  let variantid = sf.items.find(acc => acc.variant_id === id);
+                  console.log(sf.items_subtotal_price,'subtotal');
+                  console.log( variantid.final_line_price, "ajax run on click");
+                  
+				  // single item price update
+                  jQuery(`.${item_row} .cart-item-total .cart-item-final-price`).text(Shopify.formatMoney(parseFloat(variantid.final_line_price/100).toFixed(2)));
+                  
+				  // subtotal price update
+                  jQuery('.cart-totals .money.price-money').text(Shopify.formatMoney(parseFloat(sf.items_subtotal_price/100).toFixed(2)));
+                  
+                }
+         });
+  }
+</script>
+

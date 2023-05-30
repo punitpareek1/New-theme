@@ -1,0 +1,161 @@
+{% if template == 'blog' %}{% assign index = true %}{% endif %}
+
+{% if article.excerpt != ""  %}
+	{% assign class_hasexcerpt = 'has-excerpt' %}
+{% comment %}
+{% else %}
+	{% assign class_hasexcerpt = 'no-excerpt' %}
+{% endcomment %}
+{% endif %}
+
+{% if article.image != "" %}
+	{% assign class_hasimage = 'has-image' %}
+{% else %}
+	{% assign class_hasimage = 'no-image' %}
+{% endif %}
+
+
+<link rel="stylesheet" href="{{ 'saphire-utilities.min.css' | asset_url }}">
+
+<article class="post {{class_hasexcerpt}} {{class_hasimage}}  {% for tag in article.tags %} {{ tag }} {% endfor %}">
+  
+<div class="post-wrapper-inner">
+  
+  {% if index and article.image %}
+	<div class="post-image-wrapper">
+		<!-- <div class="post-image" style="background-image: url('{{ article.image | img_url: '700x700' }}');"> -->
+			<img class="post-image" src="{{ article.image | img_url: '700x700' }}" alt="{{ article.title | strip_html | escape }}" />
+		<!-- </div> -->
+	</div>
+  {% endif %}
+  
+  
+	<div class="post-list-content">
+	  
+	  <header class="post-title">
+		<h1>
+		  {% if index %}<a href="{{ article.url }}">{% endif %}
+			{{ article.title }}
+		  {% if index %}</a>{% endif %}
+		</h1>
+	  </header>
+	  
+	  <div class="post-subtitle post-meta">
+		<span>{{ article.published_at | date: format: 'short_month' }}</span>
+		  <span>{{ 'blogs.article_item.posted_by' | t }}: Sun Genomics Staff<!-- {{ article.author }}--></span>
+		{% if article.tags.size > 0 %}
+		  <span>
+			{% for tag in article.tags %}
+			  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="post-tags">{{ tag }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
+			{% endfor %}
+		  </span>
+		{% endif %}
+	  </div>
+
+      
+
+      <span>{{ article.published_at | date: "%B %d, %Y" }}</span>
+
+      
+	  <div class="post-content rte">
+		{% if index %}
+		  {{ article.excerpt }}
+		{% else %}
+        <div>
+          <div class="blog-social" style="text-align: left; background: #e7eaef; display: inline-block; margin-top: 25px; margin-bottom: 25px; padding: 6px 5px 0 10px; border-radius: 5px;">	
+            <span style="font-size: .9rem; vertical-align:top;">Share:</span> &nbsp;&nbsp;
+            <a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=mail" class="ld-share-link ld-email" style="margin: 0 5px 0 0"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
+            <a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=facebook" class="ld-share-link ld-facebook" style="margin: 0 5px"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+            <a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=twitter" class="ld-share-link ld-twitter" style="margin: 0 5px"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+            <a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=pinterest" class="ld-share-link ld-pinterest" style="margin: 0 5px"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        
+        
+		  {{ article.content }}
+		{% endif %}
+	  </div>
+	  
+	
+	  <div style="clear: both;"></div>
+	  
+	  
+	  
+		</div>
+		
+
+  </div>
+  
+  		  {% if index %}
+			<footer class="post-meta">
+				<div class="col-grid">
+				<div class="col-6">
+					{% if article.content != "" %}
+					<a class="button post-button" href="{{ article.url }}">
+						{{ 'blogs.article_item.read_more' | t }} &gt;
+					</a>
+				  {% endif %}
+				  &nbsp;
+				</div>
+				<div class="col-6 text-right">
+					 {% if article.tags.size > 0 %}
+					<div class="post-list-tags">
+						  <span>
+							{% for tag in article.tags %}
+							  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="post-tags">{{ tag }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
+							{% endfor %}
+						  </span>
+					</div>
+					  {% endif %}
+				</div>
+				<div class="clear"></div>
+				</div>
+			</footer>
+    
+		  {% endif %}
+
+</article>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{article.url}}"
+  },
+  "headline": {{ page_title | json }},
+  "description": {{article.excerpt | json }},
+  "image": "{% if article.image %}https:{{ article | img_url: 'medium' }}{% endif %}", 
+  "author": {
+    "@type": "Organization",
+    "name": "sungenomics"
+  }, 
+  "publisher": {
+    "@type": "Organization",
+    "name": "sungenomics",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cdn.shopify.com/s/files/1/2204/9357/files/sungenomics-logo-201912-5_400x200.png?v=1576881290"
+	}
+  },
+  "datePublished": "{{article.published_at}}",
+  "dateModified": "{{article.updated_at}}"
+}
+</script>
+<script>
+
+  if(jQuery('body').hasClass('template-article')){
+    var link = jQuery('.article .metalink').attr('data-link');
+    console.log(link);
+    
+    jQuery('body').on('click', function(){
+      window.open(link,'_blank');
+    })
+}
+
+  
+  
+</script>

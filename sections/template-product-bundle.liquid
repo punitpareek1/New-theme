@@ -1,0 +1,634 @@
+{% assign selectedVariant = product.selected_or_first_available_variant | default: product.variants.first %}
+{% capture productGoalDeliveryDate %}{{ settings.product_sale_goal_estimated_delivery_date | trim | ecape }}{% endcapture %}
+
+{% assign add_to_cart_button = 'products.product.add_to_cart' | t %}
+{% if product.handle == settings.featured-product-main and settings.product-sale-goal-use %}
+  {%- capture add_to_cart_button -%}
+    {%- if settings.product_sale_goal_button != blank -%}
+      {{ settings.product_sale_goal_button | escape }}
+    {%- else -%}
+      {{ "home.goal.pre_order" | t }}
+    {%- endif -%}
+  {%- endcapture -%}
+{% endif %}
+
+{% assign form_id = product.id %}
+
+<!-- Page Product Detail -->
+
+<script>
+	$(document).ready(function(){
+		
+		//Hide subscription window, unless subscription is enabled (only do this if there is a radio button to select the product type):
+		if ($("input[name='purchase_type']").is(":visible")){
+			$('.rc_popup').hide();
+			$("input[name='purchase_type']").change(function(){
+				var currentSetting = $("input[name='purchase_type']:checked").val();
+
+				$(this).attr('target','_self');
+				if (currentSetting == "autodeliver"){
+					$('.rc_popup').show();
+				}
+				else{
+					$('.rc_popup').hide();
+				}
+				
+			});
+		}
+	
+	});
+</script>
+
+
+<div class="module-wrapper page-product-detail product-{{ product.id }}">
+  <div class="module module-product">
+    <div class="contain-1200 hide-lessthan-800" style="position: relative;">
+    
+    </div>
+    <div itemscope itemtype="http://schema.org/Product">
+      
+      
+      <!-- Begin Head -->
+      
+      
+      <div class="product-header-wrapper">
+        
+        <div class="contain-1200 padding-mobile-1250">
+          <div class="product-title padding-r-100 padding-remove-800">
+            <div class="padding-t-50 hide-morethan-800"></div>
+            <div class="product-title-pre">{{ product.metafields.page.pre_title }}</div>
+            <h1 itemprop="name" style="padding-top: 0">{{ product.title }}</h1>
+          </div>
+          
+           <div class="product-details" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          
+			<meta itemprop="priceCurrency" content="USD" />
+			<meta itemprop="price" content="{{ product.price | money_without_currency  }}" />
+          	
+            <meta itemprop="priceValidUntil" content={{ "today" | date: '%s' | plus: 2592000 | date: "%Y-%m-%d" | json }} />
+          	 
+            <meta itemprop="sku" content="{{ product.variants.first.sku }}" />
+          	<meta itemprop="availability" content="InStock" />
+      		<meta itemprop="url" content="{{ product.url }}" />
+          	
+          <meta itemprop="description" content="{{ page_description | escape }}" />
+          
+          
+          
+          {% if settings.product-display-vendor %}
+            <div class="product-vendor" itemprop="brand">
+              {{ product.vendor }}
+            </div>
+          {% endif %}
+          
+          
+         
+          
+          
+        </div>
+          
+          
+          	<div itemprop="brand" itemtype="http://schema.org/Brand" itemscope=""/>
+          	<meta itemprop="name" content="Floré" /> 
+          	</div>
+          	<meta itemprop="sku" content="{{ product.variants.first.sku }}" />
+      		<meta itemprop="url" content="https://flore.com{{ product.url }}" />
+          	<meta itemprop="mpn" content="{{ product.variants.first.sku }}" />
+         	<meta itemprop="description" content="{{ page_description | escape }}" />
+            <meta itemprop="image" content=https:{{ product.featured_image.src | img_url: image_size }} />
+          
+          	<div itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+            <meta itemprop="ratingValue" content="5">
+            <meta itemprop="bestRating" content="5">
+            <meta itemprop="worstRating" content="1">
+            <meta itemprop="reviewCount" content="23">
+     		  </div>
+          <div itemprop="review" itemtype="http://schema.org/Review" itemscope>
+   <div itemprop="author" itemtype="http://schema.org/Person" itemscope>
+   <meta itemprop="name" content="Floré" /> 
+   </div>
+          
+          <div class="product-price product-price-main">
+            <span class="price">
+            
+              <span class="money" style="vertical-align: middle; font-weight: 500;">{{ selectedVariant.price | money }}</span>
+              {% unless product.variants.size == 1 and product.compare_at_price_min <= selectedVariant.price %}
+                <span class="product-price-compare {% if product.compare_at_price_min <= selectedVariant.price %}hidden{% endif %}" style="vertical-align: middle;">
+                  <span class="original money" style="color: #b1b1b1; margin-right: 8px;">
+                    {% if selectedVariant.compare_at_price > selectedVariant.price %}
+                      {{ selectedVariant.compare_at_price | money }}
+                    {% endif %}
+                  </span>
+                  <span class="saving">
+                    {% if selectedVariant.compare_at_price > selectedVariant.price %}
+                      <span> {{ "products.product.saving" | t }} </span>
+                      <span class="saving-result money">{{ selectedVariant.compare_at_price | minus: selectedVariant.price | money }}</span>
+                    {% endif %}
+                  </span>
+                </span>
+              {% endunless %}
+            </span>
+          </div>
+        </div>
+        
+        
+      <div class="product-header product-slider-bundle">
+            {% assign featured_image = selectedVariant.featured_image | default: product.featured_image %} 
+            
+        {% for image in product.images %}
+          
+            <div class="product-imagebox">
+                  <div class="image-box image-no-{{forloop.index}}"><img src="{{ image.src | product_img_url: '500x' }}" class="jj" loading="lazy"></div>
+                  			{% if forloop.index == 1 %}
+                      <div class="product-description-short">
+
+                             {{ product.metafields.global.short_description }}
+                      </div>
+                  {% else %}
+                      <div class="product-description-short">
+                                 {{ product.metafields.global.short_description-2 }}
+                       </div>
+                  {% endif %}
+            </div>
+          
+			{% endfor %}
+          
+        </div>
+          
+          <div class="addtocart-box">
+          
+        {% if product.images.size > 1 %}
+          <div class="product-slideshow-pagination product-thumbnails padding-b-25 ">
+            {% for image in product.images %}
+            <a
+                class="product-slideshow-pagination-item slider-trigger-{{ forloop.index }} {% if image == featured_image %}active{% endif %}"
+                style="background-image:url('{{ image | product_img_url: '50x50' }}')"
+                data-alt="{{ image.alt }}"
+                data-default-res="{{ image | product_img_url: '600x600' }}"
+                data-high-res="{{ image | product_img_url: '2048x2048' }}"
+                data-image-id="{{ image.id }}"
+                href="#"
+                tabindex="0"></a>
+            {% endfor %}
+          </div>
+        {% endif %}
+          
+
+          
+              <form
+          class="product-form"
+          id="product-form-{{ form_id }}"
+          action="/cart/add" data-productid="{{ product.id }}"
+          method="post"
+          data-product-form="{{ form_id }}"
+              data-productid="{{product.id}}"
+              style="margin-top: 0;">
+ <div class="htusb-placeholder-deadline"></div>
+           {% if product.available %} {% assign slider_check = 'slider' %} {% include 'subscription-product'  with slider_check %} {% endif %}
+          <div class="clearfix product-form-nav">
+            {% if product.variants.size > 1 %}
+              <div class="product-options">
+                {% include 'product-options-dropdown' %}
+
+                <div class="selector-wrapper no-js-required">
+                  <select
+                    class="product-select"
+                    name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                    id="product-select-{{ form_id }}">
+                    {% for variant in product.variants %}
+                      {%- capture option_content -%}
+                        {%- if variant.available -%}
+                          {{ variant.title }} - {{ variant.price | money }}
+                        {%- else -%}
+                          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                        {%- endif -%}
+                      {%- endcapture -%}
+                      <option
+                        {% if variant.id == selected_variant.id %}selected="selected"{% endif %}
+                        data-variant-id="{{ variant.id }}"
+                        {% if variant.available %}
+                          data-sku="{{ variant.sku }}"
+                          value="{{ variant.id }}"
+                        {% else %}
+                          disabled="disabled"
+                        {% endif %}>
+                        {{ option_content | strip_newlines }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            {% else %}
+              <input
+                class="product-select"
+                name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                value="{{ product.variants[0].id }}"
+                type="hidden"
+                data-variant-title="{{ product.variants[0].title }}" />
+            {% endif %}
+
+            
+            
+            <div id="infiniteoptions-container"></div>
+            <div id="uploadery-container"></div>
+            {% if product.handle != 'flore-calprotectin-stool-test' %}
+
+            <div class="number-input-wrapper product-quantity clearfix">
+              <div class="number-input-field">
+                <input type="number" name="quantity" id="quantity" value="1" aria-label="{{ "general.general.quantity" | t }}" />
+                <label class="number-input-label" for="quantity">{{ 'general.general.quantity' | t }}</label>
+              </div>
+              <div class="number-input-nav">
+                <div class="number-input-nav-item icon icon-plus"></div>
+                <div class="number-input-nav-item icon icon-minus"></div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          {% if product.handle != 'flore-calprotectin-stool-test' %}
+          <div class="add-to-cart">
+            {% if product.available %}
+              <div class="product-form-submit-wrap padding-b-20 padding-r-30">
+                {% if product.metafields.global.pricing_button_label %}
+                	<!-- <input class="button outline add-to-cart-button" type="submit" value="{{ product.metafields.global.pricing_button_label }}" /> -->
+                <button class="button outline add-to-cart-button" type="submit" style="display: inline-block; z-index: 2;">{{ product.metafields.global.pricing_button_label }}</button>
+                {% else %}
+                	<input class="button outline add-to-cart-button" type="submit" value="{{ add_to_cart_button | strip_newlines | strip_html | strip }}" />
+                {% endif %}
+                 <input value="{{ product.title }}" type="hidden" name="handle">
+                <div class="add-to-cart-loader"></div>
+              </div>
+              <div class="product-cart-message" data-product-message></div>
+            {% else %}
+              <input type="submit" class="button outline disabled" disabled="disabled" value="{{ 'products.product.sold_out' | t }}" />
+            {% endif %}
+            <div>
+            	<img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/credit-cards.png" style="margin-top: 12px;" loading="lazy" />
+            </div>
+          </div>
+          {% endif %}
+          
+			{{ product.metafields.global.pricing_subtext }}
+
+          
+          {% if settings.product_sale_goal_estimated_delivery_date != blank and showDeliveryEstimate %}
+            <span class="product-featured-goal-delivery-date">
+              {{ productGoalDeliveryDate }}
+            </span>
+          {% endif %}
+        </form>
+
+            
+ 
+          
+        </div>
+        </div>
+      </div>
+        
+    </div>
+      
+      
+<!-- Giving Back -->
+<style>
+  .product-slider-bundle{
+  font-size:30px;
+  }
+  .product-imagebox{
+  display:flex!important;
+  }
+  .product-description-short, .image-box, .product-slideshow-pagination, .product-form{
+  width:50%;
+  }
+  .addtocart-box{
+  display: flex;
+    padding-bottom: 60px;
+  }
+  .add-to-cart-button , .add-to-cart-button:hover {
+    border-radius: 0;
+    border: 0;
+    background: #FF5C35;
+    color: #fff;
+}
+  .slick-prev:before, .slick-next:before{
+      opacity: 1!important;
+    color: #c4c4c4!important;
+  }
+  
+  .htusb-ui-prod-boost-generic-under-form{ display:none;}
+	.section-giving-back{
+		background: #dce3ec;
+	}
+	.section-giving-back.product-8972019845{
+		background: #f3f5f9;
+	}
+	
+	.section-giving-back .column-left{
+		border-right: 1px solid #c7d1de;
+	}
+	.section-giving-back .column-main{
+		border-left: 1px solid #eef1f6;
+	}
+	#popup-leavingsite{
+		display: none; 
+		box-shadow: 5px 5px 20px rgba(0,0,0,.2); 
+		width: 400px; 
+		margin-left: -200px; 
+		height: 225px;
+	}
+	@media(max-width: 600px){
+		.section-giving-back .column-left,
+		.section-giving-back .column-main{
+			border: 0;
+		}
+		.section-giving-back .padding-l-50{
+			padding-left: 0;
+		}
+		.section-giving-back .logo-candcfoundation{
+			max-width: 120px;
+		}
+	}
+	@media(max-width: 800px){
+		#popup-leavingsite{
+			width: 90%;
+			margin: 0 auto;
+			left: 0;
+		}
+      .product-imagebox, .addtocart-box{
+  		display:block!important;
+  }
+      .product-description-short, .image-box, .product-slideshow-pagination, .product-form {
+    width: 100%;
+}
+	}
+  
+  .product-slider-bundle{
+  	opacity:0;
+  }
+</style>
+
+      
+{{ product.metafields.global.product_header_footer }}      
+      
+<section class="section-giving-back product-{{product.id}}">
+	<div class="contain-1200 padding-mobile-1250 padding-tb-50 column-fixed-left collapse-600">
+		<div class="column-left column-left-250 padding-b-40 hide-lessthan-600" style="width: 225px;">
+			<img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/logo-crohns-and-colitis-foundation.png?v=1606785326" class="logo-candcfoundation" />
+		</div>
+		<div class="column-main">
+			<div class="padding-l-50">
+				<h2 style="font-size: 1.4rem; padding-bottom: 5px;">Giving Back</h2>
+				<img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/logo-crohns-and-colitis-foundation.png?v=1606785326" class="logo-candcfoundation right hide-morethan-600" style="padding: 0 0 12px 28px;" />
+				<p>We are delighted to provide a portion of our proceeds to the Crohn's &amp; Colitis Foundation, a non-profit organization dedicated to finding cures for Crohn's &amp; 
+				Colitis and improving the quality of those living with these diseases. To learn more about the Crohn's &amp; Colitis Foundation, please visit their website:</p>
+				<br />
+				<a href="#" id="leavingsite-link" class="atmousepopup-link" data-target="popup-leavingsite" data-popup-width="200" style="display: inline-block; margin-top: 15px;"><i class="fa fa-share-square" aria-hidden="true"></i>&nbsp;Crohn's &amp; Colitis Foundation</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+// 	$(document).ready(function(){
+			
+// 		$('#leavingsite-link').click(function(e){
+// 			$('.popup-screen').show();
+//           	$('#popup-leavingsite').show();
+// 		});
+		
+// 		$('.popup-screen').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+		
+// 		$('.leavingsite-go-link').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+//       $('.popup-close').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+// 	});
+</script>
+<!--
+<div id="popup-leavingsite" class="popup" style="">
+	<div class="popup-header padding-b-15">
+		<a href="#" class="popup-close right"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a>
+		<h3>Leaving Sun Genomics</h3>
+	</div>
+	
+	You are about to leave the Sun Genomics website. 
+	<br /><br />
+	<a href="https://www.crohnscolitisfoundation.org/" class="leavingsite-go-link" target="_blank"><i class="fa fa-angle-right" aria-hidden="true"></i> Proceed to Crohn's &amp; Colitis Foundation</a><br />
+</div>
+-->
+<!-- End Giving Back -->
+      
+      
+      
+      
+      <!-- End Head -->
+      
+      
+      
+      
+      
+      <div style="text-align: left;">
+        
+        {% if product.description.size > 0 %}
+          <div class="product-details-full product-tabs" style="margin-top: 0;">
+            <div class="product-tabs-header">
+              <div class="product-tabs-header-item active" data-tab="product-tab-description">
+                {{ "products.product.description" | t }}
+              </div>
+            </div>
+            <div class="product-tabs-body">
+              <div class="product-tabs-body-item rte active" id="product-tab-description">
+                {{ product.description }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      <!--   <div style="padding-top: 8px; color: rgba(0,0,0,.3); font-size: 10px; text-align: center;">Product Id: {{ product.id }}</div> -->
+      </div>
+      
+     
+      
+    </div>
+  </div>
+
+<!-- Page Product Detail -->
+
+{%- capture cart_link -%}
+  <a href="/cart">{{ 'products.product.cart_link' | t }}</a>
+{%- endcapture -%}
+{%- capture continue_link -%}
+  <a href="/collections/all">{{ 'products.product.continue_link' | t }}</a>
+{%- endcapture -%}
+{%- capture checkout_link -%}
+  <a href="/checkout">{{ 'products.product.checkout_link' | t }}</a>
+{%- endcapture -%}
+
+<script type="application/json" data-product-settings-{{ form_id }}>
+  {
+    "addToCartText": {{ add_to_cart_button | strip_newlines | strip_html | strip | json }},
+    "disableAjaxAddProduct": true,
+    "enableHistory": true,
+    "imageZoom": {{ section.settings.enable_zoom }},
+    "linkedOptions": true,
+    "processingText": {{ 'products.product.processing' | t | json }},
+    "setQuantityText": {{ 'products.product.set_quantity' | t | json }},
+    "soldOutText": {{ 'products.product.sold_out' | t | json }},
+    "successMessage": {{ 'products.product.success_html' | t: cart_link: cart_link, continue_link: continue_link, checkout_link: checkout_link | json }},
+    "unavailableText": {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+<script type="application/json" data-product-json-{{ form_id }}>{{ product | json }}</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+     
+    $(document).ready(function(){
+      $('.product-slider-bundle').slick();
+      $('.product-slider-bundle').css('opacity','1');
+      
+    });
+    
+    $('.slider-trigger-1').on('click',function(){$('.slick-prev').trigger( "click" );});
+    $('.slider-trigger-2').on('click',function(){$('.slick-next').trigger( "click" );});
+    
+    
+  </script>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Product pages",
+  "class": "section-product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_zoom",
+      "label": "Enable image zoom",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_ajax",
+      "label": "Enable cart redirection",
+      "info": "Automatically sends users to the Cart page after adding a product.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-share-buttons",
+      "label": "Show share buttons",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Additional info links"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Additional Info Links](https:\/\/s3.amazonaws.com\/cdn.pixelunion.net\/startup\/additional-info-screenshot.png) appear wherever a customer can view product information. They’re perfect for linking to size charts, refund policies, or ordering details. Pick from six unique icons."
+    },
+    {
+      "type": "text",
+      "id": "additional_info_text_1",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "additional_info_url_1",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "additional_info_icon_1",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "info",
+          "label": "Information (i)"
+        },
+        {
+          "value": "question-mark",
+          "label": "Question mark"
+        },
+        {
+          "value": "ruler",
+          "label": "Ruler"
+        },
+        {
+          "value": "envelope",
+          "label": "Envelope"
+        },
+        {
+          "value": "pencil",
+          "label": "Pencil"
+        },
+        {
+          "value": "shirt",
+          "label": "Shirt"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "additional_info_text_2",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "additional_info_url_2",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "additional_info_icon_2",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "info",
+          "label": "Information (i)"
+        },
+        {
+          "value": "question-mark",
+          "label": "Question mark"
+        },
+        {
+          "value": "ruler",
+          "label": "Ruler"
+        },
+        {
+          "value": "envelope",
+          "label": "Envelope"
+        },
+        {
+          "value": "pencil",
+          "label": "Pencil"
+        },
+        {
+          "value": "shirt",
+          "label": "Shirt"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

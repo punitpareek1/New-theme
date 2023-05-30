@@ -1,0 +1,229 @@
+ 
+    .section-two-outer {
+        background: #f0f0f0;
+        padding: 60px 15px;
+    }
+
+    .section-two-inner {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 0;
+/*         background: #f4f4f4; */
+    }
+
+    h3.section-two-head {
+        font-size: 42px;
+        font-weight: 700;
+        text-align: center;
+        color: #FFF;
+        padding-bottom: 4rem;
+        font-family: sk-modernist, sans-serif;
+    }
+
+    .section-second-inner-row {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .section-second-inner-column-left {
+        width: 80%;
+    margin: 0 auto;
+    }
+
+    .section-second-inner-row-right {
+       width: 80%;
+    margin: 0 auto;
+    }
+
+    span.subheadline_accordion {
+        font-weight: 500;
+        padding-bottom: 8px;
+        font-size: 16px;
+        line-height: 1.4;
+        color: #ff5c35;
+    }
+
+    .second-section-parag {
+        max-width: 700px;
+        margin: auto;
+        padding-bottom: 15px;
+    }
+
+    .second-section-parag p {
+        padding: 0px;
+        text-align: center;
+    }
+
+    span.button-label {
+        display: block;
+        font-size: 17px !important;
+        font-weight: 500;
+    }
+
+    span.button-subtext {
+        display: block;
+        font-size: 14px;
+    }
+
+    /*  Accordion Css  */
+
+    .accordion {
+        padding: 15px 20px;
+        border-left: #FF5C35 10px solid;
+        background: #fff;
+        text-decoration: none;
+        position: relative;
+        border-radius: 10px;
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #404040;
+        font-family: 'sk-modernist', sans-serif;
+    }
+
+    .accordion-open span {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 30%;
+        padding: 10px;
+    }
+
+    .accordion-open span {
+        background: url("https://cdn.shopify.com/s/files/1/2204/9357/files/plus.png?v=1646394658") center center no-repeat;
+        transform: rotateZ(45deg);
+        transition: transform 330ms ease-in-out;
+    }
+
+    .accordion-close span {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 30%;
+        background: url("https://cdn.shopify.com/s/files/1/2204/9357/files/plus.png?v=1646394658") center center no-repeat;
+        padding: 10px;
+        transition: transform 330ms ease-in-out;
+    }
+
+    .content {
+        padding: 10px 15px 15px;
+    }
+
+    .one .container {
+        background: #fff;
+        border-left: #FF5C35 10px solid;
+        margin-top: -7px;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    p.accordion_text {
+        padding-top: 0px;
+        font-family: 'sk-modernist', sans-serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #5e5e5e;
+        font-weight: 400;
+    }
+
+    p.accordion_text {
+        padding-top: 0px;
+    }
+
+    .faqs_btn {
+       font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    background-color: #fff;
+    padding: 10px 60px;
+    border-radius: 40px;
+    font-family: 'sk-modernist',sans-serif;
+
+    }
+  
+  .first h4{
+  font-size: 22px;
+    line-height: 1.4;
+    color: #211f20;
+    font-family: "sk-modernist";
+    font-weight: 600;
+  }
+
+    .faqs_btn_conatiner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          margin-top: 2rem;
+    }
+  
+/*   ***************** */
+  
+  .faq-main-box {
+  background: #fff;
+   
+    border-radius: 40px;
+    padding: 17px;
+    margin-bottom: 15px;
+  }
+  .faqs-wrapper{
+/*   display: grid;
+grid-template-columns: repeat(2, 1fr); */
+grid-template-rows: 1fr;
+    gap: 30px;
+
+  }
+  .first{
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .first-p{
+  font-size:16px;
+  }
+  .img-3 {
+    height: 12px;
+    background: #ffffff;
+}
+
+.faq-main-box ul{
+ padding:15px;
+  list-style :disc;
+}
+  
+
+/*   *********************** */
+
+    @media(max-width:780px) {
+        .section-two-inner {
+            padding: 0px !important;
+        }
+
+        h2.section-two-head {
+            font-size: 32px;
+        }
+
+        .section-second-inner-row {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .section-second-inner-column-left,
+        .section-second-inner-row-right {
+            width: 100%;
+        }
+      
+      .section-two-outer{
+          background-size: auto;
+      }
+      .first h4{
+      font-size: 18px;
+      }
+      #section-faqs-template--14778915848253__1656308782fb8e439d {
+             padding: 60px 15px !important;
+        
+      }
+    }

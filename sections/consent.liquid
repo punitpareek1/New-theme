@@ -1,0 +1,58 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-clinical-lab{
+  	padding: 0;
+    background: #f8f8f8;
+    position: relative;
+    z-index: 1;
+    padding:75px 0;
+  }
+  .head02 {
+  	font-size: 1.43em;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-top: 0.83em;
+    color: #000000;
+  }
+
+  
+</style>
+
+<div class="home-clinical-lab">
+  <div class="clinical-lab-contain-1200 global-container-1200">
+     <h1 class="clinical-lab-txt-heading h1-small">{{section.settings.heading}}</h1>
+		 <div class="clinical-lab- main-row-microbiology">
+
+           <div class="text02">{{section.settings.paragraph}}</div>
+
+         </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Consent",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph"
+    }
+  ]
+}
+
+{% endschema %}
+
+

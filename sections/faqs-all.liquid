@@ -1,0 +1,195 @@
+<style>
+  
+  
+  .main-faqs-row {
+  display: flex;
+  flex-wrap: wrap;
+   column-gap: 60px;
+   padding-top: 100px;
+}
+  .Faqs-grp {
+  	display: flex;
+    column-gap: 15px;
+    padding: 0 75px 75px 0px;
+    }
+  .main-row{
+  display:flex;
+        padding-top: 75px;
+  }
+  
+  .faqs-main {
+  	padding: 75px 0px;
+    background-color:#F8F8F8;
+  }
+  .topheading {
+  font-size: 2.2rem;
+    line-height: 1.25;
+    color: #404040;
+        font-weight: 500;
+  }
+  
+  .qa-q {
+  padding: 21px 0 12px;
+    background: #ff5c35;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px 8px 0;
+    font-weight: 500;
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+    line-height: 0;
+    
+  }
+  .faqs-headings {
+  	    line-height: 1.25;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #404040;
+  }
+  .text02 {
+  	font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+      
+  }
+  
+  .text-link, a, a:hover {
+    color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+  .col-01, .col-02{
+  width:50%;
+  }
+  
+  @media(max-width:768px){
+  
+    .main-faqs-row {
+    	display:block!important;
+    }
+    .Faqs-grp1, .col-01, .col-02{
+    	width:100%!important;
+     
+    }
+    .Faqs-grp {
+    	width:100%!important;
+          padding: 0 0 75px;
+    }
+    .topheading  { font-size:1.8rem!important; }
+    .main-row{
+  display:block;
+        
+  }
+  
+  }
+  
+</style>
+
+
+<section class="faqs-main">
+<div class="global-container-1200 ">
+
+
+<h1 class="topheading"> {{ section.settings.Main_Heading}} </h1>
+
+<div class="main-row">
+  {% assign block01 = section.blocks | where: 'type', 'block-1' %}
+    	<div class="col-01">
+		{% for block in block01 %}
+        <div class="Faqs-grp faqs-individual-{{forloop.index}}">
+      	<div class="column-01">
+        	<div class="qa-q">Q</div>
+        </div>
+         <div class="column-main">
+        <h3 class="faqs-headings">{{ block.settings.faqs_heading }}</h3>
+         <div class="text02">{{ block.settings.paragraph }}</div>
+         </div>
+      
+     	</div>
+
+		{% endfor %}
+
+		</div>
+  
+  {% assign block02 = section.blocks | where: 'type', 'block-2' %}
+    	<div class="col-02">
+		{% for block in block02 %}
+          <div class="Faqs-grp faqs-individual-{{forloop.index}}">
+      	<div class="column-01">
+        	<div class="qa-q">Q</div>
+        </div>
+         <div class="column-main">
+        <h3 class="faqs-headings">{{ block.settings.faqs_heading }}</h3>
+         <div class="text02">{{ block.settings.paragraph }}</div>
+         </div>
+      
+     </div>
+
+        {% endfor %}
+
+	</div>
+  
+</div>
+
+</div>
+</section>
+
+
+{% schema %}
+{
+"name": "Faqs",
+"settings": [
+{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      }
+      ],
+  	"name": "Multiple Blocks",
+    "blocks":[
+      {
+        "type": "block-1",
+        "name": "Block 1",
+        "settings": [
+        {
+          "type": "text",
+          "id": "faqs_heading",
+          "label": "Faqs Heading"
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }
+      ]
+      },
+      {
+        "type": "block-2",
+        "name": "Block 2",
+        "settings": [
+        {
+          "type": "text",
+          "id": "faqs_heading",
+          "label": "Faqs Heading"
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }
+      ]
+      }
+    ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,15 @@
+<div class="module-wrapper">
+  <div class="module module-default-page">
+    <div class="module-header page-header">
+      <div class="module-title page-title">
+        {% comment %}<h1>{{ page.title }}</h1>{% endcomment %}
+      </div>
+    </div>
+    {% unless page.content == blank %}
+      <div class="module-body page-body rte">
+        {{ page.content }} 
+<div class="ewd-ufaq-faqs">{{shop.metafields.EWD_UFAQ.FAQ_Output_0}}{{shop.metafields.EWD_UFAQ.FAQ_Output_1}}{{shop.metafields.EWD_UFAQ.FAQ_Output_2}}{{shop.metafields.EWD_UFAQ.FAQ_Output_3}}{{shop.metafields.EWD_UFAQ.FAQ_Output_4}}</div>
+      </div>
+    {% endunless %}
+  </div>
+</div>

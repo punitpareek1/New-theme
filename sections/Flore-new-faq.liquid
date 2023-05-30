@@ -1,0 +1,35 @@
+""
+
+style..............
+.first .fa-chevron-right{
+display:block;
+}
+.first.faq-active .fa-chevron-right{
+display:none;
+}
+.first .fa-chevron-down{
+display:none;
+}
+.first.faq-active .fa-chevron-down{
+display:block;
+}
+style..............
+
+<div class="first">Toggle first <span class="faq-icon"><i class="fa fa-chevron-right" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true"></i></span></div>
+<p class="first-p">First hidden paragraph.</p>
+<div class="first">Toggle second <span class="faq-icon"><i class="fa fa-chevron-right" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true"></i></span></div>
+<p class="first-p">Second hidden paragraph.</p>
+
+
+
+Use current object with next()
+<script>
+$( document ).ready(function() {
+$('.first-p').hide();
+$( "div.first").click(function() {
+$(this).toggleClass('faq-active');
+$(this).next().slideToggle(1000);
+});
+});
+</script>
+"""""

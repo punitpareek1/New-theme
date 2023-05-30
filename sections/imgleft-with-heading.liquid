@@ -1,0 +1,60 @@
+<section class="subscription-plan-details">
+<div class="global-container-1200 ">
+
+  	<div class="container">
+      <div class="kids-row">
+        <div class="kids-col1"><img src="{{ section.settings.left_image}}" alt="{{ section.settings.alt_image}}" loading="lazy"></div>
+        <div class="kids-col1">
+          <h2 class="main-heading">{{ section.settings.Main_Heading}}</h2>
+        </div>
+      
+      </div>
+		
+	</div>
+	
+  
+  
+</div>
+</section>
+
+
+
+
+
+
+
+{% schema %}
+{
+"name": "Kids width Heading",
+"settings": [
+	{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      },
+     {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Kid Image"
+     },
+	{
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+     },
+     {
+      "type": "text",
+      "id": "alt_image",
+      "label": "Image Alt"
+     }
+   ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

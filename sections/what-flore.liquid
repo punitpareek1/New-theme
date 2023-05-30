@@ -1,0 +1,117 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-what-flore{
+  	padding: 0;
+    background: #f8f8f8;
+    position: relative;
+    z-index: 1;
+  }
+  .what-flore-contain-1200{
+    display: flex;
+    width:100%;
+    padding-top:75px;
+    padding-bottom:75px;
+  }
+  .what-flore-col-2{
+     width: 40%;
+     box-sizing: border-box;
+    float: left;
+  }
+  .what-flore-col-02{width:10%;}
+  
+  .what-flore-col-1{
+    position: relative;
+    width: 50%;
+    max-width: 800px;
+    box-sizing: border-box;
+    
+}
+  .what-flore-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  
+  @media(max-width:768px)
+  {
+  	
+    .what-flore-contain-1200 {
+    	display:block!important;
+    }
+    .what-flore-col-1 {
+    	width:100%!important;
+          
+    }
+    .what-flore-col-2 {
+    width:100%!important;
+      float:none!important;
+          padding-top: 30px;
+    }
+    	
+  }
+ 
+  
+</style>
+
+<div class="home-what-flore">
+  <div class="what-flore-contain-1200 global-container-1200">
+    	
+    	 <div class="what-flore-col-2">
+            	<img src="{{section.settings.image | img_url: 'master'}}"
+                    alt="{{section.settings.image.alt}}"> 
+          </div>
+    
+    	<div class="what-flore-col-02"></div>
+		 <div class="what-flore-col-1">
+           
+           	<h3 class="what-flore-txt-heading headingH3">
+                      {{section.settings.heading}}
+            </h3>
+           
+           <div class="text02">{{section.settings.paragraph}}</div>
+           
+          </div>
+
+    	 
+         
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "What Flore Section",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+    
+   
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "What Flore Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,183 @@
+<style>
+  .feelbest-wrapper{
+  padding: 70px 0;
+    background: #fff;
+     background-size: 100% 100%;
+     background-image : url({{section.settings.background_image | img_url: 'master'}});
+  }
+  
+  .feelbestOuter{
+ 
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+  .headlineAreafeelbest{
+  text-align: center;
+  
+  }
+.headlineAreafeelbest h2{
+ font-family: sk-modernist,sans-serif;
+  color: #FF5C35;
+  font-size: 45px;
+    font-weight: 700;
+  }
+  .headlineAreafeelbest p{
+   font-size: 20px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .rowfeelBest{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+  .img-wrapper {
+    height: 115px;
+}
+  .feelbestsection img {
+    width: 30%;
+    height: 100%;
+    object-fit: contain;
+}
+  
+  .feelbestsection{
+    text-align: center;
+    max-width: 260px;
+  }
+ .feelbestsection img{
+      width: 30%;
+      
+}
+
+  .headlineAreafeelbest h2 {
+    font-family: sk-modernist,sans-serif;
+    color: #FFffff;
+    font-size: 45px;
+    font-weight: 700;
+} 
+  
+ .feelbestsection p {
+    font-family: "sk-modernist";
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 22px;
+}
+ 
+@media only screen and (max-width: 768px){
+  
+  .rowfeelBest{
+    grid-template-columns: unset;
+    justify-content: center;
+  padding: 20px 0;
+  }
+
+  .feelbest-wrapper{
+     padding: 70px 0;
+     background: #fff;
+     background-size: 100% 100%;
+     background-image : url({{section.settings.background_image_mobile | img_url: 'master'}});
+  }
+  
+ .rowfeelBest{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+
+  
+  .headlineAreafeelbest h2{
+  font-size: 30px;
+  }
+  .headlineAreafeelbest p{
+   font-size: 16px;
+  }
+  
+/*    .feelbest-wrapper{
+    padding: 50px 0 0 0;
+    background: #fff;
+  } */
+  
+}
+</style>
+
+<div class="feelbest-wrapper ttt">
+<div class="feelbestOuter">
+  <div class="headlineAreafeelbest feelbest">
+    {% if section.settings.headline!= blank  %}
+    <h2>{{ section.settings.headline}}</h2>{% endif %}
+    <p>{{ section.settings.subhead }}</p>
+  </div>	
+  <div class="rowfeelBest">
+    {% for block in section.blocks %}
+    	<div class="feelbestsection">
+          <div class="img-wrapper"><img src="{{ block.settings.detailsImage | img_url: 'master' }}" alt="{{  block.settings.detailsImage.alt }}"></div>
+          <p>{{ block.settings.detailsText }}</p>
+    	</div>  
+    {% endfor %}
+  </div>
+  
+</div>
+</div>  
+
+
+{% schema %}
+{
+  "name": "Clinical Feel Best",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subhead",
+	  "label": "subhead"
+	
+    },
+     {
+       "type": "image_picker",
+       "id": "background_image",
+       "label": "Background Image"
+       },
+		{
+       "type": "image_picker",
+       "id": "background_image_mobile",
+       "label": "Background Image Mobile"
+       }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "feelbest Details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "detailsImage",
+	  	  "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "detailsText",
+	  	  "label": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Clinical Feel Best",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,197 @@
+<style>
+  .clinical_faq{
+    background-image: url({{section.settings.background_image | img_url: 'master'}});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+  }
+.faqs-wrapper-row{
+  max-width: 800px;
+    margin: 0 auto;
+}
+  .faq-main-box {
+  background: #fff;
+    border-radius: 30px;
+    padding: 17px;
+  }
+  .faqs-wrapper{
+  display: grid;
+grid-template-columns: repeat(1, 1fr);
+grid-template-rows: 1fr;
+    gap: 30px;
+
+  }
+  .first{
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .faqs-heading h4{
+    font-size: 45px;
+    font-weight: 500;
+    text-align: center;
+    padding-bottom: 20px;
+    color: #FFF;
+  }
+  .faq-main-box .first h4{
+    font-weight: 700;
+  }
+  .clinical_faq{
+    padding-top: {{section.settings.padding_top}}px;
+    padding-bottom: {{section.settings.padding_bottom}}px;
+  }
+
+  @media(max-width: 768px){
+      .clinical_faq{
+    background-image: url({{section.settings.background_image_mobile | img_url: 'master'}});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+  }
+    .clinical_faq{
+    padding-top: {{section.settings.padding_top_mobile}}px;
+    padding-bottom: {{section.settings.padding_bottom_mobile}}px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+    .faqs-heading h4{
+    font-size: 32px;
+    }
+  }
+</style>
+
+
+<div class="faqs-google clinical_faq" >
+	<div class="faqs-wrapper-row">
+    <div class="faqs-heading"><h4>{{section.settings.heading}}</h4></div>
+	<div class="faqs-wrapper">
+    {% for block in section.blocks %}
+     <div class="faq-main-box">
+       <div class="first"><h4>{{block.settings.subheadline_accordion}}</h4> <span class="faq-icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+     
+      <div class="first-p">{{block.settings.subheadline_data_accordion}}</div>
+  	 </div>
+
+    {% endfor %}
+  </div>
+  </div>
+  </div>
+
+
+{% schema %}
+  {
+    "name": "clinical Faqs",
+    "settings": [
+		{
+       "type": "text",
+       "id": "heading",
+        "label": "heading"
+       },
+       {
+       "type": "image_picker",
+       "id": "background_image",
+       "label": "Background"
+       },
+       {
+       "type": "image_picker",
+       "id": "background_image_mobile",
+       "label": "Background Mobile"
+       },
+       {
+       "type": "url",
+       "id": "url_button",
+       "label": "url"
+       },
+       {
+       "type": "text",
+       "id": "button_name",
+       "label": "text"
+       },
+      {
+  "type": "range",
+  "id": "padding_top",
+  "min": 1,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Top",
+  "default": 16
+},
+      {
+  "type": "range",
+  "id": "padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Bottom",
+  "default": 16
+},
+{
+  "type": "range",
+  "id": "padding_top_mobile",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Top Mobile",
+  "default": 16
+},{
+  "type": "range",
+  "id": "padding_bottom_mobile",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Bottom Mobile",
+  "default": 16
+}
+	],
+    "blocks": [
+    {
+      "type": "block-1",
+      "name": "FAQS DATA",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subheadline_data_accordion",
+	  	  "label": "Sub Heading"
+        }
+      ]
+    }
+  ],
+   "presets": [
+    {
+      "category": "Advanced content",
+      "name": "clinical Faqs",
+      "settings": {
+}
+    }
+  ]
+  }
+{% endschema %}
+
+
+
+ <script>
+  $( document ).ready(function() {
+      $('.first-p').hide();
+          
+     $( document ).on( 'click', '.first', function () { 
+        $('.first').removeClass('active-parent'); 
+        $(this).addClass('active-parent');
+    });
+    $( document ).on( 'click', 'div.first', function () { 
+        $('div.first').removeClass('faq-active'); 
+        $(this).addClass('faq-active');
+      $(this).next().slideToggle(300);
+      
+    });
+    
+});
+</script> 

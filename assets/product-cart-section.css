@@ -1,0 +1,30 @@
+.product-description-short h4{
+	margin-top:15px;
+}
+
+.add-to-cart-button .button-label{
+	text-align:center!important;
+}
+
+.add-to-cart-button .button-subtext{
+	display:none!important;
+}
+
+.product-big-image img {
+height: 100%;
+  object-fit: contain;
+}
+
+
+@media(max-width:768px){
+
+  .product-big-image img {
+height: 300px;
+  object-fit: contain;
+    width: 80%;
+}
+  .page-product-detail .product-header .add-to-cart-button {
+    padding: 12px 25px;
+}
+  
+}

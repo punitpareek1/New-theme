@@ -1,0 +1,196 @@
+<style>
+
+  .Your-specific-needs{
+  background: #f9feff;
+  }
+  .right-img2{
+  	width:59%;
+  }
+  .your-need-all-content {
+  	width: 41.65%;
+    box-sizing: border-box;
+  }
+  .right-img2 img{ display:None;}
+  .need-parent {
+  padding:0px 0px;
+  }
+  .your-need-all-content {
+  padding:70px 0;
+  }
+  .order-benefits-label-1{
+  text-align:right;
+  }
+
+  
+    .list-fa.list-check-circle li:before {
+    content: '\f058';
+    margin-right: 10px;
+}
+.list-fa li:before {
+  font-family: FontAwesome;
+    color: #FF5C35;
+    margin: 0;
+}
+  .need-parent{
+  	background-image:url('https://cdn.shopify.com/s/files/1/2204/9357/files/home-unique-background.jpg?v=1622462612');
+        background-position: 64% 99%;
+    background-repeat: no-repeat;
+  }
+
+  .order-benefits-label-1 {
+    bottom: 490px;
+    right: 420px;
+}
+  .order-benefits-label-1, .order-benefits-label-1-mobile, .order-benefits-label-2, .order-benefits-label-2-mobile, .order-benefits-label-3 {
+    height: 70px;
+    width: 240px;
+    position: absolute;
+}
+  .font-handwritten {
+    font-size: 14px;
+    line-height: 20px;
+    font-style: italic;
+}
+  .order-benefits-label-2 {
+    bottom: 520px;
+    right: 40px;
+}
+  .order-benefits-label-3 {
+    bottom: 320px;
+    right: 20px;
+}
+  .font-handwritten, .font-handwritten h5 {
+    font-family: Caveat,cursive;
+}
+  .font-handwritten h5 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    font-style: italic;
+}
+  .image-show-mobile {
+  	display:None;
+  }
+  @media(max-width:768px){
+    .your-need-all-content {
+    	width: 100%!important;
+    
+    }
+    .need-parent{
+    background-image:None;
+      padding:50px 0!important;
+    }
+    .image-show-mobile{
+    	display:block;
+    }
+    .your-need-all-content {
+  padding:0px 0;
+  }
+  }
+  
+  
+</style>
+
+
+<section class="Your-specific-needs">
+	<div class="" style="position: relative;">
+		<div class="global-container-1200 " style="position: relative; z-index: 2;">
+		<div class="main-row need-parent">
+    		<div class="your-need-all-content ">
+					<div class="preheading">{{ section.settings.text}}</div>
+					<h2 class="h1-small">{{ section.settings.text2}}</h2>
+                  	<div class="text02"> {{ section.settings.paragraph}} </div>					
+					
+				</div>
+           <div class="right-img2"><img data-src="{{section.settings.image |img_url:'master'}}" src="{{section.settings.image |img_url:'20x'}}" alt="Formula lazyload"></div>
+          
+          <div class="order-benefits-pills hide-lessthan-1000" style="position: relative;">
+			<div class="order-benefits-label-1 font-handwritten text-right text-left-lessthan-1000">
+				<img src="https://cdn2.shopify.com/s/files/1/2204/9357/t/10/assets/arrow-1.svg" alt="arrow" style="position: absolute; right: -60px; top: 22px;">
+				<h5>Bifidobacterium Lactis</h5>
+				(Gastrointestinal benefits)
+			</div>
+			<div class="order-benefits-label-2 font-handwritten">
+				<img src="https://cdn2.shopify.com/s/files/1/2204/9357/t/10/assets/arrow-2.svg" alt="marking arrow" style="position: absolute; left:  -56px; top: 22px;">
+				<h5>Lactobacillus Rhamnosus</h5>
+				(Immune system support)
+			</div>
+			<div class="order-benefits-label-3 font-handwritten">
+				<img src="https://cdn2.shopify.com/s/files/1/2204/9357/t/10/assets/arrow-3.svg" alt="arrows" style="position: absolute; left:  -40px; top: -64px;">
+				<h5>Lactobacillus Acidophilus</h5>
+				(Improved dairy digestion)
+			</div>
+					</div>
+		</div>
+      </div>
+	</div>
+</section>
+
+
+
+
+
+
+
+{% schema %}
+{
+"name": "Your Specific Needs",
+"settings": [
+{
+      "type": "text",
+      "id": "text",
+      "label": "Preheading"
+      },
+      {
+      "type": "text",
+      "id": "text2",
+      "label": "Main Heading"
+      },
+
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default":"Get Started"
+      },
+      {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+
+      },
+      {
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph"
+
+      },
+      {
+      "type": "richtext",
+      "id": "richtext1",
+      "label": "Richtext"
+
+      }
+		
+      ],
+      "presets": [
+      {
+      "category": "Advanced content",
+      "name": "Your Specific Needs",
+      "settings": {}
+      }
+     ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

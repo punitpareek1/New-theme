@@ -1,0 +1,263 @@
+<style>
+  .research-publications {
+  background-color:#f1f1f1;
+    padding-top:75px;
+    padding-bottom: 45px;
+  }
+  .topheading{
+    padding-bottom: 20px;
+    max-width: 500px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: #000;
+    
+  }
+  .heading-papers a{
+  	    line-height: 1.25;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #000;
+   
+  }
+	
+  .heading-papers a:hover{
+  	     color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .research-publications-group {
+  	    margin-top: 30px;
+  }
+  	a, a:hover {
+    color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+	}
+  a:focus, a:hover {
+    color: #aeaeae;
+	}
+
+  .pdf-link-grp a{
+    font-size: 18px;
+  }
+  
+  .fa {
+  margin-right:5px;
+  }
+  .text02 p {
+     padding: 10px 0 0 0 !important;
+        font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+  }
+  
+
+  .date_publication{
+padding: 0;
+    font-size: 26px;
+    color: #000;
+}
+}
+
+.text02 p{
+padding-bottom: 0px;
+} 
+.date_publication p{
+padding-top: 0px;
+}
+/*   .panel{
+    display:none;
+  } */
+  
+  @media(max-width:520px){
+   .research-publications {
+    padding-top:40px;
+    padding-bottom: 20px;
+  }
+  
+  }
+.btn_group{
+display: flex;
+margin-bottom: 20px;
+gap: 40px;
+}
+
+.flip{
+  color: #f15d3c;
+  font-size: 18px;
+  cursor: pointer;
+}
+.flip .flipIcon{
+    background: #f15d3c;
+    padding: 0px 9px;
+    color: #FFF;
+  border-radius: 2px;
+}
+.tag_wapper span{
+    background: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+  .tag_wapper{
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+.read_more_res{
+  
+}
+</style>
+
+<section class="research-publications">
+<div class="global-container-1200 ">
+
+
+<h1 class="topheading"> {{ section.settings.Main_Heading}} </h1>
+
+<div class="main-research-publications-row"> 
+    {% assign block01 = section.blocks | where: 'type', 'order' %}
+{% for block in block01 %}
+	<div class="research-publications-group">  
+      <div class="btn_group">
+<div class="pdf-link-grp"><a href="{{ block.settings.link_pdf }}" target="_blank" rel="noreferrer" class="link-standard"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>{{ block.settings.link_text }}</a></div>
+<div class="flip" data-tab-id={{ block.id }}> </div>
+</div>
+           
+      <h3 class="heading-papers"><a href="{{ block.settings.link_pdf }}" target="_blank" rel="noreferrer">{{ block.settings.scientific_papers}}</a></h3>
+      <div class="text02 panel" data-tab-id={{ block.id }}> {{ block.settings.paragraph }} <a class="read_more_res" href="{{block.settings.link_pdf   }}" rel="noreferrer" target="_blank">View Publication</a> </div>  
+      <div class="date_publication"> {{ block.settings.paragraph2 }} </div>
+       {% assign tagsri = block.settings.title2 | split: ", " %}
+    <div class="tag_wapper"> 
+{% for tagblok in tagsri %}
+<span>  {{ tagblok }} </span>
+
+{% endfor %}
+</div>
+     </div>
+
+{% endfor %}
+
+
+  </div>
+</div>
+</section>
+
+
+ <script>
+//   $( document ).ready(function() {
+//       $('.panel').hide();
+
+//     $( document ).on( 'click', 'div.flip', function () { 
+//         $('div.flip').removeClass('faq-active'); 
+//         $(this).addClass('faq-active');
+//       $(this).closest('.panel').show().slideToggle(300);
+      
+//     });
+    
+// });
+
+   
+// let btnshow = document.querySelectorAll('.research-publications-group');
+
+//     btnshow.forEach( item =>{
+      
+//       item.addEventListener('click', (event) => {
+//       console.log(item);
+//   let htmlShow = event.target.closest('.flip').getAttribute("data-tab-id");
+//   let htmlShowBlock = event.target.closest('.flip');
+//   let mypanel = document.querySelector(`.panel[data-tab-id="${htmlShow}"]`);
+//   let flipcont = item.querySelector('.flipCont');  
+//   let flipicon = item.querySelector('.flipIcon');  
+  
+
+        
+//   if (mypanel.style.display == 'none') {
+//     mypanel.style.display = "block";
+//     flipcont.innerHTML = "Hide Abstract";
+//     flipicon.innerHTML = "-";
+   
+//   } else {
+//     mypanel.style.display = "none";
+//     flipcont.innerHTML = "Show Abstract";
+//     flipicon.innerHTML = "+";
+//   }
+//   })
+// });
+   
+
+
+</script> 
+
+{% schema %}
+{
+"name": "Scientific Section 1",
+"settings": [
+{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      }
+      ],
+  
+  	  "blocks":[
+	{
+	"type":"order",
+	"name":"Research publications",
+	"settings": [
+        {
+          "type": "text",
+          "id": "scientific_papers",
+          "label": "Scientific Papers Heading"
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        },    
+		{
+          "type": "richtext",
+          "id": "paragraph2",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+		{
+          "type": "url",
+          "id": "link_pdf",
+          "label": "Pdf link or site url"
+        },
+       {
+           "type": "text",
+           "id": "title2",
+           "label": "Title"
+         }	
+      ]
+      },
+     {
+       "type": "block-2", 
+       "name": "Tag",
+       "settings": [
+         {
+           "type": "text",
+           "id": "title",
+           "label": "Title"
+         }
+       ]
+     }
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

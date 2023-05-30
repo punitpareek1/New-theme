@@ -1,0 +1,176 @@
+<style>
+.customize_your_wappper {
+    padding: 140px 0;
+    background-image: url({{section.settings.bg-image | img_url: 'master'}});
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: center;
+}
+  .customize_your_inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+}
+  .customize_your_wappper h3 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: #fff;
+}
+    .customize_your_wappper h2 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: {{section.settings.color}};
+}
+    .customize_your_wappper h4 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: {{section.settings.color}};
+}
+    .customize_your_wappper h5 {
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: {{section.settings.color}};
+}
+    .customize_your_wappper h6 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: {{section.settings.color}};
+}
+
+
+  .customize_your_inner a{
+      background: #F0F0F0;
+    border-radius: 35px;
+    padding: 15px 34px;
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+    @media(max-width: 768px){
+      .customize_your_wappper {
+    padding: 100px 0;
+    }
+   .customize_your_inner {
+    padding: 0 20px;
+   }
+      .customize_your_inner a {
+    font-size: 16px;
+      }
+      .customize_your_wappper h3 {
+    font-size: 40px;
+      } .customize_your_wappper h2 {
+    font-size: 40px;
+      }
+      } .customize_your_wappper h4 {
+    font-size: 40px;
+      }
+      } .customize_your_wappper h5 {
+    font-size: 30px;
+      }
+      } .customize_your_wappper h6 {
+    font-size: 20px;
+      }
+  }
+</style>
+
+<div class="customize_your_wappper">
+  <div class="customize_your_inner">
+{% if  section.settings.heading != blank %}
+  <{{ section.settings.heading-type }}>{{ section.settings.heading }}</{{ section.settings.heading-type }}>
+  {% endif %}
+  {% if  section.settings.heading != blank %}
+ <a href="{{ section.settings.url }}">{{ section.settings.btn-text }}</a>
+      {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Customize your probitics",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "BG Image"
+    },
+
+    {
+      "type": "text",
+      "id": "heading",
+       "label": "Heading"
+    },
+{
+      "type": "select",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "label": "H3",
+          "value": "h3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "id": "heading-type",
+      "default": "h2",
+      "label": "Heading Type",
+      "info": "Select Heading"
+    },
+          {
+      "type": "color",
+      "id": "color",
+      "label": "Color",
+       "default": "#000"     
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+       "label": "Text Button"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    }
+  
+]
+    ,
+  "presets": [
+    {
+      "name": "Customize your probitics"
+    }
+  ]
+  }
+{% endschema %}

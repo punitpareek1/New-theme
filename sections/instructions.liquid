@@ -1,0 +1,199 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+>
+</script>
+<style>
+  .home-instructions{
+  	padding: 0;
+    background: #f8f9fb;
+    position: relative;
+    z-index: 1;
+  }
+  .home-instructions .instructions-col-1 h2{
+  	font-size: 2.2rem;
+        line-height: 1.25;
+        color: #404040;
+  }
+  .instructions-contain-1200{
+    display: block;
+    width:100%;
+    padding-top:75px;
+    padding-bottom:75px;
+  }
+  .instructions-txt-heading2{
+  	   font-size: 1.2rem;
+    padding-bottom: 20px;
+  }
+  .instructions-col-2{margin-bottom:50px;}
+  .instructions-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  .description a strong{
+  color:#ff5c35;
+  }
+  b, strong, th{
+  font-weight:700;
+    color:#404040;
+  }
+  .videos-row{
+  display: flex;
+    width: 100%;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  .vidoes-columns{
+  width:49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .instructions-txt-heading2{
+  margin:0;
+    padding:0;
+  }
+  .bottom-text em{
+  color:#404040!important;
+  }
+  .bottom-text a{
+  color:#FF5C35!important;
+  }
+
+  @media(max-width:768px)
+  {
+  	
+    .instructions-contain-1200 {
+      display:block!important;
+      padding: 10px 20px;
+    }
+    .instructions-col-1 {
+    	width:100%!important;  
+    }
+    .instructions-col-2 {
+    width:100%!important;
+    float:none!important;
+    padding-top: 0px;
+    margin-bottom: 20px;
+    }
+    .videos-row{
+    display:block;
+    }
+    	
+  }
+ 
+  
+</style>
+
+
+<div class="home-instructions">
+  <div class="instructions-contain-1200 global-container-1200">
+     
+		 <div class="instructions-col-1">
+           {% if section.settings.heading != blank %}
+           	<h2 class="instructions-txt-heading1 headingH2">
+                      {{section.settings.heading}}
+            </h2>
+           {% endif %}
+          </div>
+		<div class="videos-row">
+    	{% for block in section.blocks %}
+            <div class="instructions-col-2 vidoes-columns">
+              <div><h3 class="instructions-txt-heading2 headingH2">
+                        {{block.settings.videoTitle}}
+                </h3>
+                {% if block.settings.sub_paragraph %}
+                <div class="description-videos">{{ block.settings.sub_paragraph }}</div>
+                {% endif %}
+              </div>
+                  {% if block.settings.video != blank %}
+                      <div>
+
+                          {% if block.settings.video == blank %}
+                              <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% else %}
+                              {% if block.settings.video.type == "youtube" %}
+                                <iframe src="//www.youtube.com/embed/{{ block.settings.video.id }}?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                              {% endif %}
+                              {% if block.settings.video.type == "vimeo" %}
+                                <iframe src="//player.vimeo.com/video/{{ block.settings.video.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                              {% endif %}
+                            {% endif %}
+
+                      </div>
+                  {% endif %}  
+            	</div>
+    		
+    	{% endfor %}
+          </div>
+<!--     <div><h4 style="font-size: 30px;
+    font-weight: 700;
+    color: #404040;
+    margin-bottom: 30px;">Collection Instructions Booklet</h4></div> -->
+<!--     <div id="myPanzoom" class="panzoom" >
+    	<img style="margin-bottom: 20px;" src="https://cdn.shopify.com/s/files/1/2204/9357/files/0001.jpg?v=1639630733" class="panzoom__content" data-fancybox>
+      <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/0002.jpg?v=1639630733" class="panzoom__content " data-fancybox>
+    </div> -->
+    <div class="bottom-text-instration"><h4 class="bottom-text">{{section.settings.bottom_text}}</h4></div>
+	</div>
+    
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Instructions",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "bottom_text",
+      "label": "Bottom text"
+    }
+	
+  ],
+	"blocks":[
+	{
+	"type":"order",
+	"name":"Instructions Video",
+	"settings": [
+        {
+          "type": "text",
+          "id": "videoTitle",
+          "label": "Video Title"
+    	},
+		{
+          "type": "richtext",
+          "id": "sub_paragraph",
+          "label": "Description"
+    	},
+    	{
+          "type": "video_url",
+          "id": "video",
+          "label": "YouTube or Vimeo link",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    	} 
+		
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Instructions",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

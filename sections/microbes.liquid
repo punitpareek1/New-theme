@@ -1,0 +1,101 @@
+<style>
+  .mood_microbiome {
+        background: #ffffff;
+}
+  .mood_row{
+  	width: 100%;
+        margin: 0 auto;
+    padding-top: 40px;
+            display: table;
+  }
+  .mood_row h2{
+      font-weight: 600;
+      padding-bottom: 20px;
+      color: #000;
+      font-size: 36px;
+      line-height: 46px;
+  }
+  .semibold p{
+      color: #000;
+      font-size: 20px;
+      padding-top: 25px;
+      line-height: 36px;
+  }
+  .light-gray-box{
+  	background: #ebeef4;
+        margin: 10px 0 30px;
+        border: 1px solid #aeaeae;
+        border-radius: 10px;
+        font-style: italic;
+        color: #000;
+    	padding:10px;
+        line-height: 36px;
+  }
+  .text-centered-image{
+  	width: 700px;
+        display: table-cell;
+        vertical-align: top;
+  	}
+  @media(max-width:768px){
+    .mood_row{display:block;}
+  }
+</style>
+
+<div class="mood_microbiome">
+      <div class="mood_row global-container-1200">
+          <div class="column-main">
+            
+              <div style="padding-top: 60px;">
+              		<h2 class="semibold">{{section.settings.heading}}</h2>
+                <div>{{section.settings.paragraph}}</div>
+              		<p class="light-gray-box " style="font-size: 12px;">{{section.settings.boxText}}</p>
+              </div>
+            
+          </div>
+        
+      	  <div class="text-centered-image">
+            <img src="{{section.settings.image | img_url: 'master'}}" alt="Improve-your-mood-with-precision-probiotics">
+        	</div>
+      </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Microbes Section",
+    "settings": [
+		{
+			"type" : "text",
+			"id" : "heading",
+			"label" : "Heading"
+		},
+		{
+			"type" : "richtext",
+			"id" : "paragraph",
+			"label" : "Paragraph"
+		},
+		{
+			"type" : "text",
+			"id" : "boxText",
+			"label" : "Box Text"
+		},
+		{
+			"type" : "image_picker",
+			"id" : "image",
+			"label" : "Right Image"
+		}
+	],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Microbes",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

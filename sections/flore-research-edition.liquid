@@ -1,0 +1,374 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+ .price{
+   padding-bottom: 25px;
+}
+  .btn-buy{
+    display: flex;
+    padding: 0px 60px;
+    height: 66px;
+    line-height: 1;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-direction: column;
+    border-radius: 25px;
+
+  }
+  .btn-buy:hover{
+    display: flex;
+    padding: 0px 60px;
+    height: 66px;
+    line-height: 1;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-direction: column;
+    border-radius: 25px;
+
+  }
+.parageaph li::before{
+ content: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Untitled_1.png?v=1665744315);
+      padding-right: 10px;
+}
+
+.parageaph li::marker {
+    font-size: 0;
+}
+.research-col-1 h1{
+      font-size: 32px;
+    font-weight: 600;
+    color: #000;
+}
+
+  .questions_customerservice{
+ display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 18px 30px;
+  }
+  .home-research{
+  	padding: 0;
+    background: #f0f0f0;
+    position: relative;
+    z-index: 1;
+  }
+  .home-research ul {
+        list-style-type: disc;
+}
+  .padding-b-50 {
+    padding-top:25px;
+}
+  .home-research ul li{
+    list-style-position: inside;
+    display: flex;
+  }
+  strong {
+        font-weight: 700;
+}
+  .research-txt-heading{padding-bottom:0px;}
+  .research-contain-1200{
+    display: flex;
+    width:100%;
+    padding-top:75px;
+    
+  }
+  .research-col-2{
+     width: 50%;
+     box-sizing: border-box;
+    float: left;
+            justify-content: flex-end;
+        align-items: flex-end;
+        display: flex;
+  }
+  .add-to-cart{cursor:pointer;}
+  .research-col-2{padding-top:60px;}
+  .research-col-1{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+  .research-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  .research-col-1 .pretitle{
+  	color: #FF5C35;
+    font-weight: 500;
+    padding-bottom: 8px;
+    font-size: .9rem;
+    line-height: 1.4;
+  }
+  
+  .btn-primary{
+  border:none;
+  }
+  .saphire-standard-section-html form {
+    grid-template-columns: 1fr;
+	}
+  .plan_month{
+    display: flex;
+  }
+  .plan_month span{
+    color: #000;
+    font-size: 18px;
+  }
+  .btn-box{
+    padding-bottom:30px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+  }
+
+
+  .btn-box button{
+  border-radius: 14px;
+  }
+  .btn-box button:hover{
+  border-radius: 14px;
+  }
+  @media(max-width:768px)  {
+    .research-col-1 h3{
+      font-size: 24px;
+    font-weight: 600;
+    color: #000;
+}
+    .research-contain-1200 {
+    padding-top: 40px;
+}
+    .btn-box{
+    gap: 5px;
+    flex-direction: column;
+
+  }
+
+  	 .plan_month{
+        display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+  
+    .research-contain-1200 {
+    	display:block!important;
+    }
+    .research-col-1 {
+    	width:100%!important;
+          
+    }
+    .research-col-2 {
+    width:100%!important;
+      float:none!important;
+          padding-top: 30px;
+    }
+  .home-flore-partnership {
+   background-color: #6B8389;
+    background-image: unset;
+  
+}
+  .flore-partnership-contain-1200 {
+    display: flex;
+    width: 100%;
+    gap: 45px;
+    padding-bottom: unset;
+    	
+  }
+  .parageaph ul li{
+    color: #000000;
+  }
+
+    }
+  
+</style>
+
+<div class="home-research">
+  <div class="research-contain-1200 global-container-1200">
+     
+		 <div class="research-col-1">
+           <div class="pretitle">{{section.settings.pretitle}}</div>
+           	<h1 class="research-txt-heading">
+                      {{section.settings.heading}}
+            </h1>
+           <div class="price">Price: ${{section.settings.price}} </div>
+           
+           <div class="parageaph pk">{{section.settings.paragraph}}</div>
+
+           <div class="saphire-standard-section-html">			
+                  <div class="padding-b-50 padding-t-25 plan_month" >
+                      <span style="display: flex; margin-right: 20px; justify-content: center; align-items: center; gap: 9px;"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/image_2_88263507-089c-4566-ba16-bc59c22651a0.png?v=1665742952" alt="check" loading="lazy"> 3-Month supply</span>
+                      <span style="display: flex;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/image_2_88263507-089c-4566-ba16-bc59c22651a0.png?v=1665742952" alt="check" loading="lazy">Automatic renewel</span>
+                      <span style="display: flex;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/image_2_88263507-089c-4566-ba16-bc59c22651a0.png?v=1665742952" alt="check" loading="lazy">Powder or capsule form</span>
+
+                  </div>
+                    <div class="padding-b-50 btn-box" style="padding-bottom:30px;display: flex;">
+
+    <form action="/cart/add"> 
+                      <input type = "hidden" name="subscription" value="true"> 
+<!--                       <input type = "hidden" name="properties[shipping_interval_frequency]" value="3"> 
+                      <input type = "hidden" name="properties[shipping_interval_unit_type]" value="Months">  -->
+                      <input type = "hidden" name="id" value="40314356072509">
+                      <input type = "hidden" name="selling_plan" value="1163755581">
+                      <input type = "hidden" name="quantity" value="1">
+                       <input value="Floré Tots Research Edition" type="hidden" name="handle">
+                      <!-- onclick="addItemToCart(40314356072509, 1, '3', 'Months')" -->
+                      <button type="button" id="add-to-cart-button-2" class="add-to-cart btn btn-primary text-centered" data-id="40314356072509" style="display: inline-block;     padding: 14px 50px; line-height: 1; vertical-align: middle;">
+                          <span style="font-size: 16px; line-height: 1.4;">Order Now</span>
+                          <br><span style=" text-transform: capitalize; line-height: 1.4; font-size: 14px;">for children under 12</span>
+                      </button>
+                    </form>
+                 
+
+
+                      
+                       
+                    <form action="/cart/add">
+                      <input type = "hidden" name="subscription" value="true"> 
+<!--                       <input type = "hidden" name="properties[shipping_interval_frequency]" value="3"> 
+                      <input type = "hidden" name="properties[shipping_interval_unit_type]" value="Months">  -->
+                      <input type = "hidden" name="id" value="40314174996541">
+                      <input type = "hidden" name="selling_plan" value="1163755581">
+                      <input type = "hidden" name="quantity" value="1">
+                       <input value="Floré Research Edition" type="hidden" name="handle">
+                      <!-- onclick="addItemToCart(40314174996541, 1, '3', 'Months')" -->
+                      <button type="button" id="add-to-cart-button" class="add-to-cart btn-primary text-centered btn" data-id="40314174996541" style="display: inline-block;     padding: 14px 60px; line-height: 1; vertical-align: middle;">
+                          <span style="font-size: 16px; line-height: 1.4;">Order Now</span>
+                          <br><span style=" text-transform: capitalize; line-height: 1.4; font-size: 14px;">For Adults</span>
+                      </button>
+                    </form>
+                  	
+                  </div>	
+                  <div class="questions_customerservice">
+                  <P>For questions on eligibility or the study in general, email <a href="mailto:customerservice@sungenomics.com">customerservice@sungenomics.com</a></P>
+                          </div>
+            </div>
+           
+          </div>
+  </div> 
+</div>
+
+{% schema %}
+{
+  "name": "Flore Research Edition",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "pretitle",
+      "label": "Pretitle"
+    },
+	{
+      "type": "text",
+      "id": "price",
+      "label": "Price"
+    },
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+       "type": "image_picker",
+       "id": "image",
+       "label": "Image"
+    }
+    
+   
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Flore Research Edition",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}
+<!--
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+          jQuery(document).on('click','.add-to-cart',function(){
+                var ID = jQuery(this).attr("data-id");
+            	console.log(ID ,'hhhhhh');
+                jQuery.ajax({
+                type: 'POST',
+                url: '/cart/add.js',
+                data: {
+                quantity: 1,
+                id: ID
+                },
+                dataType: 'json',
+                success: function (data) {
+                  window.location.href = '/cart';
+                }
+        });
+        })
+</script> -->
+
+<!-- <script>
+  $('#add-to-cart-button').on('click',function(){
+    addItemToCart(40314174996541, 1, "3", "Months");
+  });
+  
+  $('#add-to-cart-button-2').on('click',function(){
+    addItemToCart(40314356072509, 1, "3", "Months")
+  });
+  
+</script> -->
+
+<script>
+  function addItemToCart(variant_id, qty, frequency, unit_type) {
+    data = {
+      "id": variant_id,
+      "quantity": qty,
+      "properties": {
+        "shipping_interval_frequency": frequency,
+        "shipping_interval_unit_type": unit_type
+      }
+    }
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function(success) { 
+         window.location.href = '/cart'; 
+        console.log(success);
+      },
+      error: function(msg) { 
+        console.log(msg);
+        window.location.href = '/cart'; 
+      } 
+    });
+    
+    //window.location.href = '/cart';
+  }
+  
+  
+  
+  
+</script>
+

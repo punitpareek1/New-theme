@@ -1,0 +1,60 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+ h3{
+        line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+}
+   h2{
+        line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+}
+  .refund-contain-1200{
+  	padding-top:50px;
+    padding-bottom:50px;
+  }
+  .home-refund{
+      background: #f8f8f8;
+  }
+
+</style>
+
+<div class="home-refund" style="position: relative;z-index: 1;">
+  <div class="refund-contain-1200 global-container-1200">
+     
+		 <div class="refund-col" style="position: relative;">
+           	   <h1 class="refund-txt-heading headingH2">
+                      {{section.settings.heading}}
+               </h1>
+           		<div class="text02">{{section.settings.paragraph}}</div>
+            
+          </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Refund Policy Section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    }
+  ]
+}
+
+{% endschema %}

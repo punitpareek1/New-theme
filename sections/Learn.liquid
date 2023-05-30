@@ -1,0 +1,148 @@
+<style>
+  .main-learn-row {
+  display: flex;
+  flex-wrap: wrap;
+   column-gap: 36px;
+   padding-top: 75px;
+}
+  .learn-grp{
+  	width: 48.5%;
+    background-color: #fff;
+    box-shadow: 3px 3px 6px rgb(0 0 0 / 5%);
+    margin-bottom: 30px;
+    display: flex;
+  }
+  .learn-main {
+  	padding: 75px 0px;
+    background-color:#F8F8F8;
+  }
+  .topheading {
+  font-size: 2.2rem;
+    line-height: 1.25;
+    color: #404040;
+        font-weight: 500;
+  }
+  .image-column-01 {
+  	    background: #FF5C35;
+    width: 25%;
+    text-align: center;
+  
+  } 
+  .tilte-headings {
+  	line-height: 1.25;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #404040;
+  }
+  .text02 {
+  	font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+      
+  }
+  a .fa {
+    font-size: 14px;
+    margin-right: 5px;
+}
+  a, a:hover, .tilte-headings:hover {
+    color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+}
+  .column-main-body {
+  	padding: 40px;
+    width:75%;
+  }
+  .image-column-01 img {
+  	width: 70px;
+    height: 70px;
+    margin-top:50px; 
+  }
+  @media(max-width:768px){
+  .main-learn-row  {
+    	display:block!important;
+    }
+    .learn-grp{
+    	width:100%!important;
+    }
+    .topheading  { font-size:1.8rem!important; }  
+    .column-main-body {
+  	padding: 40px;
+    width:75%;
+  } 
+}  
+</style>
+<section class="learn-main">
+<div class="global-container-1200 ">
+<h1 class="topheading"> {{ section.settings.Main_Heading}} </h1>
+<div class="main-learn-row">
+{% for block in section.blocks %}
+	<div class="learn-grp">
+      	<div class="image-column-01">
+        	<img src="{{ block.settings.image_icon | img_url: '70x70' }}">
+        </div>
+         <div class="column-main-body">
+           <a href="{{ block.settings.button_link }}" rel="noreferrer"><h2 class="tilte-headings">{{ block.settings.heading }}</h2></a>
+         <div class="text02">{{ block.settings.paragraph }}</div>
+           <div><a href="{{ block.settings.button_link }}" rel="noreferrer"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ block.settings.button_text }}</a></div>
+         </div>
+     </div>
+{% endfor %}
+  </div>
+</div>
+</section>
+{% schema %}
+{
+"name": "Learn",
+"settings": [
+{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      }
+      ],
+  
+  	  "blocks":[
+	{
+	"type":"order",
+	"name":"Columns",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image"
+        },
+		{
+          "type": "text",
+          "id": "heading",
+          "label": "Title"
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+		{
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Url"
+        }
+      ]
+	}
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

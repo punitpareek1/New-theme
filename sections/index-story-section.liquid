@@ -1,0 +1,186 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-story{
+    padding: 0;
+/*     background: #f8f9fb; */
+    background: #fff;
+    position: relative;
+    z-index: 1;
+/*  margin-top: 20px; */
+/*     margin-bottom: 50px; */
+  }
+  .story-contain-1200{
+    width:100%;
+    padding-top:75px;
+    padding-bottom:75px;
+  }
+  .story-col-2{
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 30px;
+
+  }
+
+  .story-col-1{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+  .video-row{
+    display:flex;
+    justify-content: space-between;
+  }
+  .video-row .video{
+    width:48%;
+  }
+
+  .video-row .video iframe{
+    border-radius: 10px;
+  }
+
+  .story-col-1 h3{
+    max-width: 500px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 2rem;
+    line-height: 1.15;
+    color: #404040;
+  }
+
+  @media(max-width:768px)
+  {
+
+    .video-row {
+      display:block;
+    }
+    .story-col-1 {
+      width:100%!important;
+
+    }
+    .story-col-2 {
+      width:100%!important;
+      float:none!important;
+      padding-top: 30px;
+    }
+      .video-row .video{
+      width:100%;
+      margin-bottom: 20px;
+  }
+    .headingH2 {
+    font-size: 1.6rem!important;
+	}
+
+  .story-contain-1200{
+    width:100%;
+    padding-top:45px;
+    padding-bottom:50px;
+  }
+
+  }
+ 
+  
+</style>
+
+<div class="home-story">
+  <div class="story-contain-1200 global-container-1200">
+     
+		 <div class="story-col-1">
+           
+           	<h3 class="story-txt-heading headingH2">
+                      {{section.settings.heading}}
+            </h3>
+           
+           <div class="text02">{{section.settings.paragraph}}</div>
+           
+          </div>
+          <div class="story-col-2">
+            <div class="video-row">
+            	{% if section.settings.video != blank %}
+  					<div class="video video-1">
+                      
+  						{% if section.settings.video == blank %}
+                            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                          {% else %}
+                            {% if section.settings.video.type == "youtube" %}
+                      <iframe  width="560"  height="315"  src="https://www.youtube.com/embed/{{ section.settings.video.id }}"  srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{text-align: center; font: 25px/1.5 sans-serif; color: white; background-color: #f00; width: 75px; display: block; left: 42%; transform-origin: center; border-radius: 11px; line-height: 2.1; height: 50px;}</style><a href=https://www.youtube.com/embed/{{ section.settings.video.id }}?autoplay=1><img src=https://img.youtube.com/vi/{{ section.settings.video.id }}/hqdefault.jpg alt='Youtube Embeded'><span>▶</span></a>"
+ 					 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Why we started Sun Genomics"></iframe>
+                             
+                            {% endif %}
+                            {% if section.settings.video.type == "vimeo" %}
+                              <iframe src="//player.vimeo.com/video/{{ section.settings.video.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                          {% endif %}
+                      
+  					</div>
+  				{% endif %}  
+            	{% if section.settings.video_2 != blank %}
+  					<div class="video video-2">
+                      
+  						{% if section.settings.video_2 == blank %}
+                            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                          {% else %}
+                            {% if section.settings.video.type == "youtube" %}
+                      <iframe  width="560"  height="315"  src="https://www.youtube.com/embed/{{ section.settings.video_2.id }}"  srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{text-align: center; font: 25px/1.5 sans-serif; color: white; background-color: #f00; width: 75px; display: block; left: 42%; transform-origin: center; border-radius: 11px; line-height: 2.1; height: 50px;}</style><a href=https://www.youtube.com/embed/{{ section.settings.video_2.id }}?autoplay=1><img src=https://img.youtube.com/vi/{{ section.settings.video_2.id }}/hqdefault.jpg alt='Youtube Embeded'><span>▶</span></a>"
+ 					 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Why we started Sun Genomics"></iframe>
+                             
+                            {% endif %}
+                            {% if section.settings.video_2.type == "vimeo" %}
+                              <iframe src="//player.vimeo.com/video/{{ section.settings.video_2.id }}?byline=0&portrait=0&badge=0" width="480" height="300" frameborder="0" allowfullscreen></iframe>
+                            {% endif %}
+                          {% endif %}
+                      
+  					</div>
+  				{% endif %}	
+            </div>
+          </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Story Section",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "video_url",
+      "id": "video",
+      "label": "YouTube or Vimeo link",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    },
+	{
+      "type": "video_url",
+      "id": "video_2",
+      "label": "YouTube or Vimeo link 2",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    }
+    
+   
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Home Story Section",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

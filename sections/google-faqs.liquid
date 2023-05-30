@@ -1,0 +1,131 @@
+<style>
+
+  .faq-main-box {
+  background: #fff;
+    border-left: #FF5C35 10px solid;
+    border-radius: 10px;
+    padding: 17px;
+  }
+  .faqs-wrapper{
+  display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+    gap: 30px;
+
+  }
+  .first{
+      display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+</style>
+
+
+<div class="faqs-google" style="background-image: url({{section.settings.background_image | img_url: 'master'}}); background-repeat: no-repeat;
+    background-size: cover; padding: 9% 20px; background-position: center;"  >
+	<div class="faqs-wrapper-row">
+    <div class="faqs-heading"><h4>{{section.settings.heading}}</h4></div>
+	<div class="faqs-wrapper">
+    {% for block in section.blocks %}
+     <div class="faq-main-box">
+       <div class="first"><h4>{{block.settings.q-heading}}</h4> <span class="faq-icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+     
+      <div class="first-p">{{block.settings.q-answer}}</div>
+  	 </div>
+
+    {% endfor %}
+  </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Faqs",
+    "settings": [
+		{
+       "type": "text",
+       "id": "heading",
+        "label": "heading"
+       },
+       {
+       "type": "image_picker",
+       "id": "background_image",
+       "label": "background"
+       },
+
+       {
+       "type": "url",
+       "id": "url_button",
+       "label": "url"
+       },
+       {
+       "type": "text",
+       "id": "button_name",
+       "label": "text"
+       }
+	],
+    "blocks": [
+    {
+      "type": "block-1",
+      "name": "FAQS DATA",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "subheadline"
+        },
+        {
+          "type": "text",
+          "id": "subheadline_data_accordion",
+	  	  "label": "small subheadline"
+        }
+      ]
+    },
+  {
+      "type": "block-2",
+      "name": "FAQS DATA 2",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheadline_accordion",
+	  	  "label": "subheadline"
+        },
+        {
+          "type": "text",
+          "id": "subheadline_data_accordion",
+	  	  "label": "small subheadline"
+        }
+      ]
+    }
+  ],
+   "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Google Faqs",
+      "settings": {
+}
+    }
+  ]
+  }
+{% endschema %}
+
+
+
+<script>
+  $( document ).ready(function() {
+      $('.first-p').hide();
+          
+     $( document ).on( 'click', '.faq-main-box', function () { 
+        $('.faq-main-box').removeClass('active-parent'); 
+        $(this).addClass('active-parent');
+    });
+    $( document ).on( 'click', 'div.first', function () { 
+        $('div.first').removeClass('faq-active'); 
+        $(this).addClass('faq-active');
+      $(this).next().slideToggle(300);
+      
+    });
+    
+});
+</script>

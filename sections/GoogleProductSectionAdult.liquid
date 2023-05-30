@@ -1,0 +1,343 @@
+{{ 'all-product.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'style-v2.min.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'saphire-utilities.min.css' | asset_url }}">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+<style>
+.topSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    max-width: 1220px;
+    width: 100%;
+    padding: 60px 10px;
+    gap: 0px 30px;
+}
+
+ .topSection .product-big-image{
+    height: 305px;
+    max-width: 450px;
+    margin: 0 auto;
+}
+.topSection .product-big-image img {
+    height: 100%;
+    object-fit: contain;
+}
+  
+  
+.main-content {
+    background: #fff;
+}
+
+.product-slideshow, .product-wrap {
+    width: 100%;
+}
+
+.topSection .ProductDescription h1 {
+    color: #FF5C35;
+    font-family: 'sk-modernist';
+    font-size: 40px;
+    letter-spacing: normal;
+}
+
+.topSection .ProductDescription .reviewLine {
+    font-size: 22px;
+    color: #000;
+    font-family: 'sk-modernist';
+    font-weight: 700;
+	padding: 0px 0px;
+}
+
+.topSection .ProductDescription .reviewLine img {
+    width: 76px;
+    position: relative;
+    top: 13px;
+    margin-left: 10px;
+}
+  
+span.reviewCount {
+    font-size: 16px;
+    color: #999999;
+}
+  
+p.textBelowReview {
+    font-size: 24px;
+    color: #FF5C35;
+    font-weight: 700;
+    padding: 10px 0px;
+}
+
+.productDescption h4 {
+    font-family: 'sk-modernist';
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.productDescption p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #231f20;
+}  
+  
+.priceAndJoinNow {
+    display: inline-flex;
+}
+
+.priceAndJoinNow .price {
+    font-size: 28px;
+    font-family: 'sk-modernist';
+    font-weight: 700;
+    color: #000;
+    margin-right: 20px;
+}
+
+.priceAndJoinNow > a {
+    font-size: 20px;
+    letter-spacing: normal;
+    color: #ffffff;
+    background: #FF5C35;
+    font-family: "SunGenomics",sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    padding: 14px 46px;
+    border-radius: 30px;
+}
+  @media only screen and (max-width: 768px){
+    .topSection {
+    grid-template-columns: unset;
+  }
+    .ProductDescription{
+     align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+/*     text-align: center; */
+      padding: 0 1rem;
+    }
+    .topSection .ProductDescription h1{
+    font-size: 30px;
+    }
+    .topSection .ProductDescription .reviewLine {
+      font-size: 18px;
+    }
+    p.textBelowReview {
+      font-size: 18px;
+    }
+    .productDescption h4{
+    font-size: 18px;
+    }
+    .productDescption p {
+      font-size: 16px;
+    }
+    .priceAndJoinNow > a {
+    font-size: 16px;
+    padding: 13px 30px;
+   
+}
+    .priceAndJoinNow .price {
+    font-size: 20px;
+    }
+  }
+  
+</style>
+
+<div class="topSection">
+<!--  Slider Section  -->
+  
+  {% assign product = all_products["flore-precision-probiotics"] %}
+{% assign featured_image = selectedVariant.featured_image | default: product.featured_image %} 
+        
+        
+      <div class="product-slideshow slideshowslick clearfix">
+        <div class="product-image-container clearfix">
+          <div class="product-big-image" data-no-image-svg="{{ 'no-image.svg' | asset_url }}" data-no-image-png="{{ 'no-image.png' | asset_url }}">
+            <span class="product-slideshow-loader"></span>
+            {% if product.images.size > 0 %}
+              <img
+                src="{{ featured_image | product_img_url: '600x600' }}"
+                alt="{{ product.title | escape }}"
+                data-high-res="{{ featured_image | product_img_url: '2048x2048' }}">
+            {% else %}
+              <img
+                class="product-no-images"
+                src="{{ 'no-image.svg' | asset_url }}"
+                onerror="this.src='{{'no-image.png' | asset_url}}'; this.onerror=null;" />
+            {% endif %}
+            {% if section.settings.enable_zoom %}
+              <div class="product-image-zoom"></div>
+            {% endif %}
+          </div>
+          {% if product.images.size > 1 %}
+            <a class="product-slideshow-navigation product-slideshow-previous icon icon-arrow-left" href="#" tabindex="1"></a>
+            <a class="product-slideshow-navigation product-slideshow-next icon icon-arrow-right" href="#" tabindex="1"></a>
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="product-slideshow-pagination product-thumbnails padding-b-25">
+            {% for image in product.images %}
+              <a
+                class="product-slideshow-pagination-item {% if image == featured_image %}active{% endif %}"
+                style="background-image:url('{{ image | product_img_url: '50x50' }}')"
+                data-alt="{{ image.alt }}"
+                data-default-res="{{ image | product_img_url: '600x600' }}"
+                data-high-res="{{ image | product_img_url: '2048x2048' }}"
+                data-image-id="{{ image.id }}"
+                href="#"
+                tabindex={{forloop.index}}></a>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+      </div>     
+<!--  Content Section  -->
+  <div class="ProductDescription">
+    <h1 class="productTitle">{{ section.settings.title }}</h1>
+    <p class="reviewLine">{{ section.settings.subheadOne }} 
+<!--       <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/STARS_1.png?v=1654681144"> <span class="reviewCount">10 REVIEWS</span> -->
+    </p>
+    <p class="textBelowReview"> {{ section.settings.subheadlineTwo }} </p>
+    <div class="productDescption">
+      {{ section.settings.DecriptionArea }}
+      
+    </div>  
+    <div class="priceAndJoinNow"><h6 class="price">$79</h6>
+     <a href="https://flore.com/cart/clear?return_to=/cart/add?items[][id]=40421476630589%26items[][quantity]=1%26items[][selling_plan]=1324843069%26return_to=/checkout">Join Now <i class="fa fa-arrow-right" aria-hidden="true"></i> </a> 
+    </div>
+    
+  </div>
+  
+  
+  
+</div>
+
+
+<script>
+
+	let slides = document.querySelector('.product-slideshow-pagination');
+  let slidesAll = document.querySelectorAll('.product-slideshow-pagination a');
+  let productImage = document.querySelector('.product-big-image img');
+  let nextBtn = document.querySelector('.product-slideshow-next');
+  let prevBtn = document.querySelector('.product-slideshow-previous');
+  
+  slides.addEventListener('click', function(e){
+  	e.preventDefault();
+    let slide = e.target.closest('.product-slideshow-pagination-item');
+    slidesAll.forEach((slide) => slide.classList.remove('active'))
+    slide.classList.add('active');
+    productImage.src= slide.dataset.highRes;
+    
+  })
+  
+  nextBtn.addEventListener('click', function(e){
+    e.preventDefault();
+  	let activeSlide = slides.querySelector('.active');
+    let nextIndex = Number(activeSlide.getAttribute('tabindex')) + 1;
+
+    if(nextIndex <= slidesAll.length){
+      this.setAttribute('tabindex', nextIndex);
+      slidesAll.forEach((slide) => slide.classList.remove('active'))
+      let nextslide = slides.querySelector(`a[tabindex="${nextIndex}"]`);
+      nextslide.classList.add('active');
+      productImage.src = nextslide.dataset.highRes;
+      console.log(slides, 'activeSlide', nextIndex, '***',slidesAll.length) ;
+      
+    }else {
+    console.log('hiii');
+      this.setAttribute('tabindex', 1);
+      slidesAll.forEach((slide) => slide.classList.remove('active'))
+      let nextslide = slides.querySelector(`a[tabindex="${1}"]`);
+      nextslide.classList.add('active');
+      productImage.src = nextslide.dataset.highRes;
+      console.log(slides, 'activeSlide', nextIndex, '***',slidesAll.length) ;
+    }
+    
+    
+  })
+  
+  prevBtn.addEventListener('click', function(e){
+    e.preventDefault();
+  	let activeSlide = slides.querySelector('.active');
+    let nextIndex = Number(activeSlide.getAttribute('tabindex')) - 1;
+
+    console.log(nextIndex, 'nextIndex');
+    if(nextIndex != 0){
+      this.setAttribute('tabindex', nextIndex);
+      slidesAll.forEach((slide) => slide.classList.remove('active'))
+      let nextslide = slides.querySelector(`a[tabindex="${nextIndex}"]`);
+      nextslide.classList.add('active');
+      productImage.src = nextslide.dataset.highRes;
+      console.log(slides, 'activeSlide', nextIndex, '***',slidesAll.length) ;
+      
+    }else {
+    console.log('hiii 2222');
+      this.setAttribute('tabindex', slidesAll.length);
+      slidesAll.forEach((slide) => slide.classList.remove('active'))
+      let nextslide = slides.querySelector(`a[tabindex="${slidesAll.length}"]`);
+      nextslide.classList.add('active');
+      productImage.src = nextslide.dataset.highRes;
+      console.log(slides, 'activeSlide', nextIndex, '***',slidesAll.length) ;
+    }
+    
+    
+  })
+  
+
+</script>
+	
+
+
+
+{% schema %}
+{
+  "name": "Google Product Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "placeholder": "Enter Product Title",
+      "info": "Product Title",
+	  "label": "Product Title"
+    },
+    {
+      "type": "text",
+      "id": "subheadOne",
+      "placeholder": "Enter Sub Headline",
+      "info": "Sub Headline near review",
+	  "label": "Sub Headline near review"
+    },
+    {
+      "type": "text",
+      "id": "subheadlineTwo",
+      "info": "Sub Headline below ratings",
+	  "label": "Sub Headline below ratings"
+    },
+    {
+      "type": "html",
+      "id": "DecriptionArea",
+	  "label": "Decription Area"
+    },
+	{
+      "type": "url",
+      "id": "checkoutLink",
+      "label": "Checkout Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Image",
+      "name": "Product Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "images",
+	  	  "label": "Product Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

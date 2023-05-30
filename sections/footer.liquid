@@ -1,0 +1,304 @@
+<style>
+.store-icons {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.disclaimer_footer_bob{
+     padding: 10px;
+    margin: 15px 0;
+    border: 0.1px groove #c4c3c3;
+}
+</style>  
+<!-- ################## New Footer ################## -->
+
+<div class="footer-wrapper" data-section-id="{{ section.id }}" data-section-type="static-footer">
+ <footer class="main-footer ">
+   <div class="footer-row">
+ 	 <div class="footer-logo">
+<!--      <img class="lazyload" width="174" height="54" data-src="{{ section.settings.footer_logo | image_url: width: 400}}" alt="Flore Footer"> -->
+          <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/Flore_by_SG_Updated_Logo_1.svg" width="166" height="100" alt="flore_logo">
+     </div>
+     <div class="nav-footer ">
+       <div class="footer-column footer-menu">
+         		<h3 class="footer-menu-title">Products</h3>
+                 <ul class="footer-menu-list">
+                   {% assign menu-product = section.settings.menu-product %}
+                  {% for link in linklists[menu-product].links %}
+                    <li class="footer-menu-list-item">
+                      <a class="footer-menu-list-item-anchor" href="{{ link.url }}" rel="canonical">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+     </div>
+     <div class="nav-footer ">
+       <div class="footer-column footer-menu">
+         <h3 class="footer-menu-title">Learn</h3>
+                 <ul class="footer-menu-list">
+                   {% assign menu-learn = section.settings.menu-learn %}
+                  {% for link in linklists[menu-learn].links %}
+                    <li class="footer-menu-list-item">
+                      <a class="footer-menu-list-item-anchor" href="{{ link.url }}" rel="canonical">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+     </div>
+     <div class="nav-footer ">
+       <div class="footer-column footer-menu">
+         <h3 class="footer-menu-title">About</h3>
+                 <ul class="footer-menu-list">
+                   {% assign menu-about = section.settings.menu-about %}
+                  {% for link in linklists[menu-about].links %}
+                    <li class="footer-menu-list-item">
+                      <a class="footer-menu-list-item-anchor" href="{{ link.url }}" rel="canonical">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+     </div>
+     <div class="footer-subscription">
+       <h3 class="subscription-title">{{section.settings.footer-form-title}}</h3>
+       <p class="subscription-text">{{ section.settings.footer-form-text }}</p>
+     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+		<script>
+		  hbspt.forms.create({
+			portalId: "5058629",
+			formId: "5fc930a2-0fe6-43df-bd59-9fbb92406f74"
+		});
+		</script>
+<!--   Social media start      -->
+   <div class="template-social" style="text-align: center; padding-bottom: 14px;">
+  	<a style="padding: 0 8px;" href="https://www.facebook.com/sungenomics/" aria-label="Facebook Icon"  target="_blank" rel="noopener"><i class="fa fa-facebook-official fa-3x" style="color: rgb(0, 0, 0);"></i></a>
+  	<a style="padding: 0 8px;" href="https://www.instagram.com/sungenomics/" aria-label="Instagram Icon" target="_blank" rel="noopener" ><i class="fa fa-instagram fa-3x" style="color: rgb(0, 0, 0);"></i></a>
+    <a style="padding: 0 8px;" href="https://twitter.com/sungenomics?lang=en" aria-label="Twitter Icon" target="_blank" rel="noopener"><i class="fa fa-twitter fa-3x" style="color: rgb(0, 0, 0);"></i></a>
+  	<a style="padding: 0 8px;" href="https://www.youtube.com/channel/UC7QRWxM2i2BjQcf9eYWj56g" aria-label="Youtube Icon" target="_blank" rel="noopener" ><i class="fa fa-youtube-play fa-3x" style="color: rgb(0, 0, 0);"></i></a>
+  </div>
+<!-- End social media -->
+       <div class="store-icons" style="text-align: center; padding-bottom: 14px;">
+    <!-- Play Store Icon -->
+      <a href="{{ section.settings.play_store_link }}" target="_blank" aria-label="Google Play Store" rel="noopener">
+          <img  src="{{ section.settings.play_store_icon | img_url: 'x42' | prepend: "https:" }}" alt="play store" width="100%" height="100%" loading="lazy">
+      </a> 
+      <a href="{{ section.settings.app_store_link }}" target="_blank" rel="noopener">
+          <img src="{{ section.settings.app_store_icon | img_url: 'x50' | prepend: "https:" }}" alt="app store" width="100%" height="100%" loading="lazy">
+      </a>  
+      </div>  
+     </div>
+       
+      
+     </div>
+ {% if section.settings.disclaimer_footer != blank %}    
+<div class="footer_disclaimer ">
+<div>{{section.settings.disclaimer_footer}}</div>
+</div>
+{% endif %}
+	<hr class="footer-hr">
+   <div class="footer-bottom-area">
+     <div class="copyright-text">
+       <p>{{section.settings.copyright}}<br>
+		{% if template == 'index' %}
+       
+  			{{ section.settings.term_line }}</p>
+      	{% endif %} 
+     </div>
+     <div class="footer-terms">
+       <ul>	
+       {% for block in section.blocks %}
+          {% if block.type == 'term-menu' %}
+         <li><a href="{{block.settings.menu-link}}" rel="canonical">{{block.settings.menu-text}}  </a></li>	
+       	  {% endif %}
+       {% endfor %}
+       </ul> 
+     </div>
+   </div>
+ </footer>
+  
+
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  <div class="yotpo-widget-instance" data-yotpo-instance-id="33736"></div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Logo image",
+      "info": "400 x 200px .png recommended"
+    },
+	{
+          "type": "link_list",
+          "id": "menu-product",
+          "label": "Product Menu",
+          "info": "Select Menu for Product section"
+    },
+	{
+          "type": "link_list",
+          "id": "menu-learn",
+          "label": "Learn Menu",
+          "info": "Select Menu for Learn section"
+    },
+	{
+          "type": "link_list",
+          "id": "menu-about",
+          "label": "About Menu",
+          "info": "Select Menu for About section"
+    },
+    {
+      "type": "image_picker",
+      "id": "play_store_icon",
+      "label": "Play Store Icon"
+    },
+    {
+      "type": "url",
+      "id": "play_store_link",
+      "label": "Play Store Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "app_store_icon",
+      "label": "App Store Icon"
+    },
+    {
+      "type": "url",
+      "id": "app_store_link",
+      "label": "App Store Link"
+    },
+	{
+          "type": "text",
+          "id": "footer-form-title",
+          "label": "Footer Form Heading",
+          "default": "Rich text"
+    },
+	{
+          "type": "html",
+          "id": "footer-form-text",
+          "label": "Footer Form Text"
+    },
+	{
+		  "type": "html",
+          "id": "copyright",
+          "label": "Copyright Text"
+		
+	},
+	{
+		  "type": "html",
+          "id": "term_line",
+          "label": "Term Text"
+		
+	},
+    {
+      "type": "header",
+      "content": "Language Selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Currency Selector",
+      "info": "To add a currency, go to your [payment settings.](/admin/settings/payments)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_selector",
+      "label": "Show currency selector",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "disclaimer_footer",
+      "label": "Disclaimer"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_media",
+      "name": "Social media links",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Configure your social media links under \"General settings\" in \"Social media\""
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "term-menu",
+      "name": "Term Menu",
+      "settings": [
+        	{
+              "type": "text",
+              "id": "menu-text",
+              "label": "Menu Text"
+            },
+			{
+               "type": "url",
+               "id": "menu-link",
+               "label": "Menu link"
+             }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      
+    ]
+  }
+}
+
+{% endschema %}
+
+
+
+
+<script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/tZBF7-xmuDARclX_mc9LMg" async></script>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+
+let body = document.querySelector('body');
+
+body.addEventListener('click', function(e){
+
+let clickedbtn = e.target.closest('.myBtn');
+if(!clickedbtn) return;
+modal.style.display = "block";
+})
+
+// When the user clicks on <span> (x), close the modal
+span.addEventListener('click', function(e){
+  modal.style.display = "none";
+})
+
+// will check and fire popup screens only when url contain "?refer-a-friend=true"
+var url = new URL(window.location);
+var para = url.searchParams.get("refer-a-friend");
+if(para == 'true'){
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
+
+</script>

@@ -1,0 +1,113 @@
+<style>
+  .topSectionOuter{
+    background-image: url("{{section.settings.backgroundImage | img_url: 'master' }}");
+    padding: 120px 20px;
+    background-size: cover;
+    background-position-y: bottom;
+  }
+  .topSectionInner {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.topSectionInner .headline {
+    font-family: 'sk-modernist';
+    font-weight: 500;
+    color: #fff;
+    font-size: 50px;
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+
+.topSectionInner .btn {
+    background-color: #fff;
+    border: none;
+    padding: 22px 63px;
+    border-radius: 45px;
+    font-family: 'sk-modernist';
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-size: 28px;
+}
+  
+.topSectionInner .btn i {
+    font-size: 23px;
+    font-weight: inherit;
+    color: inherit;
+}
+
+  
+@media(max-width:600px){
+  .topSectionInner .headline {
+    font-size: 26px;
+  }
+
+  .topSectionInner .rightSection {
+    display: none;
+  }
+
+  .topSectionInner {
+    display: block;
+  }
+
+  .topSectionInner .btn {
+     font-size: 14px;
+    padding: 10px 27px 12px;
+  }
+
+  .topSectionInner .btn i {
+    font-size: 14px;
+  }
+
+  .topSectionOuter {
+    padding: 80px 15px 165px;
+  }
+
+}  
+  
+  
+</style>  
+
+<div class="topSectionOuter">
+  <div class="topSectionInner">
+    <div class="leftSection">
+    	<h1 class="headline">{{ section.settings.headline }}</h1>
+    	<button class="btn">{{ section.settings.buttonText }} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+    </div>
+    <div class="rightSection">
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Testmonial Top",
+    "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "placeholder": "Enter Headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "buttonText",
+      "placeholder": "Enter Button Text",
+	  "label": "Button Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "backgroundImage",
+	  "label": "Background Image"
+    }
+  ],
+	"presets": [
+                    {
+                      "name": "Testmonial Top"
+                    }
+                  ]
+  }
+{% endschema %}

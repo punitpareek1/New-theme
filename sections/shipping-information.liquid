@@ -1,0 +1,93 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-shipping{
+  	padding: 0;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .shipping-contain-1200{
+    width:100%;
+    padding-top:75px;
+    padding-bottom:75px;
+  }
+ 
+  
+  .shipping-col-1{
+    position: relative;
+    max-width: 900px;
+    box-sizing: border-box;
+    
+}
+  .shipping-col-1 h4{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+  }
+  
+  @media(max-width:768px)
+  {
+  	
+    .shipping-contain-1200 {
+    	display:block!important;
+    }
+    .shipping-col-1 {
+    	width:100%!important;
+          
+    }
+   
+    	
+  }
+ 
+  
+</style>
+
+<div class="home-shipping">
+  <div class="shipping-contain-1200 global-container-1200">
+     
+		 <div class="shipping-col-1">
+           
+           	<h3 class="shipping-txt-heading headingH2">
+                      {{section.settings.heading}}
+            </h3>
+           
+           <div class="text02">{{section.settings.paragraph}}</div>
+           
+          </div>
+
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Information",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "html",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    }
+    
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Shipping Information",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

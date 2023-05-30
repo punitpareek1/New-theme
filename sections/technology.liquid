@@ -1,0 +1,153 @@
+<style>
+
+  .text-lead {
+  	font-size: 1.2rem;
+    color: #5e5e5e;
+    font-family: SunGenomics,sans-serif;
+    line-height: 1.25;
+    font-weight: 100;
+    width: 66%;
+        padding-bottom: 30px;
+  }
+  .main-tech-row {
+  display:flex;
+    flex-wrap:wrap;
+    column-gap: 55px;
+  }
+  .tech-group {
+  width:30%;
+    column-gap:30px;
+  }
+	
+  .our-technology {
+  	padding:75px 0;
+    background-color:#F8F8F8;
+  }
+  .h3-heading {
+  line-height: 1.25;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #404040;
+  }
+  .tile-body {
+  	padding: 50px 14px;
+  }
+  .tech-img {
+  	text-align:center;
+  }
+  
+  .text-body { padding-top:10px;}
+  .topheading {
+  padding-bottom: 20px;
+    max-width: 500px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: #404040;
+  }
+  
+  @media(max-width:768px){
+  
+    .text-lead {
+    width:100%;
+    }
+    .tech-group {
+    width: 100%!important;
+    column-gap: 30px;
+	}
+    .tech-img {
+    text-align: left!important;
+	}
+    .main-tech-row{display:block;}
+  
+  }
+  
+</style>
+
+
+
+<section class="our-technology">
+<div class="global-container-1200 ">
+
+
+<h1 class="topheading"> {{ section.settings.Main_Heading}} </h1>
+<div class="text-lead">{{ section.settings.Preheading}}</div>
+
+<div class="main-tech-row">
+  
+{% for block in section.blocks %}
+
+		 <div class="tech-group">
+         <div class="tech-img">
+          <img class="lazy" src="{{block.settings.left_image | img_url: 'master' | prepend: "https:" }}" alt="{{ block.settings.left_image.alt }}" height="100%" width="100%" >
+           </div>
+           <div class="tile-body">
+           <h3 class="h3-heading">{{block.settings.left_text}}</h3>
+           <div class="text-body">
+             <div class="text02"> {{block.settings.paragraph}} </div>
+           </div>
+           </div>             
+      </div>
+
+{% endfor %}
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+"name": "Our Technology",
+"settings": [
+{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      
+      },
+      {
+      "type": "text",
+      "id": "Preheading",
+      "label": "Paragraph"
+      }
+      ],
+  
+  	  "blocks":[
+	{
+	"type":"order",
+	"name":"Columns",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Left Image"
+        },
+		{
+          "type": "text",
+          "id": "left_text",
+          "label": "Heading"
+
+        },
+		{
+          "type": "text",
+          "id": "alt_tag",
+          "label": "Image Alt Tag"
+
+        },
+		{
+          "type": "textarea",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }	
+      ]
+	}
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

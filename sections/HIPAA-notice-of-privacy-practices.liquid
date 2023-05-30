@@ -1,0 +1,41 @@
+<style>
+  .HIPAA-Notice{
+  	padding: 0;
+    background: #f8f8f8;
+    position: relative;
+    z-index: 1;
+    padding-bottom:45px;
+  }
+</style>
+
+<div class="HIPAA-Notice">
+  <div class="full-stack-contain-1200 global-container-1200">
+		 <div class="full-stack-col-1">
+           	<h1 class="full-stack-txt-heading h1-small">{{section.settings.heading}}</h1>
+           <div class="text02">{{section.settings.detail}}</div>
+         </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "HIPAA Notice",
+  "settings": [ 
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	
+	{
+      "type": "html",
+      "id": "detail",
+      "label": "Text Here"
+    }
+
+  ]
+}
+
+{% endschema %}
+
+

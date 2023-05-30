@@ -1,0 +1,183 @@
+<style>
+.about_the_author_blog {
+    padding: 100px 0;
+   background-color: #fff;  
+    background-image: url({{section.settings.bg-image | img_url: 'master'}});
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: c;
+}
+
+.about_the_outher_inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.joinustext h3 {
+    font-size: 45px;
+    font-weight: 700;
+    
+    font-family: sk-modernist, sans-serif;
+    color: #fff;
+    
+}
+
+
+
+     .about_the_author_wapper{
+       display: none;
+     }
+
+.joinustext p {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.4;
+    font-family: "sk-modernist";
+    font-weight: 400;
+    line-height: 1.4;
+     
+    word-wrap: break-word;
+    max-width: 99%;
+}
+  .about_the_author_blog  .innerauthblog{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+  .joinusnews_inner{
+    padding: 15px;
+  }
+  .joinusnews_inner {
+    padding: 15px;
+    margin-top: 34px;
+}
+      
+@media (max-width: 768px) {
+  
+ .about_the_author_blog  .innerauthblog{
+    display: grid;
+    grid-template-columns: 1fr !important;
+ }
+    .joinustext p {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.4;
+    font-family: "sk-modernist";
+    font-weight: 400;
+    line-height: 1.4; 
+      padding: 15px;
+    text-align: center; 
+    word-wrap: break-word;
+    max-width: 99%;
+ }
+  .joinustext h3 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist, sans-serif;
+    color: #fff;
+ }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 460px){
+  .about_the_author_blog .innerauthblog .joinus_newsletter form{
+    position: relative;
+    grid-template-columns: 2fr auto;
+  }
+}
+
+
+.joinusnews_inner .hs_error_rollup {
+    display: none;
+}
+  .joinuspara{
+  
+    word-wrap: break-word;
+    max-width: 99%;
+}
+  .innerauthblog{
+     max-width: 1200px;
+    margin: 0 auto;
+        padding: 0 20px;
+  }
+
+    .about_the_author_blog .innerauthblog {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+  .joinus_newsletter{
+    display: grid;
+    align-items: center;
+}
+  .joinusnews_inner {
+    padding: 15px;
+margin-top: unset;
+}
+{% if blog.url  contains '/blogs/clinical' %}
+    #blog-section .joinusnews_inner .hs-button {
+       background: #f0f0f0 !important;
+       color: #206766;
+      border-left: 1px solid black;
+} 
+{% else %}
+    #blog-section .joinusnews_inner .hs-button {
+       background: #f0f0f0 !important;
+       color: #fe5c36;
+      border-left: 1px solid black;
+} 
+{% endif %}
+</style>
+
+
+<div class="about_the_author_blog" id="blog-section">
+  <div class="innerauthblog">
+<div class="joinustext"  >
+  <h3>{{ section.settings.Main_Heading }}</h3>
+  <p class="joinuspara">{{section.settings.paragraph}}</p>
+</div >
+<div class="joinus_newsletter">
+     <div class="joinusnews_inner">
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+		<script>
+		  hbspt.forms.create({
+			portalId: "5058629",
+			formId: "5fc930a2-0fe6-43df-bd59-9fbb92406f74"
+		});
+		</script>
+        </div> 
+		 
+</div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Blog JoinUs",
+    "settings": [
+      {
+        "type": "text",
+        "id":   "Main_Heading",
+        "label": "Main Heading"
+      },
+      {
+          "type": "text",
+          "id": "paragraph",
+          "label": "Paragraph"
+      },
+      {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "Background Image"
+       } 
+    ],
+    "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Blog JoinUs",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}

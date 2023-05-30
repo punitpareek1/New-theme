@@ -1,0 +1,119 @@
+{{ 'subscriptions-tabs.css' | asset_url | stylesheet_tag }}
+{{ 'subscription-tabs.js' | asset_url | script_tag }}
+
+ 
+<section class="section" id="subscriptions-tabs">
+      <div class="operations">
+        <div class="operations__tab-container">
+          <div class="btn operations__tab operations__tab--1 operations__tab--active" data-tab="1">
+          <img src={{section.settings.image_adult | img_url : 'master' | prepend: "https:"}} alt="{{ section.settings.image_adult.alt }}" loading="lazy" > 
+            <h4>{{section.settings.heading_adults}}</h4>
+            <span>(13+)</span>
+          </div>
+          <div class="btn operations__tab operations__tab--2" data-tab="2">
+            <img src={{section.settings.image_kids | img_url : 'master' | prepend: "https:" }} alt="{{ section.settings.image_kids.alt }}" loading="lazy" >
+             <h4>{{section.settings.heading_kids}}</h4>
+            <span>(4-12)</span>
+          </div>
+          <div class="btn operations__tab operations__tab--3" data-tab="3">
+            <img src={{section.settings.image_tots | img_url : 'master' | prepend: "https:"}} alt="{{ section.settings.image_tots.alt }}" loading="lazy" >
+             <h4>{{section.settings.heading_tots}}</h4>
+            <span>(1-3)</span>
+          </div>
+          <div class="btn operations__tab operations__tab--4" data-tab="4">
+            <img src={{section.settings.image_baby | img_url : 'master' | prepend: "https:" }} alt="{{ section.settings.image_baby.alt }}" loading="lazy">
+             <h4>{{section.settings.heading_baby}}</h4>
+            <span>(Under 1)</span>
+          </div>
+        </div>
+        <div class="operations__content operations__content--1 operations__content--active">
+          {% assign product_adults = all_products["flore-adult-monthly-program"] %}
+          {% render 'product-snippet-details', product : product_adults, selling_id : '1324843069', heading: 'h3' %}
+          {% render 'adults-data-tabs' %}
+        </div>
+
+        <div class="operations__content operations__content--2">
+         {% assign product_kids = all_products["flore-kids-monthly-program"] %}
+          {% render 'product-snippet-details', product : product_kids, selling_id : '1324941373', heading: 'h3' %}
+          {% render 'kids-data-tabs' %}
+        </div>
+        <div class="operations__content operations__content--3">
+          {% assign product_tots = all_products["flore-tots-monthly-program"] %}
+          {% render 'product-snippet-details', product : product_tots, selling_id : '1324908605', heading: 'h3' %}
+          {% render 'tots-data-tabs' %}
+        </div>
+        <div class="operations__content operations__content--4">
+         {% assign product_baby = all_products["flore-baby-monthly-program"] %}
+          {% render 'product-snippet-details', product : product_baby, selling_id : '1324875837', heading: 'h3' %}
+          {% render 'baby-data-tabs' %}
+          
+        </div>
+      </div>
+    </section>
+
+
+{% schema %}
+  {
+    "name": "Subscriptions Tabs",
+    "settings": [
+	{
+      "type": "image_picker",
+      "id": "image_adult",
+	  "label" : "Image Adult"
+    },
+    {
+      "type": "text",
+      "id": "heading_adults",
+	  "label" : "Heading Adult"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_kids",
+	  "label" : "Image Kids"
+      
+    },
+    {
+      "type": "text",
+      "id": "heading_kids",
+	  "label" : "Heading Kids"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_tots",
+	  "label" : "Image Tots"
+    },
+    {
+      "type": "text",
+      "id": "heading_tots",
+	 "label" : "Heading Tots"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_baby",
+	  "label" : "Image Baby"
+    },
+    {
+      "type": "text",
+      "id": "heading_baby",
+	  "label" : "Heading Baby"
+    },
+    {
+      "type": "html",
+      "id": "text_below_qty",
+	  "label" : "Text Below QTY"
+    }
+],
+	"presets" : 
+	[
+	{
+	"name" : "Subscriptions Tabs"
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

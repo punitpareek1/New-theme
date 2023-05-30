@@ -1,0 +1,138 @@
+<style>
+.product-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        border: 3px solid #ff5c35;
+        background: #fff;
+        overflow: hidden;
+        margin: 0 35px;
+        float: left;
+}
+ .flore-banner {
+        height: 730px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+   		background-image: url({{section.settings.bannerImage | img_url: 'master'}});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+        background-color: #fdf8f1;
+        text-align: right;
+        color: #fff;
+        font-size: 23px;
+        font-weight: 500;
+   		z-index:99;
+}
+  .heading h1{
+  	font-size: 2.8rem; 
+    line-height: 1.4; 
+    padding-bottom: 0px;
+    font-weight: 500;
+        color: #000;
+        width: 600px;
+        float: right;
+        margin: 0 0 60px;
+  }
+  .heading {padding-top:50px;}
+  .right{width: 50%;
+        float: right;}
+  .product-info p{
+  	color: black;font-size: 1rem;line-height: 1.7;font-weight: 100;
+  }
+  .product-image{margin-top:-50px;}
+  
+  @media(max-width:1080px){
+    .right{width:60%;}
+  }
+   @media(max-width:890px){
+    .right{width:70%;}
+  }
+  @media(max-width:768px){
+    .flore-banner{
+    	height: 420px;
+      background-position: 15% !important;
+      background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/lp-mood-banner-mobile-20190514.jpg?298);
+    }
+    .heading h1{font-size:18px;}
+    .product-image{width: 140px;
+        height: 140px;margin-top: 0px;}
+    .btn-primary{font-size:12px;}
+    .right {width: 100%;}
+    .heading h1{width:100%;}
+    .anxiety h2,h2.font-36{font-size:25px!important;}
+    
+  }
+</style>
+
+<div class="flore-banner">
+  	<div class="flore-banner-row global-container-1200">
+      		<div class="left"></div>
+      		<div class="right">
+              <div class="heading">
+              	<h1>{{section.settings.heading}}</h1>
+              </div>
+              <div class="product-image">
+              	<img src="{{section.settings.productImage | img_url: 'master'}}" alt="Improve-your-mood-with-precision-probiotics">
+              </div>
+              <div class="product-info">
+              	<a href="{{section.settings.buttonUrl}}" class="btn-primary">{{section.settings.buttonText}}</a>
+                {{section.settings.productDesc}}
+              </div>
+      		</div>
+  	</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Banner Section",
+    "settings": [
+	
+		{
+			"type":"text",
+			"id":"heading",
+			"label":"Banner Heading"
+		},
+		{
+			"type":"image_picker",
+			"id":"productImage",
+			"label":"Product Image"
+		},
+		{
+			"type":"text",
+			"id":"buttonText",
+			"label":"Button Text"
+		},
+		{
+			"type":"url",
+			"id":"buttonUrl",
+			"label":"Button Url"
+		},
+		{
+			"type":"richtext",
+			"id":"productDesc",
+			"label":"Product Short Desc"
+		},
+		{
+			"type":"image_picker",
+			"id":"bannerImage",
+			"label":"Banner Image"
+		}
+	
+	],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "How To Treat",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

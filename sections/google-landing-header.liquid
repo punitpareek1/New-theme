@@ -1,0 +1,93 @@
+<style>
+
+  .header-wrapper{
+      max-width: 1200px;
+    margin: 0 auto;
+  }
+  .main-row-inner{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .join-btn, .join-btn:hover{
+      font-size: 20px;
+    letter-spacing: normal;
+    color: #ffffff;
+    background: #FF5C35;
+    font-family: "SunGenomics",sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    padding: 14px 46px;
+    border-radius: 30px;
+  }
+  
+  @media(max-width:768px){
+  
+    .main-row-inner{
+        padding: 0 10px;
+    }
+    .logos .branding-logo-link{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+  }
+
+</style>
+
+<header style="background: #fff;">
+
+  <div class="header-wrapper">
+    
+    <div class="header-row main-row-inner">
+      {% if section.settings.header_logo != blank %}
+      <div class="logos">
+        <a class="branding-logo-link" href="{{ routes.root_url }}">
+          {% render 'header-logos', default_logo: section.settings.header_logo %}
+        </a>
+      </div>
+      {% endif %}
+      {% if section.settings.join != blank %}
+
+      <a class="join-btn" href="https://flore.com/cart/clear?return_to=/cart/add?items[][id]=40421476630589%26items[][quantity]=1%26items[][selling_plan]=1324843069%26return_to=/checkout">{{section.settings.join}} </a>
+      
+      {% endif %}
+    </div>
+      
+  </div>
+
+  
+</header>
+
+
+
+{% schema %}
+{
+  "name": "Google Landing Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_logo",
+      "label": "Logo image",
+      "info": "400 x 200px .png recommended"
+    },
+	{
+      "type": "text",
+      "id": "join",
+      "label": "Join Now Button"
+    },
+   {
+      "type": "url",
+      "id": "join_link",
+      "label": "Join Now Link"
+    }
+  ]
+}
+
+{% endschema %}
+

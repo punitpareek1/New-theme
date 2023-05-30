@@ -1,0 +1,218 @@
+{{ 'subscriptions-tabs.css' | asset_url | stylesheet_tag }}
+{{ 'tabs-only.js' | asset_url | script_tag }}
+
+<style>
+  .clinical_wa{
+    background: #f0f0f0;
+    position: relative;
+  }
+  .tab_heading h3{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    color: #206766;
+    padding: 50px 0;
+  }
+  .subscriptions-tabs{
+    background: url();
+  }
+.operations__tab--active {
+    border: 1px solid #206766;
+    background: #6fa3a452;
+    border-radius: 10px; 
+    padding: 10px;
+}
+.operations__tab-container {
+    grid-template-columns: repeat(3,1fr);
+
+}
+.operations__tab {
+    gap: 20px;
+}
+
+.operations__tab--2 {
+    position: relative;
+}
+
+.operations__tab--2 .gut_cleaner h5 {
+    background: #206766;
+    clip-path: polygon(-0.17% -6.79%, 92.96% -1.38%, 92.61% 18.22%, 82.14% 98.15%, 0% 100%);
+    color: #fff;
+    width: 64%;
+    position: absolute;
+    top: 0px;
+    border-radius: 6px 0 0 0;
+    padding: 5px 15px;
+    left: 0px;
+}
+  
+
+  
+  .operations__tab--active {
+    gap: 20px;
+}
+  .btn span{
+        text-align: center;
+       font-weight: 600;
+  }
+  .bg_wave{
+    position: absolute;
+    bottom: -84px;
+  }
+
+
+
+@media(max-width:768px){
+  .product_box_inner {
+    padding-bottom: 58px;
+}
+.tab_heading h3{
+    font-size: 26px;
+    padding: 30px 0 10px 0;
+  }
+  #subscriptions-tabs {
+  padding: unset; 
+}
+  .tab_heading{
+padding: 0 20px;
+  }
+  .operations__tab-container{
+    padding: 0 20px;
+  }
+  .bg_wave {
+   display: none;
+}
+  .operations__tab-container {
+    grid-template-columns: 1fr;
+        gap: 20px;
+  }
+.operations__tab--2 .gut_cleaner h5 {
+    background: #206766;
+    clip-path: polygon(-0.17% -6.79%, 92.96% -1.38%, 92.61% 18.22%, 82.14% 98.15%, 0% 100%);
+    color: #fff;
+    width: 82%;
+    font-size: x-small;
+    position: absolute;
+    top: 0px;
+    border-radius: 6px 0 0 0;
+    padding: 5px 15px;
+    left: 0px;
+}
+  .operations__tab{
+   max-width: 300px;
+    margin: 0 auto;
+    max-height: 320px; 
+  }
+}
+
+  @media (min-width: 769px) and (max-width: 1024px){
+ .bg_wave{
+    bottom: -56px;
+  }
+    
+  }
+
+
+
+
+  
+</style>
+<section class="section clinical_wa" id="subscriptions-tabs">
+      <div class="operations">
+        <div class="tab_heading">
+          <h3>{{ section.settings.topheading }}</h3>
+        </div>
+        <div class="operations__tab-container">
+ 
+          <div class="btn operations__tab operations__tab--1 " data-tab="1">
+            <img loading="lazy" src={{section.settings.image_adult | img_url : 'master' | prepend: "https:" }} alt="{{ section.settings.image_adult.alt }}" height="100%" width="100%">
+            <h4>{{section.settings.heading_adults}}</h4>
+            <span>3 Month Program  </span>
+          </div>
+        
+          <div class="btn operations__tab operations__tab--2 operations__tab--active" data-tab="2">
+           <div class="gut_cleaner"> <h5> BEST GUT INVESTMENT!</h5></div>
+             <img loading="lazy" src={{section.settings.image_kids | img_url : 'master' | prepend: "https:" }} alt="{{ section.settings.image_kids.alt }}" height="100%" width="100%">
+             <h4>{{section.settings.heading_kids}}</h4>
+            <span>6 Month Program  </span>
+          </div>
+          <div class="btn operations__tab operations__tab--3" data-tab="3">
+            <img loading="lazy" src={{section.settings.image_tots | img_url : 'master' | prepend: "https:"}} alt="{{ section.settings.image_tots.alt }}"  height="100%" width="100%">
+             <h4>{{section.settings.heading_tots}}</h4>
+            <span>12 Month Program</span>
+          </div>
+        </div>
+     
+        <div class="operations__content operations__content--1 ">
+          {% render '3-month-details' %}
+        </div>
+
+        <div class="operations__content operations__content--2 operations__content--active">
+          {% render '6-month-details'%}
+        </div>
+        <div class="operations__content operations__content--3">
+          {% render '12-month-detaills' %}
+        </div>
+      </div>
+   <div class="bg_wave">
+    <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/bg-8ks.png?v=1667889481" alt="gb wave"  loading="lazy" height="100%" width="100%">
+  </div>
+    </section>
+
+
+{% schema %}
+  {
+    "name": "clinical Tabs",
+    "settings": [
+      {
+      "type": "text",
+      "id": "topheading",
+	  "label" : "Heading"
+    },
+	{
+      "type": "image_picker",
+      "id": "image_adult",
+	  "label" : "Image 3"
+    },
+    {
+      "type": "text",
+      "id": "heading_adults",
+	  "label" : "Heading 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_kids",
+	  "label" : "Image 6"
+      
+    },
+    {
+      "type": "text",
+      "id": "heading_kids",
+	  "label" : "Heading 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_tots",
+	  "label" : "Image 12"
+    },
+    {
+      "type": "text",
+      "id": "heading_tots",
+	 "label" : "Heading 12"
+    }
+  
+],
+	"presets" : 
+	[
+	{
+	"name" : "Clinical Tabs"
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

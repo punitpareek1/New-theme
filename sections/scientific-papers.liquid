@@ -1,0 +1,155 @@
+<style>
+  .scientific-papers {
+  background-color:#F8F8F8;
+    padding-top:75px;
+  }
+  .topheading h1  {
+  padding-bottom: 20px;
+    max-width: 500px;
+    font-weight: 500;
+    margin-top: 0;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: #404040;
+    
+  }
+  .heading-papers a{
+  	    line-height: 1.25;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #404040;
+   
+  }
+	
+  .heading-papers a:hover{
+  	     color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .scientific-papers-group {
+  	    margin-top: 30px;
+  }
+  	a, a:hover {
+    color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+	}
+  a:focus, a:hover {
+    color: #aeaeae;
+	}
+  
+  .fa {
+  margin-right:5px;
+  }
+  .text02 p {
+  padding:10px 0;
+        font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+  }
+  
+  .pdf-link-grp {
+    margin-top: -20px;
+}
+  
+  @media(max-width:768px){
+  
+  
+  }
+  
+</style>
+
+
+
+<section class="scientific-papers">
+<div class="global-container-1200 ">
+
+<h1 class="topheading"> {{ section.settings.Main_Heading}} </h1>
+
+<div class="main-scientific-papers-row">
+  
+{% for block in section.blocks %}
+	<div class="scientific-papers-group"> 
+
+ {%- if block.settings.heading_type == 'h2' -%}
+    <h2 class="heading-papers">
+       <a href="{{ block.settings.link_pdf }}" target="_blank" rel="noreferrer">{{ block.settings.scientific_papers}}</a>
+    </h2>
+{%- else -%}
+    <h3 class="heading-papers">
+      <a href="{{ block.settings.link_pdf }}" target="_blank" rel="noreferrer">{{ block.settings.scientific_papers}}</a>
+    </h3>
+{%- endif -%}
+
+      <div class="text02"> {{ block.settings.paragraph }} </div>  
+      <div class="pdf-link-grp"><a href="{{ block.settings.link_pdf }}" target="_blank" rel="noreferrer" class="link-standard"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>{{ block.settings.link_text }}</a></div>
+     </div> 
+{% endfor %}
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+"name": "Scientific Section 1",
+"settings": [
+{
+      "type": "text",
+      "id": "Main_Heading",
+      "label": "Main Heading"
+      }
+      ],
+  
+  	  "blocks":[
+	{
+	"type":"order",
+	"name":"Scientific Papers",
+	"settings": [
+      {
+  "type": "select",
+  "id": "heading_type",
+  "label": "Heading type",
+  "options": [
+    {
+    "label": "H3",
+    "value": "h3"
+    },
+    {
+    "label": "H2",
+    "value": "h2"
+    }
+  ]
+},
+        {
+          "type": "text",
+          "id": "scientific_papers",
+          "label": "Scientific Papers Heading"
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+		{
+          "type": "url",
+          "id": "link_pdf",
+          "label": "Pdf link or site url"
+        }	
+      ]
+	}
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

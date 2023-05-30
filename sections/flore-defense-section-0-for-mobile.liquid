@@ -1,0 +1,72 @@
+<style>
+ 
+  .flore-defense-section-0{
+       background-color: #f3f1ef;
+    padding:75px 0px 0;
+  }
+  .mobile-heading h2{
+  
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding-bottom: 12px;
+     text-align: center;
+    
+  }
+  .h2-accent{
+  
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+   
+    
+  }
+    .flore-defense-section-0 {display: none;}
+  @media(max-width:800px){
+  
+    .flore-defense-section-0 {display: block;}
+    
+    .flore-defense-section-2 {
+     display:none!important;
+    }
+  }
+  
+</style>
+
+<section class="flore-defense-section-0">
+  <div class="global-container-1200">
+     
+    <div class="mobile-heading" >{{ section.settings.topHeading }}</div>
+    <div> <img src="{{ section.settings.image | img_url : 'master' }}"> </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Defense Section 1 mobile",
+  "settings": [
+    {
+      "type": "html",
+      "id": "topHeading",
+      "label": "Heading"
+    },    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Defense Section 1 mobile",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,171 @@
+<style>
+
+  .retestingSection {
+    padding: {{section.settings.padding_top_bottom}}px 0;
+    background-color: {{section.settings.color_Desktop}};
+    background-image: url({{section.settings.bg_image| img_url: 'master'}});
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: center;
+}
+
+
+  .retestingSection h3 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist,sans-serif;
+    color: #fff;
+}
+  .retestingSection p {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.4;
+    font-family: "sk-modernist";
+    font-weight: 400;
+}
+  .retesting-wrapper{
+   max-width:1200px;
+    margin:0 auto;  
+    padding: 0 16px;
+  }
+  
+
+  
+  @media(min-width:768px){
+  
+    .img-waves{
+    display:none;
+    }
+    
+
+  
+  }
+  
+  @media(max-width:767px){
+     .retestingSection {
+    padding:   calc({{section.settings.padding_top_bottom}}% - 90% ) 20px;
+    background-color: {{section.settings.color_mobile}};
+       background-image: url('{{section.settings.bg_image_two| img_url: 'master'}}');
+    }
+    
+   
+        .retestingSection h3 {
+    font-size: 24px !important;
+ 
+}
+  
+      #bottom-swing{
+  display:none!important;
+  }
+    
+    .img-1{
+        height: 12px;
+      background: #efefef;
+    }
+    .img-2 img{
+    transform: rotateX(180deg);
+      margin-bottom: 0;
+    display: block;
+
+    }
+    .img-2 {
+    background: #fff;
+    }
+
+    .retestingSection p {
+    font-size: 16px;
+}
+    .productsection2 {
+    padding: 50px 0px;
+    }
+    .right_area p{
+    font-size: 18px;
+    }
+    .add-to-cart-button .button-subtext{
+    text-align:center!important;
+          font-size: 0.5rem!important;
+    } 
+    span.button-label {
+    display: block;
+    font-size: 16px !important;
+    font-weight: 500;
+}
+    .number-input-wrapper {
+    padding: 0px 10px;
+}
+    .page-product-detail .product-header .add-to-cart-button {
+    padding: 6px 25px;
+}
+   
+    
+    
+  }
+  
+</style>
+
+
+<div class="retestingSection">
+  <div class="retesting-wrapper">
+  <h3>{{section.settings.heading}}</h3>
+  <p>{{section.settings.description}}</p>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Free Retesting",
+  "settings": [
+  {
+      "type": "image_picker",
+      "id": "bg_image",
+	  "label" : "Desktop Background"
+    },
+ {
+      "type": "color",
+      "id": "color_Desktop",
+      "label": "Desktop color",
+      "default": "#FFFFFF"
+     },
+  {
+      "type": "image_picker",
+      "id": "bg_image_two",
+	  "label" : "Mobile Background"
+    },
+   {
+      "type": "color",
+      "id": "color_mobile",
+      "label": "Mobile color",
+      "default": "#FFFFFF"
+     },
+
+    {
+      "type": "text",
+      "id": "heading",
+	  "label" : "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+	  "label" : "Description"
+    },
+{
+  "type": "range",
+  "id": "padding_top_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding",
+  "default": 5
+}
+  ],
+ "presets": [
+    {
+      "name": "Free Retesting",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

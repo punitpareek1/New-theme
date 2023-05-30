@@ -1,0 +1,208 @@
+<style>
+  #text-column-{{section.id}} {
+  background-color: {{section.settings.background_color}}
+  
+  }
+  #text-column-{{section.id}} .text-column-wrapper{
+  	padding-top:{{section.settings.padding_top | default : '70'}}px;
+	padding-bottom:{{section.settings.padding_bottom | default : '70' }}px;
+  }
+
+  .columns-wrapper {
+        display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+    gap: 20px;
+  }
+  .heading-self{
+  padding: 15px 0;
+    font-size: 32px;
+    font-family: sk-modernist,sans-serif;
+    color: #000;
+    font-weight: 700;
+  }
+  .column-self{
+  text-align:center;
+  }
+  .image-col {
+    max-width: 140px;
+    height: 100px;
+    margin: 0 auto;
+}
+  
+  .image-col img {
+    height: 100%;
+}
+  
+  .heading-wrapper h3{
+   font-family: sk-modernist,sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  @media(max-width:768px){
+  
+    .heading-wrapper h3{
+    font-size:24px;
+    }
+    
+    .columns-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 0;
+    justify-content: start;
+    gap: 10px;
+    overflow: auto;
+	}
+    
+    .column-self {
+    text-align: center;
+    background: #f0f0f0;
+    position: relative;
+    margin-top: 50px;
+    padding: 40px 10px;
+    border-radius: 20px;
+	}
+    
+    .image-col {
+    max-width: 140px;
+    height: 70px;
+    margin: 0 auto;
+    position: absolute;
+    top: -46px;
+    right: 0;
+    left: 0;
+	}
+    .heading-self{
+    font-size:16px;
+    }
+    
+    .columns-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+     .columns-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+
+    
+  }
+  
+  
+     
+  
+</style>
+
+
+
+<div id="text-column-{{section.id}}" class="">
+  <div class="text-column-wrapper contain-1200 padding-mobile-1250">
+    {% if section.settings.headline != blank %}
+    <div class="heading-wrapper">
+      <h3 style="color :{{section.settings.heading_color}}">{{ section.settings.headline }}</h3>
+      {% if section.settings.subhead != blank %}<div class="description">{{ section.settings.subhead }}</div>{% endif %}
+    </div>	
+    {% endif %}
+    <div class="columns-wrapper">
+      {% for block in section.blocks %}
+      <div class="column-self">
+        {% if block.settings.detailsImage != blank %}
+        <div class="image-col"><img src="{{ block.settings.detailsImage | img_url: 'master' }}"  alt="{{ block.settings.detailsImage.alt }}" loading="lazy"></></div>
+        {% endif %}
+        {% if block.settings.detailsText != blank %}
+        <h3 class="heading-self">{{ block.settings.detailsText }}</h3>
+        {% endif %}
+        {% if block.settings.description != blank %}
+        <div class="description">{{block.settings.description}}</div>
+        {% endif %}
+      </div>  
+      {% endfor %}
+    </div>
+
+  </div>
+</div>  
+
+
+
+
+{% schema %}
+{
+  "name": "Text Column Image",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    },
+	{
+		"type" : "color",
+		"id" : "heading_color",
+		"label" : "Heading Color"
+	},
+    {
+      "type": "text",
+      "id": "subhead",
+	  "label": "Description"
+    },
+	{
+		"type" : "color",
+		"id" : "background_color",
+		"label" : "Background Color"
+	},
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Result Details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "detailsImage",
+	  	  "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "detailsText",
+	  	  "label": "text"
+        },
+		{
+      "type": "textarea",
+      "id": "description",
+	  "label": "Description"
+    }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Column Image",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

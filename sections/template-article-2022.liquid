@@ -1,0 +1,795 @@
+<style>
+  .bolg_template_section{
+    padding-bottom: 8rem;
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/SG_BlogPage.jpg?v=1661420893);
+    background-position: 0px 0px;
+    background-size: 100% 100%;
+    padding-top: 40px;
+  }
+.bolg_template_row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 16px;
+}
+
+.blog_template_col2 img {
+    width: 100%;
+  border-radius: 35px;
+}
+.blog_contant_col h2{
+    margin-bottom: 0 !important;
+}
+.main_heading_blog {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 500px;
+}
+  .main_heading_blog h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: {{section.settings.heading-color}};
+   line-height: 1.4;
+}
+
+.social_box {
+    margin-top: 3rem;
+}
+{% if blog.url  contains '/blogs/clinical' %}
+.blog_contant_innner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 4rem 16px 6rem 16px;
+}
+{% else %}
+.blog_contant_innner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 16px 8rem 16px;
+}
+{% endif %}
+
+  .blog_contant_innner ul{
+    margin: 0px;
+  }
+.blog_contant_col p {
+    font-size: 16px;
+    padding: 15px 0px;
+    margin: 0;
+}
+
+.blog-post-clinical .blog_contant_col  a {
+    color: #206766;
+}
+
+.blog-post .blog_contant_col a {
+    color: #FF5C35;
+}
+h3:first-child {
+    padding-top: 0;
+}
+
+.blog_contant_col h2:nth-child(1) {
+    padding-top: 0px;
+}
+.blog_contant_col p:first-child{
+    font-weight: 600;
+    font-size: 20px;
+}
+ .blog_contant_col p:first-word {
+    text-transform: uppercase;
+}
+
+.blog_contant_col h2,
+.blog_contant_col h3,
+.blog_contant_col h4,
+.blog_contant_col h5,
+.blog_contant_col h6 {
+    padding-top: 0px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.blog_contant_col h4 {
+    font-size: 20px;
+}
+
+.blog_contant_col .accordion h4 {
+    font-size: 25px;
+}
+
+.blog_contant_col h2  {
+    font-size: 35px; 
+}
+  .blog_contant_col h3{
+        font-size: 32px; 
+  }
+ .blog_contant_col h4 {
+    font-size: 26px;
+ }
+
+
+.blog-post-clinical .blog_contant_col   h1,
+.blog-post-clinical  .blog_contant_col  h4,
+.blog-post-clinical .blog_contant_col   h5,
+.blog-post-clinical .blog_contant_col  h6 {
+  color: #206766;
+  font-weight: 600;
+}
+
+.blog-post .blog_contant_col  h1,
+.blog-post .blog_contant_col  h4,
+.blog-post .blog_contant_col h5,
+.blog-post .blog_contant_col  h6 {
+  color: #ff5c35;
+  font-weight: 600;
+}
+
+  
+.blog_contant_col h3,
+.blog_contant_col h1,
+.blog_contant_col h4,
+.blog_contant_col h2
+ {
+  font-weight: 700;
+}
+.blog_contant_col ul  li {
+    list-style-type: circle;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+.blog-post-clinical .blog_contant_col  li:after {
+    font-size: 40px;
+    color: #206766;
+}
+.blog-post .blog_contant_col  li:after {
+    font-size: 40px;
+    color: #ff5c35;
+}
+
+.blog_contant_col li::marker {
+    font-size: 0;
+}
+
+.blog-post-clinical .blog_contant_col  li:before {
+    font-size: 38px;
+    color: #206766;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -32px;
+}
+.blog-post-clinical .blog_contant_col  ul li:before {
+    font-size: 38px;
+    color: #206766;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -32px;
+}
+.blog-post .blog_contant_col  li:before {
+    font-size: 38px;
+    color: #ff5c35;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -32px;
+}
+.blog-post .blog_contant_col  ul li:before {
+    font-size: 38px;
+    color: #ff5c35;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -32px;
+}
+
+.blog_contant_col ol li:before {
+    font-size: unset;
+    color: unset ;
+    content: unset ;
+    position: unset;
+    top: unset;
+    left: unset;
+}
+
+.blog_contant_col ol li:before {
+    font-size: unset;
+    color: unset ;
+    content: unset ;
+    position: unset;
+    top: unset;
+    left: unset;
+}
+.log_contant_col ol li {
+ list-style-type: decimal;
+}
+.blog_contant_col ol li::marker{
+  font-size: 16px;
+}
+.relatedArticles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 0px;
+    max-width: 1200px;
+    margin: auto;
+}
+  
+
+
+.post_data {
+    background-color: #ff701b;
+    padding: 20px 30px;
+    border-radius: 0 0 20px 20px;
+}
+
+
+  .post-image {
+    border-radius: 20px 20px 0 0;
+    height: 380px;
+    object-fit: cover;
+}
+
+.relatedArticles .well-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.well {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.well-content {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.post_data h3 {
+    font-size: 30px;
+}
+
+.post_data span {
+    font-size: 16px;
+}
+
+.box-padding {
+    margin: 0;
+}
+
+.heading_related {
+    font-size: 32px;
+    color: #ff701b;
+    text-align: center;
+}
+.blog_contant_wapper{
+    background-color: #f0f0f0;
+
+}
+  .upgrade_save_atc{
+    border: none;
+  }
+
+.blog_contant_col ol li {
+     list-style-type: ;
+     margin-bottom: 1rem;
+     margin-left: 2rem; 
+    position: relative; 
+   line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .blog_template_col2 img{
+        height: auto;
+  }
+  .blog_contant_innner {
+    padding: 40px 20px !important;
+ }
+   .bolg_template_section{
+    padding-bottom: 3rem;
+    background-image: unset;
+  }
+  .ld-facebook,
+  .ld-instagram,
+  .ld-youtube,
+  .ld-twitter{
+  font-size: 22px !important;
+  }
+    .social_box img {
+        width: 100%;
+    }
+.post_data h3 {
+    font-size: 22px !important;
+}
+    .blog_contant_col h3 {
+        font-size: 24px;
+    }
+
+    .blog_contant_col h2 {
+        font-size: 28px;
+    }
+
+    .main_heading_blog h1 {
+        font-size: 35px;
+    }
+
+    .bolg_template_row {
+        grid-template-columns: 1fr;
+    }
+
+    .bolg_template_row,
+    .blog_contant_innner {
+        padding: 0 20px;
+    }
+
+    .social_box {
+        margin-top: unset;
+    }
+
+    .about_the_author_wapper {
+        padding: calc(100% - 90%) 20px !important;
+        background-color: #eff1f3;
+        background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/orange_mobile_origna_4f7fc174-4842-4cd7-a101-d26a6539945d.png?v=1665118642) !important;
+    }
+
+    .about_the_outher_col h3 {
+        font-size: 24px !important;
+    }
+
+    .about_the_outher_col p {
+        font-size: 16px;
+    }
+
+    .relatedArticles {
+        grid-template-columns: 1fr;
+        grid-row-gap: 30px;
+        padding: 0 20px;
+    }
+
+    .well {
+        width: 100%;
+    }
+
+    .post-image {
+        width: 100%;
+    }
+
+  
+.blog-post-clinical .blog_contant_col  li:before {
+    font-size: 38px;
+    color: #206766;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -40px;
+}
+.blog-post-clinical .blog_contant_col  ul li:before {
+    font-size: 38px;
+    color: #206766;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -40px;
+}
+.blog-post .blog_contant_col  li:before {
+    font-size: 38px;
+    color: #ff5c35;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -40px;
+}
+.blog-post .blog_contant_col  ul li:before {
+    font-size: 38px;
+    color: #ff5c35;
+    content: "\25CB";
+    position: absolute;
+    top: -15px;
+    left: -40px;
+}
+}
+
+  
+</style>
+
+<!-- Accordian Mobile css -->
+<style>
+@media(min-width:481px){
+.mobilBlog
+{
+display: none;
+}
+}
+@media(max-width:480px)
+{
+.accordion {
+padding: 15px 20px;
+text-decoration: none;
+position: relative;
+border-radius: 10px;
+margin-bottom: 15px;
+font-size: 16px;
+font-weight: 700;
+color: #404040;
+}
+.accordion-open span {
+display:block;
+position:absolute;
+right:20px;
+top:30%;
+padding:10px;
+}
+.accordion h4
+{
+line-height: 1.2;
+}
+.accordion-open span {
+background:url('https://cdn.shopify.com/s/files/1/2204/9357/files/upload_1.png?v=1663669945') center center no-repeat;
+transform: rotateX(10deg);
+transition: transform 330ms ease-in-out;
+}
+.accordion-close span {
+display:block;
+position:absolute;
+right:20px;
+top:30%;
+background:url('https://cdn.shopify.com/s/files/1/2204/9357/files/down-arrow.png?v=1663669038') center center no-repeat;
+padding:10px;
+transition: transform 330ms ease-in-out;
+}
+.faq-header {
+margin:3rem 0 1rem 0!important;
+}
+.faqpage div.container {
+padding:0;
+margin:0;
+}
+.faqpage div.container {
+ max-width:100%;
+ padding:5px 0;
+}
+.faqpage div.content {
+ background:#f4f4f4;
+ margin: 0;
+ padding:10px;
+ font-size:.9em;
+ line-height:1.5em;
+}
+.faqpage div.content ul {
+padding:0;
+margin:0;
+padding:3px;
+}
+.faqpage div.content p {
+padding:0;
+margin:3px 0 10px;
+padding:3px;
+}
+.faqpage div.content ul li {
+list-style-position:inside;
+line-height:25px;
+}
+/* .blog_contant_col p:nth-child(1) {
+    font-weight: 400;
+    font-size: 16px;
+} */
+.content{
+padding:0 15px 15px;
+}
+.faq-header{
+font-size: 2.2rem;
+line-height: 1.25;
+color: #404040;
+font-weight: 500;
+margin-bottom: 40px!important;
+}
+.main-content .shopify-section:last-child{
+padding-bottom:70px;
+}
+.heading h1{
+padding: 0 0 40px 0;
+font-size: 2.2rem;
+line-height: 1.25;
+color: #404040;
+font-weight: 500;
+}
+.faqs{
+padding:70px 0 0 0;
+}
+ul {
+list-style: disc;
+}
+.fHeading{
+margin-bottom: 30px;
+font-size: 30px;
+line-height: 1.25;
+color: #404040;
+font-weight: 500;
+}
+.two .fHeading{
+margin-bottom: 30px;
+margin-top:30px;
+}
+.mobilBlog
+{
+	display: block;
+}
+.desktopBlog
+{
+	display: none;
+}}
+@media(max-width:769px){
+.accordion{
+padding: 12px 30px 12px 16px;
+font-size: 14px;
+font-weight: 400;
+color: #404040;
+line-height: 18px;
+}        
+.accordion-close span, .accordion-open span{
+right: 8px;
+}
+.content p{
+font-size:16px;
+}
+.fHeading{
+font-size:24px;
+}
+}
+@media not all and (min-resolution:.001dpcm)
+{
+.blog_contant_col ul li:before {
+        font-size: 26px !important;
+        color: #ff5c35 !important;
+        content: "\25CB" !important;
+        position: absolute !important;
+        top: -5px !important;
+        left: -34px !important;
+    }}
+  
+ ====================
+
+@media(min-width:481px){
+.mobilBlog
+{
+display: none;
+}
+}
+ 
+.accordion {
+padding: 15px 20px;
+text-decoration: none;
+position: relative;
+border-radius: 10px;
+margin-bottom: 15px;
+font-size: 16px;
+font-weight: 700;
+color: #404040;
+padding-bottom: 0px;
+margin-bottom: 0px;
+}
+.accordion-open span {
+display:block;
+position:absolute;
+right:20px;
+top:30%;
+padding:10px;
+}
+.accordion h4
+{
+line-height: 1.2;
+}
+.accordion-open span {
+background:url('https://cdn.shopify.com/s/files/1/2204/9357/files/upload_1.png?v=1663669945') center center no-repeat;
+transform: rotateX(10deg);
+transition: transform 330ms ease-in-out;
+}
+.accordion-close span {
+display:block;
+position:absolute;
+right:20px;
+top:30%;
+background:url('https://cdn.shopify.com/s/files/1/2204/9357/files/down-arrow.png?v=1663669038') center center no-repeat;
+padding:10px;
+transition: transform 330ms ease-in-out;
+}
+.faq-header {
+margin:3rem 0 1rem 0!important;
+}
+.faqpage div.container {
+padding:0;
+margin:0;
+}
+.faqpage div.container {
+ max-width:100%;
+ padding:5px 0;
+}
+.faqpage div.content {
+ background:#f4f4f4;
+ margin: 0;
+ padding:10px;
+ font-size:.9em;
+ line-height:1.5em;
+}
+.faqpage div.content ul {
+padding:0;
+margin:0;
+padding:3px;
+}
+.faqpage div.content p {
+padding:0;
+margin:3px 0 10px;
+padding:3px;
+}
+.faqpage div.content ul li {
+list-style-position:inside;
+line-height:25px;
+}
+/* .blog_contant_col p:nth-child(1) {
+    font-weight: 400;
+    font-size: 16px;
+} */
+.content{
+padding:0 15px 15px;
+}
+.faq-header{
+font-size: 2.2rem;
+line-height: 1.25;
+color: #404040;
+font-weight: 500;
+margin-bottom: 40px!important;
+}
+.main-content .shopify-section:last-child{
+padding-bottom:70px;
+}
+.heading h1{
+padding: 0 0 40px 0;
+font-size: 2.2rem;
+line-height: 1.25;
+color: #404040;
+font-weight: 500;
+}
+.faqs{
+padding:70px 0 0 0;
+}
+ul {
+list-style: disc;
+}
+.fHeading{
+margin-bottom: 30px;
+font-size: 30px;
+line-height: 1.25;
+color: #404040;
+font-weight: 500;
+}
+.two .fHeading{
+margin-bottom: 30px;
+margin-top:30px;
+}
+.mobilBlog
+{
+	display: block;
+}
+.desktopBlog
+{
+	display: none;
+}} 
+
+  /////////
+.accordion{
+padding: 12px 30px 12px 16px;
+font-size: 14px;
+font-weight: 400;
+color: #404040;
+line-height: 18px;
+}        
+.accordion-close span, .accordion-open span{
+right: 8px;
+}
+.content p{
+font-size:16px;
+}
+.fHeading{
+font-size:24px;
+}
+ .content p{
+    font-weight: normal !important;
+    font-size: 16px !important;
+ }
+
+
+
+  
+</style>
+<!-- END  -->
+
+<div class="bolg_template_section">
+    <div class="bolg_template_row">
+        <div class="blog_template_col1">
+            <div class="main_heading_blog">
+                <h1>{{ article.title }}</h1>
+                <span class="date-line"style="margin-top:25px;">{{ article.published_at |  date: "%A %b %e, %Y" }}</span>
+<!--                 <span class="date-line">{{ article.published_at | date: "%a, %b %d, %y" }}</span> -->
+            </div>
+            <div class="social_box">
+
+  <div class="post-content rte">
+		
+        <div>
+          
+          <div class="blog-social" style="text-align: left;  display: inline-block; margin-bottom: 25px; padding: 6px 5px 0 10px; border-radius: 5px;">	
+      
+                <a href="https://www.facebook.com/sungenomics" class="" style="margin: 0 5px;     font-size: 35px;
+    color: #000;" rel="noopener"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+            
+            <a href="https://www.instagram.com/sungenomics/" class="" style="margin: 0 5px 0 0;     font-size: 35px;
+    color: #000;"  rel="noopener"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        
+            <a href="https://twitter.com/sungenomics?lang=en" class="" style="margin: 0 5px;     font-size: 35px;
+    color: #000;" rel="noopener"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/channel/UC7QRWxM2i2BjQcf9eYWj56g" class="" style="margin: 0 5px;     font-size: 35px;
+    color: #000;" rel="noopener"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+          </div>
+        </div>
+		
+  
+	  </div>
+            </div>
+        </div>
+      {% if article.image %}
+        <div class="blog_template_col2">
+            <img src="{{ article.image | img_url: 'master' | prepend: 'https:' }}" alt="{{ article.title }}" loading="lazy" width="600px" height="400px"/>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="blog_contant_wapper {{ article.template_suffix }}">
+  <div class="Rectangle_img"> </div> 
+    <div class="blog_contant_innner">
+        <div class="blog_contant_col">
+          	  {{ article.content }}
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="{{ 'jquery_accordion.js' | asset_url | prepend: 'https:' }}"></script>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.accordion').accordion({
+cookieName: 'accordion_nav'
+});
+});
+})(jQuery);
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+    {
+      "type": "color",
+      "id": "heading-color",
+      "label": "Heading Color",
+      "default": "#ff5c35"
+    }
+]
+  }
+{% endschema %}
+

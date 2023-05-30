@@ -1,0 +1,132 @@
+<style>
+  @media(max-width:1099px){
+.testimonialWaveBottomOutter {
+    background-image: url('https://cdn.shopify.com/s/files/1/2204/9357/files/Folder_1_5.jpg?v=1655913569');
+    background-position: center;
+    padding: 170px 10px;
+    background-size: cover;
+}
+    
+    .testimonialWaveBottomInner .buttonBottom {
+  	background-color: #fff;
+    border: none;
+    padding: 17px 50px 20px;
+    border-radius: 41px;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'sk-modernist';
+    line-height: 1;
+}
+  }
+.testimonialWaveBottomInner .bottomHeadline {
+    font-size: 55px;
+    font-weight: 700;
+    font-family: 'sk-modernist';
+    color: #fff;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+
+.testimonialWaveBottomInner {
+    margin: auto;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.testimonialWaveBottomInner .buttonBottom {
+  	background-color: #fff;
+    border: none;
+    padding: 17px 50px 20px;
+    border-radius: 41px;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'sk-modernist';
+    line-height: 1;
+}
+  
+  @media(min-width:1100px){
+  .testimonialWaveBottomOutter {
+    background-position: center;
+    background-size: cover;
+    background-color: #6c8289;
+}
+    .testimonialWaveBottomInner {
+    margin: auto;
+    max-width: 1200px;
+    text-align: center;
+    background-position: center;
+    padding: 170px 10px;
+}
+  .testimonialWaveBottomOutter:before {
+    content: '';
+    position: absolute;
+    height: 37px !important;
+    width: 100% !important;
+    display: block;
+    background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Folder_1_5_2.jpg?v=1656005134) repeat;
+    background-size: contain;
+    z-index: 999;
+}
+    .testimonialWaveBottomOutter:after {
+    content: '';
+    position: absolute;
+    height: 37px !important;
+    width: 100% !important;
+    display: block;
+    background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Folder_1_5_2.jpg?v=1656005134) repeat;
+    background-size: contain;
+    z-index: 999;
+    bottom: 0px;
+    transform: rotate(180deg);
+}
+  }  
+  
+@media(max-width:600px){
+  .testimonialWaveBottomInner .bottomHeadline {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .testimonialWaveBottomInner .buttonBottom {
+    font-size: 14px;
+    padding: 10px 27px 12px;
+  }
+
+  .testimonialWaveBottomOutter {
+    padding: 43px 10px;
+  }
+}  
+  
+</style>  
+<div class="testimonialWaveBottomOutter">
+  <div class="testimonialWaveBottomInner">
+    <h3 class="bottomHeadline">{{ section.settings.headline }}</h3>
+    <a href="https://flore.com/products/flore-precision-probiotics"><button class="buttonBottom">{{ section.settings.buttonText }}</button></a>
+  </div>  
+</div>
+{% schema %}
+{
+  "name": "Testimonial Wave Bottom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "placeholder": "Headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "buttonText",
+      "placeholder": "Text for the load more button",
+      "default": "Button",
+	  "label": "Button Text"
+    }
+  ],
+	"presets": [
+                    {
+                      "name": "Testmonial Wave Bottom"
+                    }
+                  ]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+<style>
+  
+ p.upgrade_save_sub_head {
+    text-align: center;
+    font-size: 22px;
+    color: #231f20;
+    font-family: 'sk-modernist';
+    font-weight: 400;
+    line-height: 1.5;
+ 	margin-bottom:30px;
+  }
+
+  @media(max-width:720px){
+  	p.upgrade_save_sub_head{
+  		font-size:20px;
+  	}
+  }
+  
+.upgrade_save_outer {
+  background: {{bgColor}};
+    padding: 50px 20px;
+  	font-family: sk-modernist,sans-serif;
+}
+
+.upgrade_save_inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+h5.upgrade_save_head {
+    display: block;
+    color: #FF5C35;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+  font-family: sk-modernist,sans-serif;
+}
+
+.upgrade_save_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.upgrade_save_col {
+    width: 33.33%;
+    padding: 10px;
+}
+
+.upgrade_save_col img {
+    width: auto;
+    margin: auto;
+    max-height: 170px;
+    height: 100%;
+}
+
+p.upgrade_save_title, p.upgrade_save_money {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+  	color:#000;
+  font-family: sk-modernist,sans-serif;
+  line-height: 1.4;
+}
+p.upgrade_save_money {
+    padding: 5px 0px 20px;
+}
+  
+.upgrade_save_atc {
+    background: #FF5C35 !important;
+    border-radius: 42px !important;
+    padding: 7px 30px !important;
+    margin: auto;
+    display: block;
+}
+
+.upgrade_save_atc span.button-label {
+    font-size: 13px !important;
+  font-family: sk-modernist,sans-serif;
+      font-weight: 700;
+}  
+
+.slick-prev:before, .slick-next:before {
+    color: #FF5C35;
+    background: white;
+}
+  
+  .form-slider{
+  	display:block !important;
+  }
+  
+  @media(max-width:600px){
+  h5.upgrade_save_head {
+    font-size: 32px;
+}
+
+.upgrade_save_col {
+    width: 100%;
+}
+  }  
+  
+</style>
+{%- assign collection = collections[section.settings.collection] -%}
+{%- assign product_limit = 20 -%}
+<div class="upgrade_save_outer">
+  <div class="upgrade_save_inner">
+    <h5 class="upgrade_save_head">Check Out Our Other Products</h5>
+    <div class="upgrade_save_row">
+       {% for product in collections.all.products %}
+        {% if product.tags contains 'sliderTag' %}  
+      <div class="upgrade_save_col">
+       <a href="{{ product.url }}">
+        <img src="{{ product.images[0] | img_url: '400x400' | prepend: 'https:' }}" alt="{{ product.images[0].alt }}" loading="lazy">
+        <p class="upgrade_save_title">{{ product.title }}</p>
+        <p class="upgrade_save_money" data-price="{{ product | json }}">{{ product.price | money}}{% if product.metafields.subscriptions.has_subscription == 'True' or product.metafields.global.montly_subscription == 'true' %}/month{% endif %}</p>
+        </a>
+        
+        <form
+               class="product-form form-slider"
+               id="product-form-{{ product.id }}"
+               action="/cart/add" data-productid="{{ product.id }}"
+               method="post"
+               data-product-form="{{ form_id }}"
+               data-productid="{{product.id}}"
+               style="margin-top: 0;">
+           <input
+                  class="product-select"
+                  name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                  value="{{ product.variants[0].id }}"
+                  type="hidden"
+                  data-variant-title="{{ product.variants[0].title }}" />
+           <button type="submit" class="btn btn-primary add-to-cart-button upgrade_save_atc">
+             <span class="button-label">Add To Cart </span>
+         </form>
+      </div>
+	{% endif %}        
+  {% endfor %}
+ 
+    </div>
+  </div>
+</div> 
+
+<script>
+ jQuery('.upgrade_save_row').slick({
+  infinite: true,
+  dots:true,
+  arrows: true,
+  slidesToShow: 3,
+  slidesToScroll: 2,
+    speed: 300,
+  swipeToSlide: true,
+  responsive: [{
+    breakpoint: 992,
+    settings: {
+      slidesToShow: 2
+    }
+  }, {
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 1,
+      arrows: false
+    }
+  }]
+});
+</script>  
+  
+  

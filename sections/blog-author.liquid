@@ -1,0 +1,62 @@
+<style>
+.about_the_author_wapper {
+    padding: 100px 0;
+    background-color: #fff; 
+    background-image: url({{section.settings.bg-image | img_url: 'master'}});
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: center;
+}
+
+.about_the_outher_inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about_the_outher_col h3 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist, sans-serif;
+    color: #fff;
+}
+
+.about_the_outher_col p {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.4;
+    font-family: "sk-modernist";
+    font-weight: 400;
+    line-height: 1.4;
+}
+  
+</style>
+<div class="about_the_author_wapper">
+    <div class="about_the_outher_inner">
+        <div class="about_the_outher_col">
+            <h3>About the Author</h3>
+            <p>{{ article.metafields.custom.about_author.value }}</p>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+  { 
+    "name": "Blog Author",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "Background Image"
+       } 
+],
+    "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Blog Author",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}

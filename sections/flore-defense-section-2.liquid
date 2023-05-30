@@ -1,0 +1,86 @@
+<style>
+  
+  .flore-defense-section-2 {
+  
+    background-color: #f8f8f8;
+    
+  }
+
+  h2{
+    margin-top: 0;
+    font-weight: 500;
+    color: #404040;
+        font-size: 2rem;
+    line-height: 1.15;
+    padding-bottom: 20px;
+    
+}
+  .col-1{
+  
+    min-height: 600px;
+        max-width: 560px;
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .flore-defense-section-2 {
+  
+   background-position: right;
+    background-repeat: no-repeat;
+}
+    	
+  }
+</style>
+
+
+<section class="flore-defense-section-2" style="background-image:url({{ section.settings.image | img_url : 'master' }});">
+  <div class="global-container-1200">  
+    <div class="row">
+         
+        <div class="col-1">
+				<h2>{{ section.settings.heading }}</h2>
+								
+				<div class="text02">
+					{{ section.settings.paragraph }}
+				</div>	
+		</div> 
+    
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Defense Section 2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Defense Section 2",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,230 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  h4{font-weight: 500;
+    margin: 1.33em 0;
+    
+  }
+ h3{
+    line-height: 1.25;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #404040;
+}
+  .team-contain-1200{
+  	padding-top:50px;
+    
+  }
+   .home-team {
+  padding: 50px 0;
+  }
+  .padding-b-75 ul{
+      list-style-position: inside;
+        list-style: inside!important;
+  }
+  strong{
+  font-weight:700;
+  }
+  .team-txt-heading{
+   font-size: 47px;
+    line-height: 1.25;
+    font-weight: 500;
+    color: #FF5C35;
+  }
+.inner_employee{
+  width: unset;
+}
+  .employee_one{
+    width: 25% !important;
+  }
+/*   .employee-tiles-team{max-width: 1000px;} */
+  .employee-tiles-team .col-grid-flex{display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+   row-gap: 40px;  
+                                     }
+
+    .employee-tiles-team .employee-tile {
+      border-radius: 100%;
+   height: 200px;
+    width: 200px;
+/*     background-position: center; */
+      background-position: 100% 24%;
+    background-size: cover;
+   background-repeat: no-repeat;
+/*           height: 100%;  */
+    }
+
+  .employee-tiles-team .employee-tile-info {
+        display: none;
+        line-height: 1.2;
+}
+  .employee-tiles-team h4 {
+        margin-bottom: 0px;
+    color: #FF5C35;
+}
+  .employee-tile-overlay-inner p{
+    padding: 0;
+  }
+  .clear{
+  	clear: both;
+  }
+  .employee-tiles-team .employee_one:hover .employee-tile-overlay{
+  	display:block;
+  }
+  .employee-tile-overlay-inner{
+  	top:50%;
+    position:relative;
+  }
+.team-col{
+text-align: center;
+}
+  .employee_fpo{
+     position: absolute;
+    top: 45%;
+    left: 45%;
+    font-weight: 500;
+    font-size: 23px;
+  }
+  .employee-tile{
+     position: relative;
+  }
+
+  @media only screen and (max-width: 820px) and (min-width: 620px){
+    .employee-tiles-team .employee_one {
+        width: 50% !important;
+      	height:auto;
+      	padding-right:0px;
+    }
+  }
+
+  @media (max-width: 768px){
+    .inner_employee, .employee-tile-overlay-inner {
+      width: unset !important;
+    }
+    .employee-tiles-team .employee-tile-info {
+        display: block;
+    }
+    .employee-tiles-team .employee-tile {
+    height: 150px;
+    width: 150px;
+    }
+    .team-contain-1200{
+      padding-bottom: 50px;
+ }
+.home-team {
+    padding: 0px 0;
+}
+  }
+
+  @media only screen and (max-width: 620px){
+    .employee-tiles-team .employee_one {
+        width: 100% !important;
+      	height:auto;
+      	padding-right:0px;
+    }
+  }
+.inner_employee img{
+    border-radius: 100%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    object-position: 100% 14%;
+}
+</style>
+
+<div class="home-team" style="position: relative;z-index: 1;">
+  <div class="team-contain-1200 global-container-1200">
+     
+		 <div class="team-col" style="position: relative;">
+           	<h1 class="team-txt-heading">
+                      {{section.settings.heading}}
+            </h1>
+           <div class="text02">{{section.settings.paragraph}}</div>
+          </div>
+    	
+    
+    	<div class="employee-tiles-team">
+             <div class="col-grid-flex">	
+               
+                      {% for block in section.blocks %}
+									<div class="employee_one">	
+                                       <div class="inner_employee">
+                                            					
+                                                     <div class="employee_fpo">
+                                                       {{ block.settings.fpo }}
+                                                     </div>
+                                                 
+                                         <img src="{{block.settings.memberImage | img_url: 'master'}}" alt="{{ block.settings.memberImage.alt }}" loading="lazy" width="100%" height="100%"/>
+                                        <div class="employee-tile-overlay">
+                                                          <div class="employee-tile-overlay-inner">
+                                                            <h4>{{block.settings.text1}}</h4>
+                                                          	<p>{{block.settings.text2}}</p>
+                                                          </div>
+                                                      </div>
+                                               </div>
+                                          
+
+                                          </div>
+
+                      {% endfor %}
+           						<div class="clear"></div>
+                  </div>
+		</div>
+    
+  </div>
+  
+</div>
+
+{% schema %}
+{
+  "name": "Team Member Section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Body Text"
+    }
+  ],
+	"blocks":[
+	{
+	"type":"mission",
+	"name":"Team Member",
+	"settings": [
+		{
+          "type": "text",
+          "id": "text1",
+          "label": "Member Name",
+		  "default":"Sunny Jain, M.S."
+        },
+      {
+          "type": "text",
+          "id": "fpo",
+          "label": "FPO"
+        },
+		{
+          "type": "text",
+          "id": "text2",
+          "label": "Member Title",
+		  "default":"Chief Executive Officer"
+        },
+		{
+          "type": "image_picker",
+          "id": "memberImage",
+          "label": "Member Image"
+        }	
+      ]
+	}
+  ]
+}
+
+{% endschema %}

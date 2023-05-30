@@ -1,0 +1,71 @@
+<script
+  type="application/json"
+  data-section-type="static-404"
+  data-section-id="{{ section.id }}"
+></script>
+
+
+<style>
+.module-wrapper {
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Vector_Smart_Object_2.png?v=1654512419);
+    background-position: 50% 130px;
+    background-repeat-y: no-repeat;
+}
+.module-header.logo {
+  width: 80%;
+  max-width: 700px;
+  margin: 20px auto 30px;
+}
+
+.module-content h1 {
+  font-size: 45px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.module-content p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+}
+  
+  @media(max-width:700px){
+  
+  .module-content h1 {font-size: 24px;}
+
+.module-header.logo {margin: 0px auto;}
+
+.module.module-404 {padding: 30px 10px;}
+
+.module-content p {font-size: 16px;}
+  }
+</style>
+<!-- <div class="module-wrapper">
+  <div class="module module-404">
+    <div class="module-header page-header">
+      <h1 class="module-title">{{ 'general.404.title' | t }}</h1>
+    </div>
+    <div class="module-body">
+      <div class="module-content">
+        {% capture link %}
+          <a href="{{ routes.all_products_collection_url }}">{{ 'general.404.link' | t }}</a>
+        {% endcapture %}
+        {{ 'general.404.subtext_html' | t: link: link }}
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+<div class="module-wrapper" >
+  <div class="module module-404">
+    <div class="module-header logo">
+      <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/Vector_Smart_Object_3_1_58c5dfda-eebf-4fc0-8b31-6a1b21304b57.png?v=1654511907" alt="404">
+    </div>
+    <div class="module-body">
+      <div class="module-content">
+        <h1>Page Not Found</h1>
+        <p>Try another link or come back to the <a href="/">homepage</a></p>
+      </div>
+    </div>
+  </div>
+</div>

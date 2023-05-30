@@ -1,0 +1,947 @@
+<!-- All Product must -->
+{{ 'all-product.css' | asset_url | stylesheet_tag }}
+<!-- <link rel="preload" href="{{ 'all-product.css' | asset_url }}" as="style"> -->
+<link rel="stylesheet" href="{{ 'style-v2.min.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'saphire-utilities.min.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'yotpo-review-widget.css' | asset_url }}">
+{% render 'shogun-products', content: product %}
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+<!-- End All Products must -->
+
+<style>
+  .page-product-detail {
+    background: #ffffff;
+  }
+  .product-header-wrapper {
+    background: #fff !important;
+  }
+  
+  h1.productTitle {
+    color: #FF5C35;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1;
+    font-family: 'sk-modernist',sans-serif;
+}
+
+p.sub-title-product {
+    padding: 0px;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'sk-modernist',sans-serif;
+}
+
+.product-price .money {
+    color: #FF5C35;
+    font-size: 18px;
+  	font-family: 'sk-modernist',sans-serif;
+    font-weight: 700 !important;
+}
+  
+.product-description-short p {
+    color: #211f20;
+    font-size: 17px;
+    line-height: 1.3;
+  	font-family: 'sk-modernist',sans-serif;
+    font-weight: 400;
+  	padding-bottom:0px;
+}  
+  
+.product-description-short ul {
+    margin: 5px 0px 10px 0px;
+    margin-left: 20px;
+    max-width: 380px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-description-short ul li {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 50%;
+    color: #211f20;
+    font-family: 'sk-modernist',sans-serif;
+    font-weight: 400;  
+}
+.product-description-short li:before {
+  content: "\f058"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+  color: #FF5C35;  
+}   
+  
+form.product-form {
+    display: inline-flex;
+}  
+  
+.htusb-placeholder-deadline {
+    display: none;
+}  
+.number-input-field {
+    height: 43px;
+    width: 22px;
+}
+
+.number-input-wrapper {
+    border-radius: 50px;
+    border: 1px solid #b8b8b8;
+    padding: 0px 10px;
+}
+
+.number-input-nav-item {
+    border: none !important;
+    padding-top: 7px;
+    color: #b8b8b8 !important;
+  	width: 36px;
+}
+
+.number-input-field input#quantity {
+    padding: 0px;
+    width: 20px;
+}  
+.page-product-detail .product-header .add-to-cart-button {
+    background: #FF5C35;
+    border-radius: 50px;
+    padding: 14px 25px;
+    line-height: 1;
+}  
+  
+  .slider_outer{
+  	max-width:1200px;
+    margin:auto;
+  } 
+  .padding-b-75 {
+	padding-bottom: 0px;
+  }
+  .add-to-cart {
+    margin: 0 0;
+	}
+  @media(max-width:700px){
+  	.product-description-short .hide-morethan-800 {
+    padding-top: 0px !important;
+  }
+
+  .number-input-wrapper.product-quantity {
+      width: 90px !important;
+      z-index: 9999;
+  }
+
+  .number-input-nav-item {
+      line-height: 28px;
+      z-index: 999;
+  }
+
+  .number-input-field input#quantity {
+      width: 40px !important;
+      line-height: 1;
+  }
+   .number-input-nav-item.icon.icon-plus {
+   	  right: 0 !important;
+      left: auto;
+	}
+    .number-input-nav-item.icon.icon-minus {
+      left: 0 !important;
+      width: 30px;
+	}
+     .product-form-submit-wrap:not(:last-child){
+    padding:0px;
+    }
+  } 
+  
+</style>  
+
+{% assign selectedVariant = product.selected_or_first_available_variant | default: product.variants.first %}
+{% capture productGoalDeliveryDate %}{{ settings.product_sale_goal_estimated_delivery_date | trim | ecape }}{% endcapture %}
+
+{% assign add_to_cart_button = 'products.product.add_to_cart' | t %}
+{% if product.handle == settings.featured-product-main and settings.product-sale-goal-use %}
+  {%- capture add_to_cart_button -%}
+    {%- if settings.product_sale_goal_button != blank -%}
+      {{ settings.product_sale_goal_button | escape }}
+    {%- else -%}
+      {{ "home.goal.pre_order" | t }}
+    {%- endif -%}
+  {%- endcapture -%}
+{% endif %}
+
+{% assign form_id = product.id %}
+
+<!-- Page Product Detail -->
+
+<script>
+	$(document).ready(function(){
+		
+		//Hide subscription window, unless subscription is enabled (only do this if there is a radio button to select the product type):
+		if ($("input[name='purchase_type']").is(":visible")){
+			$('.rc_popup').hide();
+			$("input[name='purchase_type']").change(function(){
+				var currentSetting = $("input[name='purchase_type']:checked").val();
+
+				$(this).attr('target','_self');
+				if (currentSetting == "autodeliver"){
+					$('.rc_popup').show();
+				}
+				else{
+					$('.rc_popup').hide();
+				}
+				
+			});
+		}
+	
+	});
+</script>
+
+
+<div class="module-wrapper page-product-detail product-{{ product.id }}">
+  <div class="module module-product">
+    <div class="contain-1200 hide-lessthan-800" style="position: relative;">
+    	
+     {% if product.handle == "flore-calprotectin-stool-test" or product.handle == 'previous-sample-calprotectin-gut-inflammation-test' %}
+      <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/badge-FDA_guarantee-01.png?v=1631269465" alt="FDA Guarantee" style="position: absolute;right: 0;top: -20px;width: 100px;height: 86px" />
+    {%endif%}
+    </div>
+    <div itemscope itemtype="http://schema.org/Product">
+      
+      
+      <!-- Begin Head -->
+      
+      
+      <div class="product-header-wrapper">
+        
+        <div class="contain-1200 padding-mobile-1250">
+         
+          
+          
+          	<div itemprop="brand" itemtype="http://schema.org/Brand" itemscope=""/>
+          	<meta itemprop="name" content="Floré" /> 
+          	</div>
+          	<meta itemprop="sku" content="{{ product.variants.first.sku }}" />
+      		<meta itemprop="url" content="https://flore.com{{ product.url }}" />
+          	<meta itemprop="mpn" content="{{ product.variants.first.sku }}" />
+         	<meta itemprop="description" content="{{ page_description | escape }}" />
+            <meta itemprop="image" content=https:{{ product.featured_image.src | img_url: image_size }} />
+          
+          	<div itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+            <meta itemprop="ratingValue" content="5">
+            <meta itemprop="bestRating" content="5">
+            <meta itemprop="worstRating" content="1">
+            <meta itemprop="reviewCount" content="23">
+     		  </div>
+          <div itemprop="review" itemtype="http://schema.org/Review" itemscope>
+   <div itemprop="author" itemtype="http://schema.org/Person" itemscope>
+   <meta itemprop="name" content="Floré" /> 
+   </div>
+<!--     #RT to check       -->
+          <div class="product-price product-price-main" style="display:none;">
+            <span class="price">
+            
+              <span class="money" style="vertical-align: middle; font-weight: 500;">{{ selectedVariant.price | money }}</span>
+            </span>
+          </div>
+        </div>
+        
+        
+      <div class="product-header">
+        
+
+      {% assign featured_image = selectedVariant.featured_image | default: product.featured_image %} 
+        
+        
+      <div class="product-slideshow slideshowslick clearfix">
+        <div class="product-image-container clearfix">
+          <div class="product-big-image" data-no-image-svg="{{ 'no-image.svg' | asset_url }}" data-no-image-png="{{ 'no-image.png' | asset_url }}">
+            <span class="product-slideshow-loader"></span>
+            {% if product.images.size > 0 %}
+              <img
+                src="{{ featured_image | product_img_url: '600x600' }}"
+                alt="{{ product.title | escape }}"
+                data-high-res="{{ featured_image | product_img_url: '2048x2048' }}">
+            {% else %}
+              <img
+                class="product-no-images"
+                src="{{ 'no-image.svg' | asset_url }}"
+                onerror="this.src='{{'no-image.png' | asset_url}}'; this.onerror=null;" />
+            {% endif %}
+            {% if section.settings.enable_zoom %}
+              <div class="product-image-zoom"></div>
+            {% endif %}
+          </div>
+          {% if product.images.size > 1 %}
+            <a class="product-slideshow-navigation product-slideshow-previous icon icon-arrow-left" href="#" tabindex="0"></a>
+            <a class="product-slideshow-navigation product-slideshow-next icon icon-arrow-right" href="#" tabindex="0"></a>
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="product-slideshow-pagination product-thumbnails padding-b-25">
+            {% for image in product.images %}
+              <a
+                class="product-slideshow-pagination-item {% if image == featured_image %}active{% endif %}"
+                style="background-image:url('{{ image | product_img_url: '50x50' }}')"
+                data-alt="{{ image.alt }}"
+                data-default-res="{{ image | product_img_url: '600x600' }}"
+                data-high-res="{{ image | product_img_url: '2048x2048' }}"
+                data-image-id="{{ image.id }}"
+                href="#"
+                tabindex="0"></a>
+            {% endfor %}
+          </div>
+        {% endif %}
+                
+        
+        {% if product.metafields.page.show_badges == "true" %}
+         <div class="order-product-badges text-centered padding-t-20">
+              <img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/product-badges-2.png?v=1594226849" alt="" style="width: 100%; max-width: 300px; " />
+          </div>
+        {% endif %}
+        
+         <div class="order-social padding-t-30 text-centered hide-lessthan-800" style="display: none;">		
+			
+				<a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=mail" class="ld-share-link ld-email" style="margin: 0 5px 0 0"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
+				<a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=facebook" class="ld-share-link ld-facebook" style="margin: 0 5px"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+				<a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=twitter" class="ld-share-link ld-twitter" style="margin: 0 5px"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+				<a href="https://sungenomics1.leaddyno.com/sharing_widget/share?channel=pinterest" class="ld-share-link ld-pinterest" style="margin: 0 5px"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+			
+          </div>
+        
+      </div>
+      
+      
+      <div class="product-wrap">
+        <div class="product-details" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          
+			<meta itemprop="priceCurrency" content="USD" />
+			<meta itemprop="price" content="{{ product.price | money_without_currency  }}" />
+          	<!--<meta itemprop="brand" content="Sun Genomics" /> -->
+            <meta itemprop="priceValidUntil" content={{ "today" | date: '%s' | plus: 2592000 | date: "%Y-%m-%d" | json }} />
+          	 
+            <meta itemprop="sku" content="{{ product.variants.first.sku }}" />
+          	<meta itemprop="availability" content="InStock" />
+      		<meta itemprop="url" content="{{ product.url }}" />
+          	
+          <meta itemprop="description" content="{{ page_description | escape }}" />
+          
+          
+          
+          {% if settings.product-display-vendor %}
+            <div class="product-vendor" itemprop="brand">
+              {{ product.vendor }}
+            </div>
+          {% endif %}
+          
+          
+         
+          
+          
+        </div>
+        {% if settings.product-sale-goal-use and product.handle == settings.featured-product-main %}
+          <div class="product-goal">
+            {% include "product-goal" %}
+          </div>
+        {% endif %}
+        
+	<!--   #RT New headline section       -->
+        
+        <h1 itemprop="name" style="padding-top: 0" class="productTitle">{{ product.title }}</h1>
+        <p class="sub-title-product">{{ product.metafields.global.sub_title_tag }}</p>
+            <div class="product-price product-price-main">
+            <span class="price">
+              <span class="money" style="vertical-align: middle; font-weight: 500;">{{ selectedVariant.price | money }}{% if product.metafields.global.montly_subscription.value %}/month{%endif%} </span>
+              {% if product.metafields.global.montly_subscription.value == false %}	
+              {% unless product.variants.size == 1 and product.compare_at_price_min <= selectedVariant.price %}
+                <span class="product-price-compare {% if product.compare_at_price_min <= selectedVariant.price %}hidden{% endif %}" style="vertical-align: middle;">
+                  <span class="original money" style="color: #b1b1b1; margin-right: 8px;">
+                    {% if selectedVariant.compare_at_price > selectedVariant.price %}
+                      {{ selectedVariant.compare_at_price | money }}
+                    {% endif %}
+                  </span>
+              {% endunless %}
+                  {% endif %}
+            </span>
+          </div>
+        
+         <div class="product-description-short">
+           <div style="padding-top: 50px;" class="hide-morethan-800"></div>
+            {{ product.metafields.global.short_description }}
+          </div>
+        
+        
+        <!-- Popups for Subscription Products -->
+        {% if product.metafields.subscriptions.is_subscription_only == 'true' %}
+        	<div style="position: relative;">
+             
+              {% if product.title == "Floré Defense" or product.title == "Floré Balance" or product.title == "Floré Bloom Multivitamin"  %}
+              
+              {%else%}
+               <br />
+              <span style="font-size: .9rem; color: #FF5C35; display: inline-block; line-height: 1.2;"><strong>Free reformulations until you see an improvement!</strong></span><br />
+              {%endif%}
+              {% if product.title == "Floré Bloom Multivitamin" %}
+                <span style="font-size: .9rem; color: #FF5C35;"><strong>Simply take one capsule once daily!</strong></span><br />
+              {% endif %}
+              <span style="font-size: .9rem; color: #FF5C35;"><strong>Free and easy cancellation</strong></span><br />
+          	</div>
+        
+        
+        	
+        
+        
+
+        
+        
+        
+       	{% endif %}
+        <!-- Popups for Subscription Products -->
+        
+        <div style="min-height: 24px;"></div>
+        
+        
+        <form
+          class="product-form"
+          id="product-form-{{ form_id }}"
+          action="/cart/add" data-productid="{{ product.id }}"
+          method="post"
+          data-product-form="{{ form_id }}"
+              data-productid="{{product.id}}"
+              style="margin-top: 0;">
+ <div class="htusb-placeholder-deadline"></div>
+           {% if product.available %} {% assign slider_check = 'slider' %} {% include 'subscription-product' with slider_check %} {% endif %}
+          <div class="clearfix product-form-nav">
+            {% if product.variants.size > 1 %}
+              <div class="product-options">
+                {% include 'product-options-dropdown' %}
+
+                <div class="selector-wrapper no-js-required">
+                  <select
+                    class="product-select"
+                    name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                    id="product-select-{{ form_id }}">
+                    {% for variant in product.variants %}
+                      {%- capture option_content -%}
+                        {%- if variant.available -%}
+                          {{ variant.title }} - {{ variant.price | money }}
+                        {%- else -%}
+                          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                        {%- endif -%}
+                      {%- endcapture -%}
+                      <option
+                        {% if variant.id == selected_variant.id %}selected="selected"{% endif %}
+                        data-variant-id="{{ variant.id }}"
+                        {% if variant.available %}
+                          data-sku="{{ variant.sku }}"
+                          value="{{ variant.id }}"
+                        {% else %}
+                          disabled="disabled"
+                        {% endif %}>
+                        {{ option_content | strip_newlines }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            {% else %}
+              <input
+                class="product-select"
+                name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}"
+                value="{{ product.variants[0].id }}"
+                type="hidden"
+                data-variant-title="{{ product.variants[0].title }}" />
+            {% endif %}
+
+            
+            
+            <div id="infiniteoptions-container"></div>
+            <div id="uploadery-container"></div>
+            
+
+            <div class="number-input-wrapper product-quantity clearfix">
+              <div class="number-input-nav-item icon icon-minus"></div>
+              <div class="number-input-field">
+                <input type="number" name="quantity" id="quantity" value="1" aria-label="{{ "general.general.quantity" | t }}" />
+                <label class="number-input-label" for="quantity">{{ 'general.general.quantity' | t }}</label>
+              </div>
+              <div class="number-input-nav-item icon icon-plus"></div>
+            </div>
+            
+          </div>
+          
+          
+          <div class="add-to-cart">
+            {% if product.available %}
+              <div class="product-form-submit-wrap padding-b-20 padding-r-30">
+                {% if product.metafields.global.pricing_button_label %}
+                	<!-- <input class="button outline add-to-cart-button" type="submit" value="{{ product.metafields.global.pricing_button_label }}" /> -->
+               
+                <button class="button outline add-to-cart-button btn" type="submit" style="display: inline-block; z-index: 2;">{{ product.metafields.global.pricing_button_label }}</button>
+                {% else %}
+                	<input class="button outline add-to-cart-button btn" type="submit" value="{{ add_to_cart_button | strip_newlines | strip_html | strip }}" />
+                {% endif %}
+                
+                 <input value="{{ product.title }}" type="hidden" name="handle">
+                <div class="add-to-cart-loader"></div>
+              </div>
+              <div class="product-cart-message" data-product-message></div>
+            {% else %}
+              <input type="submit" class="button outline disabled" disabled="disabled" value="{{ 'products.product.sold_out' | t }}" />
+            {% endif %}
+           
+          </div>
+         
+          
+			{{ product.metafields.global.pricing_subtext }}
+
+          
+          {% if settings.product_sale_goal_estimated_delivery_date != blank and showDeliveryEstimate %}
+            <span class="product-featured-goal-delivery-date">
+              {{ productGoalDeliveryDate }}
+            </span>
+          {% endif %}
+        </form>
+        
+        {{ product.metafields.global.text_after_cta }}
+
+        {% if section.settings.additional_info_text_1 != blank or section.settings.additional_info_text_2 != blank %}
+          <div class="product-more-info">
+            {% if section.settings.additional_info_text_1 != blank %}
+              <p class="product-info-link {{ section.settings.additional_info_icon_1 }}">
+                {% if section.settings.additional_info_url_1 != blank %}
+                  <a href="{{ section.settings.additional_info_url_1 }}">
+                {% endif %}
+
+                <span>
+                  {{ section.settings.additional_info_text_1 | escape }}
+                </span>
+
+                {% if section.settings.additional_info_url_1 != blank %}
+                  </a>
+                {% endif %}
+              </p>
+            {% endif %}
+            {% if section.settings.additional_info_text_2 != blank %}
+              <p class="product-info-link {{ section.settings.additional_info_icon_2 }}">
+                {% if section.settings.additional_info_url_2 != blank  %}
+                  <a href="{{ section.settings.additional_info_url_2 }}">
+                {% endif %}
+
+                <span>
+                  {{ section.settings.additional_info_text_2 | escape }}
+                </span>
+
+                {% if section.settings.additional_info_url_2 != blank  %}
+                  </a>
+                {% endif %}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+
+        
+        
+      </div>
+        <div style="clear: both;"></div>
+      </div>
+        <div class="padding-b-75"></div>
+      </div>
+      <div>
+<!--    #RT Main content      -->
+		<div>
+              {{ page.metafields.global.main_content_design.value }}
+        </div>  
+        
+       
+    </div>
+
+<!--  #RT delete section if not working      -->
+ {% comment %}     
+<!-- Giving Back -->
+<style>
+  section.slider_outer {
+    //background: #fff;
+    width: 100%;
+    padding: 30px 40px 40px 40px;
+  	border-bottom: 1px solid #ddd;
+  	border-top: 1px solid #ddd;
+}
+  
+.slider_details {
+    height: 70px;
+}
+  .article-image{
+  display: flex;
+    justify-content: center;
+        height: 250px;
+  }
+  
+button.btn.btn-primary.add-to-cart-button {
+    font-size: 13px;
+}
+  
+  .heading-collection{
+  font-size:18px;
+  }
+  .content-box{
+  height:75px;
+  }
+  
+  .homepage-product--heading a{
+  	font-size:1.1rem;
+  }
+  
+  .heading-group-blog{
+  	text-align:center;
+  }
+  
+  .blog-single-column{
+    text-align:center;
+    padding:20px;
+  }
+  
+  .slick-prev:before, .slick-next:before{
+    color: #ff5722;
+  }
+  
+  .btn-add-to-cart {
+  	margin-top:15px!important;
+  }
+  
+  .product-slider img{
+  	display: block;
+    object-fit: cover;
+    height: 100%;
+    width:100%;
+    padding: 20px;
+  }
+  
+	.section-giving-back{
+		background: #dce3ec;
+	}
+	.section-giving-back.product-8972019845{
+		background: #f3f5f9;
+	}
+	
+	.section-giving-back .column-left{
+		border-right: 1px solid #c7d1de;
+	}
+	.section-giving-back .column-main{
+		border-left: 1px solid #eef1f6;
+	}
+	#popup-leavingsite{
+		display: none; 
+		box-shadow: 5px 5px 20px rgba(0,0,0,.2); 
+		width: 400px; 
+		margin-left: -200px; 
+		height: 225px;
+	}
+	@media(max-width: 600px){
+		.section-giving-back .column-left,
+		.section-giving-back .column-main{
+			border: 0;
+		}
+		.section-giving-back .padding-l-50{
+			padding-left: 0;
+		}
+		.section-giving-back .logo-candcfoundation{
+			max-width: 120px;
+		}
+	}
+	@media(max-width: 800px){
+		#popup-leavingsite{
+			width: 90%;
+			margin: 0 auto;
+			left: 0;
+		}
+      section.slider_outer{
+      padding:20px;
+      }
+	}
+</style>
+
+      
+{{ product.metafields.global.product_header_footer }}      
+      
+<section class="section-giving-back product-{{product.id}}">
+	<div class="contain-1200 padding-mobile-1250 padding-tb-50 column-fixed-left collapse-600">
+		<div class="column-left column-left-250 padding-b-40 hide-lessthan-600" style="width: 225px;">
+			<img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/logo-crohns-and-colitis-foundation.png?v=1606785326" class="logo-candcfoundation" />
+		</div>
+		<div class="column-main">
+			<div class="padding-l-50">
+				<h2 style="font-size: 1.4rem; padding-bottom: 5px;">Giving Back</h2>
+				<img src="https://cdn.shopify.com/s/files/1/2204/9357/t/10/assets/logo-crohns-and-colitis-foundation.png?v=1606785326" class="logo-candcfoundation right hide-morethan-600" style="padding: 0 0 12px 28px;" />
+				<p>We are delighted to provide a portion of our proceeds to the Crohn's &amp; Colitis Foundation, a non-profit organization dedicated to finding cures for Crohn's &amp; 
+				Colitis and improving the quality of those living with these diseases. To learn more about the Crohn's &amp; Colitis Foundation, please visit their website:</p>
+				<br />
+				<a href="#" id="leavingsite-link" class="atmousepopup-link" data-target="popup-leavingsite" data-popup-width="200" style="display: inline-block; margin-top: 15px;"><i class="fa fa-share-square" aria-hidden="true"></i>&nbsp;Crohn's &amp; Colitis Foundation</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+// 	$(document).ready(function(){
+			
+// 		$('#leavingsite-link').click(function(e){
+// 			$('.popup-screen').show();
+//           	$('#popup-leavingsite').show();
+// 		});
+		
+// 		$('.popup-screen').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+		
+// 		$('.leavingsite-go-link').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+      
+// 		$('.popup-close').click(function(e){
+// 			$('.popup-screen').hide();
+// 			$('.popup').hide();
+//           $('#popup-leavingsite').hide();
+// 		});
+// 	});
+</script>
+<!--
+<div id="popup-leavingsite" class="popup" style="">
+	<div class="popup-header padding-b-15">
+		<a href="#" class="popup-close right"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size: 18px;"></i></a>
+		<h3>Leaving Sun Genomics</h3>
+	</div>
+	
+	You are about to leave the Sun Genomics website. 
+	<br /><br />
+	<a href="https://www.crohnscolitisfoundation.org/" class="leavingsite-go-link" target="_blank"><i class="fa fa-angle-right" aria-hidden="true"></i> Proceed to Crohn's &amp; Colitis Foundation</a><br />
+</div>
+-->
+<!-- End Giving Back -->
+      
+      
+      
+      
+      <!-- End Head -->
+{% endcomment %}      
+      
+      
+  
+     
+      
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<!-- Page Product Detail -->
+
+{%- capture cart_link -%}
+  <a href="/cart">{{ 'products.product.cart_link' | t }}</a>
+{%- endcapture -%}
+{%- capture continue_link -%}
+  <a href="/collections/all">{{ 'products.product.continue_link' | t }}</a>
+{%- endcapture -%}
+{%- capture checkout_link -%}
+  <a href="/checkout">{{ 'products.product.checkout_link' | t }}</a>
+{%- endcapture -%}
+
+<script type="application/json" data-product-settings-{{ form_id }}>
+  {
+    "addToCartText": {{ add_to_cart_button | strip_newlines | strip_html | strip | json }},
+    "disableAjaxAddProduct": true,
+    "enableHistory": true,
+    "imageZoom": {{ section.settings.enable_zoom }},
+    "linkedOptions": true,
+    "processingText": {{ 'products.product.processing' | t | json }},
+    "setQuantityText": {{ 'products.product.set_quantity' | t | json }},
+    "soldOutText": {{ 'products.product.sold_out' | t | json }},
+    "successMessage": {{ 'products.product.success_html' | t: cart_link: cart_link, continue_link: continue_link, checkout_link: checkout_link | json }},
+    "unavailableText": {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+<script type="application/json" data-product-json-{{ form_id }}>{{ product | json }}</script>
+
+
+<!-- All Product JS -->
+<script type="text/javascript" src="{{ 'jquery_accordion.js' | asset_url }}"></script>
+
+<script>
+  
+  jQuery('.product-slider').slick({
+  infinite: true,
+    dots:true,
+    arrows: true,
+  slidesToShow: 3,
+  slidesToScroll: 2,
+    speed: 300,
+  swipeToSlide: true,
+  responsive: [{
+    breakpoint: 992,
+    settings: {
+      slidesToShow: 2
+    }
+  }, {
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 1,
+      arrows: false
+    }
+  }]
+});
+
+</script>
+<!-- END All Product JS -->
+
+
+{% comment %}{% include 'explore-other-products' with bgColor:'#fff' %}{% endcomment %}
+
+
+{% schema %}
+{
+  "name": "Product pages",
+  "class": "section-product",
+  "settings": [
+	{
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_count",
+      "min": 4,
+      "max": 20,
+      "label": "Number of products to display",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom",
+      "label": "Enable image zoom",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_ajax",
+      "label": "Enable cart redirection",
+      "info": "Automatically sends users to the Cart page after adding a product.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-share-buttons",
+      "label": "Show share buttons",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Additional info links"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Additional Info Links](https:\/\/s3.amazonaws.com\/cdn.pixelunion.net\/startup\/additional-info-screenshot.png) appear wherever a customer can view product information. They’re perfect for linking to size charts, refund policies, or ordering details. Pick from six unique icons."
+    },
+    {
+      "type": "text",
+      "id": "additional_info_text_1",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "additional_info_url_1",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "additional_info_icon_1",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "info",
+          "label": "Information (i)"
+        },
+        {
+          "value": "question-mark",
+          "label": "Question mark"
+        },
+        {
+          "value": "ruler",
+          "label": "Ruler"
+        },
+        {
+          "value": "envelope",
+          "label": "Envelope"
+        },
+        {
+          "value": "pencil",
+          "label": "Pencil"
+        },
+        {
+          "value": "shirt",
+          "label": "Shirt"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "additional_info_text_2",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "additional_info_url_2",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "additional_info_icon_2",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "info",
+          "label": "Information (i)"
+        },
+        {
+          "value": "question-mark",
+          "label": "Question mark"
+        },
+        {
+          "value": "ruler",
+          "label": "Ruler"
+        },
+        {
+          "value": "envelope",
+          "label": "Envelope"
+        },
+        {
+          "value": "pencil",
+          "label": "Pencil"
+        },
+        {
+          "value": "shirt",
+          "label": "Shirt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Template Product 2022",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

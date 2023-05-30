@@ -1,0 +1,621 @@
+<!doctype html>
+<html class="no-js no-touch" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Preconnect Domains -->
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+  <meta name="google-site-verification" content="d88QxBZd-7t8yria4XIKSf9Qyia58IdUmTRmdUubSn8" />
+ 
+    {% if  collection.handle == 'all' %}
+    <title>Best Supplements For Gut Health | Order Now</title>
+     <meta name="description"  content="Browse our products & take care of your gut. Our collection includes personalized probiotics, gut health tests, purpose-driven formulas & more. Shop now!" />
+    {% else %}
+     <title>
+       {{ page_title }}
+    {% if current_tags %}
+    - {{ current_tags }} 
+    {% endif %}
+    {% if current_page > 1 %}
+    - Page {{ current_page }}
+    {% endif %}
+    </title>
+    <meta name="description" content="{{ page_description }}" />
+    {% endif %}
+
+  <!-- Font-Awesome ================================================== -->
+<!--   <link href="https//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="preconnect" as="style"> -->
+  <!-- Preload Assets -->
+  <link rel="preload" href="{{ 'theme.css' | asset_url | prepend: "https:" }}" as="style">
+  <script src="{{ 'jquery-1.10.2.min.js' | asset_url | prepend: 'https:' }}" rel="preload" as="script"></script>
+<!--   <script src="https://cdn.shopify.com/s/files/1/2204/9357/t/60/assets/jquery-1.10.2.min.js?v=176056989601071850921661245827" rel="preload" as="script"></script> -->
+  <link rel="preload" href="{{ 'launch.js' | asset_url | prepend: "https:" }}" as="script">
+  <link rel="preload" href="{{ 'api.jquery.js' | shopify_asset_url | prepend: "https:" }}" as="script">
+  <link rel="modulepreload" href="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js" as="script">
+  
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick-theme.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  
+    {% if template contains 'cart' %}
+      <link rel="preload" href="{{ 'jquery.tmpl.min.js' | asset_url | prepend: "https:" }}" as="script">
+      <link rel="preload" href="{{ '/services/javascripts/countries.js' }}" as="script">
+      <link rel="preload" href="{{ 'shopify_common.js' | shopify_asset_url | prepend: "https:" }}" as="script">
+      <link rel="preload" href="{{ 'jquery.cart.min.js' | asset_url | prepend: "https:" }}" as="script">
+    {% endif %}
+  
+    {% if template contains 'customers' %}
+      <link rel="preload" href="{{ 'shopify_common.js' | shopify_asset_url | prepend: "https:" }}" as="script">
+      <link rel="preload" href="{{ 'customer_area.js' | shopify_asset_url | prepend: "https:" }}" as="script">
+    {% endif %}
+
+  <!-- Preload Assets -->
+  <link rel="preload" href="{{ 'theme.css' | asset_url | prepend: "https:" }}" as="style">
+  <link rel="preload" href="{{ 'launch.js' | asset_url | prepend: "https:" }}" as="script">
+  <link rel="modulepreload" href="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js" as="script">
+
+  {% if template == 'index' %}
+<!--     For Google Optimize -->
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-W273VBN"></script>
+    {% comment %}<title>{{ shop.name }} | {{ page_title }}</title>{% endcomment %}
+  {% elsif template == '404' %}
+    {% comment %}<title>{{ "general.404.title" | t }} | {{ shop.name }}</title>{% endcomment %}
+  {% else %}
+    {% comment %}<title>{{ page_title }} | {{ shop.name }}</title>{% endcomment %}
+  {% endif %}
+
+  {% if page_description %}
+   {% comment %}<meta name="description" content="{{ page_description | escape }}" />{% endcomment %}
+  {% endif %}
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="p:domain_verify" content="c15b6e8e5579586a55dd4c099d10386f" />
+    
+    {% comment %}{% include 'SEOMetaManager' %}{% endcomment %}
+    
+    {% assign tab_index = 0 %}
+    
+     {% if template == 'index' %}
+      {% comment %}<title>{{ shop.name }} | {{ page_title }}</title>{% endcomment %}
+    {% elsif template == '404' %}
+      {% comment %}<title>{{ "general.404.title" | t }} | {{ shop.name }}</title>{% endcomment %}
+    {% else %}
+      {% comment %}<title>{{ page_title }} | {{ shop.name }}</title>{% endcomment %}
+    {% endif %}
+    {% if page_description %}
+      {% comment %}<meta name="description" content="{{ page_description | escape }}" />{% endcomment %}
+    {% endif %}
+
+  {% render 'favicon' %}
+
+  {% if template contains 'collection' and current_tags %}
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+  {% elsif template contains 'product' and product.tags contains 'noIndex' %}
+    <meta name="robots" content="noindex" />
+  {% elsif template contains 'product' %}
+    <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+    {% else %}
+    <link rel="canonical" href="{{ canonical_url }}" />
+  {% endif %}
+  
+  {{ content_for_header }}
+
+  {% include 'scripts-styles-header' %}  
+
+
+
+  {% assign twitter_handle = settings.social_twitter_url | split: 'twitter.com/' | last %}
+  {%
+    render 'social-meta-tags',
+    twitter_handle: twitter_handle
+  %}
+{% if page.handle == "flore-adult"  %}
+  <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope=""/>
+    <meta itemprop="name" content="Floré by Sun Genomics" /> 
+   </div>
+  <meta itemprop="sku" content="SUN_00011" />
+  <meta itemprop="url" content="https://flore.com/products/flore-precision-probiotics" />
+  <meta itemprop="mpn" content="SUN_00011" />
+  <meta itemprop="description" content="We offer personalized probiotics for the digestive system. Our personalized probiotics help with abdominal pain, constipation, &amp; other digestive issues." />
+  <meta itemprop="image" content=https://cdn.shopify.com/s/files/1/2204/9357/products/flore_adults_1_458fa625-b428-4066-99f6-85c91f45945c_small.png?v=1668001217 />
+  
+  <div class="product-details" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    <meta itemprop="name" content="Personalized Probiotics & Gut Microflora Test Program" />
+    <meta itemprop="priceCurrency" content="USD" />
+    <meta itemprop="price" content="79.00" />
+    <meta itemprop="priceValidUntil" content="2022-12-28" />
+    <meta itemprop="sku" content="SUN_00011" />
+    <meta itemprop="availability" content="InStock" />
+    <meta itemprop="url" content="/products/flore-precision-probiotics" />
+    <meta itemprop="description" content="We offer personalized probiotics for the digestive system. Our personalized probiotics help with abdominal pain, constipation, &amp; other digestive issues." />
+    
+  </div>
+{% endif %}  
+  <style>
+  .shg-lightbox{
+    display: none;
+  }
+    .footer-terms ul {
+    padding-bottom: 0px !important;
+    }  
+  }
+
+  </style>
+
+ {% if page.handle == 'flore-adult' %}
+      <style>
+      #myModal{
+     display: none;
+    }
+    </style>
+    {% endif %}
+ {% if page.handle == 'sms' %}
+      <style>
+      .footer-wrapper{
+     display: none !important;
+    }
+        .header-wrapper{
+           display: none;
+}
+        .pxs-announcement-bar{
+ display: none !important;
+}
+    </style>
+    {% endif %}
+
+ {% if blog.handle == 'clinical' %}
+      <style>
+      #myModal{
+     display: none;
+    }
+    </style>
+    {% endif %}
+
+  
+  {% if page.handle == 'refer-a-friend' %}
+<style>
+.module-title.page-title { display: none; }
+</style>
+{% endif %}
+  <script async>
+    document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,'js');
+    if(window.Shopify&&window.Shopify.designMode)document.documentElement.className+=' in-theme-editor';
+    if(('ontouchstart' in window)||window.DocumentTouch&&document instanceof DocumentTouch)document.documentElement.className=document.documentElement.className.replace(/\bno-touch\b/,'has-touch');
+  </script>
+ 
+  
+{% if request.path contains "tools" %}
+	<link href="{{ 'dashboard.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{{ 'saphire-utilities.min.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+{% endif %}
+{% if request.path contains "account" %}
+	<link href="{{ 'dashboard.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{{ 'saphire-utilities.min.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+  
+{% endif %}
+  
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NNP7V3R');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Global site tag (gtag.js) - Google Ads: 828223508 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-828223508"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-828223508', {'allow_enhanced_conversions': true});
+</script>
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5J7EWR7WX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H5J7EWR7WX');
+</script>
+
+{% if template == 'index' %}
+
+<!-- Hotjar Tracking Code for www.sungenomics.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:770716,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+ {% endif %}
+   <meta name="p:domain_verify" content="c15b6e8e5579586a55dd4c099d10386f"/>
+  
+ 
+  <!-- CRITEO START -->
+{% render 'criteo-tracking' %}
+<!-- CRITEO END -->
+  
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url | prepend: "https:" }}">
+
+  <!-- Store object -->
+
+  {% render 'theme-options' %}
+  
+  {% render 'shogun-head' %}
+  {% include 'personizely' %}
+  
+  
+<script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/tZBF7-xmuDARclX_mc9LMg" async></script>
+<script src="{{ 'lazysizes.min.js' | asset_url | prepend: "https:" }}" async="async"></script>
+<!-- Yotpo review script  -->
+<script type="text/javascript">
+(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/LeRc2DBmia1gE3xJ7qO6Sf6SimezCLilJfBguZGp/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>  
+  
+  {% if page.handle == 'flore-research-edition' or page.handle == 'research-publications'%} 
+   <meta name="robots" content="index">
+  {% elsif template contains 'cart' or template contains 'cart/change' or template contains 'search' or template contains 'account/logout' or template contains 'cart/clear' or template contains 'customers/account' or template contains 'customers/register' or template contains 'customers/login' or template contains 'account/register' or template contains 'account/login' or template contains 'checkout' or template contains 'account/addresses' or template contains 'cart/clear' %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+
+
+  {% comment %}Inject theme-object begin{% endcomment %}
+  {% capture add_to_cart_button %}{{ 'products.product.add_to_cart' | t }}{% endcapture %}
+  
+  {% capture themeGlobals %}
+    <script type="text/javascript">
+      window.Theme = {};
+      window.Theme.version = "8.0.0";
+      window.Theme.name = 'Launch';
+      window.Theme.moneyFormat = {{ shop.money_format | strip_html | json }};
+      window.Theme.routes = {
+      "root_url": "{{ routes.root_url }}",
+      "account_url": "{{ routes.account_url }}",
+      "account_login_url": "{{ routes.account_login_url }}",
+      "account_logout_url": "{{ routes.account_logout_url }}",
+      "account_register_url": "{{ routes.account_register_url }}",
+      "account_addresses_url": "{{ routes.account_addresses_url }}",
+      "collections_url": "{{ routes.collections_url }}",
+      "all_products_collection_url": "{{ routes.all_products_collection_url }}",
+      "search_url": "{{ routes.search_url }}",
+      "predictive_search_url": "{{ routes.predictive_search_url }}",
+      "cart_url": "{{ routes.cart_url }}",
+      "cart_add_url": "{{ routes.cart_add_url }}",
+      "cart_change_url": "{{ routes.cart_change_url }}",
+      "cart_clear_url": "{{ routes.cart_clear_url }}",
+      "product_recommendations_url": "{{ routes.product_recommendations_url }}",
+    };
+    </script>
+  {% endcapture %}
+  {{ themeGlobals | strip_newlines }}
+  {% comment %}Inject theme-object end{% endcomment %}
+
+  <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/tZBF7-xmuDARclX_mc9LMg" async></script>
+  <script src="{{ 'lazysizes.min.js' | asset_url | prepend: 'https:' }}" async="async"></script>
+
+<!-- Yotpo review script  -->
+<script type="text/javascript">
+(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="https://staticw2.yotpo.com/LeRc2DBmia1gE3xJ7qO6Sf6SimezCLilJfBguZGp/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>  
+  
+  {% if template contains 'cart' or template contains 'customers/account' or template contains 'customers/register' or template contains 'customers/login' %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+  
+</head>
+
+<body class="{% comment %}Inject additional-classes begin{% endcomment %}
+{%- capture additional_classes -%}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{%- endcapture -%}
+{%- unless template contains 'index' -%}
+  {% comment %}Inject product-goal-enabled begin{% endcomment %}
+  {%- assign product_goal_enabled = false -%}
+  {%- assign product_goal = settings.product_goal | plus: 0 -%}
+  {%- assign product_goal_handle = settings.featured-product-main -%}
+  {%- if all_products[product_goal_handle].variants.first.inventory_management == "shopify" -%}
+    {%- if settings.product_goal_starting_quantity != blank and settings.product-sale-goal-use -%}
+      {%- if settings.product_goal != blank -%}
+        {%- assign product_goal_enabled = true -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+  {% comment %}Inject product-goal-enabled end{% endcomment %}
+
+  {%- if product_goal_enabled -%}
+    {%- assign additional_classes = additional_classes | append: ' has-goal-enabled' -%}
+  {%- endif -%}
+{%- endunless -%}
+{{- additional_classes -}}
+{% comment %}Inject additional-classes end{% endcomment %}
+">
+  
+     <!-- Google Tag Manager (noscript) -->
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNP7V3R"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  
+
+
+  {% if template contains 'Flore-adult-google' %}
+
+    {% section 'google-landing-header' %}
+  {% elsif template contains 'flore_clinical_new'  %}
+  
+    {% section 'clinical-header' %}
+    
+     {% elsif template contains 'press_blog'  %}
+  
+    {% section 'clinical-header' %}
+    
+    {% elsif template contains 'research-publications'  %}
+  
+    {% section 'clinical-header' %}
+  {% elsif template contains 'blog-post-clinical'  %}
+  
+    {% section 'clinical-header' %}
+  {% elsif blog.handle == 'clinical'  %}
+  
+    {% section 'clinical-header' %}
+  {% else %}
+ 
+     {% comment %} {% section 'clinical-header' %}{% endcomment %}
+  {% sections "header-group" %} 
+  {% endif %}
+
+ <div style="--background-color: {{ settings.body-background-color }}">
+    {% 
+      render 'age-gate', 
+      id: 'page', 
+      sections: content_for_layout,
+    %}
+  </div>
+
+
+  
+  <div id="cookie-message" class="cookie-banner fixed-bottom" style="display: none;">
+	
+	<div class="contain-1200 padding-mobile-1250 column-fixed-right collapse-800 cookie-row">
+		<div class="column-main padding-tb-202">
+			<a href="#" class="js-accept-cookies link-close btn btn-primary hide-morethan-8001" aria-label="Cross icon"><i class="fa fa-times-circle" aria-hidden="true"></i></a> 
+			<p>
+			This website uses cookies to improve your browsing experience. By continuing to use this website you agree to the use of cookies 
+			in accordance with our  <a href="#" class="popup-link" data-target="popup-cookies">cookie policy.</a>
+				
+          </p> 
+		</div>
+		<div class="column-right-200 padding-tb-15 hide-lessthan-8001">
+			<a href="#" class="js-accept-cookies link-close btn btn-primary"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</a> 
+		</div>
+	</div>
+</div>
+  
+  <div class="popup-screen"></div>
+
+  <main class="main-content">
+
+    {% unless template contains 'index' %}
+      {% render 'breadcrumbs' %}
+    {% endunless %}
+
+    {{ content_for_layout }}
+  </main>
+
+  	{% comment %}{% section 'static-newsletter' %}{% endcomment %}
+
+    {% if template contains 'flore_clinical_new' %}
+  {% section 'clinical-footer' %}
+  {% elsif template contains 'blog-post-clinical'  %}
+    {% section 'clinical-footer' %}
+
+  {% elsif template contains 'press_blog'  %}
+    {% section 'clinical-footer' %}
+
+  
+      {% elsif template contains 'research-publications'  %}
+    {% section 'clinical-footer' %}
+   {% elsif blog.handle == 'clinical'  %}
+      {% section 'clinical-footer' %}
+ {% else %}
+
+      {% sections "footer-group" %}
+  {% include 'scripts-styles-footer' %}
+  
+  {% include 'subscription-theme-footer' %}
+  {% endif %}
+
+  
+    <!-- Begin Cookie Popup -->
+<div id="popup-cookies" class="popup popup-cookies" style="display:none;">
+	<div class="popup-header text-left">
+		<div class="left"><h3 class="popup-title">Cookie Policy</h3></div>
+		<div class="right text-right">
+			<a href="#" class="popup-close" title="Close"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="popup-body" style="height: 300px; overflow-y: auto; overflow-x: hidden;">
+		<h3>What is a cookie? </h3>
+<p>A cookie is a small file of data that can be placed on your device that allows us to recognize and remember you. It is sent to your browser from our website and stored on your computer’s hard drive, tablet, or mobile device. When you visit the Sun Genomics website, we may automatically collect information from you through cookies or similar technology.
+</p>
+<h3>How do we use cookies?</h3>
+<p>We use cookies to improve your experience on our site which include keeping you signed in and to better help us understand how you use our site.
+</p>
+<p>In the following section, we explain how we use cookies and similar technology on the Sun Genomics website in more detail.
+</p>
+<p>Other organizations also collect user information on our site through cookies, tags, and pixels. Tags and pixels are similar to cookies but are collected through embedded images.
+</p>
+<p>Using cookies and other technology allows outside organizations to help us analyze how our site is being used and measures the number of visitors we receive.
+</p>
+<p>Cookies that are used by Sun Genomics are referred to as “first-party cookies” and those that are used by our partners are “third-party cookies.” Because of how cookies work, our website cannot access third-party cookies. Additionally, other organizations cannot access the data in the cookies we use on our website. There are more details about both in the following sections.
+</p>
+<h3>What types of cookies do we use?</h3>
+<p>We use three types of cookies which we describe in this section.</p>
+	<ul>
+		<li><strong>Essential</strong> - Cookies that are essential to providing you with services you have requested. For example, these include cookies that make it possible for you to stay logged into your account. We won’t be able to save your preferences without cookies.</li>
+		<li><strong>Performance</strong> - Cookies which measure how often you visit the Sun Genomics website and how you use it. We use this information to get a better sense of how our users engage with our site and where to make improvements so that users have a better experience. For example, we collect information about which of our pages are most frequently visited and by which type of users.</li>
+		<li><strong>Functionality</strong> - Cookies that are used to recognize you and remember your preferences or settings when you return to our site.</li>
+	</ul>
+<h3>How do we use cookies for advertising?</h3>
+<p>Sun Genomics also uses third-party vendor remarketing tracking cookies, including Google Adwords tracking cookie. This means that we will continue to show ads to you across the internet, specifically on the Google Content Network (GCN). Sun Genomics respects your privacy and does not collect any identifiable information through the use of Google or any other third-party remarketing system.
+</p>
+<p>The third-party vendors, including Google, whose services we use, will place cookies on web browsers in order to deliver ads based on past visits to our website. This allows us to make special offers and continue to market our services to those who have shown interest in Sun Genomics. 
+</p>
+<h3>How to manage advertising cookies.</h3>
+<p>You can manage the use of cookies, including advertising cookies and disable the sharing of data with partners for advertising purposes by using the steps outlined here. In some cases, you can turn off advertising cookies depending on the type of cookie. We give the most common examples below.
+</p>
+<p>You can find information about how to opt out of the cookies provided below.</p>
+
+<table class="tbl-standard" style="width:100%">
+	<tr>
+		<td>Facebook pixel</td>
+		<td>Advertising cookie</td>
+		<td><a href="https://www.facebook.com/help/568137493302217" rel="noopener">Opt out</a></td>
+		<td><a href="https://www.facebook.com/about/privacy/update?ref=old_policy" rel="noopener">Privacy policy</a></td>
+	</tr>
+	<tr>
+		<td>Google Adwords</td>
+		<td>Advertising cookie</td>
+		<td><a href="https://support.google.com/ads/answer/2662922?hl=en-GB" rel="noopener">Opt out</a></td>
+		<td><a href="https://policies.google.com/privacy" rel="noopener">Privacy policy</a></td>
+	</tr>
+	<tr>
+		<td>Google Adx</td>
+		<td>Advertising cookie</td>
+		<td><a href="https://privacy.google.com/" rel="noopener">Opt out</a></td>
+		<td><a href="https://policies.google.com/privacy" rel="noopener">Privacy policy</a></td>
+	</tr>
+	<tr>
+		<td>Google Analytics</td>
+		<td>Performance cookie</td>
+		<td><a href="https://tools.google.com/dlpage/gaoptout/" rel="noopener">Opt out</a></td>
+		<td><a href="https://policies.google.com/privacy?hl=en" rel="noopener">Privacy policy</a></td>
+	</tr>
+		<tr>
+		<td>Google DoubleClick</td>
+		<td>Advertising cookie</td>
+		<td><a href="https://adssettings.google.com/authenticated?hl=en" rel="noopener">Opt out</a></td>
+		<td><a href="https://policies.google.com/privacy" rel="noopener">Privacy policy</a></td>
+	</tr>
+	<tr>
+		<td>Microsoft Bing</td>
+		<td>Advertising cookie</td>
+		<td><a href="https://account.microsoft.com/privacy/ad-settings/signedout?ru=https:%2F%2Faccount.microsoft.com%2Fprivacy%2Fad-settings" rel="noopener">Opt out</a></td>
+		<td><a href="https://privacy.microsoft.com/en-gb/privacystatement" rel="noopener">Privacy policy</a></td>
+	</tr>
+	<tr>
+		<td>Twitter</td>
+		<td>Advertising cookie</td>
+		<td><a href="https://help.twitter.com/en/safety-and-security/privacy-controls-for-tailored-ads" rel="noopener">Opt out</a></td>
+		<td><a href="https://twitter.com/en/privacy#update" rel="noopener">Privacy policy</a></td>
+	</tr>
+</table>
+
+<p>You can also turn some cookies off through the Your Online Choices site. You may need to repeat this step each time you use a different IP address or device.
+</p>
+<p>It is also possible to stop your browser from accepting cookies altogether by changing your browser’s cookie settings. You can usually find these settings under the “options” or “preferences” menu on your browser. Alternately, you can use the “Help” option in your browser. The following links may be helpful when changing your settings.
+</p>
+<p>
+	<a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank" rel="noopener">Cookie settings in Internet Explorer</a><br />
+	<a href="https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DDesktop&hl=en" target="_blank" rel="noopener">Cookie settings in Chrome</a><br />
+	<a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener">Cookie settings in Safari web and iOS</a>
+</p>	</div>
+</div>
+<!-- End Cookie Popup -->
+
+ 
+  <!-- Scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js" defer></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js" defer></script>
+
+  <script
+    src="{{ 'launch.js' | asset_url | prepend: 'https:' }}"
+    data-scripts
+    data-shopify-api-url="{{ 'api.jquery.js' | shopify_asset_url }}"
+    data-shopify-countries="/services/javascripts/countries.js"
+    data-shopify-common="{{ 'shopify_common.js' | shopify_asset_url }}"
+    data-shopify-cart="{{ 'jquery.cart.min.js' | asset_url }}"
+    data-customer-area="{{ 'customer_area.js' | shopify_asset_url }}"
+    data-pxu-polyfills="{{ 'polyfills.js' | asset_url }}"
+    defer>
+  </script>
+
+  {% render 'structured-data' %}
+
+  {{ 'plugins.js'  | asset_url | script_tag }}
+  
+  
+  {% if settings.show-currency-switcher %}
+    {{ "//cdn.shopify.com/s/javascripts/currencies.js" | script_tag }}
+    {{ "jquery.currencies.js" | asset_url | script_tag }}
+  {% endif %}
+
+  {{ 'modernizr-2.7.1.min.js' | asset_url | script_tag }}
+
+  {% render 'structured-data' %}
+  
+  <script async src="{{ 'scripts-sg-min.js' | asset_url | prepend: 'https:' }}" ></script>
+  
+  {% render 'pw_cart_drawer' %}
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+  
+  
+  <script>
+    
+   //  (function() {
+   //  var REDIRECT_PATH = '/account';
+
+   //  var selector = '#create_customer, form[action$="/account"][method="post"]',
+   //      $form = document.querySelectorAll(selector)[0];
+
+   //  if ($form) {
+   //    $redirect = document.createElement('input');
+   //    $redirect.setAttribute('name', 'return_to');
+   //    $redirect.setAttribute('type', 'hidden');
+   //    $redirect.value = REDIRECT_PATH;
+   //    $form.appendChild($redirect);
+   //  }
+  	// })();
+    
+    
+    (function () {
+      function handleFirstTab(e) {
+        if (e.keyCode === 9) { // the "I am a keyboard user" key
+          document.body.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+    
+     $('#leavingsite-link').on('click', function() {
+    window.open(
+              "https://www.crohnscolitisfoundation.org/", "_blank",'noopener');
+	});
+
+  if(window.location.href.indexOf('cartdrawer') >- 1 ){
+        document.querySelector('.prpwebs-cart-drawer-app').classList.add('active');
+    console.log(document.querySelector('.prpwebs-cart-back').style.display,"vhmkjnb")
+    document.querySelector('body').classList.add('prpwebs-cart-open');
+        document.querySelector('.prpwebs-cart-back').style.display = 'block';
+  
+  }
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<style>
+
+  .lp-how-works{
+  padding:120px 0 140px;
+    position: relative;
+  }
+  .image-post{
+      max-width: 700px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+    z-index : 0;
+  }
+  
+  .image-post img {
+  width:100%;
+  }
+  
+  .how-inner-row{
+  display:grid;
+   grid-template-columns: repeat(2 , 1fr);
+    grid-template-rows : 1fr;
+  }
+  
+  .how-inner-row{
+      max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .how-image{
+  grid-column : 1/span 2;
+    margin-top:30px;
+  }
+  .how-heading{
+      grid-column: 1/span 2;
+  font-size: 42px;
+    color: #231f20;
+    font-weight: 700;
+    font-family: 'sk-modernist';
+  }
+  
+  .how-description p{
+  font-family: SunGenomics,sans-serif;
+    font-size: 26px;
+    line-height: 1.6;
+    color: #000;
+    font-weight: 400;
+  
+  }
+  
+  .how-row{
+      position: relative;
+  }
+  
+  .how-description strong {
+  font-weight:700;
+  }
+  
+  .lp-how-works .waves3 {
+  position: absolute;
+    z-index: 9;
+    transform: rotate(180deg);
+    top: -4px;
+    left: 0; 
+    width:100%;
+  }
+  .waves3 img {
+    width: 100%;
+	}
+  .how-to-mob{
+    	display:none;
+    }
+  
+  .waves-svg-bottom svg{
+  position: absolute;
+    top: -1px;
+    transform: scaleY(-1);
+    z-index: 2;
+  }
+  
+    @media(max-width:1200px){
+  
+    .lp-how-works {
+    padding: 60px 12px;
+    position: relative;
+	}
+    .how-heading {
+    grid-column: 1/span 2;
+    font-size: 42px;
+    z-index: 9;
+}
+  
+      
+  }
+  
+  @media(max-width:1024px){
+  
+    .how-description{
+        grid-column: 1/span 2;
+    }
+    .image-post {
+    max-width: 500px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+          .get-heading {
+      font-size: 38px;
+      line-height: 40px;
+    }
+    
+    .how-description{
+    
+        grid-column: 1/span 2;
+    z-index: 11;
+    }
+    
+    .image-post {
+    max-width: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+      display:none;
+}
+    .lp-how-works .waves3 {
+    position: absolute;
+    z-index: 9;
+    transform: rotate(180deg);
+    top: -14px;
+    left: 0;
+}
+    
+  }
+  
+  
+  @media(max-width:768px){
+  
+    .how-description p{
+    	font-size: 18px;
+    	text-align: center;
+    }
+    .how-heading {
+    	font-size: 32px;
+    	text-align: center;
+	}
+    .how-image{
+    	display:none;
+    }
+    .how-to-mob{
+    	display:block;
+      	grid-column: 1 / span 2;
+    }
+    .month-cycle-img {
+        margin: auto;
+        display: block;
+        width: 180px;
+      	margin-bottom: 50px;
+	}
+    .how-to-mob h6 {
+        font-size: 28px;
+        font-family: 'SunGenomics';
+        color: #1d6667;
+        font-weight: 500;
+	}	
+    p.month {padding: 0px;font-family: 'SunGenomics';color: #000;margin-bottom: 5px;}
+
+    p.month span {color: #1d6667;font-weight: 700;}
+
+    .content ul {margin: 0px; margin-left : 4px;}
+
+    .content ul li {margin: 0px;color: #000;line-height: 1.0;margin-left: 19px;
+        list-style-type: disc;}
+
+    .content ul li::marker {font-size: 22px;}
+    
+    .content.step-num-1 {display: grid;grid-template-columns: 1.5fr 1fr;}
+
+    .content-area-two {margin-top: 20px;grid-column: 1 /  span 2;}
+
+    span.yellow-span {color: #FF5C35;font-weight: 700;}
+    
+    .how-to-mob .content {
+   	 	margin-bottom: 30px;
+	}
+    
+    .content.step-num-2 {
+    	display: grid;
+    	grid-template-columns: 1.5fr 1fr;
+	}
+    .content.step-num-4 {
+    	margin-bottom: 0px;
+	}
+    .lp-how-works {
+    padding: 60px 12px 0px;
+	}
+    
+    .waves-svg-bottom svg{
+        margin-left: -13px;
+    }
+    
+  }
+  
+</style>
+
+
+
+<section class="lp-how-works">
+<!--   <div class="waves-svg-bottom">
+     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svgjs="http://svgjs.dev/svgjs" version="1.1" viewBox="0 0 2400 450" opacity="1">
+        <g fill="#6fa3a3" transform="matrix(1,0,0,1,7.6488037109375,331.57323455810547)">
+            <path
+                d="M-10,10C54.58333333333333,18.75,172.91666666666666,55.958333333333336,300,52C427.08333333333337,48.041666666666664,475,-9,600,-9C725,-9,775,55.75,900,52C1025,48.25,1075,-23.25,1200,-27C1325,-30.75,1375,35.25,1500,34C1625,32.75,1675,-36.75,1800,-33C1925,-29.25,1975,46.791666666666664,2100,52C2225,57.208333333333336,2285.4166666666665,-80.5,2400,-8C2514.5833333333335,64.5,3254.1666666666665,210.83333333333331,2650,400C2045.8333333333335,589.1666666666667,156.25,795.8333333333334,-500,900"
+                transform="matrix(1,0,0,1,0,35)" opacity="NaN" />
+        </g>
+    </svg>
+  </div> -->
+  <div class="image-post"><img src="https://cdn.shopify.com/s/files/1/2204/9357/files/Sun_Genomics-1438_1_1_1.png?v=1649306666"></div>
+  <div class="how-row">
+  
+    <div class="how-inner-row">
+      {% if section.settings.heading != blank %}
+      <h4 class="how-heading">{{section.settings.heading}}</h4>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+      <div class="how-description">{{section.settings.description}}</div>
+      {% endif %}
+      {% if section.settings.image != blank %}
+      <div class="how-image"><img src="{{section.settings.image | img_url: 'master' }}"></div>
+      {% endif %}
+      <div class="how-to-mob">
+		   <img class="month-cycle-img" src="{{section.settings.mob-image | img_url: 'master' }}"> 		
+            {% for block in section.blocks %}
+        		<h6>{{block.settings.heading}}</h6>
+        		<div class="content step-num-{{ forloop.index }}">
+				  <div class="content-area">	
+                  {{block.settings.content}}
+                  </div>
+                  {% if block.settings.right-image != blank %}
+					<img class="step-image-{{ forloop.index }}" src="{{ block.settings.right-image | img_url: 'master' }}">
+                  {% endif %}
+                  <div class="content-area-two">	
+                  {{block.settings.content-two}}
+                  </div>
+        		</div>
+					
+          	{% endfor %}	
+        
+      </div>  
+    </div>
+  
+  </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "How it works lp",
+  "class": "how-it-works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+	{
+      "type": "image_picker",
+      "id": "image",
+	  "label": "Image"
+    },
+	{
+	  "type": "image_picker",
+      "id": "mob-image",
+	  "label": "Mobile 6 month cycle image"
+	}
+  ],
+	"blocks":[
+			{
+				"name":"Steps",
+				"type":"text",
+				"settings":[
+                    {
+                      "type": "text",
+                      "id": "heading",
+                      "label": "heading"
+                    },
+					{
+                      "type": "html",
+                      "id": "content",
+                      "label": "Content"
+                    },
+					{
+                      "type": "image_picker",
+                      "id": "right-image",
+                      "label": "Image"
+                    },
+					{
+                      "type": "html",
+                      "id": "content-two",
+                      "label": "Content Two"
+                    }	
+					
+				]
+			}
+		],
+	"presets":[{
+	"name": "How it works lp"
+}]
+}
+{% endschema %}

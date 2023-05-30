@@ -1,0 +1,209 @@
+<style>
+#how-does-{{section.id}} .how-wrapper{
+	padding-top:{{section.settings.padding_top | default : '70'}}px;
+	padding-bottom:{{section.settings.padding_bottom | default : '70' }}px;
+}
+  
+  #how-does-{{section.id}}{
+    background-color : {{section.settings.background_color}};
+      background-image : url({{section.settings.background_image | img_url : 'master'}});
+    background-size: 100% 100%;
+  }
+
+  #how-does-{{section.id}} .check-wrapper{
+      display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 0px;
+  }
+  #how-does-{{section.id}} .content-wrapper h3{
+      font-family: sk-modernist,sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+  }
+  
+  #how-does-{{section.id}} .content-wrapper{
+  text-align: center;
+  }
+  #how-does-{{section.id}} .content-wrapper .description, #how-does-{{section.id}} .content-wrapper .description p {
+  color: #fff;
+  }
+  
+  #how-does-{{section.id}} .faqs-wrapper-how .first{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 6px;
+  }
+  
+    .active-faqs{
+  display:block!important;
+           transition: all .5s ease-in-out;
+  transform-origin: left top;
+      transform: scaleY(1)!important;
+/*           transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1); */
+  }
+  
+  #how-does-{{section.id}} .faqs-wrapper-how .first-p {
+  background: #fff;
+    padding: 10px 15px;
+    color: #000;
+    margin-top: -10px;
+    border-radius: 6px;
+    display:none;
+/*     transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1); */
+
+  transform: scaleY(0);
+  }
+  
+  @media(max-width:768px){
+  #how-does-{{section.id}} .check-wrapper{
+      display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 15px;
+  }
+    
+     #how-does-{{section.id}}{
+    background-color : {{section.settings.background_color}};
+      background-image : url({{section.settings.background_image_mobile | img_url : 'master'}});
+    background-size: 100% 100%;
+  }
+    
+  }
+  
+</style>
+
+
+
+<div id="how-does-{{section.id}}">
+
+  <div class="contain-1200 padding-mobile-1250">
+  
+    <div class="how-wrapper">
+      <div class="content-wrapper">
+        {% if section.settings.heading != blank %}<h3 class="heading-all">{{section.settings.heading}}</h3>{% endif %}
+        {% if section.settings.description != blank %}<div class="description description-check">{{section.settings.description}}</div>{% endif %}        
+      </div>
+      <div class="check-wrapper how-faqs-all">
+        {% for block in section.blocks %}
+        <div class="faqs-wrapper-how">
+          <div class="first"><h4>{{block.settings.question}}</h4> <span class="faq-icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+		  <div class="first-p active-faqs">{{block.settings.answer}}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+  
+  </div>
+  
+
+</div>
+
+<script>
+
+  const faqWrapper = document.querySelector('.how-faqs-all');
+
+  console.log(faqWrapper, 'faqWrapper');
+  faqWrapper.addEventListener('click', function(e){
+    let clickedFaq = e.target.closest('.first');
+    
+    if(!clickedFaq) return;
+        let clickedans = clickedFaq.nextElementSibling;
+    clickedans.classList.toggle('active-faqs')
+  console.log('jkjk', clickedans);
+  })
+
+
+</script>
+
+
+
+{% schema %}
+{
+  "name": "how does it work",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+	  "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+		"label": "Desription"
+    },	
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+		"default": 70,
+	  "label" : "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 60,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+		"default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "color",
+      "id": "background_color",
+	  "label" : "Background Color"
+    },
+	{
+      "type": "image_picker",
+      "id": "background_image",
+	  "label" : "Background Image"
+    },
+	{
+      "type": "image_picker",
+      "id": "background_image_mobile",
+	  "label" : "Background Image mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faqs",
+      "name": "Faqs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+		  "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+			"label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets" : [
+    {
+      "name": "How does it work",
+      "settings": {
+		}
+    }
+  ]
+}
+{% endschema %}

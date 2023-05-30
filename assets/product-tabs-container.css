@@ -1,0 +1,864 @@
+.product-wrapper {
+    display: flex;
+}
+
+h1.productTitle,
+h3.productTitle {
+    color: #ff5c35;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1;
+    font-family: "sk-modernist", sans-serif;
+}
+.active-content {
+    display: block !important;
+}
+
+.tab_data {
+    display: none;
+}
+
+.accordion_tab_header {
+    display: none;
+}
+
+.processing-section {
+    background-color: #f0f0f0;
+}
+
+.processing-row {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.processing-small-row {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.small-processing-col-1 img,
+.small-processing-col-2 img,
+.small-processing-col-3 img,
+.small-processing-col-4 img,
+.small-processing-col-5 img,
+.small-processing-col-6 img,
+.small-processing-col-7 img,
+.small-processing-col-8 img {
+    width: 40%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.img-box {
+    height: 115px;
+    word-wrap: break-word;
+    position: relative;
+}
+.img-box span {
+    position: absolute;
+    top: 59px;
+    right: 0;
+}
+.img_nu_4,
+.img_nu_8 {
+    display: none;
+}
+
+.processing-small-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 60px;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .processing-small-row {
+        grid-template-columns: repeat(2, 1fr);
+        grid-row-gap: 15px;
+    }
+    .img-box span {
+        right: -18px;
+        top: 55px;
+    }
+    .img_nu_3 {
+        display: block;
+    }
+    .img_nu_2,
+    .img_nu_4,
+    .img_nu_6 {
+        display: none;
+    }
+}
+
+.adult_small_data_col ul li {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+.adult_conatiner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.adult_small_data_col div p::before {
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/checkmark_1.png?v=1648035590);
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 37px;
+    height: 32px;
+    content: "";
+    margin-top: 5px;
+    background-repeat: no-repeat;
+}
+
+.adult_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.adult_small_col_one h3 {
+    font-weight: 600 !important;
+    font-size: 25px !important;
+    color: #ff5c35 !important;
+    font-family: sk-modernist, sans-serif !important;
+}
+.tab_data {
+    background-color: #f0f0f0;
+}
+.adult_small_col_one p {
+    font-size: 20px;
+    font-family: "sk-modernist", sans-serif;
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 0 0 15px;
+}
+
+.adult_image_fix img {
+    width: 100%;
+}
+
+.adult_small_col_two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.adult_small_data_col div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.adult_small_data_col p {
+    text-align: left;
+    font-weight: 600;
+    color: #000;
+    font-size: 18px;
+    line-height: 1.4;
+    font-family: "sk-modernist", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+    padding: 0;
+}
+
+.adult_small_data_col img {
+    width: 12%;
+    height: 12%;
+}
+
+@media only screen and (max-width: 768px) {
+    .adult_row {
+        grid-template-columns: unset;
+    }
+
+    .adult_small_col_one {
+        text-align: center;
+    }
+}
+.producttab {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0px 10px 0px;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 28px;
+    font-weight: 700;
+    color: #231f20;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    text-decoration: underline;
+    color: #ff5c35;
+}
+
+/* Style the tab content */
+.tabcontent {
+    padding: 6px 12px;
+}
+
+.productsection2 {
+    background-color: #f0f0f0;
+    padding: 50px 0px 50px 0px;
+}
+
+.productsection21 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.productsection2-1 {
+    display: flex;
+    column-gap: 3rem;
+    margin-bottom: 50px;
+}
+
+.productsectioncol1 {
+    width: 25px;
+}
+
+.productsectioncol2 {
+    width: 70%;
+    padding-right: 50px;
+}
+
+.productsection2 h5 {
+    font-size: 35px;
+    font-weight: 700;
+    color: #ff5c35;
+    line-height: 1.2;
+    margin: 0px 0px 10px 0px;
+    font-family: "sk-modernist";
+}
+
+.productsection2 p {
+    font-size: 22px;
+    font-weight: 400;
+    color: #000;
+    line-height: 1.4;
+    margin: 0px 0px 10px 0px;
+    font-family: "sk-modernist";
+}
+
+.productsectioncol3 {
+    width: 30%;
+}
+
+.vr1 {
+    background: #ff5c35;
+    border: 3px solid transparent;
+    border-radius: 10px 10px 0px 0px;
+    margin: 0;
+    width: 1px;
+    height: 9%;
+    margin-left: 0px;
+    border-bottom-color: #fff;
+    position: relative;
+    transition: all 0.5s ease;
+    max-height: 100%;
+}
+
+.horizon {
+    height: 100%;
+    background: #fff;
+    width: 5px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.horizon1 {
+    height: 100%;
+}
+
+.horizon span {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    background-color: #ff5c35;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.horizon1 span {
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.productsectioncol1-1 {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 60px;
+}
+
+span.no_one,
+span.no_two,
+span.no_three,
+span.no_four {
+    position: absolute;
+    margin-left: -81px;
+    margin-top: -10px;
+    background-color: #fff;
+    padding: 14px 22px;
+    border-radius: 100%;
+    font-size: 25px;
+    font-weight: 700;
+    color: #ff5c35;
+    line-height: 1.2;
+    transition: all 0.5s ease;
+}
+span.no_one {
+    background-color: #ff5c35;
+    color: #fff;
+}
+.retestingSection {
+    padding: 15% 20px;
+    background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Color_Fill_17_1.jpg?v=1654684588);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+.retestingSection h3 {
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    font-family: sk-modernist, sans-serif;
+    color: #fff;
+}
+.retestingSection p {
+    font-family: "sk-modernist";
+    color: #fff;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .productsectioncol3 img {
+        width: 100%;
+    }
+
+    .productsectioncol2 {
+        width: auto;
+        padding-right: 0px;
+    }
+
+    .productsection2 {
+        padding: 50px 20px 50px 20px;
+    }
+
+    .productsection2 h5 {
+        font-size: 28px;
+    }
+
+    .productsection2 p {
+        line-height: 1.6;
+    }
+
+    .productsectioncol1-1 {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    .productsectioncol3 {
+        width: auto;
+    }
+    .tab button {
+        font-size: 26px;
+    }
+
+    .retestingSection h3 {
+        font-size: 30px;
+    }
+    .retestingSection p {
+        font-size: 16px;
+    }
+}
+
+.producttab {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0px 10px 0px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+}
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+}
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: "sk-modernist";
+    color: #231f20;
+}
+.whats-included-li-head {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.whats-included-li-head:before {
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/checkmark_1.png?v=1648035590);
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 37px;
+    height: 32px;
+    content: "";
+    margin-top: 5px;
+    background-repeat: no-repeat;
+}
+.tab button.active {
+    color: #ff5c35;
+    text-decoration: underline;
+}
+
+div.tab_data {
+    padding: 70px 10px;
+}
+
+.tabContent {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+}
+
+.flex-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 50px;
+    align-items: end;
+}
+.image_column {
+    width: 25%;
+    text-align: center;
+}
+.image_column img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+.tabContent h3 {
+    color: #000;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "sk-modernist";
+    margin-bottom: 15px;
+}
+
+.testDetailOuter {
+    margin-bottom: 70px;
+}
+
+.testDetailOuter h5 {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "sk-modernist";
+    color: #ff5c35;
+}
+
+.testDetailOuter span {
+    color: #231f20;
+    font-family: "sk-modernist";
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.viewMore {
+    font-family: "sk-modernist";
+    font-size: 20px;
+    padding: 14px 55px 18px;
+    border-radius: 50px;
+    color: #000;
+    border: 3px solid #ff5c35;
+    font-weight: 500;
+    letter-spacing: 1.3px;
+    line-height: 1;
+    margin-top: 20px;
+}
+
+p.content {
+    font-size: 20px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.points-check li {
+    display: inline-flex;
+    margin-right: 40px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 10px 0px 0px;
+}
+
+.points-check {
+    margin: 0px;
+}
+
+.points-check li:before {
+    background-image: url("https://cdn.shopify.com/s/files/1/2204/9357/files/checkmark_1.png?v=1648035590");
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 37px;
+    height: 32px;
+    content: "";
+    margin-top: 5px;
+    background-repeat: no-repeat;
+}
+
+.points-check-2 li {
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 500;
+    font-size: 22px;
+    display: inline-flex;
+    width: 33.33%;
+}
+
+.points-check-2 {
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.points-check-2 li:before {
+    background-image: url("https://cdn.shopify.com/s/files/1/2204/9357/files/checkmark_1.png?v=1648035590");
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 37px;
+    height: 32px;
+    content: "";
+    margin-top: 5px;
+    background-repeat: no-repeat;
+}
+
+/*What includes*/
+
+.flex {
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    gap: 0px 30px;
+}
+
+.column-area {
+    width: 48%;
+}
+
+.column-area.left {
+    display: inline-flex;
+    gap: 20px;
+}
+
+.text_area h5 {
+    color: #ff5c35;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: "sk-modernist";
+}
+
+.column-area.left img {
+    width: 100%;
+    max-width: 150px;
+    height: fit-content;
+    max-height: none;
+}
+
+.text_area .points-check li:before {
+    background-image: url(https://cdn.shopify.com/s/files/1/2204/9357/files/checkmark_1.png?v=1648035590);
+    background-size: 20px 20px;
+    display: inline-block;
+    width: 32px;
+    height: 20px;
+    content: "";
+    margin-top: 11px;
+    background-repeat: no-repeat;
+}
+
+.column-area.right {
+    background-color: #fff;
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+
+.column-area.right p {
+    font-family: "sk-modernist";
+    font-size: 20px;
+    line-height: 1.4;
+    color: #211f20;
+    font-weight: 400;
+}
+
+.text_area .points-check li {
+    display: inline-flex;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 2px 0px 0px 0px;
+}
+
+.flex_2 {
+    display: inline-flex;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.flex_2 img {
+    width: 100%;
+    max-width: 170px;
+    height: max-content;
+}
+
+.right_area h3 {
+    font-size: 24px;
+    color: #ff5c35;
+    margin-bottom: 0px;
+}
+
+.right_area p {
+    font-size: 24px;
+    line-height: 1.4;
+    color: #211f20;
+    font-family: "sk-modernist";
+    font-weight: 400;
+}
+
+div#who_it_for span {
+    font-size: 22px;
+    line-height: 1.4;
+    color: #211f20;
+    font-family: "sk-modernist";
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*   .accordion_tab_header {display: block;font-size: 25px;font-family: 'sk-modernist';font-weight: 500;color: #000; display: none;}
+
+  .accordion_tab_header.down-arrow:after {content: '\f107';position: absolute;right: 20px;font-family: 'FontAwesome'; color: #000;}
+  .accordion_tab_header.minus:after {content: '\f068';position: absolute;right: 20px;font-family: 'FontAwesome'; color: #000; margin-top: 5px; font-size: 16px;}
+  .accordion_tab_header.active {
+    color: #ff7019;
+  } */
+div#bottom-swing {
+    display: none;
+}
+
+.step-images h3 {
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .producttab {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tab {
+        background-color: #f0f0f0;
+    }
+
+    span.text_after_cta {
+        font-size: 16px;
+    }
+    .tab button {
+        font-size: 22px;
+    }
+    div.tab_data {
+        padding: 10px 15px 10px;
+        background-size: 230% 100%;
+        background-position-x: center;
+        background: #efefef;
+    }
+
+    .tabContent {
+        transition: all 1s ease;
+        overflow: hidden;
+        opacity: 1;
+        height: 100%;
+    }
+
+    .tabContent h3 {
+        font-size: 24px;
+    }
+
+    .testDetailOuter h5 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .testDetailOuter span {
+        font-size: 22px;
+        line-height: 1.3;
+    }
+
+    .points-check li {
+        font-size: 18px;
+        width: 38%;
+        margin-bottom: 0px;
+        margin-top: 0pc;
+    }
+
+    .points-check li::before {
+        background-size: 22px 22px;
+        width: 28px;
+    }
+
+    ul.points-check {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .points-check-2 li {
+        font-size: 18px;
+        width: 50%;
+        margin: 0px;
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .points-check-2 li::before {
+        background-size: 22px 22px;
+        width: 36px;
+        z-index: 9999;
+    }
+
+    ul.points-check-2 {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    p.content {
+        font-size: 18px;
+    }
+
+    .viewMore {
+        padding: 10px 30px;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .flex-row {
+        flex-direction: row;
+        align-items: baseline;
+        flex-wrap: wrap;
+        margin-bottom: 0px;
+        gap: 40px 0px;
+    }
+
+    .image_column {
+        width: 50%;
+    }
+
+    .image_column img {
+        width: 120px;
+        margin-bottom: 20px;
+        height: 120px;
+        object-fit: contain;
+    }
+
+    .column-area {
+        width: 100%;
+    }
+
+    .column-area.left {
+        display: block;
+    }
+
+    .column-area.left img {
+        margin: auto;
+        display: block;
+        margin-bottom: 30px;
+        height: auto;
+    }
+
+    .text_area .points-check li {
+        width: 100%;
+    }
+
+    .text_area .points-check {
+        display: block;
+    }
+
+    .column-area.right {
+        margin-top: 30px;
+    }
+
+    .flex_2 {
+        display: block;
+    }
+
+    .flex_2 img {
+        display: block;
+        margin: auto;
+        margin-bottom: 30px;
+        height: auto;
+    }
+    .accordion_tab_header {
+        display: none;
+    }
+    div.tab_data > .tabContent {
+        padding-top: 30px;
+    }
+
+    div#bottom-swing {
+        display: block;
+    }
+    .upgrade_save_row form.product-form {
+        display: block;
+    }
+
+    button.tablinks {
+        font-size: 18px;
+        padding: 0;
+    }
+}

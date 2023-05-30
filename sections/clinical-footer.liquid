@@ -1,0 +1,148 @@
+<style>
+.branding-logo-link img{
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: contain;
+}
+  .footer-wrapper{
+      max-width: 1200px;
+    margin: 0 auto;
+  }
+  .main-row-inner{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+   .join-btn, .join-btn:hover{
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+  } 
+
+.join-btn_box2 a{
+background: #206766;
+    padding: 5px 30px;
+    border-radius: 30px;
+    color: #fff;
+}
+.join-btn_box2 a:hover{
+  color: #fff;
+}
+  .join-btn_box2{
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: self-end;
+    gap: 12px;
+  }
+  .logos p{
+        font-size: 18px;
+    font-weight: 500;
+  }
+  @media(max-width:768px){
+  .para_logo{
+       text-align: center;
+  }
+    .main-row-inner{
+        padding: 0 10px;
+    }
+    .logos .branding-logo-link{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+  
+    .main-row-inner{
+        padding: 0 10px;
+    }
+    .logos .branding-logo-link{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .join-btn_box2 a {
+    padding: 5px 18px;
+}
+    .logos p {
+    font-size: 15px;
+}
+  .join-btn, .join-btn:hover{
+    font-size: 11px;
+  }
+
+  }
+
+</style>
+
+<footer style="background: #fff;">
+
+  <div class="footer-wrapper">
+    
+    <div class="footer-row main-row-inner">
+      {% if section.settings.header_logo != blank %}
+      <div class="logos">
+        <a class="branding-logo-link clinical_footer_logo" href="https://flore.com/pages/flore-clinical">
+          <img src="https://cdn.shopify.com/s/files/1/2204/9357/files/Untitled_1_6673e95a-5853-4612-9e2f-8ea8a1f9a738.png?v=1678880696" width="100%" height="100%" alt="flore_logo"/> 
+        </a>
+        <p class="para_logo">A Healthy Gut Starts Here.</p>
+      </div>
+      {% endif %}
+      <div class="join-btn_box2"> 
+      {% if section.settings.join != blank %}
+      <a href="{{ section.settings.join_link }}" class=" join-btn join_on ">{{section.settings.join}} 
+      </a>
+      <a href="#" class="open-affilate-form join-btn">{{section.settings.join1}} </a>
+      {% endif %}
+      </div>
+    </div>
+      
+  </div>
+
+  
+</footer>
+
+
+
+{% schema %}
+{
+  "name": "Clinical footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_logo",
+      "label": "Logo image",
+      "info": "400 x 200px .png recommended"
+    },
+	{
+      "type": "text",
+      "id": "join",
+      "label": "Join Now Button"
+    },
+   {
+      "type": "url",
+      "id": "join_link",
+      "label": "Join Now Link"
+    },
+    {
+      "type": "text",
+      "id": "join1",
+      "label": "Join Now Button"
+    },
+   {
+      "type": "url",
+      "id": "join_link1",
+      "label": "Join Now Link"
+    }
+  ]
+}
+
+{% endschema %}
+

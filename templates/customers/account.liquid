@@ -1,0 +1,363 @@
+<style>
+
+.order-history .orders tr {
+    display: flex;
+    justify-content: space-between;
+}
+  
+   .header-navigation-list .myBtn{
+/*         text-transform: lowercase; */
+     
+  }
+  .header-navigation-list .myBtn:hover{
+          color: #aeaeae!important;
+        background: inherit;
+     
+  }
+#accountcus-{{ section.id }} .module-content{
+    background-color: unset !important;
+   border: unset !important;
+}
+  #accountcus-{{ section.id }} .module-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: unset;
+  }
+   #accountcus-{{ section.id }} th{
+     background-color: unset;   }
+    #accountcus-{{ section.id }} td{
+        border: none;
+    background: none;   }
+  .module-subtitle{
+      font-weight: 300;
+    color: #7f7f7f;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .module-subtitle a{
+  font-size:16px;
+  }
+      .bg-wrapper{
+  background-color:#f8f8f8;
+  }
+  table{
+  border:None;
+  }
+  .orders th{
+      font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+  }
+  .first td {
+   font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+  }
+  
+  .customer-address-name{
+  font-weight:700;
+  }
+
+  .orders thead {
+    background: #e3e3e3;
+  }
+  .orders thead tr th {
+    font-weight: 700;
+    color: #000;
+  }
+  .orders thead tr {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .orders tbody {
+    border: 1px solid #000 !important;
+    background: #e3e3e326;
+  }
+  .orders tbody tr:nth-child(even) {
+    background: white;
+  }
+  .order-history {
+    max-width: 100vw;
+    width: 100%;
+    z-index: 9999;
+  }
+  .orders tbody tr {
+    padding: 0px 20px !important;
+  }
+  table .column-title {
+    display: none !important;
+}
+  @media(max-width: 768px){
+
+.order-history{
+overflow-x: scroll;
+}
+    
+    #accountcus-{{ section.id }} .module-content{
+   padding: unset;
+  }
+  #accountcus-{{ section.id }} .module-header{
+    padding-top: unset;
+   
+  }
+  #accountcus-{{ section.id }} td{
+    display: flex;
+  }
+  #accountcus-{{ section.id }} tr{
+     display: flex;
+   justify-content: space-between;
+  }
+
+  td.order-number.first, .orders thead tr .first {
+    width: 142px;
+    display: block !important;
+  }
+
+  .orders thead tr, .orders tbody tr {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 10px;
+  }
+  
+  table.mobile-layout tr td, table.mobile-layout thead tr td {
+      width: 80px;
+  }
+  .no-orders{
+    grid-column: 1 / span 5 !important;
+    display: block !important;
+    width: 100% !important;
+}
+}
+/*     drop */
+    .arrow::before,
+.arrow::after {
+  position: relative;
+  content: '';
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: #000;
+  transition: 0.3s ease-in-out;
+}
+
+.arrow::before {
+  transform: rotate(45deg);
+}
+
+.arrow::after {
+  left: 6px;
+  top: -1px;
+  transform: rotate(-45deg);
+}
+
+
+.toggle-btn {
+  background: #13749a;
+}
+
+.toggle-btn.active .arrow::before {
+  transform: rotate(-45deg);
+}
+
+.toggle-btn.active .arrow::after {
+  transform: rotate(45deg);
+}
+.dropbtn {
+     border: none;
+    cursor: pointer;
+    background: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+      margin: 0 auto;
+      font-weight: 600;
+
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.dropdown-content {
+  display: none;
+
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+font-weight: 600;
+}
+
+  
+.dropdown a:hover {background-color: #ddd;}
+
+.show {
+  display: block;
+  }
+  .account_tab_mobs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+  
+  @media(min-width: 651px){
+  .account_tab_mobs{
+ display: none !important;
+    }
+}
+   @media(max-width: 650px){
+  .account_tab{
+ display: none !important;
+}
+  }
+</style>
+
+<meta name="googlebot" content="noindex" />
+{% comment %}
+{% if customer.metafields.subscriptions.customer_string %}
+<!--BeginRechargeCode-->
+<div class="contain-1200 padding-mobile-1250">
+	<p><a href="/tools/recurring/customer/{{customer.metafields.subscriptions.customer_string}}/subscriptions/">Manage Subscriptions</a></p>
+</div>
+<!--EndRechargeCode-->
+{% endif %}
+{% endcomment %}
+<div class="module-wrapper bg-wrapper" id="accountcus-{{ section.id }}">
+  <div class="module module-account">
+    <div class="module-header">
+      <h1 class="module-title">{{ 'general.general.account' | t }}</h1>
+      <div class="module-subtitle">
+        <div class="logged-in-as">
+          {% capture user_email %}
+            <a href="{{ routes.account_url }}">{{ customer.email }}</a>
+          {% endcapture %}
+          {{ 'customer.account.logged_in_as_html' | t: user_email: user_email }} <a href="{{ routes.account_logout_url }}">({{ 'general.general.logout' | t }})</a>
+        </div>
+      </div>
+
+
+    </div>
+  
+   <div class="account_tab">
+  <a class="order_rc" href="https://flore.com/account" >ORDER HISTORY</a>
+  <a href="https://flore.com/tools/recurring/portal/496036681e08dc9c40d0dcb/subscriptions?token=25ab5a3a130346f5aff11157fdfcc350&preview_theme=26557&preview_token=1584f39ca7ec7d598f2575d99e57438daa9127b63d691aab03c03546ef2eeced" >MANAGE SUBSCRIPTIONS</a>
+  <a href="https://flore.com/pages/flore-rewards" > MY REWARDS</a>
+</div>
+  <div class="account_tab_mobs">
+  <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn toggle-btn">MANAGE SUBSCRIPTIONS   <span class="arrow"></span></button>
+  <div id="myDropdown" class="dropdown-content ">
+    <a class="order_rc" href="https://flore.com/account">ORDER HISTORY</a>
+    <a  href="https://flore.com/tools/recurring/portal/496036681e08dc9c40d0dcb/subscriptions?     token=25ab5a3a130346f5aff11157fdfcc350&preview_theme=26557&preview_token=1584f39ca7ec7d598f2575d99e57438daa9127b63d691aab03c03546ef2eeced">MANAGE SUBSCRIPTIONS</a>
+    <a href="https://flore.com/pages/flore-rewards"> MY REWARDS</a>
+  </div>
+</div>
+</div>    
+  
+    <div class="module-body">
+      <div class="module-content">
+        <div class="account-info">
+          {% if customer.default_address != nil %}
+            <p class="customer-address">
+              {% assign address = customer.default_address %}
+              <span class="customer-address-name">{{ address.first_name }} {{ address.last_name }}</span><br>
+              {% if address.company.size > 0 %}
+                <span>{{ address.company }}</span><br>
+              {% endif %}
+              {% if address.street.size > 0 %}
+                <span>{{ address.street }}</span><br>
+              {% endif %}
+              {% if address.city.size > 0 or address.province_code.size > 0 %}
+                <span>{{ address.city }}{% if address.province_code %}, {{ address.province_code }}{% endif %}</span><br>
+              {% endif %}
+              {% if address.country.size > 0 or address.zip.size > 0 %}
+                <span>{{ address.country }} {{ address.zip }}</span><br>
+              {% endif %}
+              {% if address.phone.size > 0 %}
+                <span>{{ address.phone }}</span><br>
+              {% endif %}
+            </p>
+          {% endif %}
+          {% if customer.addresses_count == 0 %}
+            {% capture new_address %}
+              <a href="{{ routes.account_addresses_url }}">{{ 'customer.addresses.new_address_link' | t }}</a>
+            {% endcapture %}
+            <p>{{ 'customer.addresses.no_address_html' | t: new_address: new_address }}</p>
+          {% else %}
+            <p class="view-addresses-link"><a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+          {% endif %}
+        </div>
+        <div class="order-history">
+          {% paginate customer.orders by 6 %}
+            <table class="orders">
+              <thead>
+                <tr>
+                  <th class="first">{{ 'customer.orders.order' | t }}</th>
+                  <th>{{ 'customer.orders.payment_status' | t }}</th>
+                {% comment %}
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  {% endcomment %}
+                  <th class="last">{{ 'general.general.total' | t }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if customer.orders.size == 0 %}
+                  <tr class="first last">
+                    <td colspan="4" class="no-orders">{{ 'customer.orders.no_orders' | t }}</td>
+                  </tr>
+                {% endif %}
+                {% for order in customer.orders %}
+                  <tr class="{% render 'for-looper', forloop: forloop %} {% if order.cancelled %}cancelled_order{% endif %}">
+                    <td class="order-number first">{{ order.name | link_to: order.customer_url }} <span class="date">- {{ order.created_at | date: format: 'short_month' }}</span></td>
+                    <td class="payment-status {{ order.financial_status }}">{{ order.financial_status_label | capitalize }}</td>
+                          {% comment %}
+                    <td class="fulfillment-status {{ order.fulfillment_status }}">{{ order.fulfillment_status_label | capitalize }}</td>
+                         {% endcomment %}
+                    <td class="total last"><span class="money">{{ order.total_price | money }}</span></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% if paginate.previous or paginate.next %}
+              {% render 'pagination', paginate: paginate %}
+            {% endif %}
+          {% endpaginate %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+  $('.toggle-btn').on('click', function() {
+  $(this).toggleClass('active')
+});
+</script>

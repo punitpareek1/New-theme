@@ -1,0 +1,267 @@
+<style>
+ #points-template--15120403791933__07adb816-f4b3-433e-8b17-215f912a0cd5 .points_col1{
+    justify-content: flex-end;
+}
+   #points-template--15120403791933__07adb816-f4b3-433e-8b17-215f912a0cd5 .points_col1:hover{
+    justify-content: center;
+}
+#points-{{section.id}}{
+padding-top: {{section.settings.top_pad}}px;
+padding-bottom: {{section.settings.bottom_pad}}px;
+}
+  
+.points_outer {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.points_inner {
+    display: flex;
+    flex: 0 0 300px;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.points_col h3 {
+    font-size: 42px;
+    font-weight: 600;
+}
+.points_col p {
+    font-size: 22px;
+      padding-top: 0;
+}
+.points_col1 {
+    border-radius: 8px;
+    text-align: center;
+    padding: 27px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.icon img {
+    margin: 0 auto;
+    width: 25%;
+}
+.details p {
+    font-size: 30px;
+    padding-bottom: 0;
+}
+
+.details span {
+    font-size: 24px;
+    font-weight: 600;
+}
+.points_col {
+    text-align: center;
+    padding-bottom: 45px;
+}
+.sign_join_wapper {
+    background: url({{section.settings.bg-image|img_url:"master"}});
+}
+.login-point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.login-point a {
+    background: #ff5c35;
+    border-radius: 50px;
+    padding: 14px 35px;
+    line-height: 1;
+    color: #fff;
+    font-weight: 600;
+}
+.points_col_small2 {
+    display: none;
+}
+{% comment %}   .points_col1{
+background-image: url({{ block.settings.bgimagecol | img_url: 'master'}})
+}  {% endcomment %}
+
+.points_col1:hover .points_col_small {
+    display: none;
+}
+.points_col1:hover .points_col_small2 {
+    display: block;
+    
+}
+@media(min-width: 769px){
+.points_col1{
+flex: 0 0 380px;
+}
+}
+@media(max-width: 768px){
+  .details p {
+    font-size: 24px;
+}
+.points_col1{
+flex: 0 0 300px;
+}
+  .points_col h3 {
+    font-size: 30px;
+}
+.points_col p {
+    font-size: 18px;
+}
+  .points_wapper{
+    padding: 40px 0;
+}
+}
+</style>
+<div class="points_wapper" id="points-{{section.id}}">
+    <div class="points_outer">
+        <div class="points_col">
+            {% if section.settings.heading != blank%}
+            <h3>{{section.settings.heading}}</h3>
+                {% endif %}
+                {% if section.settings.sub_heading != blank%}
+            <p>{{section.settings.sub_heading}}</p>
+       {% endif %}
+        </div>
+        <div class="points_inner">
+            {% for block in section.blocks %}
+            <div class="points_col1" style="{% if block.settings.color %}background-color:  {{block.settings.color}}; {% endif %} {% if block.settings.bgimagecol %}background-image: url({{ block.settings.bgimagecol | img_url: 'master'}}); {% endif %}     background-position: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;">
+                <div class="points_col_small">
+                    <div class="icon">
+
+                        {% if block.settings.image != blank%}
+                        <img src="{{block.settings.image | img_url: '50*50'}}" alt="{{block.settings.image}}">
+                        {% endif %}
+                    </div>
+                    <div class="details" >
+                  {% if block.settings.text != blank%}
+                        <p style="color:{{ block.settings.color-text }}">{{block.settings.text}}</p>
+                           {% endif %}
+                        {% if block.settings.subtext != blank%}
+                        <span style="color:{{ block.settings.color-text }}">{{block.settings.subtext}}</span>
+                                 {% endif %}
+                    </div>
+                </div>
+
+                <div class="points_col_small2">
+                    <div class="login-point">
+                      {% if block.settings.link != blank%}
+                        <a href="{{block.settings.url}}">{{block.settings.link}}</a>
+                        {% endif %}
+                      {% if block.settings.link1 != blank%}
+                         <a href="{{block.settings.url1}}">{{block.settings.link1}}</a>
+                     {% endif %}
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "points",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading"
+    },
+      {
+  "type": "range",
+  "id": "top_pad",
+  "min": 0,
+  "max":100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Top",
+  "default": 45
+},
+      {
+  "type": "range",
+  "id": "bottom_pad",
+  "min": 0,
+  "max":100,
+  "step": 1,
+  "unit": "px",
+  "label": "Padding Bottom",
+  "default": 45
+}
+  ],
+  "blocks": [
+    {
+      "type": "Reward",
+      "name": "Reward",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+         "label": "Color"
+        },
+          {
+          "type": "color",
+          "id": "color-text",
+         "label": "Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "bgimagecol",
+         "label": "BG Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+         "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+         "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+        "label": "Sub Heading"
+        },
+        {
+          "type": "text",
+          "id": "link",
+        "label": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+         "label": "Link"
+        },
+            {
+          "type": "text",
+          "id": "link1",
+        "label": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "url1",
+         "label": "Link"
+        }
+      ]
+    }
+  ]
+  ,
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Point",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

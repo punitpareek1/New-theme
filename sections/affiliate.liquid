@@ -1,0 +1,77 @@
+<style>
+
+  .affiliate_your_inner {
+/*     max-width: 1200px;
+    margin: 0 auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+}
+   .affiliate_your_inner img{
+  width: 100%;
+  }
+  .affiliate_your_inner a{
+   color: #FFF;
+    font-size: 24px;
+    font-waight: 500;
+    background: #ff5c35;
+    padding: 9px 35px;
+    border-radius: 35px;
+  }
+
+    @media(max-width: 768px){
+      .affiliate_your_wappper {
+    padding-bottom: 30px 0;
+    }
+   .affiliate_your_inner {
+    padding: 0 20px;
+   }
+      .affiliate_your_inner a {
+    font-size: 16px;
+      }
+  }
+</style>
+
+<div class="affiliate_your_wappper">
+  <div class="affiliate_your_inner">
+{% if section.settings.bg-image != blank %}
+ <img src="{{section.settings.bg-image | img_url: 'master' }}" alt="{{ section.settings.bg-image.alt }}" /> 
+{% endif %}
+  {% if  section.settings.url != blank %}
+ <a href="{{ section.settings.url }}">{{ section.settings.btn-text }}</a>
+      {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Affiliate",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "BG Image"
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+       "label": "Text Button"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    }
+  
+]
+    ,
+  "presets": [
+    {
+      "name": "Affiliate "
+    }
+  ]
+  }
+{% endschema %}

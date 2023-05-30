@@ -1,0 +1,163 @@
+<style>
+.earn-wapper{
+background-image: url({{section.settings.bgImage| img_url: 'master'}});
+background-position: bottom;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+
+  
+  .earn-wapper{
+  padding: 70px 0 120px 0;
+  }
+  
+  .earn-outer{
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+  .headlineArea-earn{
+  text-align: center;
+  
+  }
+.headlineArea-earn h2{
+ font-family: sk-modernist,sans-serif;
+  color: #FF5C35;
+  font-size: 45px;
+    font-weight: 700;
+  }
+  .headlineArea-earn p{
+   font-size: 20px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .rowearn{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+}
+  .img-wrapper-earn {
+    height: 115px;
+}
+  .earn-detail img {
+    width: 30%;
+    height: 100%;
+    object-fit: contain;
+}
+  
+  .earn-detail{
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+ .earn-detail img{
+      width: 30%;
+      
+}
+  .earn-detail p{
+   font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 700;
+    font-size: 30px;
+    padding-bottom: unset;
+  }
+  .earn-detail p:last-child{
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-size: 18px;
+    padding: 0;
+  }
+  
+@media only screen and (max-width: 768px){
+  .rowearn{
+   display: flex;
+   flex: 1 0 260px;
+   padding: 40px 0;
+   background-image: unset;
+   background-color: #EBDCD0;
+   flex-wrap: wrap;
+   gap: 20px;
+
+  }
+  
+  .headlineArea-earn h2{
+  font-size: 30px;
+  }
+  .headlineArea-earn p{
+   font-size: 16px;
+  }
+   .earn-wapper{
+  padding: 50px 0 0 0;
+    background: #fff;
+  }
+  
+}
+</style>
+
+<div class="earn-wapper">
+<div class="earn-outer">	
+  <div class="rowearn">
+    {% for block in section.blocks %}
+    	<div class="earn-detail">
+          <span>{{ block.settings.stap }}</span>
+               <p>{{ block.settings.real_heading}}</p>
+          <div class="img-wrapper-earn">
+               <p>{{ block.settings.detailsText }}</p>
+          </div>
+    	</div>  
+    {% endfor %}
+  </div>
+  
+</div>
+</div>  
+
+
+{% schema %}
+{
+  "name": "Result Adult",
+  "settings": [
+         {
+      "type": "image_picker",
+      "id": "bgImage",
+	  "label": "Background Image"
+	
+    }
+  ],
+  "blocks": [
+  
+    {
+      "type": "text",
+      "name": "Earn Details",
+      "settings": [
+           {
+      "type": "text",
+      "id": "stap",
+	  "label": "Text"
+	
+    },        {
+      "type": "text",
+      "id": "real_heading",
+ 	  "label": "Headline"
+      },
+        {
+          "type": "text",
+          "id": "detailsText",
+	  	  "label": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Earn",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

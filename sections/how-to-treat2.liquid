@@ -1,0 +1,61 @@
+<style>
+  .anxiety{
+  	background: #404040;
+    overflow: auto;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    text-align:center;
+  }
+  .text-link, a, a:hover {
+        color: #FF5C35;
+        text-decoration: none;
+        cursor: pointer;
+}
+  .anxiety h2{
+    padding-bottom: 20px;
+    font-weight: 600;
+    color: #ededee;
+    font-size: 36px;
+    line-height: 46px;
+  }
+  .anxiety p{
+  	color: #ededee;
+    font-size: 20px;
+    line-height: 36px;
+    padding-top: 25px;
+  }
+  .anxiety a{overflow-wrap: break-word;}
+</style>
+
+<div class="anxiety">
+    <div class="global-container-1200">
+        {{section.settings.htmlData}}
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Anxiety Section",
+    "settings": [
+		
+		{
+          "type":"html",
+          "id":"htmlData",
+          "label":"Html here"
+		}
+	],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "How To Treat 2",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

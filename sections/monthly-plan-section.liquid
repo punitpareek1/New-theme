@@ -1,0 +1,260 @@
+<style>
+  #section-monthly-{{section.id}}  {
+{% comment %}     background-color : {{section.settings.background_color | default : '#fff'}}; {% endcomment %}
+    background-color : {{product.metafields.custom.product_color}};
+    padding-top:{{section.settings.padding_top}}px;
+    padding-bottom:{{section.settings.padding_bottom}}px;
+  }
+  {%  if section.settings.bg_imgage != blank %}
+  .monthly-plan-wrapper{
+    background: url({{section.settings.bg_imgage | img_url: 'master' | prepend: "https:"}});
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+      
+  }
+{% endif %}
+      #section-monthly-{{section.id}} {
+     background-color:  {{section.settings.background_color_wapper | default : '#fff'}}
+      }
+      
+  .monthly-plan-Outer{
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+  .monthly-plan-headlineArea{
+  text-align: center;
+  
+  }
+.monthly-plan-headlineArea h3{
+ font-family: sk-modernist,sans-serif;
+   color: {{section.settings.colorheading}};
+  font-size: 45px;
+    font-weight: 700;
+      padding-bottom: 30px
+  }
+  .monthly-plan-headlineArea p{
+   font-size: 20px;
+    font-family: "sk-modernist";
+    color: #231f20;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .row-monthly-plan{
+/*     display: grid;  
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+     display: flex;
+    flex-wrap: wrap;
+}
+  .monthly-plan-img-wrapper {
+    height: 115px;
+}
+  .resultDetailBlock img {
+    height: 100% ;
+    width: 100% !important;
+    object-fit: contain;
+}
+ 
+
+ 
+  .resultDetailBlock{
+    text-align: center;
+    flex: 0 0 240px;
+  }
+
+  .resultDetailBlock p{
+    font-family: "sk-modernist";
+    font-weight: 500;
+    font-size: 20px;
+   
+  }
+
+
+  
+@media only screen and (max-width: 768px){
+    {%  if section.settings.bg_imgage != blank %}
+  .monthly-plan-wrapper{
+    background: url({{section.settings.bg_imgage_mobile | img_url: 'master'| prepend: "https:" }});
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+{% endif %}
+  .row-monthly-plan{
+/*     grid-template-columns:  1fr; */
+    justify-content: center;
+  }
+  
+  .monthly-plan-img-wrapper {
+    height: 65px;
+}
+  
+  .monthly-plan-headlineArea h3{
+  font-size: 30px;
+  }
+  .monthly-plan-headlineArea p{
+   font-size: 16px;
+  }
+  
+   #section-monthly-{{section.id}}  {
+    padding-top: calc(100% - 90%);
+    padding-bottom: unset;
+  }
+  .monthly-plan-Outer{
+     padding: 0 20px;
+  }
+  .resultDetailBlock p{
+      font-size: 14px;
+    line-height: 1.2;
+  }
+#section-monthly-template--15081729261629__8d812dc0-94b2-4256-a60c-5a34db4facb5 {
+    padding-top: calc(75% - 61%);
+    padding-bottom: unset;
+}
+  #section-monthly-template--15081729261629__8d812dc0-94b2-4256-a60c-5a34db4facb5 .row-monthly-plan{
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+#section-monthly-template--15081729261629__8d812dc0-94b2-4256-a60c-5a34db4facb5 .monthly-plan-img-wrapper img{
+  width: 80%;
+}
+#section-monthly-template--15125472477245__8d812dc0-94b2-4256-a60c-5a34db4facb5 {
+    padding-top: calc(74% - 60%);
+    padding-bottom: unset;
+}
+} 
+</style>
+
+ {% if template contains 'flore_clinical_new' %}
+   <style>
+      .monthly-plan-img-wrapper {
+    height: 200px !important;
+  } 
+   .row-monthly-plan{
+         padding: 0 0 50px 0;
+   }
+     
+   </style>
+ 
+   {% endif %}
+   
+<div id="section-monthly-{{section.id}}" class="monthly-plan-wrapper ttt">
+<div class="monthly-plan-Outer">
+  {% if section.settings.headline != blank %}
+  <div class="monthly-plan-headlineArea">
+    <h3>{{ section.settings.headline }}</h3>
+    {% if section.settings.subhead != blank %}<p>{{ section.settings.subhead }}</p>{% endif %}
+  </div>	
+  {% endif %}
+  <div class="row-monthly-plan">
+    {% for block in section.blocks %}
+    	<div class="resultDetailBlock">
+          <div class="monthly-plan-img-wrapper"><img src="{{ block.settings.detailsImage | img_url: 'master' | prepend: "https:" }}" alt="{{ block.settings.detailsImage.alt }}" loading="lazy"></div>
+          <p style="color: {{ block.settings.colorsubheading }};">{{ block.settings.detailsText }}</p>
+    	</div>  
+    {% endfor %}
+  </div>
+  
+</div>
+</div>  
+
+
+{% schema %}
+{
+  "name": "Monthly Plan",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_imgage",
+	  "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_imgage_mobile",
+	  "label": "Mobile Background Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color_wapper",
+	  "label": "Background Color"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+	  "label": "Headline"
+    },
+    {
+      "type": "color",
+      "id": "colorheading",
+      "label": "Heading color",
+      "default": "#FF5C35"
+     } ,   
+    {
+      "type": "text",
+      "id": "subhead",
+	  "label": "subhead"
+	
+    },
+	{
+		"type" : "color",
+		"id" : "background_color",
+		"label" : "Background Color"
+	},
+	{
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Top"
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 70,
+	  "label" : "Padding Bottom"
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Result Details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "detailsImage",
+	  	  "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "detailsText",
+	  	  "label": "text"
+        },
+         {
+      "type": "color",
+      "id": "colorsubheading",
+      "label": "Heading color",
+      "default": "#231f20"
+     } 
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Monthly Plan",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

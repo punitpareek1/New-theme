@@ -1,0 +1,162 @@
+ <style>
+   .newsBanner-main-{{ section.id }}{
+       width: 100%;
+     
+       {%- if section.settings.background_image -%}
+         background-image: url('{{section.settings.background_image | img_url: 'master'}}');
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+         {% else %} 
+         background: {{ section.settings.background_color}};
+         {%- endif -%};
+     
+       padding-top: {{section.settings.padding_top_desk}}px;
+       padding-bottom: {{section.settings.padding_bottom_desk}}px;
+    }
+   .news-container h3{
+     font-size: 45px;
+     color: {{section.settings.heading_color}};
+     font-weight: bold;
+   }
+   .news-container{
+     display: flex;
+     justify-content: space-between;
+   }
+   .news-container span{
+     color: #fff;
+    position: absolute;
+    font-size: 14px;
+    right: 17%;
+    top: 3%;
+   }
+   .news-container span a{
+     color: #fff;
+     text-decoration: underline;
+   }
+
+   @media only screen and (max-width: 768px){
+    .newsBanner-main{
+       width: 100%;
+       padding-top: {{section.settings.padding_top_mobi}}px !important;
+       padding-bottom: {{section.settings.padding_bottom_mobi}}px !important;
+    }
+
+    .news-container h3{
+     font-size: 38px;
+    }
+
+    .news-container {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+    }
+     .news-container span{
+       position: inherit;
+       text-align: center;
+       margin-top: -30px;
+    margin-bottom: 25px;
+     }
+   }
+ </style>
+  
+  
+  <div class="newsBanner-main-{{ section.id }} module">
+        <div class="news-container module">
+            <h3>
+                {{section.settings.heading}}
+            </h3>
+
+<!--           <span>
+            For press related inquiries, please email: <a href="{{ section.settings.mailId }}">{{ section.settings.email_text }}</a>
+          </span> -->
+        </div>
+  </div>
+
+
+
+
+{% schema %}
+{
+  "name": "news banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_background",
+      "label": "Background Color",
+      "id": "background_color"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background image",
+      "id": "background_image"
+    },  {
+      "type": "text",
+      "label": "Email Address",
+      "id": "email_text"
+    },
+      {
+      "type": "url",
+      "label": "Email link",
+      "id": "mailId"
+    },
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading"
+    },
+    {
+      "type": "color",
+      "label": "Heading color",
+      "id": "heading_color"
+    },
+    {
+      "type": "range",
+      "label": "Padding Top (Desktop)",
+      "id": "padding_top_desk",
+      "default": 36,
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Padding Bottom (Desktop)",
+      "id": "padding_bottom_desk",
+      "default": 36,
+      "min": 10,
+      "max": 200,
+      "step": 2,
+      "unit": "px"
+    },
+      {
+      "type": "range",
+      "label": "Padding Top (Mobile)",
+      "id": "padding_top_mobi",
+      "default": 36,
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Padding Bottom (Mobile)",
+      "id": "padding_bottom_mobi",
+      "default": 36,
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "News Banner"
+    }
+  ]
+}
+{% endschema %}

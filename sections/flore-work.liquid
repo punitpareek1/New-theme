@@ -1,0 +1,145 @@
+<style>
+  .main-row-how {
+  padding:75px 0px;
+    background: #fff;
+}
+  .main-col-row {
+  display:flex;
+  }
+  .col {
+      box-sizing: border-box;
+    width: 24.99%;
+        padding-right: 50px;
+  }
+  .img-heigth{
+        margin-bottom: 30px;
+    height: 120px;
+  }
+  .img-heigth img{
+      max-width: 130px;
+    max-height: 140px;
+    margin-left: 60px;
+  }
+  .h3-small{
+      line-height: 1.25;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #404040;
+  }
+
+  .saphire-section-steps-circle {
+    box-shadow: 3px 3px 10px rgb(0 0 0 / 20%);
+    color: #fff;
+    line-height: 0;
+    font-family: Roboto,sans-serif;
+    font-weight: 500;
+    position: absolute;
+}
+  .saphire-section-steps-circle {
+  bottom: -10px;
+    left: -2px;
+    background: #FF5C35;
+    border: 0;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    padding-top: 30px;
+    position: relative;
+    top: 136px;
+    color: #fff;
+  }
+  .text-body {
+  padding:10px 0;
+  }
+  
+  @media(max-width:768px){
+  
+    .main-col-row{
+    display:block!important;
+    }
+    .col{
+    padding-right:0px!important;
+      width:100%!important;
+    
+    }
+    .headingH2{
+    	font-size:1.6rem!important;
+    }
+  }
+  
+</style>
+
+<section class="main-row-how">
+<div class="global-container-1200 ">
+
+
+<div class="main-col-row">
+  {% assign count = 0 %}
+  
+{% for block in section.blocks %}
+  {% assign count = count | plus: 1 %}
+      <div class="col">
+		 <div class="">
+           <div class="step-icon-wrapper">
+			<div class="saphire-section-steps-circle" style="border-radius: 50%;text-align: center;display: block;"> {{ count }}</div>
+			</div>
+         <div class="img-heigth">
+          <img class="lazy" src="{{block.settings.left_image | img_url: 'master'}}" alt="FLORÉ" style="width: 140px; display: inline-block;">
+           </div>
+           <h3 class="h3-small">{{block.settings.left_text}}</h3>
+           <div class="text-body">
+             <div class="text02"> {{block.settings.paragraph}} </div>
+           </div>
+        </div>
+
+      </div>
+{% endfor %}
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+"name": "Flore Work",
+"settings": [],
+  
+  	  "blocks":[
+	{
+	"type":"order",
+	"name":"Steps Column",
+	"settings": [
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Left Image"
+        },
+		{
+          "type": "text",
+          "id": "left_text",
+          "label": "Heading"
+
+        },
+		{
+          "type": "text",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }	
+      ]
+	}
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Flore Work",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

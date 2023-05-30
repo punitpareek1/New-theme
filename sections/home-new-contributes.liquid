@@ -1,0 +1,219 @@
+<style>
+/* Desktop CSS Start */
+.floresection7 {
+  padding: 100px 20px 100px 20px;
+  background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Color_Fill_16.png?v=1646644303);
+  background-size: cover;
+  background-position: 0px calc(100%);
+}
+
+.floresection7-1 {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  column-gap: 4rem;
+  align-items: center;
+}
+
+.floresection7col h4 {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0px 0px 15px 0px;
+  color: #fff;
+  text-transform: uppercase;
+  max-width: 360px;
+  font-family: "sk-modernist";
+}
+
+.floresection7col h5 {
+  font-size: 44px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0px 0px 15px 0px;
+  color: #fff;
+  font-family: "sk-modernist", sans-serif;
+}
+
+.floresection7col p {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 400;
+  margin: 0px 0px 45px 0px;
+  color: #fff;
+  font-family: "sk-modernist", sans-serif;
+}
+
+.floresection7col a {
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #6c8289;
+  background-color: #fff;
+  padding: 15px 40px 15px 40px;
+  border-radius: 40px;
+  display: inline-block;
+}
+
+.floresection7col a i {
+  margin-left: 4px;
+  font-size: inherit;
+}
+.floresection7col {
+  width: 50%;
+}
+
+.floresection7col img {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Desktop CSS End */
+
+/* Mobile CSS Start */
+
+@media (max-width: 769px) {
+  .floresection7col img {
+    width: 75%;
+    margin: auto;
+  }
+
+  .floresection7 {
+    padding: 50px 20px 50px 20px;
+  }
+
+  .floresection7-1 {
+    display: block;
+  }
+
+  .floresection7col {
+      width: 100% !important;
+    margin-bottom: 40px;
+  }
+
+  .floresection7col h4 {
+        max-width: 440px;
+margin:0px auto 15px;
+    font-size: 18px;
+  }
+
+  .floresection7col h5 {
+    font-size: 30px;
+  }
+  .floresection7col p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .floresection7col a {
+    font-size: 12px;
+    margin: auto;
+    display: block;
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .floresection7col img {
+    width: 50%;
+    margin: auto;
+  }}
+@media (max-width: 600px) {
+  .floresection7 {
+    background-size: 193% 100%;
+    background-position-x: -79px;
+  }
+  .floresection7col {
+    width: 100% !important;
+    margin-bottom: 70px;
+  }
+
+  .floresection7col p {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .floresection7col h4 {
+    max-width: none;
+  }
+
+  .floresection7col h5 {
+    font-size: 24px;
+    margin-bottom: 0px;
+  }
+}
+
+/* Mobile Css End */
+
+/* Home Page Section 7 End */
+
+</style>
+    <div class="floresection7 lazyload">
+        <div class="floresection7-1">
+            <div class="floresection7col">
+                <h4>
+                    {{ section.settings.heading }}
+                </h4>
+                <h5>
+                   {{ section.settings.sub-heading }}
+                </h5>
+                <p>
+                  {{ section.settings.paragraph }}
+                </p>
+                <a href="{{section.settings.button_link  }}">
+                    LEARN MORE ABOUT FLORÉ RESEARCH <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="floresection7col">
+                <img class="lazyload" Loading="lazy" width="500" height="500" data-src="{{ section.settings.right_image | image_url: width: 500 }}" src="{{ section.settings.right_image | image_url: width: 20 }}" alt="floré contributes">
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% schema %}
+  {
+    "name": "contributes",
+    "settings": [
+                  {
+                  "type": "text",
+                  "id": "heading",
+                  "default": "Lorem",
+                  "label": "Heading"
+                  },
+                  {
+                  "type": "text",
+                  "id": "sub-heading",
+                  "default": "Lorem",
+                  "label": "Sub Heading"
+                  },
+                  {
+                  "type": "textarea",
+                  "id": "paragraph",
+                  "default": "Lorem",
+                  "label": "Paragraph"
+                  },
+                  {
+                  "type": "url",
+                  "id": "button_link",
+                  "label": "Button link"
+                  },
+                  {
+                  "type":"image_picker",
+                  "label":"Right Image",
+                  "id":"right_image"
+                  }
+				],
+                  "presets": [
+                    {
+                      "name": "Home New Contributes"
+                    }
+                  ]
+  }
+{% endschema %}
+

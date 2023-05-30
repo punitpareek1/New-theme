@@ -1,0 +1,244 @@
+<style>
+  /* Flore New Home Page Section 1 Start */
+  
+/*  For A/B Testing  */
+#shopify-section-{{ section.id }} {
+    display: block;
+}
+.newsImage img{
+      object-fit: contain;
+}
+
+  
+  /* Desktop CSS Start */
+
+  #shopify-section-{{ section.id }} .floresection1{
+    padding: 60px 20px 110px 20px;
+    background: url(https://cdn.shopify.com/s/files/1/2204/9357/files/Color_Fill_9.png?v=1646642457);
+    background-size: cover;
+    background-position: 0px calc(100%);
+
+  }
+  #shopify-section-{{ section.id }} .floresection1-1{
+    display: flex;
+    width:100%;
+    max-width:1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-left {
+    width: 60%;
+    padding-top:30px;	
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-right{
+    width:40%; 
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-right img {
+    width: 100%;
+    height: auto;
+  }
+  #shopify-section-{{ section.id }} .floresectioncol-left h1{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0px 0px 55px 0px;
+    font-family: 'sk-modernist',sans-serif;
+    color: #292723;
+  }
+
+  #shopify-section-{{ section.id }} .floresectioncol-left a {
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #FF5C35;
+    padding: 15px 50px 15px 50px;
+    border-radius: 40px;
+  }
+
+  #shopify-section-{{ section.id }} .floresectioncol-left a i{
+    margin-left:4px;
+    font-size:inherit;	
+  }
+  #shopify-section-{{ section.id }} .newsImage > img {
+      margin: auto;
+      display: block;
+  }
+
+
+
+
+
+  
+  /* Desktop CSS End */
+        
+  
+  
+  /* Mobile CSS Start */
+  @media(max-width:1060px){
+    #shopify-section-{{ section.id }} .floresectioncol-left h1{
+    	font-size:34px;
+    }
+  }  
+  @media(max-width:768px){
+    #shopify-section-{{ section.id }} .floresection1 {
+      padding: 50px 20px 70px 20px;
+
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-left {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-left h1{
+      font-size:24px;
+      margin: 0px 0px 50px 0px;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-left a {
+      font-size:15px;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-right img{
+      width:100%;
+    }
+
+  }
+
+  @media(max-width:600px){
+    #shopify-section-{{ section.id }} .floresection1 {
+      padding: 50px 10px 80px 10px;
+    }
+
+    #shopify-section-{{ section.id }} .floresection1-1 {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-left, .floresectioncol-right {
+      width: 100% !important;
+    }
+    #shopify-section-{{ section.id }} .floresectioncol-left h1 {
+      margin: 0px 0px 30px 0px;
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-left, .floresectioncol-right {
+      margin-bottom: 40px;
+    }
+
+    #shopify-section-{{ section.id }} .floresectioncol-right img {
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;	
+    }
+  }
+
+    @media(min-width:769px){
+    newsImage{
+    margin-top: 60px;
+    }
+      .mobile_news{
+    display: none;
+}
+  }
+    @media(max-width:768px){
+      .desktop_news{
+    display: none;
+}
+  }
+        /* Mobile CSS End */
+  
+</style>  
+<div class="floresection1">
+        <div class="floresection1-1">
+          <div class="floresectioncol-left">
+            <h1>
+                {{ section.settings.heading }}
+            </h1>
+            {% if section.settings.paragraph != "" %}
+             <div class="head_sub_text">{{ section.settings.paragraph }}</div>   
+            {% endif %}
+            <a href="{{section.settings.button_link}}">
+                get started <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        <div class="floresectioncol-right">
+            <img class="lazyload" fetchpriority="high" width="480" height="305" data-src="https:{{section.settings.product_image | img_url: '480x' }}"  src="https:{{ section.settings.product_image |  img_url: '20x' }}" alt="Floré">
+        </div>
+    </div>
+    </div> 
+<div class="newsImage desktop_news " >
+{% comment %}
+     {%- assign height = section.settings.logo_image.width | divided_by: section.settings.logo_image.aspect_ratio | round -%}
+            {{ section.settings.logo_image | image_url: width: 3840 | image_tag:
+              loading: lazy,
+              height: height,
+              sizes: "100vw",
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+             alt: logo_image.title,
+             title: logo_image.title
+            }}
+            {% endcomment %}
+ <img class="white"   src="https://cdn.shopify.com/s/files/1/2204/9357/files/FeatureIn_white_a658fd70-8a5f-49f8-ac43-06753e5188df.jpg?v=1678862674" width="70%" height="100%" alt="FeatureIn" loading="lazy"> 
+</div>
+
+<div class="newsImage mobile_news" >
+  {% comment %}
+     {%- assign height = section.settings.logo_mobile_image.width | divided_by: section.settings.logo_mobile_image.aspect_ratio | round -%}
+            {{ section.settings.logo_mobile_image | image_url: width: 3840 | image_tag:
+              loading: lazy,
+              height: height,
+              sizes: "100vw",
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+             alt: logo_mobile_image.title,
+             title: logo_mobile_image.title
+            }}
+       {% endcomment %}
+<img class="white"   src="https://cdn.shopify.com/s/files/1/2204/9357/files/flore_news.webp?v=1678865132" width="100%" height="100%" alt="FeatureIn" loading="lazy">
+</div>
+
+
+{% schema %}
+  {
+    "name": "Top section",
+    "settings": [
+		{
+        "type": "text",
+        "id": "heading",
+        "default": "Lorem",
+        "label": "Heading"
+      },
+      {
+        "type": "html",
+        "id": "paragraph",
+        "label": "Paragraph"
+      },
+	  {
+        "type": "url",
+        "id": "button_link",
+		"label": "Button link"
+	  },
+	  {
+          "type":"image_picker",
+          "label":"Product Image",
+          "id":"product_image"
+      },
+	  {
+          "type":"image_picker",
+          "label":"Logo Image",
+          "id":"logo_image"
+      },
+	  {
+          "type":"image_picker",
+          "label":"Logo Mobile Image",
+          "id":"logo_mobile_image"
+      }
+	],
+    "presets": [
+      {
+        "name": "Home New Top"
+      }
+    ]
+  }
+{% endschema %}
+

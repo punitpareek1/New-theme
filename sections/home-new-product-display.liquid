@@ -1,0 +1,267 @@
+<style>
+   /* New Home page Section 2 Start */
+
+   /* Destop CSS Start */
+   .floresection2{
+     padding:100px 0px 100px 0px;
+     background-color:#fff;
+   }
+
+   .floresection2-1{
+
+     width: 100%;
+     max-width:1200px;
+     margin:0 auto;
+   }
+
+   .floresection21{
+     text-align: center;
+     margin-bottom: 90px;
+   }
+
+   .floresection21 h2{
+    font-size: 42px;
+    color: #292723;
+    margin: 0px 0px 10px 0px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'sk-modernist',sans-serif;  
+   }
+  .floresection21 h3{
+    font-size: 42px;
+    color: #292723;
+    margin: 0px 0px 10px 0px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'sk-modernist',sans-serif;  
+   }
+   .floresection21 p{
+
+     font-size: 31px;
+     color:#000;
+     font-style:italic;
+     font-weight:600;
+     line-height:1.5;
+     margin:0px 0px 40px 0px;
+     text-align: center;
+     font-family: 'sk-modernist',sans-serif;
+   }
+
+   .floresection21 a{
+     font-size: 20px;
+     font-weight: 600;
+     text-decoration: none;
+     text-transform: uppercase;
+     color: #fff;
+     background-color: #FF5C35;
+     padding: 15px 60px 15px 60px;
+     border-radius: 40px;
+     font-family: 'sk-modernist',sans-serif;
+     display: inline-block;
+   }
+    .floresection21 a i {
+   	 margin-left: 4px;
+   	 font-size: inherit;
+	}
+
+   .floresection2-2{
+     display: flex;
+     column-gap:1rem;
+	 flex-wrap: wrap;
+   }
+
+  	.floresectioncol2 {
+    	width: 23%;
+      	position: relative;
+	}	
+   .floresection2-2 img{
+     width: 100%;
+     height:auto;
+   }
+
+   .floresectioncol2 a {
+     position: absolute;
+     top: 10px;
+     font-size: 26px;
+     text-decoration: none;
+     color: #fff;
+     text-transform: uppercase;
+     font-weight: 700;
+     font-family: 'sk-modernist';
+     width: 100%;
+     text-align: center;
+   }
+
+   .floresectioncol2 a i {
+     margin-left: 4px;
+     font-size: inherit;
+   }
+
+   /* Desktop CSS End */
+
+   /* Mobile CSS Start */
+
+   @media(max-width:768px){
+
+     .floresection2{
+       padding:50px 20px 50px 20px;
+     }
+    .floresection2-2 {
+      justify-content: space-around;
+      gap: 25px;
+    }
+
+     .floresection21{
+       margin-bottom: 40px;
+     }
+     .floresection21 h2{
+       font-size:24px;
+     }
+     .floresection21 h3{
+       font-size:24px;
+     }
+     .floresection21 p{
+       font-size: 18px;
+       line-height: 1.4;
+     }
+     .floresection21 a{
+       font-size:15px;
+     }
+     .floresectioncol2 {
+   	 width: 47%;
+	}
+     .floresectioncol2 a {
+       bottom: -53px;
+      /*  left: 22%; */
+       font-size: 24px;
+     }
+
+     .br{
+       display:none;
+     }
+   }
+  
+  @media(max-width:600px){
+
+    .floresection21 a {
+      padding: 10px 20px;
+    }
+
+    .floresectioncol2 {
+      width: 48%;
+    }
+
+    .floresection2-2 {
+      column-gap: 10px;
+      row-gap:10px;
+    }
+
+    .floresectioncol2 a {
+      font-size: 16px;
+      left: 15px !important;
+    }
+
+    .floresection21 {
+      margin-bottom: 35px;
+    }
+
+    .floresection21 p {
+      margin: 0px 0px 20px 0px;
+    }
+  
+  }
+  
+
+   /* Mobile CSS End  */
+
+   /* New Home page Section 2 End */
+</style>
+    <!-- New Home page Section 2 Start -->
+    <div class="floresection2">
+        <div class="floresection2-1">
+            <div class="floresection21">
+                <h3>
+                   {{section.settings.heading}}
+                </h3>
+                <p>
+                   {{ section.settings.paragraph }}
+                </p>
+                <a href="{{ section.settings.button_link }}">
+                    Customize your probiotics <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+         <div class="floresection2-2">
+             
+              {% for block in section.blocks %}
+               <div class="floresectioncol2">
+               <a href="{{block.settings.link_url}}">
+                    {{block.settings.link_text}} <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                 </a>
+                 <img width="276" height="276"  src="{{ block.settings.product_image | image_url: width: 276 | prepend: "https:" }}" alt="{{ block.settings.product_image.alt}}" onclick="window.location.href='{{block.settings.link_url}}'" style="cursor:pointer;" loading="lazy">
+             </div>
+              {% endfor %} 
+               
+                 
+             
+         </div>
+        </div>
+    </div>
+
+
+
+
+{% schema %}
+  {
+    "name": "product Showcase",
+    "settings": [
+		{
+        "type": "text",
+        "id": "heading",
+        "default": "Lorem",
+        "label": "Heading"
+      },
+		{
+        "type": "textarea",
+        "id": "paragraph",
+        "default": "Lorem",
+        "label": "Paragraph"
+      },
+	  {
+        "type": "url",
+        "id": "button_link",
+		"label": "Button link"
+	  }
+	],
+	"blocks":[
+			{
+				"name":"Product display",
+				"type":"text",
+				"settings":[
+                    {
+                        "type":"image_picker",
+                        "label":"Product image",
+                        "id":"product_image"
+                    },
+					{
+                        "type":"textarea",
+                        "label":"Link Text",
+                        "id":"link_text"
+                    },
+                    {
+                        "type": "url",
+                        "id": "link_url",
+                        "label": "product url"
+                    }
+				]
+			}
+		],
+    "presets": [
+      {
+        "name": "Home New Product Display"
+      }
+    ]
+  }
+{% endschema %}
+

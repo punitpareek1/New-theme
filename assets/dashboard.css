@@ -1,0 +1,197 @@
+/* Fonts */
+  	h2{
+  		font-size: 1.4rem; 
+  	}
+  	div, p,li,a,td,address,.btn{
+   		font-size: .9rem; 
+    	line-height: 1.4;
+    	font-style: normal;
+	}
+	h4 + p{
+    	padding-top: 3px;  
+    }
+
+/* Fonts */
+
+/* General Elements */
+  	.dashboard-box{
+  		background: #fff;
+    	box-shadow: 2px 2px 12px rgba(0,0,0,.05);
+  	}
+  	.btn,.btn:hover,
+	.btn-primary,.btn-primary:hover{
+    	padding: 6px 12px; 
+    	text-transform: capitalize;
+      	font-size: 1rem;
+      	line-height: 1.7;
+   	}
+	@media(max-width: 800px){
+      .padding-40.padding-half-800{
+       padding: 20px; 
+      }
+    }
+/* General Elements */  
+
+/* Forms */
+	fieldset{
+     border: 0; 
+    }
+	fieldset .grid{
+     padding-bottom: 20px; 
+    }
+  label ~ input, label ~ textarea{
+      margin-top: 4px;
+  }
+	.select-state .select-wrapper{
+     padding-left: 20px; 
+    }
+/* Forms */
+
+/* Dashboard Common Elements */
+	.your-account-nav{
+		line-height: 2;
+    }
+	.highlight-section{
+  		border-left: 4px solid #FF5C35; 
+  		padding-left: 20px;
+	}
+	@media(max-width: 800px){
+  		.highlight-section{
+    		border-left: 0;
+       		padding-left: 0;
+  		}
+	}
+
+	.column-fixed-left-flex{
+		display: flex;
+	}
+	@media(max-width: 700px){
+  		.column-fixed-left-flex{
+        	flex-direction: column;  
+       	}
+	}
+/* Dashboard Common Elements */
+
+
+  .page-account{
+   	padding-bottom: 100px; 
+  }
+  .page-account a{
+   	font-size: .9rem; 
+  }
+  .page-account tr th, 
+  .page-account tr td, 
+  .page-account tr td span,
+  .page-account tr td a{
+    font-size: .9rem;
+    text-align: left;
+  }
+  .page-account tr th, .page-account tr td{
+   /* padding: 14px; */
+  }
+  .page-account th{
+   	font-weight: 600; 
+  }
+  .page-account td{ 
+    background: #fafafa;
+    border-bottom: 1px solid #ececec;
+  }
+  
+  
+  .page-account .logged-in-as,
+  .page-account .logged-in-as a{
+   	font-size: .9rem; 
+  }
+  
+  .footer-referfriend{
+   display: none; 
+  }
+  
+  
+/* Order History */  
+  .order-history .date,
+  .order-history .column-1 a{
+    color: #828282;
+    font-size: .7rem;
+  }
+  .order-history h4{
+    font-size: 1rem;
+  }
+/* Order History */  
+  
+
+/* Tables */
+ 	tr th, 
+  	tr td, 
+  	tr td span,
+  	tr td a{
+    	font-size: .9rem;
+    	text-align: left;
+  	}
+  	tr th, tr td{
+    	padding: 14px; 
+  	}
+  	th{
+   		font-weight: 600; 
+  	}
+  	td{ 
+    	background: #fafafa;
+    	border-bottom: 1px solid #ececec;
+  	}
+
+.padding-b-25{
+font-size:1.4em;
+}
+
+.main-content {
+	background-color: #f8f8f8;
+}
+
+.padding-t-5{
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #404040;
+}
+
+strong{
+font-weight:700!important;
+  color:#5e5e5e;
+}
+.color_announcement_new_text p strong {
+    color: #FF5C35 !important;
+      font-size: 14px!important;
+}
+
+  @media(max-width: 800px){
+    .table-responsive-800{
+    	display: block; 
+    }
+    .table-responsive-800 thead,
+    .table-responsive-800 tbody,
+    .table-responsive-800 tr{
+      display: block;
+      width: 100%;
+    }
+    .table-responsive-800 thead{
+     display: none; 
+    }
+    .table-responsive-800 tr th, 
+    .table-responsive-800 tr td{
+     padding: 0; 
+    }
+    .table-responsive-800 tr td{
+      display: block;
+      width: 100%;
+      border: 0;
+      padding: 2px 7px;
+    }
+    .table-responsive-800 tr{
+      margin-bottom: 20px;
+    }
+    .table-responsive-800 .text-right{
+		text-align: left !important; 
+    }
+    }
+  }
+/* Tables */

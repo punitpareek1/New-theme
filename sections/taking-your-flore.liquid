@@ -1,0 +1,101 @@
+<style>
+  
+  .taking {
+  
+    background-color: #f3f5fb;
+    
+  }
+
+  h2{
+    margin-top: 0;
+    font-weight: 500;
+    color: #404040;
+        font-size: 2rem;
+    line-height: 1.15;
+    padding-bottom: 20px;
+    
+}
+  .taking .col-1{
+    width: 50%;
+    min-height: 482px;
+  }
+  .taking .row{display:flex;}
+  .taking .global-container-1200{
+   background-position: bottom right;
+    background-repeat: no-repeat;
+}
+   .taking{
+   background-position: bottom left;
+    background-repeat: no-repeat;
+}
+  @media(max-width:1090px){
+  	.taking{background-image:none!important;}
+    .taking .col-1:nth-child(1){display:none;}
+  }	
+  @media(max-width:768px){
+    .taking .col-1:nth-child(1){display:block;}
+    .taking{background-image:none!important;}
+    .taking .col-1{
+        width: 100%;
+        min-height: 100px;
+  }
+    .taking .row{display:block;}
+    .taking .col-1:nth-child(2){padding-bottom:50px;}
+  }
+</style>
+
+
+<section class="taking" style="background-image:url({{section.settings.imageleft | img_url : 'master' }});">
+  <div class="global-container-1200" style="background-image:url({{ section.settings.image | img_url : 'master' }});">  
+    <div class="row">
+      <div class="col-1"></div>
+        <div class="col-1">
+				<h2>{{ section.settings.heading }}</h2>
+								
+				<div class="text02">
+					{{ section.settings.paragraph }}
+				</div>	
+		</div> 
+      
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Taking Your Flore",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "imageleft",
+      "label": "Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Taking Your Flore",
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

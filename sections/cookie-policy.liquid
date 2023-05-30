@@ -1,0 +1,148 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-alternating-content">
+></script>
+<style>
+  .home-clinical-lab{
+  	padding: 0;
+    background: #f8f8f8;
+    position: relative;
+    z-index: 1;
+    padding:75px 0;
+  }
+  .head02 {
+  	font-size: 1.43em;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-top: 0.83em;
+    color: #000000;
+  }
+  table {
+    color: #7f7f7f;
+    border: 0 solid #e6e6e6;
+    border-top: none;
+    font-size: 14px;
+    border-collapse: separate;
+    margin: 30px 0;
+    width: 100%;
+    background: 0 0;
+}
+  tr td:first-child {
+    border-left: none;
+}
+ tr td, tr th {
+    border-top: 0 solid #e6e6e6;
+    padding: 30px 0;
+}
+  a, body, label, li, p, select, span, td, th {
+    font-family: SunGenomics,sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5e5e5e;
+    font-weight: 100;
+}
+  tr td {
+    border-left: 0 solid #e6e6e6;
+}
+  .text-link, a, a:hover {
+    color: #FF5C35;
+    text-decoration: none;
+    cursor: pointer;
+}
+  .main-row-microbiology{
+  	max-width:900px;
+  }
+  
+</style>
+
+<div class="home-clinical-lab">
+  <div class="clinical-lab-contain-1200 global-container-1200">
+     <h1 class="clinical-lab-txt-heading h1-small">{{section.settings.heading}}</h1>
+		 <div class="clinical-lab- main-row-microbiology">
+           	{% for block in section.blocks %}
+           
+
+
+           {%- if block.settings.heading_type == 'h2' -%}
+             <h2 class="head02">
+                  {{block.settings.title}}
+             </h2>
+           {%- else -%}
+             <h3 class="head02">
+               {{block.settings.title}}
+             </h3>
+           {%- endif -%} 
+           
+           <div class="text02">{{block.settings.paragraph}}</div>
+           
+           {% if block.settings.table_paragraph != blank %}
+           
+           	<div class="text02">{{block.settings.table_paragraph}}</div>
+           
+           {% endif %}
+           
+           {% endfor %}
+           
+         </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cookie Policy",
+  "settings": [
+   
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }  
+  ],
+	"blocks":[
+	{
+	"type":"order",
+	"name":"Columns",
+	"settings": [
+      {
+       "type": "select",
+       "id": "heading_type",
+       "label": "Heading type",
+       "options": [
+      {
+       "label": "H3",
+       "value": "h3"
+      },
+      {
+       "label": "H2",
+       "value": "h2"
+      }
+     ]
+     },
+       	{
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+
+        },
+		{
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph"
+        }, 
+		{
+          "type": "html",
+          "id": "table_paragraph",
+          "label": "Table Paragraph"
+        }
+
+      ]
+	}
+  ]
+}
+
+{% endschema %}
+
+
